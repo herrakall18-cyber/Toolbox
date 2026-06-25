@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5">
+<title>Weeks Between Dates Calculator – How Many Weeks Between Two Dates | ToolsForUse</title>
+<meta name="description" content="Free Weeks Between Dates Calculator: find exactly how many weeks and days between two dates. Perfect pregnancy weeks calculator, project timeline tool, or event countdown. Accurate, no signup.">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { font-size: 100%; -webkit-text-size-adjust: 100%; }
+body { font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif; background: #f6f8fa; color: #1b2838; line-height: 1.6; display: flex; flex-direction: column; min-height: 100vh; padding: 0 1rem; }
+.container { max-width: 760px; margin: 0 auto; width: 100%; }
+header { background: #ffffff; border-bottom: 1px solid #d8e0e8; padding: 0.75rem 0; margin-bottom: 2rem; box-shadow: 0 1px 3px rgba(0,0,0,0.03); }
+header .container { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 0.5rem 1rem; }
+header a { color: #1a5c8a; text-decoration: none; font-weight: 500; font-size: 0.95rem; padding: 0.25rem 0; border-bottom: 2px solid transparent; transition: border-color 0.2s; }
+header a:hover, header a:focus { border-bottom-color: #1a5c8a; }
+header .home-link { font-weight: 600; font-size: 1.1rem; letter-spacing: -0.01em; }
+header .blog-link { font-size: 0.9rem; opacity: 0.85; }
+main { flex: 1; padding: 0 0 2.5rem; }
+.tool-card { background: #fff; border-radius: 20px; padding: 2rem 1.8rem; box-shadow: 0 4px 16px rgba(0,0,0,0.06); border: 1px solid #e9edf2; margin-bottom: 2rem; }
+h1 { font-size: 1.9rem; font-weight: 700; letter-spacing: -0.02em; margin-bottom: 0.4rem; color: #0c2a44; }
+.subtitle { font-size: 1rem; color: #3d5a73; margin-bottom: 1.8rem; border-left: 4px solid #76a9d6; padding-left: 1rem; }
+.calc-grid { display: flex; flex-direction: column; gap: 1.5rem; }
+.date-row { display: flex; flex-wrap: wrap; gap: 1rem 1.5rem; align-items: flex-end; }
+.date-field { flex: 1 1 180px; min-width: 150px; }
+.date-field label { display: block; font-size: 0.85rem; font-weight: 600; color: #2b4a66; margin-bottom: 0.3rem; letter-spacing: 0.02em; text-transform: uppercase; }
+.date-field input { width: 100%; padding: 0.7rem 0.8rem; border: 1px solid #cbd5e1; border-radius: 10px; font-size: 1rem; background: #fbfdff; transition: 0.2s; line-height: 1.4; }
+.date-field input:focus { outline: 2px solid #3b82c4; border-color: transparent; box-shadow: 0 0 0 3px rgba(59,130,196,0.15); }
+button { background: #1e6d9b; color: white; border: none; border-radius: 30px; padding: 0.7rem 2.2rem; font-size: 1.05rem; font-weight: 600; cursor: pointer; transition: background 0.2s, transform 0.1s; letter-spacing: 0.01em; white-space: nowrap; align-self: center; margin-top: 0.8rem; }
+button:hover { background: #155a81; }
+button:active { transform: scale(0.97); }
+.result-area { background: #eef3f9; border-radius: 18px; padding: 1.6rem 1.5rem; margin-top: 1.8rem; text-align: center; border: 1px solid #d3e0ec; }
+.result-number { font-size: 2.8rem; font-weight: 700; color: #0d3f5e; line-height: 1.2; }
+.result-number span { background: #cfe1f0; padding: 0.1rem 0.5rem; border-radius: 12px; }
+.result-detail { font-size: 1.3rem; color: #1f4d6e; margin-top: 0.5rem; }
+.result-detail small { font-size: 0.9rem; color: #416380; }
+.info-note { font-size: 0.9rem; color: #4b6379; margin-top: 0.8rem; border-top: 1px dashed #c5d3e2; padding-top: 0.8rem; }
+.reset-link { display: inline-block; margin-top: 0.6rem; font-size: 0.85rem; color: #336e96; cursor: pointer; text-decoration: underline; background: none; border: none; padding: 0; }
+.reset-link:hover { color: #0a2f49; }
+.explanation { background: #ffffff; border-radius: 20px; padding: 2rem 1.8rem; border: 1px solid #e9edf2; margin-bottom: 2rem; box-shadow: 0 2px 8px rgba(0,0,0,0.02); }
+.explanation h2 { font-size: 1.5rem; margin-bottom: 1rem; color: #123f5c; border-bottom: 2px solid #dbe3ed; padding-bottom: 0.4rem; }
+.explanation p { margin-bottom: 1rem; color: #1f3347; }
+.explanation p:last-child { margin-bottom: 0; }
+.affiliate-slot-placeholder { background: #f4f6fa; border: 2px dashed #bcccd9; border-radius: 18px; padding: 1.5rem; text-align: center; color: #426f8f; font-size: 0.9rem; margin: 1.8rem 0; }
+footer { background: #ffffff; border-top: 1px solid #d8e0e8; padding: 1rem 0; margin-top: 2rem; text-align: center; font-size: 0.85rem; color: #4f6b82; }
+footer a { color: #1f6b9c; text-decoration: none; }
+footer a:hover { text-decoration: underline; }
+@media (max-width: 500px) {
+  header .container { flex-direction: column; align-items: flex-start; gap: 0.2rem; }
+  .tool-card { padding: 1.5rem 1.2rem; }
+  .date-row { flex-direction: column; gap: 0.8rem; }
+  .date-field { min-width: 100%; }
+  button { width: 100%; }
+  .result-number { font-size: 2.2rem; }
+  h1 { font-size: 1.6rem; }
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="container">
+    <a href="/" class="home-link">← ToolsForUse</a>
+    <a href="/blog/weeks-between-dates-calculator/" class="blog-link">Read the story behind this tool</a>
+  </div>
+</header>
+
+<main class="container">
+  <div class="tool-card">
+    <h1>Weeks Between Dates Calculator</h1>
+    <div class="subtitle">Find exactly how many weeks and remaining days between any two dates</div>
+
+    <div class="calc-grid">
+      <div class="date-row">
+        <div class="date-field">
+          <label for="startDate">Start date</label>
+          <input type="date" id="startDate" value="" aria-required="true">
+        </div>
+        <div class="date-field">
+          <label for="endDate">End date</label>
+          <input type="date" id="endDate" value="" aria-required="true">
+        </div>
+      </div>
+      <button id="calculateBtn">Calculate weeks</button>
+    </div>
+
+    <div id="resultDisplay" class="result-area">
+      <div class="result-number" id="weeksCount">—</div>
+      <div class="result-detail" id="daysRemaining"></div>
+      <div class="info-note" id="additionalInfo">Enter two dates to see the exact weeks and days between them.</div>
+      <button class="reset-link" id="resetBtn" aria-label="Reset dates to today and a future date">↺ Reset to today</button>
+    </div>
+    <!-- AFFILIATE_SLOT -->
+    <div class="affiliate-slot-placeholder"><!-- AFFILIATE_SLOT → Affiliate card can be inserted here later --></div>
+  </div>
+
+  <section class="explanation">
+    <h2>How to use the weeks between dates calculator</h2>
+    <p>This <strong>weeks between dates calculator</strong> gives you the precise number of full weeks and leftover days between any two calendar dates. Whether you need to know <strong>how many weeks between two dates</strong> for project milestones, vacation planning, or tracking a countdown, the tool works instantly. It accounts for month lengths and leap years automatically — no manual counting required.</p>
+    <p>For example, it’s an ideal <strong>pregnancy weeks calculator</strong> (gestational age), because it shows both the completed weeks and the extra days. You can measure from your last menstrual period or conception date to today. Similarly, use it for event prep, fitness challenges, or any timeline that spans weeks. The result updates as you change dates, so you can experiment with different start and end points.</p>
+    <p>No data is sent to a server — everything runs right in your browser. The calculation uses the standard difference between two dates: it counts whole 7-day weeks, then shows the remaining days (0–6). Bookmark this page as your go-to <strong>weeks calculator</strong> for quick, reliable answers.</p>
+  </section>
+</main>
+
+<footer>
+  <div class="container">
+    <p>© ToolsForUse — <a href="/">back to toolbox</a> · <a href="/blog/weeks-between-dates-calculator/">story behind this tool</a></p>
+  </div>
+</footer>
+
+<script>
+(function() {
+  const startInput = document.getElementById('startDate');
+  const endInput = document.getElementById('endDate');
+  const calcBtn = document.getElementById('calculateBtn');
+  const resetBtn = document.getElementById('resetBtn');
+  const weeksDisplay = document.getElementById('weeksCount');
+  const daysDisplay = document.getElementById('daysRemaining');
+  const infoDisplay = document.getElementById('additionalInfo');
+
+  // helper: format date to YYYY-MM-DD
+  function formatDate(date) {
+    const y = date.getFullYear();
+    const m = String(date.getMonth() + 1).padStart(2, '0');
+    const d = String(date.getDate()).padStart(2, '0');
+    return `${y}-${m}-${d}`;
+  }
+
+  // set default dates: start = 40 weeks ago (approx pregnancy) or just default
+  function setDefaultDates() {
+    const now = new Date();
+    // default start = 10 weeks ago (useful demo)
+    const start = new Date(now);
+    start.setDate(start.getDate() - 70); // 10 weeks back
+    const end = new Date(now);
+    // if end is before start, adjust
+    if (end < start) {
+      end.setDate(start.getDate() + 70);
+    }
+    startInput.value = formatDate(start);
+    endInput.value = formatDate(end);
+  }
+
+  // perform calculation
+  function calculateWeeks() {
+    const startVal = startInput.value;
+    const endVal = endInput.value;
+    if (!startVal || !endVal) {
+      weeksDisplay.textContent = '—';
+      daysDisplay.textContent = '';
+      infoDisplay.textContent = 'Please enter both dates.';
+      return;
+    }
+    const start = new Date(startVal + 'T00:00:00');
+    const end = new Date(endVal + 'T00:00:00');
+    if (isNaN(start.getTime()) || isNaN(end.getTime())) {
+      weeksDisplay.textContent = '—';
+      daysDisplay.textContent = '';
+      infoDisplay.textContent = 'Invalid date.';
+      return;
+    }
+    // ensure start <= end, swap if necessary
+    let from = new Date(start);
+    let to = new Date(end);
+    let swapped = false;
+    if (from > to) {
+      [from, to] = [to, from];
+      swapped = true;
+    }
+    // difference in milliseconds
+    const diffMs = to.getTime() - from.getTime();
+    const totalDays = Math.floor(diffMs / (1000 * 60 * 60 * 24));
+    const weeks = Math.floor(totalDays / 7);
+    const remainingDays = totalDays % 7;
+
+    let prefix = '';
+    if (swapped) {
+      prefix = '(swapped order) ';
+    }
+    weeksDisplay.textContent = weeks + (weeks === 1 ? ' week' : ' weeks');
+    if (remainingDays === 0) {
+      daysDisplay.textContent = prefix + 'exactly ' + weeks + (weeks === 1 ? ' week' : ' weeks') + ' (no extra days)';
+    } else {
+      daysDisplay.textContent = prefix + remainingDays + (remainingDays === 1 ? ' day' : ' days') + ' remaining';
+    }
+    // info
+    const totalDaysText = totalDays + (totalDays === 1 ? ' day' : ' days') + ' total';
+    infoDisplay.textContent = totalDaysText + ' between these two dates.';
+  }
+
+  // reset to sensible defaults (today and 8 weeks ahead)
+  function resetDates() {
+    const now = new Date();
+    // start = today
+    const start = new Date(now);
+    // end = 12 weeks later (nice demo)
+    const end = new Date(now);
+    end.setDate(end.getDate() + 84); // 12 weeks
+    startInput.value = formatDate(start);
+    endInput.value = formatDate(end);
+    calculateWeeks();
+  }
+
+  // event listeners
+  calcBtn.addEventListener('click', calculateWeeks);
+  resetBtn.addEventListener('click', resetDates);
+  // also calculate on Enter key from inputs
+  startInput.addEventListener('keydown', function(e) { if (e.key === 'Enter') calculateWeeks(); });
+  endInput.addEventListener('keydown', function(e) { if (e.key === 'Enter') calculateWeeks(); });
+  // auto-calc on change
+  startInput.addEventListener('change', calculateWeeks);
+  endInput.addEventListener('change', calculateWeeks);
+
+  // initial setup: default dates and calculate
+  setDefaultDates();
+  calculateWeeks();
+})();
+</script>
+</body>
+</html>
