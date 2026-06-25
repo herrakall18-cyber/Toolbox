@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Running Pace Calculator — ToolsForUse</title>
+    <meta name="description" content="A straightforward pace calculator that converts time and distance into pace, speed, or finish time. Built because I kept fumbling with numbers before my runs.">
+    <style>
+        /* --- reset / base --- */
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: Georgia, 'Times New Roman', Times, serif;
+            background: #f9f8f6;
+            color: #1e1e1a;
+            line-height: 1.7;
+            padding: 1.5rem;
+        }
+        a { color: #2c5f2d; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+
+        /* --- layout --- */
+        .container {
+            max-width: 680px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 2.5rem 2rem;
+            border-radius: 4px;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+        }
+        @media (min-width: 600px) {
+            body { padding: 3rem 2rem; }
+            .container { padding: 3.5rem 3rem; }
+        }
+
+        /* --- header --- */
+        .site-header {
+            margin-bottom: 2.8rem;
+            border-bottom: 1px solid #e2ddd5;
+            padding-bottom: 0.75rem;
+        }
+        .site-header a {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            font-size: 0.85rem;
+            letter-spacing: 0.5px;
+            color: #5a5a56;
+        }
+        .site-header a:hover { color: #1e1e1a; }
+
+        /* --- typography --- */
+        h1 {
+            font-size: 2rem;
+            font-weight: 600;
+            letter-spacing: -0.3px;
+            margin-bottom: 1.8rem;
+            line-height: 1.2;
+        }
+        h2 {
+            font-size: 1.4rem;
+            font-weight: 500;
+            margin: 2.4rem 0 0.8rem 0;
+        }
+        p { margin-bottom: 1.25rem; }
+        .subhead {
+            font-size: 1.05rem;
+            color: #3f3f3a;
+            margin-bottom: 2rem;
+            border-left: 3px solid #c3b5a2;
+            padding-left: 1rem;
+            font-style: italic;
+        }
+        .try-link {
+            display: inline-block;
+            background: #2c5f2d;
+            color: #fff;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            font-size: 1rem;
+            padding: 0.65rem 1.5rem;
+            border-radius: 3px;
+            margin: 1rem 0 0.5rem;
+            transition: background 0.15s, box-shadow 0.15s;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        .try-link:hover {
+            background: #1e4720;
+            text-decoration: none;
+            box-shadow: 0 2px 6px rgba(44,95,45,0.25);
+        }
+        hr {
+            border: none;
+            border-top: 1px solid #e2ddd5;
+            margin: 2.8rem 0 1.5rem;
+        }
+        .footer-note {
+            font-size: 0.9rem;
+            color: #6c6b65;
+            margin-top: 0.2rem;
+        }
+        .footer-note a { color: #4a6947; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="site-header">
+            <a href="/">← back to ToolsForUse</a>
+        </div>
+
+        <h1>Running Pace Calculator</h1>
+        <div class="subhead">
+            A tool I built because I kept doing math on the fly before runs, and messing it up.
+        </div>
+
+        <p>
+            Last month I was standing on my porch in the dark, phone in hand, trying to figure out if I could run 10K in under 50 minutes. I knew my easy pace was around 5:15 per km, but what did that actually mean for a finish time? I opened a notes app, typed some numbers, got confused, deleted them, started over. By the time I had an answer (52:30 — no, I wouldn't break 50), my coffee was cold and I was annoyed.
+        </p>
+        <p>
+            That's the specific, tiny problem. I needed to swap between pace, speed, and total time without doing mental arithmetic. I wanted to know: if I run at 4:40/km, how long will a half marathon take? If I finish a 10-miler in 1:15, what pace did I actually hold? It's simple math, but every time I tried to do it in my head — or even on a calculator — I'd transpose numbers or forget what unit I was working in.
+        </p>
+
+        <h2>What was out there</h2>
+        <p>
+            There are pace calculators online. A lot of them are fine. But they're often buried in running apps or plastered with ads, and they don't always let you easily flip between the three views: pace from time/distance, time from pace/distance, or distance from pace/time. Also, many of them assume you're only ever interested in one unit system. I run with friends in the US and in Europe, so I end up switching between miles and kilometers constantly. The existing tools work, but they're just a little bit fiddly when you're in a hurry.
+        </p>
+
+        <h2>What this one does</h2>
+        <p>
+            The <strong>Running Pace Calculator</strong> is a single page with three input fields: distance (with a dropdown for kilometers or miles), time (hours, minutes, seconds), and pace (per km or per mile). Fill in any two, and the third updates instantly. It also shows your speed in km/h and mph, because sometimes you think in pace and sometimes in speed. No ads, no account, no fluff. It works on my phone, it works on my laptop, and it spits out the answer before I've finished tying my shoes.
+        </p>
+
+        <p>
+            I use it mostly for quick "what if" checks: <em>If I push to 4:20/km, can I PB my 5K?</em> or <em>I ran 8 miles in 64 minutes, what was my average pace?</em> It's the thing I wished I'd had on my porch that morning.
+        </p>
+
+        <p>
+            <a href="/tools/pace-calculator/" class="try-link">Try the Pace Calculator →</a>
+        </p>
+
+        <hr>
+
+        <p class="footer-note">
+            It's just a calculator. It won't make you faster, but it might save you from doing fractions in your head. If you find it useful, great. If not, no hard feelings.
+        </p>
+    </div>
+</body>
+</html>
