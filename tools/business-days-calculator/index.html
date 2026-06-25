@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Business Days Calculator | Working Days Between Dates - ToolsForUse</title>
+    <meta name="description" content="Calculate the number of working days between two dates with our free business days calculator. Exclude weekends and optional holidays for accurate project timeline estimation.">
+    <!-- AFFILIATE_SLOT -->
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background: #f4f7fa;
+            color: #1e293b;
+            line-height: 1.6;
+            padding: 20px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .container {
+            max-width: 820px;
+            width: 100%;
+            background: #fff;
+            border-radius: 20px;
+            padding: 30px 28px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+            margin: 20px 0;
+        }
+        header.tool-header {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #e2e8f0;
+            padding-bottom: 16px;
+            margin-bottom: 24px;
+        }
+        .site-links a {
+            text-decoration: none;
+            color: #2563eb;
+            font-weight: 500;
+            margin-right: 20px;
+            font-size: 0.95rem;
+        }
+        .site-links a:hover {
+            text-decoration: underline;
+        }
+        h1 {
+            font-size: 1.9rem;
+            font-weight: 700;
+            color: #0f172a;
+            margin: 0 0 8px 0;
+        }
+        .subhead {
+            color: #475569;
+            margin-bottom: 28px;
+            font-size: 1.05rem;
+        }
+        .calc-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 18px 24px;
+            margin-bottom: 20px;
+        }
+        .field-group {
+            display: flex;
+            flex-direction: column;
+        }
+        .field-group label {
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-bottom: 6px;
+            color: #1e293b;
+        }
+        .field-group input[type="date"] {
+            padding: 12px 14px;
+            border: 1px solid #cbd5e1;
+            border-radius: 12px;
+            font-size: 1rem;
+            background: #f8fafc;
+            transition: 0.2s;
+        }
+        .field-group input[type="date"]:focus {
+            outline: none;
+            border-color: #2563eb;
+            box-shadow: 0 0 0 3px rgba(37,99,235,0.15);
+        }
+        .holiday-toggle {
+            grid-column: 1 / -1;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 14px;
+            margin: 8px 0 4px;
+        }
+        .holiday-toggle label.switch {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+            font-weight: 500;
+        }
+        .holiday-toggle input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            accent-color: #2563eb;
+        }
+        .holidays-area {
+            grid-column: 1 / -1;
+            display: none;
+            flex-direction: column;
+            gap: 8px;
+            padding: 16px 18px;
+            background: #f1f5f9;
+            border-radius: 14px;
+            margin-top: 2px;
+        }
+        .holidays-area.visible {
+            display: flex;
+        }
+        .holidays-area label {
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+        .holidays-input {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            align-items: center;
+        }
+        .holidays-input input[type="date"] {
+            padding: 10px 12px;
+            border: 1px solid #cbd5e1;
+            border-radius: 10px;
+            font-size: 0.95rem;
+            background: white;
+            flex: 1 1 180px;
+        }
+        .holidays-input button {
+            background: #e2e8f0;
+            border: none;
+            border-radius: 10px;
+            padding: 10px 16px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: 0.15s;
+            font-size: 0.9rem;
+            color: #1e293b;
+        }
+        .holidays-input button:hover {
+            background: #cbd5e1;
+        }
+        .added-holidays {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px 10px;
+            margin-top: 6px;
+        }
+        .holiday-tag {
+            background: #e2e8f0;
+            padding: 4px 12px 4px 14px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .holiday-tag button {
+            background: transparent;
+            border: none;
+            font-size: 1.1rem;
+            line-height: 1;
+            cursor: pointer;
+            color: #64748b;
+            padding: 0 2px;
+        }
+        .holiday-tag button:hover {
+            color: #b91c1c;
+        }
+        .action-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 14px;
+            margin: 22px 0 18px;
+        }
+        .btn-primary {
+            background: #2563eb;
+            color: white;
+            border: none;
+            padding: 14px 32px;
+            border-radius: 40px;
+            font-weight: 600;
+            font-size: 1.05rem;
+            cursor: pointer;
+            transition: background 0.2s;
+            flex: 1 0 auto;
+            min-width: 160px;
+        }
+        .btn-primary:hover {
+            background: #1d4ed8;
+        }
+        .btn-secondary {
+            background: transparent;
+            color: #2563eb;
+            border: 1.5px solid #2563eb;
+            padding: 12px 26px;
+            border-radius: 40px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .btn-secondary:hover {
+            background: #eff6ff;
+        }
+        .result-box {
+            background: #f0f7ff;
+            border-radius: 18px;
+            padding: 20px 24px;
+            margin: 16px 0 10px;
+            border-left: 5px solid #2563eb;
+        }
+        .result-number {
+            font-size: 2.6rem;
+            font-weight: 700;
+            color: #0f172a;
+            line-height: 1.2;
+        }
+        .result-label {
+            font-size: 1rem;
+            color: #334155;
+            margin-top: 4px;
+        }
+        .result-detail {
+            font-size: 0.9rem;
+            color: #64748b;
+            margin-top: 6px;
+        }
+        .explanation {
+            margin: 38px 0 20px;
+            padding-top: 18px;
+            border-top: 1px solid #e2e8f0;
+        }
+        .explanation h2 {
+            font-size: 1.4rem;
+            margin-bottom: 12px;
+            color: #0f172a;
+        }
+        .explanation p {
+            margin-bottom: 16px;
+            color: #334155;
+        }
+        .explanation strong {
+            color: #1e293b;
+        }
+        footer {
+            text-align: center;
+            color: #94a3b8;
+            font-size: 0.85rem;
+            margin-top: 18px;
+            padding-top: 12px;
+        }
+        @media (max-width: 600px) {
+            .container {
+                padding: 20px 14px;
+            }
+            h1 {
+                font-size: 1.6rem;
+            }
+            .calc-grid {
+                grid-template-columns: 1fr;
+                gap: 14px;
+            }
+            .site-links a {
+                margin-right: 12px;
+                font-size: 0.85rem;
+            }
+            .btn-primary {
+                width: 100%;
+            }
+            .action-row {
+                flex-direction: column;
+            }
+            .result-number {
+                font-size: 2.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <header class="tool-header">
+        <div class="site-links">
+            <a href="/">← ToolsForUse</a>
+            <a href="/blog/business-days-calculator/">Read the story behind this tool</a>
+        </div>
+    </header>
+
+    <h1>Business Days Calculator</h1>
+    <div class="subhead">Count the exact working days between two dates — exclude weekends and optional holidays.</div>
+
+    <div class="calc-grid">
+        <div class="field-group">
+            <label for="startDate">Start date</label>
+            <input type="date" id="startDate" value="2025-04-01">
+        </div>
+        <div class="field-group">
+            <label for="endDate">End date</label>
+            <input type="date" id="endDate" value="2025-04-30">
+        </div>
+        <div class="holiday-toggle">
+            <label class="switch">
+                <input type="checkbox" id="toggleHoliday"> 
+                Exclude specific holidays
+            </label>
+        </div>
+        <div class="holidays-area" id="holidayArea">
+            <label for="holidayInput">Add holiday date</label>
+            <div class="holidays-input">
+                <input type="date" id="holidayInput">
+                <button id="addHolidayBtn">Add</button>
+            </div>
+            <div class="added-holidays" id="holidayList"></div>
+        </div>
+    </div>
+
+    <div class="action-row">
+        <button class="btn-primary" id="calculateBtn">Calculate business days</button>
+        <button class="btn-secondary" id="resetBtn">Reset</button>
+    </div>
+
+    <div class="result-box" id="resultBox">
+        <div class="result-number" id="resultNumber">0</div>
+        <div class="result-label">working days</div>
+        <div class="result-detail" id="resultDetail">Excluding weekends (Sat &amp; Sun)<span id="holidayNote"></span>.</div>
+    </div>
+
+    <div class="explanation">
+        <h2>How to use the business days calculator</h2>
+        <p>
+            The <strong>business days calculator</strong> helps you quickly find the number of <strong>working days between dates</strong>. 
+            Simply select a start and end date — the tool automatically excludes all Saturdays and Sundays. 
+            For extra accuracy in project planning, you can also add specific holidays (like public holidays or company off-days) 
+            and they will be subtracted from the total. The result updates instantly with a clear number of business days.
+        </p>
+        <p>
+            Why does this matter? When you need to <strong>count business days</strong> for delivery timelines, 
+            sprint planning, or contract deadlines, manual counting is error-prone. This tool eliminates guesswork 
+            and ensures you have a reliable working day total. Use it for any date range, past or future, and 
+            adjust the holiday list for different countries or company calendars. The logic runs entirely in your browser — 
+            no data is sent to any server.
+        </p>
+        <p>
+            Whether you're a project manager, freelancer, or HR professional, having a fast and precise 
+            <strong>business days calculator</strong> at your fingertips makes schedule estimation much smoother. 
+            Bookmark this page for recurring use, and check the "Read the story behind this tool" link above 
+            to learn more about how it was built.
+        </p>
+    </div>
+
+    <!-- AFFILIATE_SLOT -->
+
+    <footer>
+        ToolsForUse — business days calculator &bull; free online tool
+    </footer>
+</div>
+
+<script>
+    (function() {
+        // DOM refs
+        const startInput = document.getElementById('startDate');
+        const endInput = document.getElementById('endDate');
+        const toggleHoliday = document.getElementById('toggleHoliday');
+        const holidayArea = document.getElementById('holidayArea');
+        const holidayInput = document.getElementById('holidayInput');
+        const addHolidayBtn = document.getElementById('addHolidayBtn');
+        const holidayList = document.getElementById('holidayList');
+        const calculateBtn = document.getElementById('calculateBtn');
+        const resetBtn = document.getElementById('resetBtn');
+        const resultNumber = document.getElementById('resultNumber');
+        const resultDetail = document.getElementById('resultDetail');
+        const holidayNoteSpan = document.getElementById('holidayNote');
+
+        // state
+        let holidays = [];
+
+        // helpers
+        function formatDate(dateStr) {
+            const d = new Date(dateStr + 'T00:00:00');
+            return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+        }
+
+        function normalizeDate(dateStr) {
+            return dateStr; // YYYY-MM-DD
+        }
+
+        function dateIsHoliday(dateStr) {
+            return holidays.some(h => h === dateStr);
+        }
+
+        function renderHolidayTags() {
+            holidayList.innerHTML = '';
+            if (holidays.length === 0) {
+                const empty = document.createElement('span');
+                empty.textContent = 'No holidays added yet.';
+                empty.style.color = '#94a3b8';
+                empty.style.fontSize = '0.85rem';
+                holidayList.appendChild(empty);
+                return;
+            }
+            holidays.forEach((h, index) => {
+                const tag = document.createElement('span');
+                tag.className = 'holiday-tag';
+                tag.textContent = formatDate(h);
+                const rmBtn = document.createElement('button');
+                rmBtn.textContent = '✕';
+                rmBtn.setAttribute('aria-label', `Remove ${formatDate(h)}`);
+                rmBtn.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    holidays.splice(index, 1);
+                    renderHolidayTags();
+                });
+                tag.appendChild(rmBtn);
+                holidayList.appendChild(tag);
+            });
+        }
+
+        function toggleHolidayArea() {
+            if (toggleHoliday.checked) {
+                holidayArea.classList.add('visible');
+            } else {
+                holidayArea.classList.remove('visible');
+            }
+        }
+
+        function addHolidayFromInput() {
+            const val = holidayInput.value;
+            if (!val) {
+                alert('Please select a date.');
+                return;
+            }
+            // check duplicates
+            if (holidays.includes(val)) {
+                alert('This holiday is already added.');
+                return;
+            }
+            holidays.push(val);
+            renderHolidayTags();
+            holidayInput.value = '';
+        }
+
+        // core calculation
+        function countBusinessDays(startStr, endStr, excludeHolidays = []) {
+            const start = new Date(startStr + 'T00:00:00');
+            const end = new Date(endStr + 'T00:00:00');
+            if (isNaN(start.getTime()) || isNaN(end.getTime())) return 0;
+            if (start > end) return 0;
+
+            let count = 0;
+            const current = new Date(start);
+            while (current <= end) {
+                const day = current.getDay(); // 0 Sun, 6 Sat
+                if (day !== 0 && day !== 6) {
+                    const dateStr = current.toISOString().slice(0, 10);
+                    if (!excludeHolidays.includes(dateStr)) {
+                        count++;
+                    }
+                }
+                current.setDate(current.getDate() + 1);
+            }
+            return count;
+        }
+
+        function updateResult() {
+            const startVal = startInput.value;
+            const endVal = endInput.value;
+            if (!startVal || !endVal) {
+                resultNumber.textContent = '—';
+                resultDetail.textContent = 'Please select both start and end dates.';
+                holidayNoteSpan.textContent = '';
+                return;
+            }
+            if (startVal > endVal) {
+                resultNumber.textContent = '0';
+                resultDetail.textContent = 'Start date must be before or equal to end date.';
+                holidayNoteSpan.textContent = '';
+                return;
+            }
+            const activeHolidays = toggleHoliday.checked ? holidays : [];
+            const total = countBusinessDays(startVal, endVal, activeHolidays);
+            resultNumber.textContent = total;
+            let note = '';
+            if (activeHolidays.length > 0) {
+                note = ` and ${activeHolidays.length} holiday(s)`;
+            }
+            holidayNoteSpan.textContent = note;
+            resultDetail.textContent = `Excluding weekends (Sat & Sun)${note}.`;
+        }
+
+        function resetAll() {
+            startInput.value = '2025-04-01';
+            endInput.value = '2025-04-30';
+            toggleHoliday.checked = false;
+            holidays = [];
+            renderHolidayTags();
+            holidayArea.classList.remove('visible');
+            toggleHolidayArea();
+            updateResult();
+        }
+
+        // event binding
+        toggleHoliday.addEventListener('change', function() {
+            toggleHolidayArea();
+            if (!toggleHoliday.checked) {
+                // optional: keep holidays list but not used
+            }
+            updateResult();
+        });
+
+        addHolidayBtn.addEventListener('click', function() {
+            addHolidayFromInput();
+            updateResult();
+        });
+
+        calculateBtn.addEventListener('click', updateResult);
+
+        resetBtn.addEventListener('click', resetAll);
+
+        // also update on date change
+        startInput.addEventListener('change', updateResult);
+        endInput.addEventListener('change', updateResult);
+
+        // initial render
+        renderHolidayTags();
+        toggleHolidayArea();
+        updateResult();
+
+        // helper: allow enter in holiday input
+        holidayInput.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                addHolidayFromInput();
+                updateResult();
+            }
+        });
+
+    })();
+</script>
+</body>
+</html>
