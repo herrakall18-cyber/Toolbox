@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conception Date Calculator - ToolsForUse</title>
+    <meta name="description" content="Honest thoughts on why I built a conception date calculator: to find the estimated date of conception based on a due date or birth date. No hype, just a useful tool.">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: #1a1a2e;
+            background: #f8f9fa;
+        }
+        .container {
+            max-width: 720px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        header {
+            padding: 16px 0;
+            border-bottom: 1px solid #e0e0e0;
+            margin-bottom: 32px;
+        }
+        header a {
+            color: #1a1a2e;
+            text-decoration: none;
+            font-size: 1.1rem;
+            font-weight: 500;
+        }
+        header a:hover {
+            color: #5a67d8;
+        }
+        h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin: 0 0 12px 0;
+            line-height: 1.2;
+            color: #111;
+        }
+        h2 {
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin: 36px 0 12px 0;
+            color: #1a1a2e;
+        }
+        p {
+            margin: 0 0 18px 0;
+            color: #2d3748;
+        }
+        .meta {
+            color: #718096;
+            font-size: 0.9rem;
+            margin-bottom: 24px;
+        }
+        .button {
+            display: inline-block;
+            background: #5a67d8;
+            color: #fff;
+            padding: 12px 28px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 500;
+            margin: 8px 0 24px 0;
+            transition: background 0.2s;
+        }
+        .button:hover {
+            background: #434190;
+        }
+        footer {
+            margin-top: 48px;
+            padding: 20px 0;
+            border-top: 1px solid #e0e0e0;
+            color: #718096;
+            font-size: 0.9rem;
+        }
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 1.6rem;
+            }
+            .container {
+                padding: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <a href="/">← ToolsForUse</a>
+        </header>
+
+        <h1>Conception Date Calculator: why I built it and how it works</h1>
+        <div class="meta">Announcing a new tool — honest thoughts, no fluff.</div>
+
+        <p>So here’s the thing: a close friend texted me a few weeks ago, stressed. She had just found out she was pregnant, and her doctor gave her a due date. But she was trying to piece together exactly <em>when</em> it might have happened — not for medical reasons, just for her own sense of timeline. She wanted to understand when conception likely occurred, because that felt more real to her than a due date far in the future.</p>
+
+        <p>I looked around online, and honestly, most calculators either asked for her last period (which she didn’t track) or gave a vague range with caveats. A few were buried in pregnancy forums with pop-ups and ads everywhere. One site straight up asked for her email before showing a result. It felt like every option was either overly clinical or trying to sell her something.</p>
+
+        <p>That’s when I thought: this shouldn’t be complicated. You have a due date or a birth date. You want a reasonable estimate for when conception happened. That’s it. No frills, no data collection, no "sign up to see your answer."</p>
+
+        <h2>What the tool actually does</h2>
+        <p>The Conception Date Calculator takes a due date (or a birth date) and works backwards using the standard 40-week pregnancy model. It estimates the date of conception, plus gives you a small window around that date to account for natural variation. It’s not a medical diagnosis — it’s a straightforward calculation based on common obstetrical assumptions. If you know your due date, you can get a clear answer in about 10 seconds.</p>
+
+        <p>Under the hood, it uses the typical formula: conception happens roughly 266 days (38 weeks) before the due date, or about 2 weeks after the last menstrual period. I added a small buffer range because ovulation isn’t always exact. The result is a single date with a brief note explaining the margin. No graphs, no quizzes, no downloads.</p>
+
+        <h2>Why bother making yet another calculator?</h2>
+        <p>Because the existing ones either hide the answer behind sign-ups, show you ads for baby products mid-calculation, or assume you have medical data most people don’t have memorized. I wanted something that felt like a tool you’d use once and close — not an onboarding funnel. It’s for people who just want a number, not a newsletter.</p>
+
+        <p>Is it perfect? No. Every estimate has some uncertainty, especially if you don’t know your exact ovulation day. But it’s better than digging through forums or doing the math yourself at 2am.</p>
+
+        <p><a href="/tools/conception-date-calculator/" class="button">Try the Conception Date Calculator →</a></p>
+
+        <h2>Closing thoughts</h2>
+        <p>This tool is now live at <a href="/tools/conception-date-calculator/">/tools/conception-date-calculator/</a>. It’s free, it’s private, and it does one thing. If you have a due date and want to know when conception likely happened, it’ll give you an answer. If you’re looking for medical advice, please talk to a doctor. But if you just need a quick estimate, it’s here.</p>
+
+        <p>That’s it. No countdown timer. No "limited time offer." Just a tool I wish existed when my friend asked.</p>
+
+        <footer>
+            <p>— Built for ToolsForUse. Always free, always straightforward.</p>
+        </footer>
+    </div>
+</body>
+</html>
