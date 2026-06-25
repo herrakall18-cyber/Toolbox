@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Work Hours Calculator – Free Time Card & Lunch Break Calculator</title>
+    <meta name="description" content="Use this free work hours calculator to compute total hours worked between start and end times, with optional unpaid break deduction. Perfect for payroll, time tracking, and lunch break calculator needs.">
+    <!-- AFFILIATE_SLOT -->
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: #f4f7fc;
+            color: #1e293b;
+            line-height: 1.5;
+            padding: 1.5rem;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 24px;
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.06);
+            padding: 2rem 2rem 2.5rem;
+        }
+        @media (max-width: 500px) {
+            body { padding: 0.75rem; }
+            .container { padding: 1.25rem; }
+        }
+        /* header / navigation */
+        .tool-header {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: baseline;
+            border-bottom: 1px solid #e2e8f0;
+            padding-bottom: 0.75rem;
+            margin-bottom: 1.75rem;
+        }
+        .site-name a {
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: #0f4a8a;
+            text-decoration: none;
+            letter-spacing: -0.3px;
+        }
+        .site-name a:hover {
+            color: #0b3b6b;
+        }
+        .blog-link a {
+            font-size: 0.95rem;
+            color: #2c6b9e;
+            text-decoration: none;
+            border-bottom: 1px dotted #9bb7d6;
+        }
+        .blog-link a:hover {
+            color: #0b3b6b;
+            border-bottom: 1px solid #0b3b6b;
+        }
+        h1 {
+            font-size: 2.1rem;
+            font-weight: 700;
+            letter-spacing: -0.4px;
+            color: #0b2b4a;
+            margin: 0.25rem 0 0.75rem;
+        }
+        @media (max-width: 480px) {
+            h1 { font-size: 1.7rem; }
+        }
+        /* card layout */
+        .calc-card {
+            background: #f8faff;
+            border-radius: 20px;
+            padding: 1.75rem 2rem;
+            margin: 1.25rem 0 1.8rem;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+        }
+        @media (max-width: 550px) {
+            .calc-card { padding: 1.25rem; }
+        }
+        .field-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.2rem 1.8rem;
+            margin-bottom: 1rem;
+        }
+        .field {
+            flex: 1 1 160px;
+            min-width: 130px;
+        }
+        label {
+            display: block;
+            font-weight: 500;
+            font-size: 0.86rem;
+            letter-spacing: 0.02em;
+            color: #1e4668;
+            margin-bottom: 0.25rem;
+        }
+        input[type="time"], input[type="number"] {
+            width: 100%;
+            padding: 0.6rem 0.8rem;
+            border: 1px solid #cbd5e1;
+            border-radius: 16px;
+            font-size: 1rem;
+            background: white;
+            transition: 0.2s;
+        }
+        input:focus {
+            outline: 3px solid rgba(41, 112, 184, 0.25);
+            border-color: #1f6eb0;
+        }
+        .break-field {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 0.25rem 0.5rem;
+            margin-top: 0.6rem;
+            background: #eef4fa;
+            padding: 0.5rem 1rem 0.5rem 1.2rem;
+            border-radius: 40px;
+        }
+        .break-field label {
+            margin-bottom: 0;
+            font-size: 0.95rem;
+        }
+        .break-field input {
+            width: 80px;
+            padding: 0.4rem 0.5rem;
+            border-radius: 40px;
+            text-align: center;
+        }
+        .actions {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 1.2rem;
+            margin: 1.5rem 0 0.8rem;
+        }
+        button {
+            background: #1a5f99;
+            color: white;
+            border: none;
+            padding: 0.7rem 1.8rem;
+            font-size: 1rem;
+            font-weight: 600;
+            border-radius: 100px;
+            cursor: pointer;
+            transition: 0.2s;
+            box-shadow: 0 4px 8px rgba(26, 95, 153, 0.2);
+        }
+        button:hover {
+            background: #134677;
+            transform: scale(1.02);
+        }
+        button.reset {
+            background: transparent;
+            color: #2c3e50;
+            box-shadow: none;
+            border: 1px solid #bacee0;
+            font-weight: 500;
+        }
+        button.reset:hover {
+            background: #e8edf3;
+            transform: none;
+        }
+        .result-area {
+            background: #ffffff;
+            border-radius: 80px;
+            padding: 1rem 1.8rem;
+            margin: 1rem 0 0.25rem;
+            font-size: 1.5rem;
+            font-weight: 600;
+            border: 1px solid #dce7f2;
+            display: inline-block;
+            letter-spacing: -0.3px;
+        }
+        .result-label {
+            font-size: 0.9rem;
+            font-weight: 400;
+            color: #2a577b;
+            margin-right: 0.75rem;
+        }
+        .note-text {
+            margin-top: 0.6rem;
+            font-size: 0.9rem;
+            color: #3b5f7a;
+        }
+        hr {
+            margin: 2.2rem 0 1.2rem;
+            border: 0;
+            border-top: 1px solid #dfe9f2;
+        }
+        .explanation {
+            background: #f9fcff;
+            padding: 1.5rem 1.8rem;
+            border-radius: 24px;
+            border-left: 4px solid #2970b8;
+        }
+        .explanation h2 {
+            font-size: 1.4rem;
+            margin-top: 0.4rem;
+            margin-bottom: 0.75rem;
+            color: #0b2b4a;
+        }
+        .explanation p {
+            margin-bottom: 1rem;
+            color: #1f3c58;
+        }
+        .explanation p:last-child {
+            margin-bottom: 0;
+        }
+        .affiliate-note {
+            margin: 2rem 0 0.2rem;
+            padding: 0.4rem 0.8rem;
+            background: #f2f2f5;
+            border-radius: 40px;
+            color: #3a4d62;
+            font-size: 0.85rem;
+            display: inline-block;
+        }
+        footer {
+            margin-top: 1.8rem;
+            font-size: 0.8rem;
+            color: #5a7188;
+            border-top: 1px solid #e2e8f0;
+            padding-top: 1.5rem;
+            text-align: center;
+        }
+        .flex-fill { flex: 1; }
+        .inline-symbol { font-weight: 300; color: #3771a0; margin: 0 0.2rem; }
+    </style>
+</head>
+<body>
+<div class="container">
+    
+    <!-- Header with links -->
+    <div class="tool-header">
+        <div class="site-name"><a href="/">ToolsForUse</a></div>
+        <div class="blog-link"><a href="/blog/work-hours-calculator/">📘 Read the story behind this tool</a></div>
+    </div>
+
+    <h1>⏱️ Work Hours Calculator</h1>
+    <p style="color: #2e4e6e; max-width: 600px;">Free time card calculator — enter start &amp; end times and optional unpaid break to get exact hours worked.</p>
+
+    <!-- === Calculator card === -->
+    <div class="calc-card">
+        <div class="field-group">
+            <div class="field">
+                <label for="startTime">Start time</label>
+                <input type="time" id="startTime" value="09:00">
+            </div>
+            <div class="field">
+                <label for="endTime">End time</label>
+                <input type="time" id="endTime" value="17:00">
+            </div>
+        </div>
+
+        <div class="break-field">
+            <label for="breakMinutes">🍴 Unpaid break</label>
+            <input type="number" id="breakMinutes" min="0" max="480" value="30" step="1">
+            <span style="font-size:0.9rem; color:#1f4668;">minutes</span>
+        </div>
+
+        <div class="actions">
+            <button id="calcBtn">Calculate hours</button>
+            <button class="reset" id="resetBtn">Reset</button>
+        </div>
+
+        <div>
+            <span class="result-area" id="resultDisplay">
+                <span class="result-label">Total work</span> 7.50 h
+            </span>
+            <div class="note-text" id="noteDisplay">(7 h 30 min) – includes 30 min break deduction</div>
+        </div>
+    </div>
+
+    <!-- affiliate placeholder (visible hint) -->
+    <!-- AFFILIATE_SLOT -->
+    <div class="affiliate-note">📌 Sponsored slot – <span style="font-weight:400;"><!-- AFFILIATE_SLOT --></span> (affiliate card could be placed here)</div>
+
+    <!-- Explanatory section (2-3 paragraphs) -->
+    <div class="explanation">
+        <h2>Why use a work hours calculator?</h2>
+        <p><strong>Work hours calculator</strong> (also called a <strong>time card calculator</strong> or <strong>hours worked calculator</strong>) helps you instantly compute your total working time between two clock times. Instead of mental math or spreadsheets, you get decimal hours and hours+minutes – ideal for payroll, freelancers, or hourly employees. This tool automatically deducts an unpaid break (e.g. lunch), so you don’t forget to subtract that 30‑minute lunch.</p>
+        <p>For managers and remote teams, a <strong>lunch break calculator</strong> ensures consistent time tracking. Simply enter your start and end times, set your unpaid break duration, and the tool displays total paid hours. It’s also useful as a <strong>time duration calculator between times</strong> — for example, to measure a shift, meeting, or project window. The logic handles AM/PM automatically via the 24‑hour time picker, so you don’t have to worry about morning/afternoon confusion.</p>
+        <p>Whether you’re processing payroll, checking a colleague’s timesheet, or tracking your own productivity, this free <strong>work hours calculator</strong> saves time and prevents errors. Bookmark it for daily use — no login, no ads, just accurate results.</p>
+    </div>
+
+    <footer>
+        <span>© ToolsForUse — quick, reliable time tools</span>
+    </footer>
+</div>
+
+<script>
+    (function() {
+        const startInput = document.getElementById('startTime');
+        const endInput = document.getElementById('endTime');
+        const breakInput = document.getElementById('breakMinutes');
+        const calcBtn = document.getElementById('calcBtn');
+        const resetBtn = document.getElementById('resetBtn');
+        const resultDisplay = document.getElementById('resultDisplay');
+        const noteDisplay = document.getElementById('noteDisplay');
+
+        // helper: parse "HH:MM" to total minutes from midnight
+        function timeToMinutes(timeStr) {
+            if (!timeStr) return NaN;
+            const parts = timeStr.split(':');
+            if (parts.length !== 2) return NaN;
+            const h = parseInt(parts[0], 10);
+            const m = parseInt(parts[1], 10);
+            if (isNaN(h) || isNaN(m) || h < 0 || h > 23 || m < 0 || m > 59) return NaN;
+            return h * 60 + m;
+        }
+
+        // format minutes to decimal hours (2 decimals)
+        function minutesToDecimal(minutes) {
+            return (minutes / 60).toFixed(2);
+        }
+
+        // format minutes to "X h Y min" (if Y>0), or "X h"
+        function minutesToHrMin(totalMinutes) {
+            if (totalMinutes < 0) return '0 h 0 min';
+            const h = Math.floor(totalMinutes / 60);
+            const m = totalMinutes % 60;
+            let result = '';
+            if (h > 0) result += h + ' h';
+            if (m > 0) {
+                if (result) result += ' ';
+                result += m + ' min';
+            }
+            if (!result) result = '0 h';
+            return result;
+        }
+
+        // core calculation
+        function calculateWorkHours() {
+            const startStr = startInput.value;
+            const endStr = endInput.value;
+            const breakMinRaw = breakInput.value;
+
+            // validation
+            if (!startStr || !endStr) {
+                resultDisplay.innerHTML = `<span class="result-label">Total work</span> — :( `;
+                noteDisplay.textContent = 'Please provide both start and end times.';
+                return;
+            }
+
+            const startMin = timeToMinutes(startStr);
+            let endMin = timeToMinutes(endStr);
+
+            if (isNaN(startMin) || isNaN(endMin)) {
+                resultDisplay.innerHTML = `<span class="result-label">Total work</span> ⚠️ error`;
+                noteDisplay.textContent = 'Invalid time format. Use HH:MM (24h).';
+                return;
+            }
+
+            // handle crossing midnight: if end time is less or equal start, assume next day
+            if (endMin <= startMin) {
+                endMin += 1440;  // add 24h
+            }
+
+            let breakMins = parseFloat(breakMinRaw);
+            if (isNaN(breakMins) || breakMins < 0) breakMins = 0;
+            if (breakMins > 480) breakMins = 480;  // sanity cap (8h break)
+
+            const rawDiff = endMin - startMin;  // total minutes from start to end (incl. break)
+            const workMins = Math.max(0, rawDiff - breakMins);
+
+            // format result
+            const decimalHours = minutesToDecimal(workMins);
+            const hrMin = minutesToHrMin(workMins);
+
+            // build result display
+            resultDisplay.innerHTML = `<span class="result-label">Total work</span> ${decimalHours} h`;
+
+            // verbose note
+            let note = `(${hrMin})`;
+            if (breakMins > 0) {
+                note += ` — includes ${breakMins} min break deduction`;
+            } else {
+                note += ` — no break deducted`;
+            }
+            if (rawDiff - workMins > 0) {
+                // break info already present
+            }
+            noteDisplay.textContent = note;
+        }
+
+        // reset to defaults (clear but time defaults)
+        function resetToDefault() {
+            startInput.value = '09:00';
+            endInput.value = '17:00';
+            breakInput.value = '30';
+            calculateWorkHours();
+        }
+
+        // event listeners
+        calcBtn.addEventListener('click', calculateWorkHours);
+        resetBtn.addEventListener('click', resetToDefault);
+
+        // initial calculation on page load
+        window.addEventListener('load', calculateWorkHours);
+
+        // re-calc on enter / change (comfort)
+        [startInput, endInput, breakInput].forEach(el => {
+            el.addEventListener('change', calculateWorkHours);
+            el.addEventListener('blur', calculateWorkHours);
+        });
+        // support enter key on any field (click calc anyway)
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') {
+                const active = document.activeElement;
+                if (active && (active.id === 'startTime' || active.id === 'endTime' || active.id === 'breakMinutes')) {
+                    e.preventDefault();
+                    calculateWorkHours();
+                }
+            }
+        });
+    })();
+</script>
+
+<!-- AFFILIATE_SLOT (additional raw comment per requirement, also present earlier) -->
+<!-- AFFILIATE_SLOT -->
+</body>
+</html>
