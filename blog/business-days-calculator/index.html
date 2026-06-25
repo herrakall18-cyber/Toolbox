@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Business Days Calculator – ToolsForUse</title>
+    <meta name="description" content="A simple, honest business days calculator built to estimate project timelines without spreadsheets. Excludes weekends and optional holidays.">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: #f7f7f5;
+            color: #1a1a1a;
+            line-height: 1.6;
+            padding: 1.5rem;
+        }
+
+        .container {
+            max-width: 680px;
+            margin: 0 auto;
+            background: #ffffff;
+            padding: 2.5rem 2rem;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+        }
+
+        a {
+            color: #2c6b9e;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .site-header {
+            margin-bottom: 2rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 1px solid #e5e5e3;
+            display: flex;
+            align-items: baseline;
+            gap: 0.5rem;
+        }
+
+        .site-header .home-link {
+            font-weight: 600;
+            font-size: 1.1rem;
+            color: #1a1a1a;
+            letter-spacing: -0.01em;
+        }
+
+        .site-header .home-link:hover {
+            color: #2c6b9e;
+            text-decoration: none;
+        }
+
+        .site-header .tagline {
+            font-size: 0.85rem;
+            color: #6b6b6b;
+            margin-left: auto;
+        }
+
+        h1 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            line-height: 1.25;
+            margin-bottom: 0.5rem;
+            letter-spacing: -0.02em;
+        }
+
+        .date {
+            color: #6b6b6b;
+            font-size: 0.9rem;
+            margin-bottom: 1.75rem;
+        }
+
+        p {
+            margin-bottom: 1.25rem;
+        }
+
+        h2 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-top: 2rem;
+            margin-bottom: 0.5rem;
+            letter-spacing: -0.01em;
+        }
+
+        .tool-link {
+            display: inline-block;
+            background: #2c6b9e;
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 6px;
+            font-weight: 500;
+            margin: 1rem 0 0.5rem;
+            transition: background 0.15s ease;
+        }
+
+        .tool-link:hover {
+            background: #1f4d73;
+            text-decoration: none;
+            color: white;
+        }
+
+        hr {
+            border: 0;
+            border-top: 1px solid #e5e5e3;
+            margin: 2rem 0 1.5rem;
+        }
+
+        .footer-note {
+            font-size: 0.9rem;
+            color: #6b6b6b;
+        }
+
+        @media (max-width: 480px) {
+            body {
+                padding: 0.75rem;
+            }
+            .container {
+                padding: 1.5rem 1.25rem;
+            }
+            h1 {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="site-header">
+        <a href="/" class="home-link">ToolsForUse</a>
+        <span class="tagline">practical tools, no fluff</span>
+    </div>
+
+    <h1>Business Days Calculator: Estimating project timelines without the spreadsheet headache</h1>
+    <div class="date">April 7, 2025</div>
+
+    <p>
+        I was putting together a timeline for a small client project last month. 
+        The work was going to take about three weeks of real effort, but I kept 
+        bouncing between a calendar and my notes trying to figure out when we'd 
+        actually finish. Weekend? Holiday? Two Fridays left in the month? I 
+        ended up counting on my fingers, then in a spreadsheet, then second-guessing 
+        the spreadsheet.
+    </p>
+
+    <p>
+        That’s the dumb problem that made me build this. Not some grand vision 
+        of productivity — just wanting to type in two dates and get a reliable 
+        number of working days, without opening Excel or doing the math in my 
+        head. I’m guessing I’m not the only one who has done the finger-count 
+        method more times than they’d like to admit.
+    </p>
+
+    <h2>Why not just use a normal date calculator?</h2>
+    <p>
+        Most date calculators give you the total days between two dates, which 
+        includes Saturdays and Sundays. That's not helpful when you're planning 
+        work that only happens Monday through Friday. And the ones that do 
+        exclude weekends often require you to manually add a list of holidays 
+        or download a plugin. I wanted something dead simple: pick two dates, 
+        optionally mark a few holidays, get the business days. No account, no 
+        spreadsheet cell, no guessing.
+    </p>
+
+    <h2>What it does</h2>
+    <p>
+        The <strong>Business Days Calculator</strong> lets you enter a start date 
+        and an end date, then it instantly shows you the number of working days 
+        (Monday–Friday) between them. You can also add specific dates to exclude 
+        — holidays, company off-days, whatever — and it recalculates on the fly.
+        It’s straightforward, works in your browser, and there’s nothing to install.
+    </p>
+
+    <p style="margin-bottom: 0.5rem;">
+        <a href="/tools/business-days-calculator/" class="tool-link">Try the Business Days Calculator →</a>
+    </p>
+    <p style="font-size: 0.9rem; color: #6b6b6b;">
+        /tools/business-days-calculator/
+    </p>
+
+    <hr>
+
+    <p class="footer-note">
+        It’s a small tool, but it saves me a few minutes every time I need to 
+        answer "when will this actually be done?" No countdown timers, no email 
+        popup — just a calculator that tells you the working days. Hope it helps 
+        you as much as it helps me.
+    </p>
+</div>
+</body>
+</html>
