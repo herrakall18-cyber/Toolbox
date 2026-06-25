@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Work Hours Calculator — ToolsForUse</title>
+    <meta name="description" content="We built a simple work hours calculator to quickly figure out total hours worked — including lunch break deduction — without fiddling with spreadsheets or time math.">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background: #fafafa;
+            color: #1d1d1d;
+            line-height: 1.6;
+            padding: 2rem 1.5rem;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        header {
+            margin-bottom: 2.5rem;
+            border-bottom: 1px solid #e0e0e0;
+            padding-bottom: 0.75rem;
+        }
+        header a {
+            color: #444;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            letter-spacing: 0.3px;
+        }
+        header a:hover {
+            color: #000;
+        }
+        h1 {
+            font-size: 1.9rem;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 0.6rem;
+            letter-spacing: -0.3px;
+        }
+        h2 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-top: 2rem;
+            margin-bottom: 0.4rem;
+        }
+        p {
+            margin-bottom: 1.2rem;
+        }
+        ul {
+            margin-bottom: 1.5rem;
+            padding-left: 1.5rem;
+        }
+        li {
+            margin-bottom: 0.3rem;
+        }
+        .cta {
+            display: inline-block;
+            background: #1d1d1d;
+            color: #fafafa;
+            padding: 0.75rem 1.5rem;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 500;
+            margin: 0.5rem 0 1.5rem 0;
+            transition: background 0.2s ease;
+        }
+        .cta:hover {
+            background: #3a3a3a;
+        }
+        footer {
+            margin-top: 3rem;
+            padding-top: 1rem;
+            border-top: 1px solid #e0e0e0;
+            font-size: 0.9rem;
+            color: #777;
+        }
+        .quiet {
+            color: #6b6b6b;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="/">← ToolsForUse</a>
+    </header>
+
+    <h1>Work Hours Calculator</h1>
+    <p class="quiet">Honestly, I built this because I was tired of doing the math in my head and then double-checking it three times.</p>
+
+    <h2>The problem that prompted it</h2>
+    <p>
+        A couple weeks ago, I needed to figure out my hours for a short freelance gig. I started at 8:47 AM, finished at 5:13 PM, and took a 32-minute lunch somewhere in between. That’s not a round number. I tried doing the mental arithmetic: 8:47 to 5:13 is 8 hours and 26 minutes, minus 32 minutes — wait, is that 7 hours and 54 minutes? Or 7:54? I kept second-guessing myself. I pulled up a spreadsheet, typed in the times, and then had to format the cells correctly so it wouldn't display as a date. It took way longer than it should have for a simple subtraction.
+    </p>
+    <p>
+        It wasn’t just that one time. Every pay period, I’d find myself scribbling start/stop times on a sticky note and then doing clumsy minute math. It felt dumb. I wanted something that just took the raw times — in a format I actually use — and gave me the answer.
+    </p>
+
+    <h2>Why existing options fall short</h2>
+    <p>
+        There are plenty of time calculators out there, but most of them either:
+    </p>
+    <ul>
+        <li>Force you to convert everything to decimal hours (I don't think in 7.67 hours, I think in 7:40).</li>
+        <li>Require a ton of fields for a single shift (date pickers, AM/PM toggles, seconds — I just want start, end, break).</li>
+        <li>Are buried inside huge payroll suites or timers that track your whole day live.</li>
+    </ul>
+    <p>
+        I didn't need a system. I just needed to know: “I clocked in at 9:05, out at 5:30, and took 45 minutes for lunch — what's the total?” That's it. One calculation, no sign-up, no distractions.
+    </p>
+
+    <h2>What the tool actually does</h2>
+    <p>
+        It’s a single-page calculator. You type in your start time and end time (12-hour or 24-hour, it handles both). Then you enter any unpaid break in minutes — lunch, a long coffee, whatever. Hit calculate and it shows you the total hours worked, broken out into hours and minutes. No decimals, no confusion.
+    </p>
+    <p>
+        It’s for freelancers tracking a single day, for someone checking their timesheet, or for anybody who just wants to avoid the mental overhead of “okay, 60 minutes in an hour, carry the one…”
+    </p>
+
+    <a class="cta" href="/tools/work-hours-calculator/">Try the Work Hours Calculator →</a>
+
+    <h2>Honest closing</h2>
+    <p>
+        This isn’t going to change your life or optimize your productivity. It’s just a simple tool that does one thing — calculate work hours — and does it without a bunch of extra clicks. If you ever find yourself staring at a clock and doing messy math, maybe it’ll save you a couple minutes and a little frustration. That’s all I wanted.
+    </p>
+
+    <footer>
+        <p>— Built at ToolsForUse</p>
+    </footer>
+
+</body>
+</html>
