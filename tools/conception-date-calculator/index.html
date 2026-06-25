@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Conception Date Calculator – When Did I Conceive Calculator | ToolsForUse</title>
+<meta name="description" content="Use our free conception date calculator to estimate when you likely conceived based on due date or birth date. This conception calculator helps you understand the start of your pregnancy.">
+<!-- AFFILIATE_SLOT -->
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubuntu,Cantarell,sans-serif;background:#f0f5fa;color:#1a2b3c;line-height:1.6;padding:20px}
+  .container{max-width:780px;margin:0 auto;background:#fff;border-radius:20px;box-shadow:0 10px 30px rgba(0,0,0,0.08);padding:30px 28px}
+  .site-header{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;padding-bottom:16px;border-bottom:2px solid #e4edf5;margin-bottom:25px}
+  .site-header a{color:#216b9e;text-decoration:none;font-weight:500;font-size:0.95rem}
+  .site-header a:hover{text-decoration:underline}
+  .logo-home{font-size:1.25rem;font-weight:700;color:#144b6b}
+  h1{font-size:1.9rem;color:#0c3b55;margin-bottom:8px;letter-spacing:-0.3px}
+  .subhead{color:#3c6179;font-size:1.05rem;margin-bottom:25px}
+  .card{background:#f7faff;border:1px solid #dce8f2;border-radius:16px;padding:24px 22px;margin-bottom:28px}
+  .form-group{display:flex;flex-wrap:wrap;gap:18px;align-items:flex-end;margin-bottom:18px}
+  .field{flex:1 1 200px}
+  label{display:block;font-weight:600;font-size:0.9rem;color:#1f4a66;margin-bottom:5px}
+  select,input[type="date"]{width:100%;padding:11px 12px;font-size:1rem;border:1px solid #cbdde8;border-radius:12px;background:#fff;transition:border 0.15s}
+  select:focus,input[type="date"]:focus{outline:2px solid #6ca6d9;border-color:#6ca6d9}
+  .radio-group{display:flex;gap:25px;align-items:center;flex-wrap:wrap;margin-top:5px}
+  .radio-group label{font-weight:400;display:inline-flex;align-items:center;gap:5px;cursor:pointer}
+  .btn{background:#216b9e;color:#fff;border:none;border-radius:40px;padding:12px 32px;font-size:1.05rem;font-weight:600;cursor:pointer;transition:background 0.2s;margin-top:10px}
+  .btn:hover{background:#144b6b}
+  .btn:active{transform:scale(0.97)}
+  .result-area{background:#e4f0fa;border-radius:14px;padding:18px 20px;margin-top:18px;font-size:1.1rem;border-left:5px solid #216b9e}
+  .result-area strong{color:#0c3b55}
+  .clear-btn{background:transparent;border:1px solid #b0c7da;color:#1f4a66;border-radius:40px;padding:8px 18px;font-size:0.9rem;cursor:pointer;margin-left:12px;transition:background 0.15s}
+  .clear-btn:hover{background:#e4edf5}
+  .explanation{margin-top:28px;border-top:1px solid #dce8f2;padding-top:24px}
+  .explanation h2{font-size:1.4rem;color:#0c3b55;margin-bottom:12px}
+  .explanation p{margin-bottom:15px;color:#2a4b61}
+  .footer-links{margin-top:30px;display:flex;flex-wrap:wrap;gap:18px;font-size:0.9rem;border-top:1px solid #e2ebf3;padding-top:20px}
+  .footer-links a{color:#216b9e;text-decoration:none}
+  .footer-links a:hover{text-decoration:underline}
+  .affiliate-note{background:#f7f2e9;border:1px solid #ebdcc8;border-radius:12px;padding:12px 16px;margin:20px 0;text-align:center;font-size:0.95rem;color:#5a4632}
+  @media (max-width:550px){
+    .container{padding:18px 14px}
+    h1{font-size:1.6rem}
+    .site-header{flex-direction:column;align-items:flex-start;gap:8px}
+    .form-group{flex-direction:column;gap:12px}
+    .field{flex:1 1 100%}
+    .radio-group{gap:15px}
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <header class="site-header">
+    <a href="/" class="logo-home">← ToolsForUse</a>
+    <a href="/blog/conception-date-calculator/">Read the story behind this tool</a>
+  </header>
+
+  <h1>Conception Date Calculator</h1>
+  <div class="subhead">Find the estimated date you conceived — based on your due date or baby's birth date.</div>
+
+  <div class="card">
+    <form id="conceptionForm" novalidate>
+      <div class="form-group">
+        <div class="field">
+          <label for="referenceDate">Reference date</label>
+          <input type="date" id="referenceDate" required>
+        </div>
+        <div class="field">
+          <label for="referenceType">This date is my…</label>
+          <select id="referenceType">
+            <option value="due">Due date (40 weeks)</option>
+            <option value="birth">Birth date (full-term, ~40w)</option>
+          </select>
+        </div>
+      </div>
+      <div style="margin:10px 0 8px;">
+        <span style="font-weight:600;font-size:0.9rem;color:#1f4a66;">Cycle adjustment (optional):</span>
+        <div class="radio-group">
+          <label><input type="radio" name="cycle" value="28" checked> 28 days</label>
+          <label><input type="radio" name="cycle" value="21"> 21 days</label>
+          <label><input type="radio" name="cycle" value="35"> 35 days</label>
+          <label><input type="radio" name="cycle" value="custom"> Custom</label>
+        </div>
+        <div id="customCycleWrapper" style="display:none;margin-top:8px;max-width:140px;">
+          <input type="number" id="customCycleDays" min="17" max="50" value="28" style="width:100%;padding:6px 10px;border:1px solid #cbdde8;border-radius:8px;">
+        </div>
+      </div>
+      <div style="display:flex;flex-wrap:wrap;gap:10px;align-items:center;">
+        <button type="submit" class="btn">Calculate conception date</button>
+        <button type="button" class="clear-btn" id="clearBtn">Clear</button>
+      </div>
+    </form>
+
+    <div id="resultDisplay" class="result-area" style="display:none;">
+      <strong>Estimated conception date:</strong> <span id="conceptionResult"></span>
+      <div style="margin-top:8px;font-size:0.95rem;color:#1f4a66;">
+        Based on a <span id="resultCycleLabel">28‑day</span> cycle, ovulation around day <span id="resultOvulationDay">14</span>.
+      </div>
+    </div>
+  </div>
+
+  <!-- AFFILIATE_SLOT placeholder where an affiliate card could be manually inserted -->
+  <div class="affiliate-note">📌 <strong>Affiliate slot</strong> — relevant product recommendation could appear here. <!-- AFFILIATE_SLOT --></div>
+
+  <div class="explanation">
+    <h2>How the conception date is estimated</h2>
+    <p>This conception date calculator works backwards from a due date or birth date to estimate when conception likely occurred. A full‑term pregnancy is typically counted as 40 weeks (280 days) from the first day of the last menstrual period (LMP). Conception usually happens around 14 days after LMP for a 28‑day cycle — that’s roughly 38 weeks before the due date.</p>
+    <p>If you know the exact birth date of a full‑term baby, the calculator assumes a 40‑week gestation and subtracts 266 days (38 weeks) to find the conception window. You can also adjust for shorter or longer menstrual cycles: ovulation shifts earlier or later. For example, with a 21‑day cycle, ovulation often occurs around day 7; with a 35‑day cycle, around day 21. The tool automatically accounts for these variations.</p>
+    <p>Remember that conception dates are only estimates; sperm can survive up to five days, and ovulation timing can vary. Use this when did I conceive calculator as a helpful guide for understanding your pregnancy timeline. Always consult your healthcare provider for medical advice.</p>
+  </div>
+
+  <div class="footer-links">
+    <a href="/">← Back to ToolsForUse</a>
+    <a href="/blog/conception-date-calculator/">Read the story behind this tool</a>
+  </div>
+</div>
+
+<script>
+  (function(){
+    const form = document.getElementById('conceptionForm');
+    const refDateInput = document.getElementById('referenceDate');
+    const refTypeSelect = document.getElementById('referenceType');
+    const resultDiv = document.getElementById('resultDisplay');
+    const resultSpan = document.getElementById('conceptionResult');
+    const resultCycleLabel = document.getElementById('resultCycleLabel');
+    const resultOvulationDay = document.getElementById('resultOvulationDay');
+    const clearBtn = document.getElementById('clearBtn');
+    const customCycleWrapper = document.getElementById('customCycleWrapper');
+    const customCycleDays = document.getElementById('customCycleDays');
+    const cycleRadios = document.querySelectorAll('input[name="cycle"]');
+
+    // Show/hide custom cycle input
+    cycleRadios.forEach(radio => {
+      radio.addEventListener('change', function(){
+        if(this.value === 'custom'){
+          customCycleWrapper.style.display = 'block';
+          customCycleDays.focus();
+        } else {
+          customCycleWrapper.style.display = 'none';
+        }
+      });
+    });
+
+    function getCycleLength(){
+      for(let radio of cycleRadios){
+        if(radio.checked){
+          if(radio.value === 'custom'){
+            const val = parseInt(customCycleDays.value);
+            if(!isNaN(val) && val >= 17 && val <= 50) return val;
+            return 28; // fallback
+          }
+          return parseInt(radio.value);
+        }
+      }
+      return 28;
+    }
+
+    function getOvulationDay(cycleLen){
+      // standard: ovulation day = cycleLen - 14 (for 28d:14, 21d:7, 35d:21)
+      // but convention: luteal phase ~14 days, so ovulation = cycleLen - 14
+      return cycleLen - 14;
+    }
+
+    function computeConception(refDateStr, type, cycleLen){
+      if(!refDateStr) return null;
+      const refDate = new Date(refDateStr + 'T12:00:00'); // noon avoid timezone shifts
+      if(isNaN(refDate.getTime())) return null;
+
+      const ovulationDay = getOvulationDay(cycleLen);
+      // Days from LMP to conception = ovulationDay (approx)
+      // For due date: due date is 280 days after LMP. Conception is ~266 days before due date (280 - 14)
+      // For birth date (full-term): same assumption, 40 weeks.
+      let daysBefore;
+      if(type === 'due'){
+        // due date = LMP + 280d, conception ≈ LMP + ovulationDay
+        // conception = dueDate - 280 + ovulationDay
+        daysBefore = 280 - ovulationDay;
+      } else { // birth
+        // assume full-term 40w from LMP; same logic
+        daysBefore = 280 - ovulationDay;
+      }
+      const conceptionDate = new Date(refDate.getTime() - daysBefore * 86400000);
+      // format as readable date
+      const options = { year: 'numeric', month: 'long', day: 'numeric' };
+      return {
+        date: conceptionDate,
+        formatted: conceptionDate.toLocaleDateString('en-US', options),
+        ovulationDay: ovulationDay,
+        cycleLen: cycleLen
+      };
+    }
+
+    function displayResult(result){
+      if(!result){
+        resultDiv.style.display = 'none';
+        return;
+      }
+      resultSpan.textContent = result.formatted;
+      resultCycleLabel.textContent = result.cycleLen + '‑day';
+      resultOvulationDay.textContent = result.ovulationDay;
+      resultDiv.style.display = 'block';
+    }
+
+    form.addEventListener('submit', function(e){
+      e.preventDefault();
+      const refDateVal = refDateInput.value;
+      if(!refDateVal){
+        alert('Please select a reference date.');
+        return;
+      }
+      const refType = refTypeSelect.value;
+      const cycleLen = getCycleLength();
+      const result = computeConception(refDateVal, refType, cycleLen);
+      displayResult(result);
+    });
+
+    clearBtn.addEventListener('click', function(){
+      refDateInput.value = '';
+      refTypeSelect.value = 'due';
+      // reset cycle to 28
+      for(let radio of cycleRadios){
+        if(radio.value === '28'){
+          radio.checked = true;
+          break;
+        }
+      }
+      customCycleWrapper.style.display = 'none';
+      customCycleDays.value = 28;
+      resultDiv.style.display = 'none';
+    });
+
+    // optional: set default date to 40 weeks from today as due date hint?
+    // but we leave empty for privacy
+
+    // set min date to reasonable range (optional)
+    const today = new Date();
+    const minDate = new Date(today.getTime() - 365*2*86400000); // 2 years back
+    const maxDate = new Date(today.getTime() + 365*1*86400000); // 1 year ahead
+    refDateInput.setAttribute('min', minDate.toISOString().split('T')[0]);
+    refDateInput.setAttribute('max', maxDate.toISOString().split('T')[0]);
+  })();
+</script>
+<!-- AFFILIATE_SLOT -->
+</body>
+</html>
