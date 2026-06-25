@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sleep Cycle Calculator – ToolsForUse</title>
+    <meta name="description" content="A straightforward tool to find the best bedtime based on 90-minute sleep cycles, so you wake up during light sleep instead of in the middle of deep sleep.">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background: #faf9f8;
+            color: #1a1a1a;
+            line-height: 1.6;
+            padding: 0 1rem;
+        }
+        .header {
+            max-width: 700px;
+            margin: 0 auto;
+            padding: 2rem 0 0.5rem 0;
+            border-bottom: 1px solid #e0ddd9;
+        }
+        .header a {
+            color: #4a4a4a;
+            text-decoration: none;
+            font-size: 1.1rem;
+            font-weight: 500;
+            letter-spacing: -0.01em;
+        }
+        .header a:hover {
+            color: #000;
+        }
+        .container {
+            max-width: 700px;
+            margin: 0 auto;
+            padding: 2.5rem 0 3rem 0;
+        }
+        h1 {
+            font-size: 2rem;
+            font-weight: 550;
+            letter-spacing: -0.02em;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+            color: #111;
+        }
+        h2 {
+            font-size: 1.3rem;
+            font-weight: 500;
+            margin-top: 2rem;
+            margin-bottom: 0.75rem;
+            color: #222;
+        }
+        p {
+            margin-bottom: 1.25rem;
+            font-size: 1.05rem;
+        }
+        .try-link {
+            display: inline-block;
+            margin: 1.5rem 0 2rem 0;
+            background: #1a1a1a;
+            color: #fff;
+            padding: 0.8rem 1.6rem;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1.05rem;
+            transition: background 0.2s ease;
+        }
+        .try-link:hover {
+            background: #333;
+        }
+        hr {
+            margin: 2.5rem 0 1.5rem 0;
+            border: 0;
+            border-top: 1px solid #e0ddd9;
+        }
+        .footer-text {
+            color: #666;
+            font-size: 0.95rem;
+        }
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 1.6rem;
+            }
+            .container {
+                padding-top: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <a href="/">← ToolsForUse</a>
+    </header>
+    <main class="container">
+        <h1>Announcing the Sleep Cycle Calculator</h1>
+        <p>A while back, I kept waking up feeling like I’d been hit by a truck — even after what seemed like a solid 7 or 8 hours. I’d set my alarm for 6:30 AM, go to bed around 11, and still drag through the morning. After some reading, I realized the problem wasn't the total sleep time, but <em>when</em> I was waking up relative to my sleep cycles.</p>
+
+        <p>Sleep runs in roughly 90-minute cycles. If your alarm goes off in the middle of deep sleep (say, 1 hour and 20 minutes into a cycle), you feel groggy and disoriented. But if you wake right at the end of a cycle, during light sleep, it’s a lot easier to get up. That's what I needed — a way to time my bedtime so that my wake-up would fall at the end of a cycle, not in the middle.</p>
+
+        <h2>What I found (and why I built this)</h2>
+        <p>There are plenty of sleep cycle calculators out there. Some of them are fine, but I wanted something that <em>just</em> does the math without any extra fluff. I don't need a journal, a habit tracker, or a "sleep score." I just need to know: if I have to wake up at 6:30 AM, what's the best time to fall asleep (or start winding down) so I can hit 5 or 6 full cycles?</p>
+
+        <p>Also, most calculators assume you fall asleep the second your head hits the pillow. I added a 14-minute buffer (the average time it takes to actually fall asleep), and I let you pick a range — maybe you can only get 4 cycles tonight, or you want a solid 6. It's honest about the trade-offs.</p>
+
+        <h2>What the tool does</h2>
+        <p>You pick your desired wake-up time (or your ideal bedtime). The calculator shows you the best sleeping times based on 90-minute cycles, including that 14-minute fall-asleep window. It gives you a few options — like "try to fall asleep at 10:16 PM for 6 cycles" — so you can decide what fits your schedule. No sign-ups, no data collection. Just the math.</p>
+
+        <a class="try-link" href="/tools/sleep-cycle-calculator/">Try the Sleep Cycle Calculator</a>
+
+        <p>It’s a simple thing, but it’s helped me a lot. I set my alarm for 7:00 now instead of 6:30, but I actually wake up before it goes off. And the grogginess is way less — I can usually get up and make coffee without staring at the wall for 10 minutes.</p>
+
+        <hr>
+        <p class="footer-text">It’s not perfect — everyone’s sleep cycles vary a bit, and life happens. But if you’ve been waking up feeling awful for no clear reason, it might help to try timing things differently. No guarantees, but it costs nothing to check.</p>
+    </main>
+</body>
+</html>
