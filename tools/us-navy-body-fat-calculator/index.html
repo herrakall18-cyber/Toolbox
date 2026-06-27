@@ -1,0 +1,409 @@
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>US Navy Body Fat Calculator – Estimate Body Fat Percentage</title>
+<meta name="description" content="Use the free US Navy body fat calculator to estimate your body fat percentage. This navy body fat calculator uses height, neck, waist & hip circumference for accurate results.">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    background: #f7f9fc;
+    color: #1e293b;
+    line-height: 1.6;
+    padding: 1rem;
+  }
+  .tfu-container {
+    max-width: 820px;
+    margin: 0 auto;
+    background: #ffffff;
+    border-radius: 24px;
+    padding: 2rem 1.5rem 2.5rem;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.05);
+  }
+  .tfu-header {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.75rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #e2e8f0;
+  }
+  .tfu-header a {
+    text-decoration: none;
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: #2563eb;
+    padding: 0.4rem 0.8rem;
+    border-radius: 40px;
+    background: #f1f5f9;
+    transition: background 0.2s;
+  }
+  .tfu-header a:first-child {
+    font-weight: 700;
+    background: transparent;
+    padding-left: 0;
+  }
+  .tfu-header a:hover { background: #dbeafe; }
+  h1 {
+    font-size: 2rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    margin-bottom: 0.25rem;
+    color: #0f172a;
+  }
+  .subhead {
+    color: #475569;
+    font-size: 1rem;
+    margin-bottom: 2rem;
+    border-left: 4px solid #2563eb;
+    padding-left: 1rem;
+    background: #f8fafc;
+    border-radius: 0 12px 12px 0;
+    padding: 0.75rem 1rem;
+  }
+  .calc-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem 2rem;
+    background: #f1f5f9;
+    padding: 1.8rem 2rem;
+    border-radius: 20px;
+    margin-bottom: 1.5rem;
+  }
+  .input-group {
+    display: flex;
+    flex-direction: column;
+  }
+  .input-group label {
+    font-weight: 600;
+    font-size: 0.9rem;
+    margin-bottom: 0.3rem;
+    color: #1e293b;
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+  }
+  .input-group label .unit {
+    font-weight: 400;
+    color: #64748b;
+    font-size: 0.8rem;
+    margin-left: auto;
+  }
+  .input-group input {
+    padding: 0.75rem 1rem;
+    border: 1px solid #cbd5e1;
+    border-radius: 12px;
+    font-size: 1rem;
+    background: white;
+    transition: 0.2s;
+  }
+  .input-group input:focus {
+    outline: none;
+    border-color: #2563eb;
+    box-shadow: 0 0 0 3px rgba(37,99,235,0.2);
+  }
+  .full-width { grid-column: 1 / -1; }
+  .result-area {
+    background: #0f172a;
+    color: white;
+    border-radius: 20px;
+    padding: 1.5rem 2rem;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1.5rem;
+    gap: 1rem;
+  }
+  .result-bodyfat {
+    font-size: 2.8rem;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+  }
+  .result-bodyfat small {
+    font-size: 1rem;
+    font-weight: 400;
+    opacity: 0.7;
+    display: block;
+  }
+  .result-category {
+    background: rgba(255,255,255,0.12);
+    padding: 0.6rem 1.4rem;
+    border-radius: 40px;
+    font-weight: 600;
+    font-size: 1.1rem;
+  }
+  .btn-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+    margin-top: 0.5rem;
+  }
+  .btn {
+    background: #2563eb;
+    color: white;
+    border: none;
+    padding: 0.75rem 2rem;
+    border-radius: 40px;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: 0.2s;
+    flex: 1 0 auto;
+  }
+  .btn:hover { background: #1d4ed8; }
+  .btn-outline {
+    background: transparent;
+    border: 2px solid #2563eb;
+    color: #2563eb;
+  }
+  .btn-outline:hover { background: #eef2ff; }
+  .gender-toggle {
+    display: flex;
+    gap: 0.5rem;
+    margin: 0.5rem 0 0.8rem;
+  }
+  .gender-toggle button {
+    flex: 1;
+    padding: 0.6rem 1rem;
+    border: 2px solid #cbd5e1;
+    background: white;
+    border-radius: 40px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.15s;
+    color: #334155;
+  }
+  .gender-toggle button.active {
+    border-color: #2563eb;
+    background: #eff6ff;
+    color: #1e40af;
+  }
+  .explanation {
+    margin: 2rem 0 1.5rem;
+    padding: 1.5rem;
+    background: #f8fafc;
+    border-radius: 20px;
+    border: 1px solid #e2e8f0;
+  }
+  .explanation p {
+    margin-bottom: 1rem;
+  }
+  .explanation p:last-child { margin-bottom: 0; }
+  .note {
+    font-size: 0.85rem;
+    color: #64748b;
+    margin-top: 0.6rem;
+    text-align: center;
+  }
+  .affiliate-slot {
+    margin: 2.5rem 0 1rem;
+    border: 2px dashed #cbd5e1;
+    border-radius: 20px;
+    padding: 1.5rem;
+    text-align: center;
+    color: #64748b;
+    font-size: 0.9rem;
+    background: #fafafa;
+  }
+  .footer-links {
+    margin-top: 2rem;
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    border-top: 1px solid #e2e8f0;
+    padding-top: 1.5rem;
+  }
+  .footer-links a {
+    color: #2563eb;
+    text-decoration: none;
+    font-weight: 500;
+  }
+  .footer-links a:hover { text-decoration: underline; }
+  @media (max-width: 640px) {
+    .tfu-container { padding: 1.2rem 1rem; }
+    h1 { font-size: 1.7rem; }
+    .calc-grid { grid-template-columns: 1fr; gap: 1rem; padding: 1.2rem; }
+    .result-area { flex-direction: column; align-items: flex-start; }
+    .result-bodyfat { font-size: 2.2rem; }
+  }
+</style>
+</head>
+<body>
+<div class="tfu-container">
+  <div class="tfu-header">
+    <a href="/">← ToolsForUse</a>
+    <a href="/blog/us-navy-body-fat-calculator/">Read the story behind this tool →</a>
+  </div>
+
+  <h1>US Navy Body Fat Calculator</h1>
+  <div class="subhead">Estimate your body fat percentage using the proven US Navy circumference method — no calipers, no scales.</div>
+
+  <!-- Tool form -->
+  <div class="gender-toggle" role="radiogroup" aria-label="Gender">
+    <button id="genderMale" class="active" data-gender="male" aria-pressed="true">👤 Male</button>
+    <button id="genderFemale" data-gender="female" aria-pressed="false">👩 Female</button>
+  </div>
+
+  <div class="calc-grid">
+    <div class="input-group">
+      <label for="height">Height <span class="unit">(inches)</span></label>
+      <input type="number" id="height" min="36" max="96" step="0.1" value="70" placeholder="e.g. 70">
+    </div>
+    <div class="input-group">
+      <label for="neck">Neck <span class="unit">(inches)</span></label>
+      <input type="number" id="neck" min="8" max="28" step="0.1" value="15.5" placeholder="e.g. 15.5">
+    </div>
+    <div class="input-group">
+      <label for="waist">Waist <span class="unit">(inches)</span></label>
+      <input type="number" id="waist" min="18" max="60" step="0.1" value="32" placeholder="e.g. 32">
+    </div>
+    <div class="input-group">
+      <label for="hip">Hip <span class="unit">(inches) – female only</span></label>
+      <input type="number" id="hip" min="18" max="60" step="0.1" value="38" placeholder="e.g. 38">
+    </div>
+  </div>
+
+  <div class="btn-row">
+    <button class="btn" id="calculateBtn">Calculate Body Fat</button>
+  </div>
+
+  <div class="result-area" id="resultArea">
+    <div>
+      <div class="result-bodyfat" id="bodyFatDisplay">— %</div>
+      <small>Estimated body fat percentage</small>
+    </div>
+    <div class="result-category" id="categoryDisplay">—</div>
+  </div>
+
+  <div class="note">💡 Measurements should be taken with a flexible tape, at the widest point for neck/waist/hip.</div>
+
+  <!-- Explanation section -->
+  <div class="explanation">
+    <p><strong>How the navy body fat calculator works</strong> — This <strong>body fat percentage calculator</strong> uses the U.S. Navy circumference-based formula, originally developed for military personnel. It estimates lean mass and fat mass from just three (or four) simple tape measurements: height, neck, waist, and for women, hip circumference. The method is widely used because it's fast, non-invasive, and reasonably accurate for most body types.</p>
+    <p><strong>Why choose this method?</strong> Unlike bioelectrical impedance or calipers, the <strong>navy body fat calculator</strong> only requires a measuring tape and a few minutes. It correlates well with DEXA and hydrostatic weighing in controlled studies, especially for individuals with moderate body fat. Use it weekly to track trends — consistency in measurement technique matters more than a single number.</p>
+    <p><strong>Tips for accuracy:</strong> Measure neck just below the larynx (Adam's apple), waist at navel level for men and at the narrowest point for women, and hips at the widest point. Keep the tape snug but not compressing the skin. All measurements should be in inches. The calculator automatically adjusts formulas based on gender.</p>
+  </div>
+
+  <!-- AFFILIATE_SLOT -->
+  <!-- AFFILIATE_SLOT -->
+  <div class="affiliate-slot">
+    <!-- AFFILIATE_SLOT --><span style="opacity:0.8;">▼ Ad / affiliate card placeholder — insert relevant offer here (e.g., body fat tape measure, smart scale) ▼</span><!-- AFFILIATE_SLOT -->
+  </div>
+
+  <div class="footer-links">
+    <a href="/">ToolsForUse Home</a>
+    <a href="/blog/us-navy-body-fat-calculator/">About this calculator</a>
+  </div>
+</div>
+
+<script>
+  (function() {
+    const genderMale = document.getElementById('genderMale');
+    const genderFemale = document.getElementById('genderFemale');
+    const heightInput = document.getElementById('height');
+    const neckInput = document.getElementById('neck');
+    const waistInput = document.getElementById('waist');
+    const hipInput = document.getElementById('hip');
+    const bodyFatDisplay = document.getElementById('bodyFatDisplay');
+    const categoryDisplay = document.getElementById('categoryDisplay');
+    const calcBtn = document.getElementById('calculateBtn');
+
+    let currentGender = 'male';
+
+    function setGender(gender) {
+      currentGender = gender;
+      genderMale.classList.toggle('active', gender === 'male');
+      genderFemale.classList.toggle('active', gender === 'female');
+      genderMale.setAttribute('aria-pressed', gender === 'male');
+      genderFemale.setAttribute('aria-pressed', gender === 'female');
+      // Show/hide hip label hint
+      const hipLabel = document.querySelector('label[for="hip"] .unit');
+      if (hipLabel) {
+        hipLabel.textContent = gender === 'male' ? '(inches – not used for male)' : '(inches)';
+      }
+      // For male, hip is not used but keep field enabled (user can ignore)
+      if (gender === 'male') {
+        hipInput.placeholder = 'ignored for male';
+      } else {
+        hipInput.placeholder = 'e.g. 38';
+      }
+      // Optionally recalc if visible
+      if (bodyFatDisplay.textContent !== '— %') {
+        calculate();
+      }
+    }
+
+    genderMale.addEventListener('click', () => setGender('male'));
+    genderFemale.addEventListener('click', () => setGender('female'));
+
+    function calculate() {
+      const height = parseFloat(heightInput.value);
+      const neck = parseFloat(neckInput.value);
+      const waist = parseFloat(waistInput.value);
+      const hip = parseFloat(hipInput.value);
+      const gender = currentGender;
+
+      // Validate basic range
+      if (isNaN(height) || height < 36 || height > 96) { showResult('Enter valid height (36–96 in)', '—'); return; }
+      if (isNaN(neck) || neck < 8 || neck > 28) { showResult('Enter valid neck (8–28 in)', '—'); return; }
+      if (isNaN(waist) || waist < 18 || waist > 60) { showResult('Enter valid waist (18–60 in)', '—'); return; }
+      if (gender === 'female' && (isNaN(hip) || hip < 18 || hip > 60)) { showResult('Enter valid hip (18–60 in)', '—'); return; }
+
+      let bf;
+      if (gender === 'male') {
+        // US Navy male formula: 86.010 * log10(waist - neck) - 70.041 * log10(height) + 36.76
+        const logWaistNeck = Math.log10(waist - neck);
+        const logHeight = Math.log10(height);
+        bf = 86.010 * logWaistNeck - 70.041 * logHeight + 36.76;
+      } else {
+        // female: 163.205 * log10(waist + hip - neck) - 97.684 * log10(height) - 78.387
+        const logSum = Math.log10(waist + hip - neck);
+        const logHeight = Math.log10(height);
+        bf = 163.205 * logSum - 97.684 * logHeight - 78.387;
+      }
+
+      // Clamp physiologically reasonable body fat (2% to 70%)
+      bf = Math.min(Math.max(bf, 2), 70);
+      if (isNaN(bf) || !isFinite(bf)) { showResult('Calculation error', '—'); return; }
+
+      const bfFormatted = bf.toFixed(1);
+      let category = '';
+      if (gender === 'male') {
+        if (bf < 6) category = 'Essential fat';
+        else if (bf < 14) category = 'Athletic';
+        else if (bf < 18) category = 'Fitness';
+        else if (bf < 25) category = 'Average';
+        else category = 'Overweight / Obese';
+      } else {
+        if (bf < 14) category = 'Essential fat';
+        else if (bf < 21) category = 'Athletic';
+        else if (bf < 25) category = 'Fitness';
+        else if (bf < 32) category = 'Average';
+        else category = 'Overweight / Obese';
+      }
+
+      bodyFatDisplay.innerHTML = `${bfFormatted} <span style="font-size:1.2rem;">%</span>`;
+      categoryDisplay.textContent = category;
+    }
+
+    function showResult(msg, category) {
+      bodyFatDisplay.innerHTML = msg;
+      categoryDisplay.textContent = category;
+    }
+
+    calcBtn.addEventListener('click', calculate);
+
+    // Initial calculation on page load
+    window.addEventListener('DOMContentLoaded', () => {
+      setGender('male');
+      calculate();
+    });
+  })();
+</script>
+</body>
+</html>
