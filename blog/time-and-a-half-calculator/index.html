@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Time and a Half Calculator – ToolsForUse</title>
+    <meta name="description" content="Why I built a simple overtime calculator to avoid manual math mistakes. No sign-up, no ads — just hours, rate, and total pay.">
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            max-width: 700px;
+            margin: 2rem auto;
+            padding: 0 1.5rem;
+            line-height: 1.7;
+            color: #1a1a1a;
+            background: #fafafa;
+        }
+        h1, h2, h3 {
+            line-height: 1.25;
+            font-weight: 600;
+            color: #111;
+        }
+        h1 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+        h2 {
+            font-size: 1.4rem;
+            margin-top: 2rem;
+            margin-bottom: 0.75rem;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 0.3rem;
+        }
+        p {
+            margin: 1rem 0;
+        }
+        a {
+            color: #0057b3;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .header {
+            margin-bottom: 2.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        .header a {
+            color: #333;
+            font-weight: 500;
+            font-size: 0.95rem;
+        }
+        .cta {
+            display: inline-block;
+            background: #1a1a1a;
+            color: #fff;
+            padding: 0.65rem 1.5rem;
+            border-radius: 4px;
+            font-weight: 500;
+            margin: 1.5rem 0 0.5rem;
+            text-decoration: none;
+            transition: background 0.2s;
+        }
+        .cta:hover {
+            background: #333;
+            text-decoration: none;
+        }
+        .footer-note {
+            margin-top: 3rem;
+            font-size: 0.9rem;
+            color: #666;
+            border-top: 1px solid #e0e0e0;
+            padding-top: 1.2rem;
+        }
+        ul {
+            padding-left: 1.2rem;
+        }
+        li {
+            margin: 0.4rem 0;
+        }
+        .highlight {
+            background: #f0f4f8;
+            padding: 0.8rem 1.2rem;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <a href="/">← ToolsForUse</a>
+    </div>
+
+    <h1>Time and a Half Calculator: because I kept messing up overtime math</h1>
+
+    <p><em>Published • Mar 2025</em></p>
+
+    <p>A few weeks ago I was helping a friend figure out a paycheck stub. They’d worked 46 hours at $18/hour, and the employer had paid straight time for everything—no overtime bump. We both knew that wasn’t right, but when I tried to calculate what they <em>should</em> have earned, I made a dumb mistake: I multiplied the extra 6 hours by 1.5, but I forgot to add back the regular 40-hour pay.</p>
+
+    <p>I felt like an idiot. It’s just multiplication and addition. But that’s the thing—when you’re checking numbers after a long day, or you’re an employer trying to generate a quick estimate, it’s annoyingly easy to slip up. A calculator should just <em>do</em> this.</p>
+
+    <h2>What’s wrong with existing options?</h2>
+    <p>There are plenty of overtime calculators out there, but most of them either:</p>
+    <ul>
+        <li>Ask you to sign up or create an account (no thanks),</li>
+        <li>Shove payday loan ads in your face,</li>
+        <li>Or bury the formula behind a bunch of dropdowns and confusing fields.</li>
+    </ul>
+    <p>I wanted something dead simple: hourly rate, regular hours, overtime hours. Hit calculate. No extra noise. No “enter your email to see the result.”</p>
+
+    <h2>What the tool actually does</h2>
+    <p>It’s a straightforward calculator. You type in your hourly wage, the number of regular hours you worked (usually 40, but some folks have different baselines), and how many overtime hours you put in. It instantly shows:</p>
+    <ul>
+        <li>Regular pay</li>
+        <li>Overtime pay at 1.5x</li>
+        <li>Total gross earnings</li>
+    </ul>
+    <p>That’s it. No graphs, no PDF export, no life advice. Just a tool that saves two minutes and a potential headache.</p>
+
+    <div class="highlight">
+        <p style="font-weight: 600; margin-top: 0;">Try it live:</p>
+        <a href="/tools/time-and-a-half-calculator/" class="cta">Time and a Half Calculator →</a>
+        <p style="font-size: 0.9rem; margin-bottom: 0;">No account needed. Works on mobile.</p>
+    </div>
+
+    <p>I’m using it for my own freelance invoices now—I often work mixed hours on different projects, and this keeps me honest. If you’re an employee double-checking a check or a small business owner estimating labor cost, it’ll do the same for you.</p>
+
+    <div class="footer-note">
+        <p><strong>A short, honest closing:</strong> I built this because I needed it, and I figured others might too. It’s not going to change your life—but the next time you’re staring at a timesheet, it might save you from redoing the math three times. That’s all I wanted.</p>
+        <p>— ToolsForUse</p>
+    </div>
+</body>
+</html>
