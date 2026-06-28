@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Building a Home EV Charging Cost Calculator — ToolsForUse</title>
+    <meta name="description" content="Why I built a simple, no-nonsense EV charging cost calculator for my own garage — and why existing options drive me crazy.">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.7;
+            color: #1a1a1a;
+            background: #fafafa;
+            padding: 1.5rem;
+        }
+        .container {
+            max-width: 640px;
+            margin: 0 auto;
+            background: #ffffff;
+            padding: 2.5rem 2rem;
+            border-radius: 12px;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+        }
+        h1 {
+            font-size: 1.8rem;
+            font-weight: 600;
+            line-height: 1.3;
+            margin-bottom: 0.3rem;
+            letter-spacing: -0.01em;
+        }
+        .meta {
+            color: #6b6b6b;
+            font-size: 0.85rem;
+            margin-bottom: 1.8rem;
+            border-bottom: 1px solid #e8e8e8;
+            padding-bottom: 0.8rem;
+        }
+        h2 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-top: 2rem;
+            margin-bottom: 0.75rem;
+        }
+        p {
+            margin-bottom: 1.2rem;
+        }
+        ul {
+            margin: 0 0 1.2rem 1.4rem;
+        }
+        li {
+            margin-bottom: 0.4rem;
+        }
+        a {
+            color: #0057b3;
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+        }
+        a:hover {
+            border-bottom-color: #0057b3;
+        }
+        .tool-link {
+            display: inline-block;
+            background: #1a1a1a;
+            color: #ffffff;
+            padding: 0.7rem 1.5rem;
+            border-radius: 6px;
+            font-weight: 500;
+            margin: 0.8rem 0 1rem;
+            border-bottom: none;
+            text-decoration: none;
+        }
+        .tool-link:hover {
+            background: #333;
+            border-bottom: none;
+        }
+        .back-link {
+            display: inline-block;
+            margin-bottom: 1.5rem;
+            font-size: 0.9rem;
+            color: #333;
+            border-bottom: 1px solid #ccc;
+        }
+        hr {
+            border: none;
+            border-top: 1px solid #e8e8e8;
+            margin: 1.8rem 0;
+        }
+        .footer-note {
+            font-size: 0.85rem;
+            color: #6b6b6b;
+        }
+        @media (max-width: 480px) {
+            .container { padding: 1.8rem 1.2rem; }
+            h1 { font-size: 1.4rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="/" class="back-link">← ToolsForUse home</a>
+        <h1>How much does it actually cost to charge an EV at home? (I built a calculator for that)</h1>
+        <div class="meta">December 2024 · 4 min read</div>
+
+        <p>I bought my first electric car about a year ago, and within a week I had a new obsession: <em>how much is this actually costing me?</em> I’d plug in the car, glance at the dashboard, and see some percentage, but I had no gut feel for whether that was $2 or $12. I started doing napkin math: battery is 77 kWh, I’m at 30%, I want to get to 90%, rate is 14 cents per kWh… after about the third time scribbling on an envelope I thought, “I should just make a tool.”</p>
+
+        <h2>The problem with everything else I tried</h2>
+        <p>I looked around online. There are EV charging cost calculators, but almost all of them have one of these problems:</p>
+        <ul>
+            <li>They ask for your monthly mileage and try to estimate your total bill over a year — not what I need standing in my garage tonight.</li>
+            <li>They assume you always charge from empty to full (nobody does that).</li>
+            <li>They bury the local rate in assumptions, or they’re buried inside a car brand’s website with a clear agenda.</li>
+            <li>And most of them just feel like lead-gen tools for solar companies. I don’t want a phone call, I want a number.</li>
+        </ul>
+        <p>I wanted something dead simple: enter your battery size, how full it is right now, where you want it, and your electricity rate. Get a total in dollars. No signups, no “we’ll send you a PDF”, no sparklines.</p>
+
+        <h2>What the tool does</h2>
+        <p>It’s a single-page calculator that asks for four inputs:</p>
+        <ul>
+            <li>Your car’s total battery capacity (in kWh — most EVs list this in the manual or specs)</li>
+            <li>Current charge level (as a percentage)</li>
+            <li>Target charge level (again, as a percentage)</li>
+            <li>Your local electricity rate (in cents per kWh — check your latest bill, it’s usually printed right there)</li>
+        </ul>
+        <p>It calculates the kWh you need to add, multiplies by the rate, and shows you the cost. It also accounts for charging losses if you toggle that on (about 10% is realistic for L2 charging). That’s it. No account, no ads, no “this is sponsored by” anything.</p>
+
+        <p><a href="/tools/ev-charging-cost-calculator/" class="tool-link">Try the EV Charging Cost Calculator →</a></p>
+
+        <h2>A few honest notes</h2>
+        <p>This isn’t going to be accurate to the penny because your actual charging efficiency depends on temperature, your charger, and your car’s onboard converter. And your utility rate might have time-of-use tiers — if you charge at peak vs off-peak, the cost changes. I included a simple baseline that works for most people (just use your average residential rate). If you have a TOU plan, you might want to use your off-peak rate for nightly charging.</p>
+        <p>Also: this is a tool I built because I needed it. It’s not trying to get you to switch energy providers, buy a charger, or sign up for a newsletter. It’s literally a form that does the multiplication you could do by hand but faster and less error-prone. That’s the whole point.</p>
+
+        <hr>
+        <p class="footer-note">If you try it and something feels wrong, <a href="">email me</a> (my name’s Will). I’d rather fix a bug than leave a misleading number out there.</p>
+    </div>
+</body>
+</html>
