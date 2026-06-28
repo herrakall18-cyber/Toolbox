@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Why I built a simple, honest compound interest calculator for ToolsForUse, and why you might want to use it instead of a spreadsheet or a hypey bank tool.">
+  <title>Compound Interest Calculator — ToolsForUse</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      background-color: #f9fafc;
+      color: #1e293b;
+      line-height: 1.7;
+      padding: 2rem 1.5rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .container {
+      max-width: 720px;
+      width: 100%;
+    }
+    /* header */
+    .site-header {
+      margin-bottom: 2.5rem;
+      border-bottom: 1px solid #e2e8f0;
+      padding-bottom: 0.75rem;
+    }
+    .site-header a {
+      color: #3b82f6;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 1.1rem;
+      letter-spacing: -0.01em;
+      display: inline-block;
+      padding: 0.2rem 0;
+    }
+    .site-header a:hover {
+      color: #1d4ed8;
+    }
+    /* post */
+    .post h1 {
+      font-size: 2rem;
+      font-weight: 700;
+      line-height: 1.3;
+      margin-bottom: 1rem;
+      letter-spacing: -0.02em;
+      color: #0f172a;
+    }
+    .post .meta {
+      font-size: 0.9rem;
+      color: #64748b;
+      margin-bottom: 2rem;
+      border-bottom: 1px solid #e2e8f0;
+      padding-bottom: 1rem;
+    }
+    .post h2 {
+      font-size: 1.4rem;
+      font-weight: 600;
+      margin-top: 2rem;
+      margin-bottom: 0.75rem;
+      color: #0f172a;
+    }
+    .post p {
+      margin-bottom: 1.5rem;
+      font-size: 1rem;
+      color: #334155;
+    }
+    .post a {
+      color: #3b82f6;
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+    .post a:hover {
+      color: #1d4ed8;
+    }
+    .post .try-link {
+      display: inline-block;
+      background: #1e293b;
+      color: #f8fafc;
+      padding: 0.8rem 1.8rem;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 500;
+      margin: 0.5rem 0 1.5rem;
+      transition: background 0.2s ease;
+      font-size: 1rem;
+      border: none;
+    }
+    .post .try-link:hover {
+      background: #0f172a;
+      color: #ffffff;
+    }
+    .closing {
+      margin-top: 2.5rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid #e2e8f0;
+      font-style: normal;
+      color: #475569;
+    }
+    @media (max-width: 500px) {
+      body {
+        padding: 1.5rem 1rem;
+      }
+      .post h1 {
+        font-size: 1.6rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header class="site-header">
+      <a href="/">← ToolsForUse</a>
+    </header>
+    <article class="post">
+      <h1>Compound Interest Calculator</h1>
+      <p class="meta">February 2025 · by the ToolsForUse team</p>
+
+      <p>I was looking at a savings account the other day – one of those high-yield ones that advertises "5% APY" in big friendly numbers. And I wanted to know: if I put in $500 a month for, say, 7 years, what would that actually look like? Not just the headline number, but the breakdown: how much is my own money, and how much is the interest doing the work?</p>
+
+      <p>I opened a spreadsheet. Started typing formulas. Realized I had to remember the difference between nominal rate and effective rate. Then I had to double-check whether my spreadsheet was compounding monthly or annually. Then I found an online calculator from a big bank – but it asked for my email before showing the result, and the sliders felt like they were designed to make the final number look as big as possible. It wasn't <em>wrong</em>, exactly, but it wasn't <em>mine</em>.</p>
+
+      <h2>What I wanted instead</h2>
+      <p>Something that just shows the math. No sign-up, no "we'll send you a PDF", no embedded tutorial video. A tool that lets me adjust the numbers quickly: start with a lump sum, add monthly contributions, change the rate, pick the compounding frequency, and see the result in a simple table and a chart. Also – and this was important to me – I wanted to be able to see the same numbers from the <em>debt</em> side. Because compound interest works the same way whether you're earning it or paying it. I wanted one tool that didn't pretend that loans and investments are fundamentally different calculations.</p>
+
+      <h2>What the tool does</h2>
+      <p>It's a straightforward calculator. You put in an initial amount (could be an investment or a loan principal), a regular contribution or payment, the annual interest rate, the compounding frequency (monthly, yearly, quarterly, or daily), and the time horizon. It shows you the ending balance, the total contributed, and the total compounded interest (or cost, if it's a loan). And it gives you a year-by-year table – because I like seeing the progression, not just the final number. There's a simple line chart, too, which makes the "snowball" effect easier to grasp.</p>
+
+      <p>It doesn't ask for your email, it doesn't try to sell you anything, and it doesn't have any sliders that snap to round numbers. It's just a form, followed by numbers. Pretty much what I was looking for that day.</p>
+
+      <p>
+        <a href="/tools/compound-interest-calculator/" class="try-link">Try the Compound Interest Calculator →</a>
+      </p>
+
+      <h2>Why this might be useful for you</h2>
+      <p>Maybe you're comparing loan offers and want to see the real cost with monthly compounding. Or you're trying to decide if paying an extra $100 a month toward a mortgage is worth it. Or you're saving for something that's a few years away and you want a realistic picture, not a marketing number. This tool is for those moments. It's not trying to be the most sophisticated financial model – but it's honest, it works offline, and you can check the math yourself.</p>
+
+      <div class="closing">
+        <p>Anyway, I hope it's helpful. I built it because I kept needing it, and I figure if I need it, others do too. There's no catch. If you find a bug or have a suggestion, you can always reach out. Otherwise, enjoy playing with the numbers – they can be surprisingly interesting once you start tweaking.</p>
+        <p style="margin-top: 0.5rem; color: #64748b;">– Daniel, ToolsForUse</p>
+      </div>
+    </article>
+  </div>
+</body>
+</html>
