@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- AFFILIATE_SLOT -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EV Charging Cost Calculator | Home EV charging cost estimator</title>
+    <meta name="description" content="Free online EV charging cost calculator: estimate home electric vehicle charging cost based on battery size, current charge level & electricity rate. Accurate cost to charge electric car in seconds.">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background: #f5f9fc;
+            color: #1a2b3c;
+            line-height: 1.6;
+            padding: 1.5rem;
+        }
+        .container {
+            max-width: 820px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 28px;
+            box-shadow: 0 12px 30px rgba(0,20,40,0.08);
+            padding: 2rem 1.8rem;
+        }
+        @media (max-width: 500px) {
+            body { padding: 0.8rem; }
+            .container { padding: 1.5rem 1rem; }
+        }
+
+        /* header / nav */
+        .tool-header {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem 1.5rem;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #e2edf2;
+            padding-bottom: 0.9rem;
+            margin-bottom: 1.8rem;
+        }
+        .home-link {
+            font-weight: 600;
+            font-size: 1.2rem;
+            letter-spacing: -0.3px;
+            color: #0d4b6e;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.25rem;
+        }
+        .home-link:hover {
+            color: #08344f;
+            text-decoration: underline;
+        }
+        .story-link {
+            color: #1f6e8c;
+            font-size: 0.95rem;
+            text-decoration: none;
+            background: #e7f0f5;
+            padding: 0.3rem 0.9rem;
+            border-radius: 40px;
+            transition: 0.2s;
+        }
+        .story-link:hover {
+            background: #d0e3ed;
+            color: #0a3b52;
+        }
+        h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #0c3e58;
+            letter-spacing: -0.3px;
+            margin: 0.3rem 0 0.2rem;
+        }
+        .subhead {
+            color: #37657a;
+            margin-bottom: 2rem;
+            font-size: 1rem;
+        }
+
+        /* calculator card */
+        .calc-card {
+            background: #f0f6fa;
+            border-radius: 24px;
+            padding: 1.8rem 1.8rem 2.2rem;
+        }
+        .field-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem;
+            margin-bottom: 1.3rem;
+        }
+        .field-group label {
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: #1a4a62;
+            letter-spacing: 0.2px;
+        }
+        .input-wrapper {
+            display: flex;
+            align-items: center;
+            background: white;
+            border-radius: 60px;
+            padding: 0.1rem 1rem 0.1rem 1.2rem;
+            border: 1px solid #cfe1ea;
+            transition: 0.2s;
+        }
+        .input-wrapper:focus-within {
+            border-color: #1e7e9e;
+            box-shadow: 0 0 0 3px rgba(26, 110, 145, 0.15);
+        }
+        .input-wrapper input {
+            width: 100%;
+            border: none;
+            padding: 0.75rem 0;
+            font-size: 1rem;
+            background: transparent;
+            outline: none;
+            color: #0b2c3d;
+        }
+        .input-wrapper input[type="number"]::-webkit-inner-spin-button { opacity: 0.5; }
+        .input-unit {
+            color: #3d6f89;
+            font-weight: 500;
+            font-size: 0.95rem;
+            padding-left: 0.4rem;
+            white-space: nowrap;
+        }
+        .range-hint {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.75rem;
+            color: #376c84;
+            padding: 0 0.4rem;
+        }
+        .row-duo {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+        @media (max-width: 480px) {
+            .row-duo { grid-template-columns: 1fr; gap: 0.2rem; }
+        }
+        .calc-btn {
+            background: #0d4b6e;
+            color: white;
+            border: none;
+            padding: 0.9rem 1.8rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border-radius: 60px;
+            width: 100%;
+            cursor: pointer;
+            transition: 0.2s;
+            margin-top: 1rem;
+            letter-spacing: 0.2px;
+        }
+        .calc-btn:hover {
+            background: #083a55;
+            transform: scale(1.01);
+        }
+        .result-box {
+            background: white;
+            margin-top: 1.5rem;
+            border-radius: 40px;
+            padding: 1.5rem 1.8rem;
+            text-align: center;
+            border: 1px solid #cde1ec;
+        }
+        .result-cost {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: #0b4b6a;
+            letter-spacing: -0.5px;
+        }
+        .result-label {
+            font-size: 0.9rem;
+            color: #3b6b82;
+            margin-top: 0.2rem;
+        }
+        .result-breakdown {
+            margin-top: 0.6rem;
+            font-size: 0.9rem;
+            color: #2b5b74;
+            background: #edf4f9;
+            display: inline-block;
+            padding: 0.2rem 1.2rem;
+            border-radius: 60px;
+        }
+        .footnote {
+            font-size: 0.8rem;
+            color: #4d6f81;
+            margin-top: 1rem;
+            text-align: center;
+        }
+
+        /* explanatory section */
+        .explain {
+            margin: 2.4rem 0 1.8rem;
+        }
+        .explain h2 {
+            font-size: 1.5rem;
+            color: #0c3e58;
+            margin-bottom: 0.5rem;
+        }
+        .explain p {
+            margin-bottom: 1rem;
+            color: #1c4257;
+        }
+
+        /* affiliate slot placeholder (visible only as comment) */
+        .affiliate-placeholder {
+            display: block;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #b0ccda, transparent);
+            margin: 2rem 0 0.5rem;
+            opacity: 0.35;
+        }
+        .footnote a {
+            color: #146482;
+        }
+
+        /* accessibility */
+        .sr-only:not(:focus):not(:active) {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            margin: -1px;
+            border: 0;
+            padding: 0;
+            white-space: nowrap;
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- header with links -->
+        <header class="tool-header">
+            <a href="/" class="home-link" aria-label="ToolsForUse homepage">← ToolsForUse</a>
+            <a href="/blog/ev-charging-cost-calculator/" class="story-link" aria-label="Read the story behind this tool">📘 Read the story</a>
+        </header>
+
+        <main>
+            <h1>EV Charging Cost Calculator</h1>
+            <p class="subhead">Estimate your home electric vehicle charging cost — battery size, current level &amp; electricity rate.</p>
+
+            <!-- calculator -->
+            <section class="calc-card" aria-label="EV charging cost calculator form">
+                <form id="evForm" novalidate>
+                    <div class="field-group">
+                        <label for="batterySize">Battery capacity (usable)</label>
+                        <div class="input-wrapper">
+                            <input type="number" id="batterySize" name="batterySize" min="8" max="200" step="0.1" value="60" required aria-describedby="batteryHint">
+                            <span class="input-unit">kWh</span>
+                        </div>
+                        <div class="range-hint" id="batteryHint"><span>small (20 kWh)</span><span>large (120+ kWh)</span></div>
+                    </div>
+
+                    <div class="row-duo">
+                        <div class="field-group">
+                            <label for="currentCharge">Current charge level</label>
+                            <div class="input-wrapper">
+                                <input type="number" id="currentCharge" name="currentCharge" min="0" max="100" step="1" value="20" required aria-describedby="chargeHint">
+                                <span class="input-unit">%</span>
+                            </div>
+                            <div class="range-hint" id="chargeHint"><span>0% (empty)</span><span>100% (full)</span></div>
+                        </div>
+                        <div class="field-group">
+                            <label for="electricRate">Electricity rate</label>
+                            <div class="input-wrapper">
+                                <input type="number" id="electricRate" name="electricRate" min="0.01" max="0.99" step="0.01" value="0.14" required aria-describedby="rateHint">
+                                <span class="input-unit">$/kWh</span>
+                            </div>
+                            <div class="range-hint" id="rateHint"><span>0.08 $/kWh</span><span>0.45 $/kWh</span></div>
+                        </div>
+                    </div>
+
+                    <button type="button" class="calc-btn" id="calculateBtn">⚡ Calculate charging cost</button>
+                </form>
+
+                <div class="result-box" id="resultBox" aria-live="polite">
+                    <div class="result-cost" id="resultCost">$6.72</div>
+                    <div class="result-label">estimated cost for a full charge (80% → 100%)</div>
+                    <div class="result-breakdown" id="resultBreakdown">🔋 48.0 kWh needed</div>
+                </div>
+                <div class="footnote">
+                    ⚡ Default: 60 kWh battery · 20% current · $0.14/kWh. 
+                    <a href="#" id="resetExample">Reset example</a>
+                </div>
+            </section>
+
+            <!-- explanatory content -->
+            <section class="explain">
+                <h2>How home EV charging cost really works</h2>
+                <p>
+                    Charging an electric vehicle at home is significantly cheaper than gas, but the exact <strong>cost to charge electric car</strong> depends on three key numbers: your battery’s usable capacity (kWh), how empty it is, and what you pay per kilowatt-hour. Many EV owners underestimate the impact of charging from a low state of charge. This <strong>ev charging cost calculator</strong> gives you the realistic home cost — no guesswork.
+                </p>
+                <p>
+                    For example, a 60 kWh battery at 20% charge needs 48 kWh to reach 100%. At the U.S. average of ~$0.14/kWh, that’s about $6.72. But if your local electricity rate is $0.30/kWh (common in parts of CA, NY, or HI), the same charge jumps to $14.40. Our <strong>electric vehicle charging cost</strong> tool accounts for any battery size (from plug-in hybrids to long-range EVs) and any current level, so you always know the true <strong>home ev charging cost</strong> before plugging in.
+                </p>
+                <p>
+                    Use this calculator to compare charging costs vs. gasoline, plan your monthly EV budget, or decide whether a time-of-use electricity plan makes sense. Battery degradation? The tool uses your usable capacity — just reduce the battery size slightly if you want a realistic long-term estimate. Bookmark it for every road trip or weekly charging session.
+                </p>
+            </section>
+
+            <!-- manual affiliate slot marker (visible as comment only) -->
+            <!-- AFFILIATE_SLOT -->
+            <div class="affiliate-placeholder" aria-hidden="true"></div>
+            <p style="font-size:0.75rem; color:#6a8fa3; text-align:center; margin-bottom:0.5rem;"> 
+                <span style="opacity:0.6;">~ you can insert an affiliate card here ~</span>
+            </p>
+        </main>
+
+        <footer style="margin-top:2rem; border-top:1px solid #dbe8ef; padding-top:1rem; font-size:0.85rem; color:#37657a; text-align:center;">
+            <span>© ToolsForUse — smart home energy tools</span>
+        </footer>
+    </div>
+
+    <script>
+        (function() {
+            const batteryInput = document.getElementById('batterySize');
+            const currentInput = document.getElementById('currentCharge');
+            const rateInput = document.getElementById('electricRate');
+            const calculateBtn = document.getElementById('calculateBtn');
+            const resultCost = document.getElementById('resultCost');
+            const resultBreakdown = document.getElementById('resultBreakdown');
+            const resetLink = document.getElementById('resetExample');
+
+            // default values
+            const DEFAULTS = { battery: 60, current: 20, rate: 0.14 };
+
+            function formatCurrency(value) {
+                return '$' + value.toFixed(2);
+            }
+
+            function computeAndDisplay() {
+                // read & parse
+                let battery = parseFloat(batteryInput.value);
+                let current = parseFloat(currentInput.value);
+                let rate = parseFloat(rateInput.value);
+
+                // validation / fallback
+                if (isNaN(battery) || battery < 1) battery = 60;
+                if (isNaN(current) || current < 0) current = 0;
+                if (current > 100) current = 100;
+                if (isNaN(rate) || rate <= 0) rate = 0.14;
+
+                // clamp battery to reasonable (but any positive works)
+                if (battery > 500) battery = 500; // sanity
+
+                // energy needed to fill from current% to 100%
+                const usableAh = battery * (1 - current / 100);
+                if (usableAh < 0) {
+                    // if current > 100% treat as full
+                    resultCost.textContent = '$0.00';
+                    resultBreakdown.textContent = '🔋 0 kWh (already full)';
+                    return;
+                }
+                const totalCost = usableAh * rate;
+
+                // update result
+                resultCost.textContent = formatCurrency(totalCost);
+                let detailText;
+                if (usableAh < 0.01) {
+                    detailText = '🔋 0 kWh needed · battery full';
+                } else {
+                    let fromPercent = current;
+                    let toPercent = 100;
+                    detailText = `🔋 ${usableAh.toFixed(1)} kWh needed (${fromPercent}% → ${toPercent}%)`;
+                }
+                resultBreakdown.textContent = detailText;
+            }
+
+            // event listeners
+            calculateBtn.addEventListener('click', computeAndDisplay);
+
+            // also compute on Enter key in any field (user friendly)
+            const inputs = [batteryInput, currentInput, rateInput];
+            inputs.forEach(inp => {
+                inp.addEventListener('keydown', function(e) {
+                    if (e.key === 'Enter') {
+                        e.preventDefault();
+                        computeAndDisplay();
+                    }
+                });
+                inp.addEventListener('change', computeAndDisplay);
+            });
+
+            // reset to default example
+            function resetToDefault() {
+                batteryInput.value = DEFAULTS.battery;
+                currentInput.value = DEFAULTS.current;
+                rateInput.value = DEFAULTS.rate;
+                computeAndDisplay();
+            }
+            resetLink.addEventListener('click', function(e) {
+                e.preventDefault();
+                resetToDefault();
+            });
+
+            // initial calculation on page load
+            window.addEventListener('DOMContentLoaded', function() {
+                // set default if fields are empty (they have values from html, but ensure)
+                if (!batteryInput.value) batteryInput.value = DEFAULTS.battery;
+                if (!currentInput.value) currentInput.value = DEFAULTS.current;
+                if (!rateInput.value) rateInput.value = DEFAULTS.rate;
+                computeAndDisplay();
+            });
+        })();
+    </script>
+    <!-- hidden comment for affiliate slot (duplicate note) -->
+    <!-- AFFILIATE_SLOT -->
+</body>
+</html>
