@@ -1,0 +1,514 @@
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cups to Grams Converter | Baking Conversion Calculator | ToolsForUse</title>
+<meta name="description" content="Convert cups to grams for flour, sugar, butter, and more. This grams to cups converter and baking conversion calculator eliminates guesswork for perfect recipes every time.">
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+  }
+  body {
+    background: #f8f6f2;
+    color: #2d2a24;
+    line-height: 1.6;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+  header.tool-header {
+    background: #fff;
+    border-bottom: 1px solid #e0dbd0;
+    padding: 1rem 1.25rem;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem 1.5rem;
+  }
+  .tool-header a {
+    color: #3b5e3b;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.95rem;
+    transition: color 0.15s;
+  }
+  .tool-header a:hover {
+    color: #1f3a1f;
+    text-decoration: underline;
+  }
+  .tool-header .home-link {
+    font-weight: 700;
+    font-size: 1.2rem;
+    letter-spacing: -0.3px;
+  }
+  .tool-header .home-link span {
+    color: #7a6a5a;
+  }
+  .tool-container {
+    max-width: 820px;
+    margin: 0 auto;
+    padding: 2rem 1.25rem 3rem;
+    flex: 1;
+  }
+  h1 {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #1f3a1f;
+    margin-bottom: 0.3rem;
+    line-height: 1.2;
+  }
+  .subhead {
+    color: #5c5548;
+    font-size: 1.05rem;
+    margin-bottom: 1.75rem;
+    border-left: 4px solid #b6a48b;
+    padding-left: 1rem;
+  }
+  .converter-card {
+    background: #ffffff;
+    border-radius: 20px;
+    padding: 2rem 1.8rem;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+    border: 1px solid #e6e1d8;
+    margin-bottom: 2.5rem;
+  }
+  .form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.2rem 1.5rem;
+    align-items: end;
+  }
+  @media (max-width: 560px) {
+    .form-grid {
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+    .converter-card {
+      padding: 1.5rem 1.2rem;
+    }
+  }
+  .field-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+  }
+  .field-group label {
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: #3d382e;
+    letter-spacing: 0.02em;
+  }
+  .field-group select,
+  .field-group input {
+    padding: 0.7rem 0.9rem;
+    font-size: 1rem;
+    border: 1px solid #cdc6ba;
+    border-radius: 10px;
+    background: #fcfbf9;
+    transition: border 0.2s, box-shadow 0.2s;
+    width: 100%;
+  }
+  .field-group select:focus,
+  .field-group input:focus {
+    outline: none;
+    border-color: #6f8f6f;
+    box-shadow: 0 0 0 3px rgba(63, 94, 63, 0.12);
+  }
+  .field-group input[type="number"] {
+    -moz-appearance: textfield;
+  }
+  .field-group input[type="number"]::-webkit-inner-spin-button,
+  .field-group input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+  .swap-btn-wrap {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-bottom: 0.2rem;
+  }
+  .swap-btn {
+    background: #e5dfd6;
+    border: none;
+    border-radius: 40px;
+    width: 48px;
+    height: 48px;
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: background 0.15s, transform 0.1s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #2d2a24;
+  }
+  .swap-btn:hover {
+    background: #d5cdc0;
+  }
+  .swap-btn:active {
+    transform: scale(0.94);
+  }
+  .result-area {
+    margin-top: 1.5rem;
+    padding-top: 1.25rem;
+    border-top: 1px dashed #d6d0c4;
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+  }
+  .result-row {
+    display: flex;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 0.3rem 0.8rem;
+    font-size: 1.1rem;
+  }
+  .result-value {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #1f3a1f;
+    word-break: break-word;
+  }
+  .result-unit {
+    font-weight: 500;
+    color: #4e4a40;
+  }
+  .result-note {
+    font-size: 0.9rem;
+    color: #6f675b;
+    margin-top: 0.2rem;
+  }
+  .ingredient-note {
+    background: #f2efe8;
+    border-radius: 12px;
+    padding: 0.6rem 1rem;
+    font-size: 0.9rem;
+    color: #3b362c;
+    margin: 0.8rem 0 0;
+  }
+  .explanatory {
+    background: #ffffffdd;
+    border-radius: 20px;
+    padding: 1.8rem 2rem;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.03);
+    border: 1px solid #e6e1d8;
+    margin: 2.2rem 0;
+  }
+  .explanatory h2 {
+    font-size: 1.4rem;
+    color: #1f3a1f;
+    margin: 1.4rem 0 0.6rem;
+  }
+  .explanatory h2:first-child {
+    margin-top: 0;
+  }
+  .explanatory p {
+    margin-bottom: 1rem;
+    color: #2f2b24;
+  }
+  .explanatory p:last-child {
+    margin-bottom: 0;
+  }
+  .affiliate-placeholder {
+    border: 2px dashed #c8c0b0;
+    border-radius: 16px;
+    padding: 1.8rem 1.2rem;
+    text-align: center;
+    color: #6f675b;
+    font-size: 0.95rem;
+    background: #faf8f4;
+    margin: 2rem 0 1rem;
+  }
+  footer.tool-footer {
+    border-top: 1px solid #e0dbd0;
+    padding: 1.2rem 1.25rem;
+    text-align: center;
+    color: #5f584c;
+    font-size: 0.85rem;
+    background: #fcfbf9;
+  }
+  footer.tool-footer a {
+    color: #3b5e3b;
+    text-decoration: none;
+  }
+  footer.tool-footer a:hover {
+    text-decoration: underline;
+  }
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0,0,0,0);
+    white-space: nowrap;
+    border: 0;
+  }
+</style>
+</head>
+<body>
+
+<header class="tool-header">
+  <a href="/" class="home-link" aria-label="ToolsForUse homepage">ToolsForUse <span>◈</span></a>
+  <nav>
+    <a href="/blog/cups-to-grams-converter/">Read the story behind this tool</a>
+  </nav>
+</header>
+
+<main class="tool-container">
+  <h1>Cups to Grams Converter</h1>
+  <div class="subhead">A baking conversion calculator for flour, sugar, butter &amp; more — no more guesswork.</div>
+
+  <div class="converter-card">
+    <form id="converterForm" aria-label="Cups to grams converter" novalidate>
+      <div class="form-grid">
+        <div class="field-group">
+          <label for="ingredientSelect">Ingredient</label>
+          <select id="ingredientSelect" aria-label="Choose ingredient for density">
+            <option value="120">All-purpose flour (1 cup ≈ 120g)</option>
+            <option value="125">Bread flour (1 cup ≈ 125g)</option>
+            <option value="100">Cake flour (1 cup ≈ 100g)</option>
+            <option value="127">Whole wheat flour (1 cup ≈ 127g)</option>
+            <option value="200">Granulated sugar (1 cup ≈ 200g)</option>
+            <option value="220">Brown sugar, packed (1 cup ≈ 220g)</option>
+            <option value="125">Powdered sugar (1 cup ≈ 125g)</option>
+            <option value="227">Butter (1 cup ≈ 227g)</option>
+            <option value="240">Milk / water (1 cup ≈ 240g)</option>
+            <option value="150">Honey (1 cup ≈ 340g) — 340</option>
+            <option value="200">Oats (rolled, 1 cup ≈ 100g) — 100</option>
+            <option value="160">Cocoa powder (1 cup ≈ 100g) — 100</option>
+            <option value="140">Coconut oil (1 cup ≈ 218g) — 218</option>
+          </select>
+        </div>
+        <div class="field-group">
+          <label for="cupsInput">Cups</label>
+          <input type="number" id="cupsInput" step="any" min="0" value="1" placeholder="e.g. 1.5" aria-label="Volume in cups">
+        </div>
+      </div>
+      <div class="swap-btn-wrap" aria-hidden="true">
+        <button type="button" class="swap-btn" id="swapModeBtn" title="Switch to grams to cups">⇄</button>
+      </div>
+      <div class="form-grid" id="gramsRow">
+        <div class="field-group">
+          <label for="gramsInput">Grams</label>
+          <input type="number" id="gramsInput" step="any" min="0" placeholder="grams" aria-label="Weight in grams">
+        </div>
+        <div class="field-group">
+          <label for="ingredientSelect2" class="sr-only">Ingredient (for grams to cups)</label>
+          <select id="ingredientSelect2" aria-label="Ingredient for grams to cups conversion" style="display:none;"></select>
+        </div>
+      </div>
+      <div class="result-area" id="resultArea" role="status" aria-live="polite">
+        <div class="result-row">
+          <span class="result-value" id="resultValue">120</span>
+          <span class="result-unit" id="resultUnit">grams</span>
+        </div>
+        <div class="result-note" id="resultNote">for 1 cup of all-purpose flour</div>
+        <div class="ingredient-note" id="densityNote">Density: 120 g per cup</div>
+      </div>
+    </form>
+  </div>
+
+  <!-- AFFILIATE_SLOT -->
+  <div class="affiliate-placeholder">
+    ⚡ Affiliate card slot — <em>manual insert here</em> (<!-- AFFILIATE_SLOT -->)
+  </div>
+
+  <section class="explanatory">
+    <h2>Why use a cups to grams converter?</h2>
+    <p>Baking by volume (cups) can be wildly inaccurate because ingredients settle, pack, or aerate differently. Scooping flour can give you anywhere from 110 g to 150 g per cup. This <strong>cups to grams converter</strong> uses standard baker’s densities so you get reliable weight every time — whether you're measuring all‑purpose flour, granulated sugar, or butter. It’s the simplest <strong>baking conversion calculator</strong> for switching between volume and weight.</p>
+    
+    <h2>Grams to cups conversion made simple</h2>
+    <p>Need the reverse? Click the swap button (⇄) to use the <strong>grams to cups converter</strong>. Just type in grams, pick your ingredient, and the tool instantly tells you how many cups you need. No more hunting for a <strong>flour grams to cups</strong> chart — this does the math for you. Perfect for adapting recipes from European or American sources.</p>
+    
+    <h2>Trusted by home bakers</h2>
+    <p>Whether you’re making bread, cakes, or cookies, accurate measurements matter. Our converter covers the most common baking ingredients with their typical densities (packed brown sugar, sifted flour, softened butter). Bookmark this page for quick access whenever a recipe calls for "cups to grams" or "grams to cups." Consistent results start with the right weight.</p>
+  </section>
+</main>
+
+<footer class="tool-footer">
+  <p>© ToolsForUse — <a href="/">Home</a> · <a href="/blog/cups-to-grams-converter/">Story behind this tool</a></p>
+</footer>
+
+<script>
+(function() {
+  const form = document.getElementById('converterForm');
+  const ingredientSelect = document.getElementById('ingredientSelect');
+  const ingredientSelect2 = document.getElementById('ingredientSelect2');
+  const cupsInput = document.getElementById('cupsInput');
+  const gramsInput = document.getElementById('gramsInput');
+  const resultValue = document.getElementById('resultValue');
+  const resultUnit = document.getElementById('resultUnit');
+  const resultNote = document.getElementById('resultNote');
+  const densityNote = document.getElementById('densityNote');
+  const swapBtn = document.getElementById('swapModeBtn');
+  
+  // mode: 'cups-to-grams' or 'grams-to-cups'
+  let mode = 'cups-to-grams';
+
+  // build second ingredient dropdown (hidden, kept in sync)
+  function syncSelects() {
+    ingredientSelect2.innerHTML = '';
+    for (let opt of ingredientSelect.options) {
+      let clone = opt.cloneNode(true);
+      ingredientSelect2.appendChild(clone);
+    }
+    ingredientSelect2.value = ingredientSelect.value;
+  }
+  syncSelects();
+
+  // helper: get density from select value
+  function getDensity() {
+    let val;
+    if (mode === 'cups-to-grams') {
+      val = ingredientSelect.value;
+    } else {
+      val = ingredientSelect2.value;
+    }
+    return parseFloat(val) || 120;
+  }
+
+  // helper: get ingredient text
+  function getIngredientText() {
+    if (mode === 'cups-to-grams') {
+      return ingredientSelect.options[ingredientSelect.selectedIndex]?.text?.replace(/\(.*\)/,'').trim() || 'ingredient';
+    } else {
+      return ingredientSelect2.options[ingredientSelect2.selectedIndex]?.text?.replace(/\(.*\)/,'').trim() || 'ingredient';
+    }
+  }
+
+  // update result display
+  function updateResult() {
+    let density = getDensity();
+    
+    // store density comment from select option (handle custom note)
+    let densityVal = density;
+
+    if (mode === 'cups-to-grams') {
+      let cups = parseFloat(cupsInput.value);
+      if (isNaN(cups) || cups < 0) cups = 0;
+      let grams = cups * density;
+      let displayGrams = grams.toFixed(1);
+      // remove trailing zero
+      if (displayGrams.endsWith('.0')) displayGrams = displayGrams.slice(0, -2);
+      resultValue.textContent = displayGrams;
+      resultUnit.textContent = 'grams';
+      let ingr = getIngredientText() || 'all-purpose flour';
+      resultNote.textContent = `for ${cups} cup${cups !== 1 ? 's' : ''} of ${ingr}`;
+      densityNote.textContent = `Density: ${density} g per cup`;
+    } else {
+      let grams = parseFloat(gramsInput.value);
+      if (isNaN(grams) || grams < 0) grams = 0;
+      let cups = grams / density;
+      let displayCups = cups.toFixed(2);
+      if (displayCups.endsWith('.00')) displayCups = displayCups.slice(0, -3);
+      else if (displayCups.endsWith('.0')) displayCups = displayCups.slice(0, -1);
+      resultValue.textContent = displayCups;
+      resultUnit.textContent = 'cups';
+      let ingr = getIngredientText() || 'all-purpose flour';
+      resultNote.textContent = `for ${grams} gram${grams !== 1 ? 's' : ''} of ${ingr}`;
+      densityNote.textContent = `Density: ${density} g per cup`;
+    }
+  }
+
+  // set mode and toggle visibility
+  function setMode(newMode) {
+    mode = newMode;
+    const cupsRow = document.querySelector('.form-grid'); // first grid
+    const gramsRow = document.getElementById('gramsRow');
+    
+    if (mode === 'cups-to-grams') {
+      // show cups input, hide grams input row except label/ input? we hide the whole second row but keep structure
+      cupsInput.disabled = false;
+      gramsInput.disabled = true;
+      gramsInput.value = '';
+      // make second ingredient select invisible but keep layout?
+      // simpler: hide the whole gramsRow, show original
+      gramsRow.style.display = 'none';
+      // ensure first grid (cups) is visible
+      // but we need the swap button and result row to remain
+      // Actually we hid the whole row. We'll manage with display.
+      document.querySelectorAll('.form-grid')[0].style.display = 'grid';
+      // re-enable ingredientSelect
+      ingredientSelect.disabled = false;
+      ingredientSelect2.disabled = true;
+      // trigger update
+    } else {
+      // grams to cups: show grams input row, hide cups row? keep both, disable cups
+      cupsInput.disabled = true;
+      gramsInput.disabled = false;
+      gramsRow.style.display = 'grid';
+      // hide first grid? we want to hide the cups field + ingredient? better hide the first grid
+      document.querySelectorAll('.form-grid')[0].style.display = 'none';
+      // show gramsRow with ingredientSelect2
+      ingredientSelect.disabled = true;
+      ingredientSelect2.disabled = false;
+    }
+    // sync select values
+    if (mode === 'cups-to-grams') {
+      ingredientSelect2.value = ingredientSelect.value;
+    } else {
+      ingredientSelect.value = ingredientSelect2.value;
+    }
+    updateResult();
+  }
+
+  // event listeners
+  ingredientSelect.addEventListener('change', function() {
+    if (mode === 'cups-to-grams') {
+      ingredientSelect2.value = ingredientSelect.value;
+      updateResult();
+    }
+  });
+  ingredientSelect2.addEventListener('change', function() {
+    if (mode === 'grams-to-cups') {
+      ingredientSelect.value = ingredientSelect2.value;
+      updateResult();
+    }
+  });
+
+  cupsInput.addEventListener('input', function() {
+    if (mode === 'cups-to-grams') updateResult();
+  });
+  gramsInput.addEventListener('input', function() {
+    if (mode === 'grams-to-cups') updateResult();
+  });
+
+  swapBtn.addEventListener('click', function() {
+    if (mode === 'cups-to-grams') {
+      // before switch, copy current cups value to grams? not needed
+      // but set grams input to approx? Keep empty
+      gramsInput.value = '';
+      setMode('grams-to-cups');
+    } else {
+      cupsInput.value = '';
+      setMode('cups-to-grams');
+    }
+    // ensure focus stays
+  });
+
+  // initialize: show cups to grams
+  setMode('cups-to-grams');
+  cupsInput.value = '1';
+  updateResult();
+
+  // handle manual number change on cups or grams
+  // also ensure that when grams input gets focus we still okay
+  // extra: reset if user types letters
+  document.querySelectorAll('input[type="number"]').forEach(inp => {
+    inp.addEventListener('blur', function() {
+      let v = parseFloat(this.value);
+      if (isNaN(v) || v < 0) this.value = 0;
+      updateResult();
+    });
+  });
+
+})();
+</script>
+</body>
+</html>
