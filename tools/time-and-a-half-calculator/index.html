@@ -1,0 +1,165 @@
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Time and a Half Calculator | Overtime Pay Calculator - ToolsForUse</title>
+<meta name="description" content="Use this free time and a half calculator to compute overtime pay at 1.5x rate. An accurate overtime calculator for employees and employers to determine total earnings including overtime pay.">
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubuntu,sans-serif;background:#f4f7fb;color:#1a2634;line-height:1.6;padding:20px}
+  .wrapper{max-width:780px;margin:0 auto;background:#ffffff;border-radius:18px;box-shadow:0 8px 30px rgba(0,0,0,0.08);padding:28px 24px 40px}
+  header{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;padding-bottom:18px;border-bottom:2px solid #e9edf2;margin-bottom:28px}
+  .logo a{font-weight:700;font-size:1.4rem;color:#0b2b4a;text-decoration:none;letter-spacing:-0.5px}
+  .logo span{color:#2a7faa}
+  .nav-links{display:flex;gap:18px;flex-wrap:wrap;font-size:0.95rem}
+  .nav-links a{color:#2a5f7a;text-decoration:none;border-bottom:1px solid transparent;transition:border-color 0.2s}
+  .nav-links a:hover{border-bottom-color:#2a7faa}
+  h1{font-size:1.9rem;font-weight:700;color:#0b2b4a;margin-bottom:6px}
+  .subhead{color:#4d6278;font-size:1rem;margin-bottom:28px}
+  .calc-card{background:#f9fbfd;border-radius:16px;padding:24px 22px;border:1px solid #dde3ec;margin-bottom:32px}
+  .input-group{display:flex;flex-direction:column;gap:6px;margin-bottom:18px}
+  .input-group label{font-weight:600;font-size:0.95rem;color:#1f364d}
+  .input-group input{background:#fff;border:1px solid #cbd5e1;border-radius:10px;padding:12px 14px;font-size:1.1rem;transition:border 0.2s}
+  .input-group input:focus{border-color:#2a7faa;outline:none;box-shadow:0 0 0 3px rgba(42,127,170,0.15)}
+  .row-2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  .btn-calc{background:#1b5b7a;color:#fff;border:none;border-radius:12px;padding:14px 18px;font-size:1.1rem;font-weight:600;cursor:pointer;width:100%;margin:8px 0 10px;transition:background 0.2s}
+  .btn-calc:hover{background:#134a63}
+  .btn-reset{background:#e2e8f0;color:#1f364d;border:none;border-radius:10px;padding:10px 16px;font-size:0.95rem;cursor:pointer;transition:background 0.2s;margin-top:6px}
+  .btn-reset:hover{background:#cbd5e1}
+  .result-box{background:#e6f0f7;padding:18px 20px;border-radius:14px;margin-top:16px;border-left:4px solid #1b5b7a}
+  .result-box p{margin:6px 0;font-size:1.05rem}
+  .result-box .total{font-size:1.5rem;font-weight:700;color:#0b2b4a;margin-top:4px}
+  .result-box .label{color:#2d4a66;font-weight:500}
+  .explanation{padding:16px 4px 8px}
+  .explanation h2{font-size:1.25rem;margin:20px 0 10px;color:#0b2b4a}
+  .explanation p{margin-bottom:14px;color:#2c4058}
+  footer{margin-top:30px;padding-top:20px;border-top:1px solid #dee5ef;font-size:0.9rem;color:#4e6580;text-align:center}
+  .affiliate-note{background:#f4f1ec;border-radius:10px;padding:12px 16px;margin:20px 0 8px;font-size:0.95rem;border:1px dashed #bcc9d9}
+  @media(max-width:550px){
+    .wrapper{padding:18px 14px}
+    .row-2{grid-template-columns:1fr}
+    h1{font-size:1.6rem}
+    .nav-links{justify-content:flex-start;margin-top:10px}
+  }
+</style>
+</head>
+<body>
+<!-- AFFILIATE_SLOT -->
+<div class="wrapper">
+  <header>
+    <div class="logo"><a href="/">ToolsForUse<span>.</span></a></div>
+    <div class="nav-links">
+      <a href="/">Home</a>
+      <a href="/blog/time-and-a-half-calculator/">Read the story behind this tool</a>
+    </div>
+  </header>
+
+  <h1>Time and a Half Calculator</h1>
+  <div class="subhead">Overtime pay calculator — instantly compute total earnings including time-and-a-half (1.5x) for overtime hours.</div>
+
+  <div class="calc-card">
+    <div class="input-group">
+      <label for="hourlyWage">Hourly wage ($)</label>
+      <input type="number" id="hourlyWage" placeholder="e.g. 25.00" step="0.01" min="0" value="20.00">
+    </div>
+    <div class="row-2">
+      <div class="input-group">
+        <label for="regHours">Regular hours (≤ 40)</label>
+        <input type="number" id="regHours" placeholder="40" step="0.5" min="0" max="168" value="40">
+      </div>
+      <div class="input-group">
+        <label for="otHours">Overtime hours (time &amp; a half)</label>
+        <input type="number" id="otHours" placeholder="e.g. 8" step="0.5" min="0" max="128" value="5">
+      </div>
+    </div>
+    <button class="btn-calc" id="calculateBtn">Calculate Overtime Pay</button>
+    <button class="btn-reset" id="resetBtn">Reset values</button>
+
+    <div class="result-box" id="resultBox">
+      <p><span class="label">Regular pay:</span> <span id="regularPay">$800.00</span></p>
+      <p><span class="label">Overtime pay (time &amp; a half):</span> <span id="overtimePay">$150.00</span></p>
+      <p><span class="label">Total earnings:</span> <span class="total" id="totalEarnings">$950.00</span></p>
+    </div>
+  </div>
+
+  <div class="explanation">
+    <h2>How the time and a half calculator works</h2>
+    <p>This <strong>overtime calculator</strong> is built for anyone who needs a fast, accurate <strong>time and a half pay</strong> estimate. Enter your hourly wage, regular hours (typically up to 40 per week), and any overtime hours worked. The tool instantly multiplies overtime hours by 1.5× your hourly rate — the standard time-and-a-half required by federal and many state labor laws. The result shows regular pay, overtime pay, and total combined earnings.</p>
+    <p>For example, if your hourly wage is $24 and you work 45 hours in a week (40 regular + 5 overtime), your regular pay is $960. The 5 overtime hours are paid at $36/hour (1.5 × $24), adding $180. Your total weekly earnings become $1,140. This <strong>overtime pay calculator</strong> handles any combination of hours and rates, making it perfect for employees checking their pay or employers estimating labor costs.</p>
+    <p>Note: This tool assumes a standard 40-hour workweek for regular time, with all additional hours paid at time-and-a-half. Some industries or states may have different overtime thresholds — always verify with your local labor department. Use this <strong>time and a half calculator</strong> as a quick reference for planning, budgeting, or verifying your paycheck.</p>
+  </div>
+
+  <!-- AFFILIATE_SLOT -->
+  <div class="affiliate-note">Looking for reliable payroll software? <a href="#" style="color:#1b5b7a;text-decoration:underline;">Compare top-rated payroll solutions</a> that automate overtime calculations and tax deductions.</div>
+
+  <footer>
+    <p>© 2025 ToolsForUse — free calculators for everyday use. This tool is for informational purposes only.</p>
+  </footer>
+</div>
+
+<script>
+  (function() {
+    const wageInput = document.getElementById('hourlyWage');
+    const regInput = document.getElementById('regHours');
+    const otInput = document.getElementById('otHours');
+    const calcBtn = document.getElementById('calculateBtn');
+    const resetBtn = document.getElementById('resetBtn');
+    const regularPaySpan = document.getElementById('regularPay');
+    const overtimePaySpan = document.getElementById('overtimePay');
+    const totalEarningsSpan = document.getElementById('totalEarnings');
+
+    function formatCurrency(value) {
+      return '$' + value.toFixed(2);
+    }
+
+    function calculate() {
+      let wage = parseFloat(wageInput.value);
+      let regHours = parseFloat(regInput.value);
+      let otHours = parseFloat(otInput.value);
+
+      if (isNaN(wage) || wage < 0) wage = 0;
+      if (isNaN(regHours) || regHours < 0) regHours = 0;
+      if (isNaN(otHours) || otHours < 0) otHours = 0;
+
+      // cap regular hours at 168 (max hours in a week)
+      if (regHours > 168) regHours = 168;
+      if (otHours > 128) otHours = 128;
+
+      // regular pay
+      const regularPay = wage * regHours;
+      // overtime at 1.5x
+      const overtimePay = (wage * 1.5) * otHours;
+      const total = regularPay + overtimePay;
+
+      regularPaySpan.textContent = formatCurrency(regularPay);
+      overtimePaySpan.textContent = formatCurrency(overtimePay);
+      totalEarningsSpan.textContent = formatCurrency(total);
+    }
+
+    function resetValues() {
+      wageInput.value = '20.00';
+      regInput.value = '40';
+      otInput.value = '5';
+      calculate();
+    }
+
+    calcBtn.addEventListener('click', calculate);
+    resetBtn.addEventListener('click', resetValues);
+
+    // Allow Enter key to trigger calculation
+    const inputs = [wageInput, regInput, otInput];
+    inputs.forEach(inp => {
+      inp.addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') {
+          e.preventDefault();
+          calculate();
+        }
+      });
+    });
+
+    // initial calculation on page load
+    calculate();
+  })();
+</script>
+</body>
+</html>
