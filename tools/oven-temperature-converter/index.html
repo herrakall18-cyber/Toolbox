@@ -1,0 +1,397 @@
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Oven Temperature Converter – Fahrenheit to Celsius & Gas Mark | ToolsForUse</title>
+<meta name="description" content="Convert oven temperatures instantly between Fahrenheit, Celsius, and gas mark settings. Perfect for oven temperature conversion when following international recipes.">
+<style>
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+body {
+  font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  background: #f5f7fa;
+  color: #1e293b;
+  line-height: 1.6;
+  padding: 0 1rem;
+}
+.container {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 1.5rem 0 3rem;
+}
+header.tool-header {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  border-bottom: 1px solid #d1d9e6;
+  padding-bottom: 1rem;
+}
+header.tool-header a {
+  color: #2563eb;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 0.95rem;
+}
+header.tool-header a:hover {
+  text-decoration: underline;
+}
+.tool-title {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 0.25rem;
+  color: #0f172a;
+}
+.subhead {
+  font-size: 1rem;
+  color: #475569;
+  margin-bottom: 1.5rem;
+}
+.converter-card {
+  background: white;
+  border-radius: 1.25rem;
+  padding: 1.75rem 1.5rem 2rem;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+  margin-bottom: 2.5rem;
+}
+.converter-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem 1.5rem;
+  align-items: flex-end;
+  margin-bottom: 1.2rem;
+}
+.input-group {
+  flex: 1 1 180px;
+  min-width: 140px;
+}
+.input-group label {
+  display: block;
+  font-weight: 600;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  color: #334155;
+  margin-bottom: 0.3rem;
+}
+.input-group input, .input-group select {
+  width: 100%;
+  padding: 0.7rem 0.8rem;
+  font-size: 1rem;
+  border: 1px solid #cbd5e1;
+  border-radius: 0.6rem;
+  background: white;
+  transition: border 0.15s;
+}
+.input-group input:focus, .input-group select:focus {
+  border-color: #2563eb;
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(37,99,235,0.15);
+}
+.converter-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.7rem;
+  margin-top: 0.8rem;
+}
+.btn {
+  background: #2563eb;
+  color: white;
+  border: none;
+  padding: 0.6rem 1.5rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  border-radius: 2rem;
+  cursor: pointer;
+  transition: background 0.15s, transform 0.1s;
+}
+.btn:hover {
+  background: #1d4ed8;
+}
+.btn:active {
+  transform: scale(0.96);
+}
+.btn-outline {
+  background: #e2e8f0;
+  color: #1e293b;
+}
+.btn-outline:hover {
+  background: #cbd5e1;
+}
+.result-area {
+  background: #f1f5f9;
+  border-radius: 1rem;
+  padding: 1rem 1.2rem;
+  margin-top: 1.5rem;
+  font-size: 1.1rem;
+  border-left: 5px solid #2563eb;
+  min-height: 3.5rem;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem 1rem;
+}
+.result-area span {
+  background: #ffffff;
+  padding: 0.25rem 1rem;
+  border-radius: 2rem;
+  font-weight: 600;
+  color: #0f172a;
+  border: 1px solid #d1d9e6;
+}
+.explanation {
+  background: white;
+  border-radius: 1.25rem;
+  padding: 1.75rem 1.5rem;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.04);
+  margin-bottom: 2rem;
+}
+.explanation h2 {
+  font-size: 1.4rem;
+  margin-bottom: 0.8rem;
+  color: #0f172a;
+}
+.explanation p {
+  margin-bottom: 1rem;
+  color: #1e293b;
+}
+.affiliate-note {
+  background: #f1f5f9;
+  border: 1px dashed #94a3b8;
+  border-radius: 1rem;
+  padding: 1.2rem;
+  text-align: center;
+  color: #475569;
+  font-size: 0.9rem;
+  margin: 2rem 0;
+}
+footer {
+  text-align: center;
+  margin-top: 2.5rem;
+  color: #64748b;
+  font-size: 0.85rem;
+  border-top: 1px solid #d1d9e6;
+  padding-top: 1.5rem;
+}
+footer a {
+  color: #2563eb;
+  text-decoration: none;
+}
+@media (max-width: 500px) {
+  .converter-row {
+    flex-direction: column;
+    gap: 0.8rem;
+  }
+  .input-group {
+    min-width: 100%;
+  }
+  .tool-title {
+    font-size: 1.7rem;
+  }
+  .result-area {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+<header class="tool-header">
+  <a href="/">&larr; ToolsForUse</a>
+  <a href="/blog/oven-temperature-converter/">Read the story behind this tool</a>
+</header>
+
+<h1 class="tool-title">Oven Temperature Converter</h1>
+<p class="subhead">Convert between Fahrenheit (°F), Celsius (°C), and Gas Mark — instantly.</p>
+
+<div class="converter-card">
+  <form id="converterForm" autocomplete="off" action="javascript:void(0);">
+    <div class="converter-row">
+      <div class="input-group">
+        <label for="tempInput">Temperature</label>
+        <input type="number" id="tempInput" placeholder="e.g. 350" step="any" value="350">
+      </div>
+      <div class="input-group">
+        <label for="unitFrom">Convert from</label>
+        <select id="unitFrom">
+          <option value="F">Fahrenheit (°F)</option>
+          <option value="C">Celsius (°C)</option>
+          <option value="gas">Gas Mark</option>
+        </select>
+      </div>
+    </div>
+    <div class="converter-actions">
+      <button type="button" class="btn" id="convertBtn">Convert</button>
+      <button type="button" class="btn btn-outline" id="swapBtn">Swap units</button>
+      <button type="button" class="btn btn-outline" id="clearBtn">Clear</button>
+    </div>
+  </form>
+  <div class="result-area" id="resultDisplay">
+    <span>350 °F</span> = <span>177 °C</span> ≈ <span>Gas Mark 4</span>
+  </div>
+</div>
+
+<!-- AFFILIATE_SLOT -->
+
+<div class="explanation">
+  <h2>Why use an oven temperature converter?</h2>
+  <p>Recipes from different countries often use Fahrenheit, Celsius, or gas marks — and getting it wrong can ruin a dish. Our <strong>oven temperature converter</strong> gives you accurate conversions instantly. Whether you need a precise <strong>fahrenheit to celsius oven</strong> conversion for a delicate pastry or a quick <strong>gas mark to celsius</strong> lookup for a Sunday roast, this tool handles it in one click.</p>
+  <p>Many vintage European cookbooks still rely on gas marks (1 to 10), while modern ovens in North America default to Fahrenheit. A common conversion: 350°F equals about 177°C, which is Gas Mark 4. Memorising every equivalent is tedious — this converter does the work for you, so you can focus on cooking, not calculating.</p>
+  <p>Whether you're baking bread, roasting vegetables, or following a family recipe from overseas, reliable <strong>oven temperature conversion</strong> ensures consistent results. Bookmark this page for your next international cooking adventure.</p>
+</div>
+
+<!-- AFFILIATE_SLOT -->
+
+<footer>
+  <p>&copy; 2025 <a href="/">ToolsForUse</a> — handy tools for everyday tasks.</p>
+</footer>
+</div>
+
+<script>
+(function() {
+  const tempInput = document.getElementById('tempInput');
+  const unitFrom = document.getElementById('unitFrom');
+  const resultDisplay = document.getElementById('resultDisplay');
+  const convertBtn = document.getElementById('convertBtn');
+  const swapBtn = document.getElementById('swapBtn');
+  const clearBtn = document.getElementById('clearBtn');
+
+  // Gas mark lookup: index = gas mark, value = Celsius (top of range, approximate centre)
+  // Standard UK gas mark ranges (approx centre °C):
+  // 1/4 = 110, 1/2 = 130, 1 = 140, 2 = 150, 3 = 165, 4 = 177, 5 = 190, 6 = 200, 7 = 215, 8 = 230, 9 = 245, 10 = 260
+  // For display we round to nearest integer and show ±? We'll use a map for quick lookup.
+  const gasMarkToC = {
+    0.25: 110, 0.5: 130, 1: 140, 2: 150, 3: 165, 4: 177, 5: 190, 6: 200, 7: 215, 8: 230, 9: 245, 10: 260
+  };
+  // Reverse map: Celsius to nearest gas mark (for display)
+  function celsiusToGasMark(celsius) {
+    let nearest = 4;
+    let minDiff = Infinity;
+    for (const [mark, c] of Object.entries(gasMarkToC)) {
+      const diff = Math.abs(celsius - c);
+      if (diff < minDiff) {
+        minDiff = diff;
+        nearest = parseFloat(mark);
+      }
+    }
+    // if nearest is 0.25 or 0.5 display as fraction
+    if (nearest === 0.25) return '¼';
+    if (nearest === 0.5) return '½';
+    return String(nearest);
+  }
+
+  function formatGasMark(val) {
+    if (val === 0.25) return '¼';
+    if (val === 0.5) return '½';
+    return String(val);
+  }
+
+  function roundTo(n, digits) {
+    const d = Math.pow(10, digits);
+    return Math.round(n * d) / d;
+  }
+
+  function convertAndDisplay() {
+    const raw = tempInput.value.trim();
+    if (raw === '') {
+      resultDisplay.innerHTML = '<span>Please enter a temperature</span>';
+      return;
+    }
+    const value = parseFloat(raw);
+    if (isNaN(value)) {
+      resultDisplay.innerHTML = '<span>Invalid number</span>';
+      return;
+    }
+    const from = unitFrom.value;
+    let celsius, fahrenheit, gasMark;
+
+    if (from === 'F') {
+      fahrenheit = value;
+      celsius = (value - 32) * 5/9;
+      gasMark = celsiusToGasMark(celsius);
+    } else if (from === 'C') {
+      celsius = value;
+      fahrenheit = (value * 9/5) + 32;
+      gasMark = celsiusToGasMark(celsius);
+    } else if (from === 'gas') {
+      // gas mark input: map to celsius, then to fahrenheit
+      let gasVal;
+      // handle fraction inputs like 0.25, 0.5
+      if (value === 0.25 || value === 0.5) {
+        gasVal = value;
+      } else {
+        gasVal = Math.round(value);
+        if (gasVal < 0) gasVal = 0;
+        if (gasVal > 10) gasVal = 10;
+      }
+      // use closest from map
+      const keys = Object.keys(gasMarkToC).map(Number).sort((a,b)=>a-b);
+      let closest = keys[0];
+      let minDiff = Infinity;
+      for (const k of keys) {
+        const diff = Math.abs(gasVal - k);
+        if (diff < minDiff) {
+          minDiff = diff;
+          closest = k;
+        }
+      }
+      celsius = gasMarkToC[closest];
+      fahrenheit = (celsius * 9/5) + 32;
+      gasMark = formatGasMark(closest);
+    }
+
+    // Round display values
+    const roundC = Math.round(celsius);
+    const roundF = Math.round(fahrenheit);
+    let gasDisplay;
+    if (from === 'gas') {
+      // preserve original input format if possible
+      if (value === 0.25) gasDisplay = '¼';
+      else if (value === 0.5) gasDisplay = '½';
+      else gasDisplay = String(Math.round(value));
+    } else {
+      gasDisplay = gasMark;
+    }
+
+    resultDisplay.innerHTML = `<span>${roundF} °F</span> = <span>${roundC} °C</span> ≈ <span>Gas Mark ${gasDisplay}</span>`;
+  }
+
+  function swapUnits() {
+    const current = unitFrom.value;
+    if (current === 'F') unitFrom.value = 'C';
+    else if (current === 'C') unitFrom.value = 'F';
+    else if (current === 'gas') unitFrom.value = 'F';  // default swap to F
+    // Optionally adjust placeholder or keep same
+    convertAndDisplay();
+  }
+
+  function clearAll() {
+    tempInput.value = '';
+    unitFrom.value = 'F';
+    resultDisplay.innerHTML = '<span>—</span> <span>—</span> <span>—</span>';
+  }
+
+  // event listeners
+  convertBtn.addEventListener('click', convertAndDisplay);
+  swapBtn.addEventListener('click', swapUnits);
+  clearBtn.addEventListener('click', clearAll);
+  tempInput.addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      convertAndDisplay();
+    }
+  });
+
+  // Initial conversion
+  convertAndDisplay();
+})();
+</script>
+
+</body>
+</html>
