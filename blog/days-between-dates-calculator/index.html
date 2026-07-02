@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Days Between Dates Calculator — ToolsForUse</title>
+<meta name="description" content="We built a simple, no-frills days-between-dates calculator because every other solution either shows ads, requires sign-up, or over-complicates a basic task.">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background: #f9fafb;
+    color: #1a1a2e;
+    line-height: 1.6;
+    padding: 1.5rem;
+    max-width: 720px;
+    margin: 0 auto;
+  }
+  a { color: #2563eb; text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  header {
+    margin-bottom: 2.5rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid #e2e8f0;
+  }
+  header a {
+    color: #1a1a2e;
+    font-weight: 600;
+    font-size: 1.15rem;
+    letter-spacing: -.01em;
+  }
+  h1 {
+    font-size: 2rem;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 0.5rem;
+    letter-spacing: -.02em;
+  }
+  .meta {
+    color: #64748b;
+    font-size: 0.9rem;
+    margin-bottom: 2rem;
+    display: flex;
+    gap: 0.75rem;
+    align-items: center;
+  }
+  .meta span { background: #e2e8f0; padding: 0.15rem 0.6rem; border-radius: 12px; font-size: 0.75rem; font-weight: 500; }
+  p { margin-bottom: 1.25rem; }
+  h2 {
+    font-size: 1.35rem;
+    font-weight: 600;
+    margin-top: 2rem;
+    margin-bottom: 0.75rem;
+    letter-spacing: -.01em;
+  }
+  blockquote {
+    border-left: 3px solid #2563eb;
+    background: #f1f5f9;
+    padding: 0.75rem 1.25rem;
+    margin: 1.5rem 0;
+    border-radius: 0 6px 6px 0;
+    font-style: italic;
+  }
+  .tool-link {
+    display: inline-block;
+    background: #2563eb;
+    color: #fff;
+    padding: 0.7rem 1.6rem;
+    border-radius: 6px;
+    font-weight: 600;
+    margin: 1rem 0 1.5rem 0;
+    transition: background 0.2s;
+  }
+  .tool-link:hover { background: #1d4ed8; text-decoration: none; }
+  .closing {
+    margin-top: 2.5rem;
+    padding-top: 1.25rem;
+    border-top: 1px solid #e2e8f0;
+    font-size: 0.95rem;
+    color: #475569;
+  }
+  @media (max-width: 500px) {
+    body { padding: 1rem; }
+    h1 { font-size: 1.6rem; }
+  }
+</style>
+</head>
+<body>
+<header><a href="/">← ToolsForUse</a></header>
+
+<article>
+  <h1>Days Between Dates Calculator</h1>
+  <div class="meta"><time datetime="2025-05-14">May 14, 2025</time> <span>new tool</span></div>
+
+  <p>Last week I was helping a friend figure out how many days of a freelancing contract had actually elapsed. Simple enough, right? But every time I tried to get a straight answer I hit the same wall: either I had to use an ad‑ridden site that looked like it was built in 2005, or I had to launch a spreadsheet just to subtract two dates. Something that should take ten seconds was taking five minutes.</p>
+
+  <p>That frustration stuck with me. I needed something that just <em>does the job</em> without asking for an email address, without showing me a pop‑up about "limited time offers", and without making me wonder if it's counting leap years correctly. So I built it.</p>
+
+  <h2>What’s wrong with what’s out there</h2>
+  <p>Honestly, most date calculators are fine — if you squint. But the ones that aren't broken in UX are broken in reliability. Some don’t handle leap years. Some use JavaScript that feels off by a day. And almost all of them treat you like a user to be monetized rather than a person who just wants a number. I wanted a tool that’s clear, correct, and boring in the best way possible.</p>
+
+  <blockquote>You shouldn’t have to second‑guess a date calculator. The whole point is certainty.</blockquote>
+
+  <h2>What this tool actually does</h2>
+  <p>You pick a start date and an end date. It tells you the exact number of days in between, including the start date (or not — you can toggle it). That’s it. There’s no signup, no analytics, no countdown timer. It works offline after first load, and it respects the browser’s native date picker. It's built for planners, freelancers, project managers, or anyone who just needs a straight answer.</p>
+
+  <p>A few things I made sure of:</p>
+  <ul style="margin-bottom: 1.25rem; padding-left: 1.5rem;">
+    <li>Leap years are handled correctly (yes, even century years).</li>
+    <li>Time zones won't mess you up — it uses local dates only.</li>
+    <li>You can copy the result with one tap.</li>
+    <li>No tracking. Not even a favicon request to a third party.</li>
+  </ul>
+
+  <a class="tool-link" href="/tools/days-between-dates-calculator/">Try the Days Between Dates Calculator →</a>
+
+  <p>If you’re managing a project timeline, figuring out how long a trial period lasts, or just curious how old your cat is in days, this should save you a small headache. It’s already saved me one.</p>
+</article>
+
+<div class="closing">
+  <p>— <strong>Jeremy</strong>, builder at ToolsForUse. I make small stuff that solves real hassles. No list, no upsell, just the tool.</p>
+</div>
+
+</body>
+</html>
