@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- AFFILIATE_SLOT -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5">
+  <title>Days Between Dates Calculator | Date Difference Tool | ToolsForUse</title>
+  <meta name="description" content="Calculate the exact number of days between two calendar dates with our free days between dates calculator. Perfect for planning, billing, or scheduling — no sign‑up needed.">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    }
+    body {
+      background: #f6f9fc;
+      color: #1a2639;
+      padding: 1.5rem;
+      min-height: 100vh;
+      line-height: 1.5;
+    }
+    .wrapper {
+      max-width: 820px;
+      margin: 0 auto;
+      background: white;
+      border-radius: 2.5rem;
+      box-shadow: 0 20px 40px -12px rgba(0,20,40,0.15);
+      padding: 2rem 2rem 2.8rem;
+    }
+    /* header & nav */
+    .top-header {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #dce7f1;
+      padding-bottom: 1rem;
+      margin-bottom: 1.5rem;
+    }
+    .site-name {
+      font-weight: 600;
+      font-size: 1.6rem;
+      letter-spacing: -0.02em;
+      color: #0a2540;
+    }
+    .site-name a {
+      text-decoration: none;
+      color: #0a2540;
+    }
+    .site-name a:hover {
+      color: #2266cc;
+    }
+    .nav-links {
+      display: flex;
+      gap: 1.2rem;
+      flex-wrap: wrap;
+    }
+    .nav-links a {
+      color: #1e4f8a;
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      font-weight: 500;
+      transition: 0.2s;
+    }
+    .nav-links a:hover {
+      border-bottom-color: #1e4f8a;
+      color: #0a2d4f;
+    }
+    /* tool area */
+    h1 {
+      font-size: 2rem;
+      font-weight: 600;
+      margin-bottom: 0.2rem;
+      letter-spacing: -0.015em;
+    }
+    .subhead {
+      color: #3b4f66;
+      margin-bottom: 1.8rem;
+      font-size: 1rem;
+      border-left: 4px solid #b6d0e8;
+      padding-left: 1rem;
+    }
+    .calc-grid {
+      background: #f2f7fe;
+      padding: 1.8rem 1.5rem;
+      border-radius: 2rem;
+      margin-bottom: 2rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.8rem 2rem;
+    }
+    .input-group {
+      flex: 1 1 180px;
+      min-width: 140px;
+    }
+    .input-group label {
+      display: block;
+      font-weight: 600;
+      margin-bottom: 0.35rem;
+      color: #1c334b;
+      font-size: 0.95rem;
+    }
+    .input-group input[type="date"] {
+      width: 100%;
+      padding: 0.7rem 0.8rem;
+      border: 1px solid #bccbd9;
+      border-radius: 12px;
+      font-size: 1rem;
+      background: white;
+      transition: 0.2s;
+      color: #0a1e2f;
+    }
+    .input-group input[type="date"]:focus {
+      border-color: #1a6dc1;
+      box-shadow: 0 0 0 3px rgba(26,109,193,0.15);
+      outline: none;
+    }
+    .calc-actions {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: flex-end;
+      gap: 1rem;
+      width: 100%;
+      margin-top: 0.2rem;
+    }
+    .calc-actions button {
+      background: #1f5f9e;
+      border: none;
+      color: white;
+      font-weight: 600;
+      padding: 0.7rem 1.8rem;
+      border-radius: 40px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background 0.15s, transform 0.1s;
+      box-shadow: 0 4px 6px rgba(0,40,70,0.1);
+    }
+    .calc-actions button:hover {
+      background: #12447a;
+      transform: scale(0.97);
+    }
+    .calc-actions button:active {
+      background: #0b2f56;
+    }
+    .result-box {
+      background: white;
+      padding: 1rem 1.5rem;
+      border-radius: 2rem;
+      border: 1px solid #d0ddea;
+      flex: 2;
+      min-width: 180px;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem 1rem;
+      flex-wrap: wrap;
+    }
+    .result-label {
+      font-weight: 500;
+      color: #1f3a57;
+    }
+    .result-value {
+      font-weight: 700;
+      font-size: 1.8rem;
+      background: #e7eff9;
+      padding: 0.1rem 0.9rem;
+      border-radius: 40px;
+      color: #0a2d4f;
+      min-width: 80px;
+      text-align: center;
+    }
+    .result-unit {
+      font-weight: 400;
+      color: #2c4a69;
+    }
+    .clear-btn {
+      background: #dae4f0;
+      border: none;
+      color: #1a2f47;
+      padding: 0.5rem 1rem;
+      border-radius: 30px;
+      font-size: 0.9rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: 0.15s;
+    }
+    .clear-btn:hover {
+      background: #c2d3e8;
+    }
+    /* explanatory section */
+    .explain-text {
+      margin: 2.2rem 0 2rem;
+    }
+    .explain-text h2 {
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin-bottom: 0.75rem;
+      color: #0a2540;
+    }
+    .explain-text p {
+      margin-bottom: 1rem;
+      color: #1f344b;
+    }
+    .explain-text a {
+      color: #1f5f9e;
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+    .explain-text a:hover {
+      color: #08355e;
+    }
+    /* ad placeholder / affiliate */
+    .affiliate-note {
+      background: #f8faff;
+      border: 1px dashed #b1c8dd;
+      border-radius: 1.5rem;
+      padding: 1.5rem 1.2rem;
+      text-align: center;
+      margin: 2rem 0 1rem;
+      color: #2e4c6b;
+      font-size: 0.95rem;
+    }
+    .affiliate-note span {
+      background: #e3edf8;
+      padding: 0.2rem 1rem;
+      border-radius: 100px;
+      font-weight: 500;
+    }
+    /* responsive */
+    @media (max-width: 550px) {
+      body {
+        padding: 0.8rem;
+      }
+      .wrapper {
+        padding: 1.2rem 1rem 1.8rem;
+      }
+      .top-header {
+        flex-direction: column;
+        align-items: start;
+        gap: 0.3rem;
+      }
+      h1 {
+        font-size: 1.7rem;
+      }
+      .calc-grid {
+        padding: 1rem;
+        gap: 1rem;
+      }
+      .result-value {
+        font-size: 1.4rem;
+        min-width: 60px;
+      }
+      .calc-actions button {
+        width: 100%;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+<body>
+<div class="wrapper">
+  <header class="top-header">
+    <span class="site-name"><a href="/">🔧 ToolsForUse</a></span>
+    <div class="nav-links">
+      <a href="/">Home</a>
+      <a href="/blog/days-between-dates-calculator/">📖 Story behind this tool</a>
+    </div>
+  </header>
+
+  <main>
+    <h1>Days Between Dates Calculator</h1>
+    <div class="subhead">Quickly find the exact number of days between two calendar dates — no sign‑up, no server.</div>
+
+    <!-- calculator section -->
+    <div class="calc-grid">
+      <div class="input-group">
+        <label for="startDate">Start date</label>
+        <input type="date" id="startDate" value="2025-03-01">
+      </div>
+      <div class="input-group">
+        <label for="endDate">End date</label>
+        <input type="date" id="endDate" value="2025-03-25">
+      </div>
+
+      <div class="calc-actions">
+        <button id="calculateDaysBtn" aria-label="Calculate days difference">📆 Calculate days</button>
+        <button class="clear-btn" id="resetDatesBtn" aria-label="Reset dates to today and tomorrow">↺ Reset</button>
+        <div class="result-box" aria-live="polite" aria-atomic="true">
+          <span class="result-label">Days:</span>
+          <span class="result-value" id="daysResultDisplay">24</span>
+          <span class="result-unit">days</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- genuine explanatory content -->
+    <div class="explain-text">
+      <h2>How many days between two dates? Use the date difference calculator</h2>
+      <p>Whether you’re planning a project timeline, calculating billing cycles, or counting down to a special event, our <strong>days between dates calculator</strong> gives you a precise answer in seconds. Unlike rough estimates, this tool accounts for month lengths and leap years automatically — so you always get the exact number of days. Simply pick a start date and an end date, and we do the rest.</p>
+      <p>This <strong>date difference calculator</strong> is built entirely in your browser: no data is sent to any server. That means your dates stay private, and the tool works offline if you’ve loaded the page once. It’s perfect for freelancers tracking invoice periods, teachers scheduling assignments, or anyone who needs a reliable answer to “how many days between two dates?” without opening a spreadsheet.</p>
+      <p>Many people search for “days between dates calculator” when organizing travel, booking accommodations, or setting reminders. Because our calculator uses real calendar logic (including leap years), you can trust the result for short intervals or multi‑year spans. Bookmark this page on ToolsForUse for quick access whenever you need a date difference.</p>
+    </div>
+
+    <!-- affiliate slot placeholder (visible but reserved) -->
+    <!-- AFFILIATE_SLOT -->
+    <div class="affiliate-note" aria-label="Affiliate card placeholder">
+      <span>📌 Affiliate card — reserved slot (your product or service)</span>
+    </div>
+
+    <!-- hidden comment for exact insertion point -->
+    <!-- AFFILIATE_SLOT -->
+  </main>
+</div>
+
+<script>
+  (function() {
+    const startInput = document.getElementById('startDate');
+    const endInput = document.getElementById('endDate');
+    const resultDisplay = document.getElementById('daysResultDisplay');
+    const calcBtn = document.getElementById('calculateDaysBtn');
+    const resetBtn = document.getElementById('resetDatesBtn');
+
+    // helper: calculate absolute days between two dates (inclusive? we show difference)
+    function calculateDaysBetween(dateA, dateB) {
+      if (!dateA || !dateB) return null;
+      // clone to avoid timezone offsets by setting UTC midnight
+      const a = new Date(dateA.getFullYear(), dateA.getMonth(), dateA.getDate());
+      const b = new Date(dateB.getFullYear(), dateB.getMonth(), dateB.getDate());
+      const diffMs = b.getTime() - a.getTime();
+      const days = Math.round(diffMs / (1000 * 60 * 60 * 24));
+      return Math.abs(days); // always return positive number of days
+    }
+
+    // update result based on current inputs
+    function updateResult() {
+      const startVal = startInput.value;
+      const endVal = endInput.value;
+      if (!startVal || !endVal) {
+        resultDisplay.textContent = '—';
+        return;
+      }
+      const startDate = new Date(startVal + 'T00:00:00');
+      const endDate = new Date(endVal + 'T00:00:00');
+      // in case of invalid dates
+      if (isNaN(startDate.getTime()) || isNaN(endDate.getTime())) {
+        resultDisplay.textContent = '—';
+        return;
+      }
+      const days = calculateDaysBetween(startDate, endDate);
+      if (days !== null && !isNaN(days)) {
+        resultDisplay.textContent = days;
+      } else {
+        resultDisplay.textContent = '—';
+      }
+    }
+
+    // calculate on button click
+    calcBtn.addEventListener('click', function(e) {
+      e.preventDefault();
+      updateResult();
+    });
+
+    // reset to default: start = today, end = tomorrow (practical demo)
+    resetBtn.addEventListener('click', function(e) {
+      e.preventDefault();
+      const today = new Date();
+      const tomorrow = new Date(today);
+      tomorrow.setDate(today.getDate() + 1);
+      // format to YYYY-MM-DD
+      const formatDate = (d) => {
+        const y = d.getFullYear();
+        const m = String(d.getMonth() + 1).padStart(2, '0');
+        const day = String(d.getDate()).padStart(2, '0');
+        return `${y}-${m}-${day}`;
+      };
+      startInput.value = formatDate(today);
+      endInput.value = formatDate(tomorrow);
+      updateResult();
+    });
+
+    // also update if user changes dates manually 
+    startInput.addEventListener('change', updateResult);
+    endInput.addEventListener('change', updateResult);
+
+    // initial calculation on page load (shows 24 days based on default dates)
+    window.addEventListener('load', function() {
+      // set defaults to show something meaningful if fields empty
+      if (!startInput.value || !endInput.value) {
+        const today = new Date();
+        const future = new Date(today);
+        future.setDate(today.getDate() + 10);
+        const fmt = (d) => {
+          const y = d.getFullYear();
+          const m = String(d.getMonth() + 1).padStart(2, '0');
+          const day = String(d.getDate()).padStart(2, '0');
+          return `${y}-${m}-${day}`;
+        };
+        if (!startInput.value) startInput.value = fmt(today);
+        if (!endInput.value) {
+          const plus7 = new Date(today);
+          plus7.setDate(today.getDate() + 7);
+          endInput.value = fmt(plus7);
+        }
+      }
+      updateResult();
+    });
+
+    // small extra: recalc on enter? not needed, button click covers.
+  })();
+</script>
+</body>
+</html>
