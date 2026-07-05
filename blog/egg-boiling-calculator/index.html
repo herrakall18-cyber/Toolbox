@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>How I stopped overcooking my eggs – ToolsForUse</title>
+  <meta name="description" content="A simple egg boiling time calculator that actually works. No math, no guesswork – just your egg size, temp, and desired doneness.">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      background: #fafafa;
+      color: #1e1e1e;
+      line-height: 1.6;
+      padding: 0 1.5rem;
+    }
+
+    .site-header {
+      max-width: 700px;
+      margin: 0 auto;
+      padding: 1.5rem 0 0.5rem 0;
+      border-bottom: 1px solid #e0e0e0;
+    }
+
+    .site-header a {
+      color: #555;
+      text-decoration: none;
+      font-size: 0.95rem;
+      letter-spacing: 0.3px;
+    }
+
+    .site-header a:hover {
+      color: #000;
+    }
+
+    .post {
+      max-width: 700px;
+      margin: 2rem auto 4rem auto;
+    }
+
+    h1 {
+      font-size: 2rem;
+      font-weight: 600;
+      line-height: 1.3;
+      margin-bottom: 0.5rem;
+      letter-spacing: -0.3px;
+    }
+
+    .meta {
+      color: #777;
+      font-size: 0.9rem;
+      margin-bottom: 2rem;
+      border-bottom: 1px solid #eee;
+      padding-bottom: 1rem;
+    }
+
+    h2 {
+      font-size: 1.4rem;
+      font-weight: 600;
+      margin-top: 2.2rem;
+      margin-bottom: 0.5rem;
+    }
+
+    p {
+      margin-bottom: 1.2rem;
+      color: #2c2c2c;
+    }
+
+    .tool-link-box {
+      background: #f0f0f0;
+      border-left: 4px solid #d4a373;
+      padding: 1.2rem 1.5rem;
+      margin: 1.8rem 0;
+      font-size: 1.1rem;
+    }
+
+    .tool-link-box a {
+      color: #1e1e1e;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      font-weight: 600;
+    }
+
+    .tool-link-box a:hover {
+      background: #e0d6c8;
+    }
+
+    blockquote {
+      background: #f9f6f2;
+      border-left: 3px solid #c4a882;
+      padding: 0.8rem 1.2rem;
+      margin: 1.5rem 0;
+      font-style: italic;
+      color: #444;
+    }
+
+    hr {
+      border: none;
+      border-top: 1px solid #e0e0e0;
+      margin: 2rem 0;
+    }
+
+    @media (max-width: 600px) {
+      body {
+        padding: 0 1rem;
+      }
+      h1 {
+        font-size: 1.6rem;
+      }
+      .post {
+        margin-top: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <a href="/">← ToolsForUse</a>
+  </header>
+
+  <article class="post">
+    <h1>The egg boiling time calculator I built because I kept failing</h1>
+    <div class="meta">Updated April 2025 · by someone who's peeled too many sad, grey-yolked eggs</div>
+
+    <p>I have a confession: I've been cooking eggs for probably 25 years and I still can't reliably get a soft-boiled egg right. Every time I'd set a timer, I'd second-guess myself. <em>Did I account for the egg being straight from the fridge? Does "large" in my country mean the same as "large" in that recipe? Is 7 minutes actually right, or did I misremember?</em></p>
+
+    <p>And then there's the opposite problem: hard-boiled eggs that come out with that unappealing green ring around the yolk because I boiled them for 14 minutes when 11 would have been fine. I was eating it anyway, but I was annoyed. So, so annoyed.</p>
+
+    <h2>Why not just Google it?</h2>
+    <p>I tried. I really did. Google gives you a million results, half of which say "boil for 6–7 minutes for soft," but none of them ask: <em>what size are your eggs?</em> And almost none factor in whether the eggs are cold or at room temperature – which, as it turns out, changes the cooking time by a solid minute or more. I'd end up cross-referencing three different tables and still guessing.</p>
+    <p>I wanted something I could open, punch in two variables, and get a single number. No scrolling. No ads. No 800-word backstory about a grandma in Tuscany (though I'm sure she makes great eggs).</p>
+
+    <h2>What the tool actually does</h2>
+    <p>It's dead simple: choose your egg size (small, medium, large, extra-large), choose whether they're fridge-cold or room temp, and pick your target doneness – soft, medium, or hard-boiled. Hit calculate, and it tells you exactly how many minutes to boil them from the moment the water returns to a rolling boil.</p>
+    <p>No timer built in (your phone has one), no unit conversions, no fluff. It's a calculation, not a lifestyle brand.</p>
+
+    <div class="tool-link-box">
+      🥚 Try it yourself → <a href="/tools/egg-boiling-calculator/">Egg Boiling Time Calculator</a>
+    </div>
+
+    <h2>A few honest caveats</h2>
+    <p>This works best for standard chicken eggs boiled at sea level (if you're in Denver, you'll need to adjust for altitude – sorry, I haven't cracked that yet). It's based on a consensus of times from Serious Eats, Mark Bittman, and my own trial-and-error. It's not perfect, but it'll get you closer than a random guess. And if you like your eggs borderline raw or practically petrified, you can always add or remove 30 seconds.</p>
+
+    <blockquote>Update after two weeks of using it: I've made perfect soft-boiled eggs four mornings in a row. It feels like a superpower, but really it's just not being lazy about temperature.</blockquote>
+
+    <h2>Why I'm sharing it</h2>
+    <p>Because egg boiling shouldn't be a source of low-grade stress. It's breakfast, not a science experiment (even though technically it is a science experiment). If you've ever peeled an egg only to find it's either too runny or too crumbly, give this a shot.</p>
+
+    <hr>
+    <p style="font-size: 0.9rem; color: #777; margin-top: 0.5rem;">
+      No affiliate links, no sponsored content, no "egg-citing new hack" nonsense. Just a calculator made by someone who was tired of guessing wrong.
+    </p>
+  </article>
+</body>
+</html>
