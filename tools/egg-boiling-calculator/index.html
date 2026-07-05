@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Egg Boiling Time Calculator – how long to boil eggs, boiled egg timer</title>
+    <meta name="description" content="Quickly find the perfect boiling time for soft, medium, or hard-boiled eggs based on size and starting temperature. Use our boiled egg timer for precise results every time.">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif;
+            background: #f8f9fa;
+            color: #1e1e1e;
+            line-height: 1.6;
+            padding: 1.5rem;
+        }
+        .container {
+            max-width: 760px;
+            margin: 0 auto;
+            background: #ffffff;
+            border-radius: 20px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.06);
+            padding: 2rem 1.8rem;
+        }
+        .site-header {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #e4e7ec;
+            padding-bottom: 0.75rem;
+            margin-bottom: 1.8rem;
+            font-size: 0.9rem;
+        }
+        .site-header a {
+            color: #2c5f7c;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        .site-header a:hover {
+            text-decoration: underline;
+        }
+        .site-header .logo {
+            font-weight: 600;
+            color: #1a3b4c;
+            letter-spacing: -0.3px;
+        }
+        h1 {
+            font-size: 1.9rem;
+            font-weight: 650;
+            margin-bottom: 0.35rem;
+            color: #0b2a38;
+            line-height: 1.2;
+        }
+        .subhead {
+            color: #3e5a6b;
+            font-size: 1rem;
+            margin-bottom: 1.8rem;
+            border-left: 4px solid #b6d0dd;
+            padding-left: 1rem;
+        }
+        .calc-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+        }
+        .field-row {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 0.8rem 1.5rem;
+        }
+        .field-row label {
+            font-weight: 500;
+            min-width: 130px;
+            color: #1f4154;
+        }
+        fieldset {
+            border: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem 2rem;
+        }
+        legend {
+            font-weight: 500;
+            color: #1f4154;
+            margin-bottom: 0.25rem;
+        }
+        .radio-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem 1.2rem;
+        }
+        .radio-group label {
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+            font-weight: 400;
+            min-width: auto;
+            cursor: pointer;
+        }
+        select, button {
+            font-size: 1rem;
+            padding: 0.5rem 1rem;
+            border: 1px solid #cbd5e0;
+            border-radius: 40px;
+            background: #ffffff;
+            color: #1e1e1e;
+            transition: 0.15s;
+        }
+        select:focus, button:focus-visible {
+            outline: 2px solid #1f6e8c;
+            outline-offset: 2px;
+        }
+        .btn-primary {
+            background: #1f6e8c;
+            border: none;
+            color: white;
+            font-weight: 600;
+            padding: 0.7rem 1.6rem;
+            border-radius: 40px;
+            cursor: pointer;
+            box-shadow: 0 4px 8px rgba(31,110,140,0.15);
+        }
+        .btn-primary:hover {
+            background: #195b75;
+        }
+        .result-card {
+            margin-top: 1.6rem;
+            background: #f0f5f9;
+            border-radius: 20px;
+            padding: 1.4rem 1.8rem;
+            text-align: center;
+        }
+        .result-time {
+            font-size: 2.6rem;
+            font-weight: 700;
+            color: #0b2a38;
+            line-height: 1.2;
+        }
+        .result-doneness {
+            font-size: 1.3rem;
+            font-weight: 500;
+            color: #1f6e8c;
+            margin: 0.3rem 0 0.2rem;
+        }
+        .result-note {
+            font-size: 0.9rem;
+            color: #3b5f72;
+        }
+        .inline-ad {
+            margin: 1.2rem 0;
+            padding: 0.2rem 0;
+        }
+        .explanation {
+            margin: 2.2rem 0 1.8rem;
+        }
+        .explanation h2 {
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin: 1.5rem 0 0.5rem;
+            color: #0b2a38;
+        }
+        .explanation p {
+            margin-bottom: 1rem;
+            color: #2b4658;
+        }
+        .affiliate-placeholder {
+            border: 1px dashed #b9cbd9;
+            border-radius: 16px;
+            padding: 1.5rem;
+            margin: 2rem 0 0.5rem;
+            text-align: center;
+            font-size: 0.9rem;
+            color: #4f6c7e;
+            background: #fafcfd;
+        }
+        .footer-note {
+            font-size: 0.8rem;
+            color: #6b8294;
+            text-align: center;
+            margin-top: 2rem;
+            border-top: 1px solid #e4e7ec;
+            padding-top: 1.2rem;
+        }
+        @media (max-width: 480px) {
+            .container { padding: 1.5rem 1rem; }
+            h1 { font-size: 1.6rem; }
+            .field-row label { min-width: 90px; }
+            .result-time { font-size: 2rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="site-header">
+            <span class="logo"><a href="/" style="color:inherit; text-decoration:none;">ToolsForUse</a></span>
+            <nav>
+                <a href="/">Home</a> &nbsp;|&nbsp; <a href="/blog/egg-boiling-calculator/">Read the story behind this tool</a>
+            </nav>
+        </header>
+
+        <h1>Egg Boiling Time Calculator</h1>
+        <div class="subhead">Perfect soft, medium, or hard-boiled eggs — just select your egg size, starting temperature, and desired doneness.</div>
+
+        <div class="calc-grid">
+            <div class="field-row">
+                <label for="eggSize">Egg size</label>
+                <select id="eggSize">
+                    <option value="small">Small</option>
+                    <option value="medium" selected>Medium</option>
+                    <option value="large">Large</option>
+                    <option value="extraLarge">Extra large</option>
+                </select>
+            </div>
+
+            <fieldset>
+                <legend>Starting temperature</legend>
+                <div class="radio-group">
+                    <label><input type="radio" name="temp" value="fridge" checked> Fridge-cold</label>
+                    <label><input type="radio" name="temp" value="room"> Room temperature</label>
+                </div>
+            </fieldset>
+
+            <fieldset>
+                <legend>Desired doneness</legend>
+                <div class="radio-group">
+                    <label><input type="radio" name="doneness" value="soft" checked> Soft (runny yolk)</label>
+                    <label><input type="radio" name="doneness" value="medium"> Medium (jammy yolk)</label>
+                    <label><input type="radio" name="doneness" value="hard"> Hard (fully set)</label>
+                </div>
+            </fieldset>
+
+            <div style="display: flex; justify-content: center; margin: 0.2rem 0 0.2rem;">
+                <button class="btn-primary" id="calculateBtn">Calculate boiling time</button>
+            </div>
+        </div>
+
+        <div id="resultContainer" class="result-card" aria-live="polite">
+            <div class="result-time" id="resultTime">—</div>
+            <div class="result-doneness" id="resultDoneness">minutes</div>
+            <div class="result-note" id="resultNote">Adjust your timer and start boiling</div>
+        </div>
+
+        <!-- AFFILIATE_SLOT -->
+
+        <div class="explanation">
+            <h2>How to use the boiled egg timer</h2>
+            <p>Whether you’re wondering <strong>how long to boil eggs</strong> for a soft, dippy yolk or a firm hard-boiled egg, this calculator takes the guesswork out of the process. Simply choose your egg size (small, medium, large, or extra large), tell us if they’re straight from the fridge or at room temperature, and select your preferred doneness. The tool instantly gives you the precise boiling time needed — no more undercooked or rubbery eggs.</p>
+
+            <h2>Why egg size and starting temperature matter</h2>
+            <p>A fridge-cold large egg needs about 30–60 seconds longer than a room‑temperature egg to reach the same consistency. Egg size also changes the heat penetration: smaller eggs cook faster, while extra‑large eggs require a bit more time. Our <strong>boiled egg timer</strong> accounts for both variables, so you can reliably get the perfect texture every time — whether you’re meal-prepping hard-boiled eggs or serving soft-boiled eggs with toast soldiers.</p>
+
+            <h2>Tips for perfect boiled eggs</h2>
+            <p>For best results, gently lower eggs into already boiling water, then reduce to a simmer. Use a timer (like the one above) and immediately transfer eggs to an ice bath when done to stop the cooking. This tool is designed for large, standard chicken eggs; if you use duck or quail eggs, adjust expectations. Bookmark this page for your daily <strong>how long to boil eggs</strong> reference — it’s the easiest way to get consistent, delicious eggs.</p>
+        </div>
+
+        <div class="affiliate-placeholder">
+            <!-- AFFILIATE_SLOT --> 
+            <em>Affiliate card could go here — e.g., egg cooker or kitchen timer recommendation.</em>
+        </div>
+
+        <div class="footer-note">
+            ToolsForUse — egg boiling time calculator &amp; boiled egg timer
+        </div>
+    </div>
+
+    <script>
+        (function() {
+            const sizeSelect = document.getElementById('eggSize');
+            const tempRadios = document.querySelectorAll('input[name="temp"]');
+            const doneRadios = document.querySelectorAll('input[name="doneness"]');
+            const calcBtn = document.getElementById('calculateBtn');
+            const resultTime = document.getElementById('resultTime');
+            const resultDoneness = document.getElementById('resultDoneness');
+            const resultNote = document.getElementById('resultNote');
+
+            // base times in minutes (for large, fridge-cold)
+            const baseTimes = {
+                soft: 6.0,
+                medium: 8.5,
+                hard: 12.0
+            };
+
+            // size adjustment (minutes to add/subtract relative to large)
+            const sizeAdjust = {
+                small: -1.0,
+                medium: -0.5,
+                large: 0,
+                extraLarge: 1.0
+            };
+
+            // temperature adjustment: fridge = 0, room = subtract time
+            const tempAdjust = {
+                fridge: 0,
+                room: -0.75   // room temp eggs need about 45s-1min less
+            };
+
+            function calculateTime() {
+                const size = sizeSelect.value;
+                const temp = document.querySelector('input[name="temp"]:checked').value;
+                const doneness = document.querySelector('input[name="doneness"]:checked').value;
+
+                let base = baseTimes[doneness];
+                let adjustSize = sizeAdjust[size] || 0;
+                let adjustTemp = tempAdjust[temp] || 0;
+
+                let total = base + adjustSize + adjustTemp;
+                // clamp to reasonable range (3 to 16 min)
+                if (total < 3.0) total = 3.0;
+                if (total > 16.0) total = 16.0;
+
+                // round to nearest 0.5 min for readability
+                let rounded = Math.round(total * 2) / 2;
+                // keep one decimal if .5, otherwise integer
+                let display;
+                if (rounded % 1 === 0) {
+                    display = rounded.toFixed(0);
+                } else {
+                    display = rounded.toFixed(1);
+                }
+
+                let donenessText = '';
+                if (doneness === 'soft') donenessText = 'Soft-boiled (runny yolk)';
+                else if (doneness === 'medium') donenessText = 'Medium-boiled (jammy yolk)';
+                else if (doneness === 'hard') donenessText = 'Hard-boiled (fully set)';
+
+                let note = '';
+                if (size === 'extraLarge' && temp === 'fridge' && doneness === 'hard') {
+                    note = 'Extra-large fridge-cold eggs need a bit longer — perfect for meal prep.';
+                } else if (doneness === 'soft') {
+                    note = 'Serve immediately for the best runny yolk experience.';
+                } else if (doneness === 'hard') {
+                    note = 'Cool in ice water for easy peeling.';
+                } else {
+                    note = 'Adjust your timer and enjoy!';
+                }
+
+                resultTime.textContent = display;
+                resultDoneness.textContent = donenessText;
+                resultNote.textContent = note;
+            }
+
+            calcBtn.addEventListener('click', calculateTime);
+            // also run on load to show default
+            window.addEventListener('DOMContentLoaded', calculateTime);
+        })();
+    </script>
+</body>
+</html>
