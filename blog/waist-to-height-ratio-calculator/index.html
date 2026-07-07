@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Waist-to-Height Ratio Calculator – ToolsForUse Blog</title>
+    <meta name="description" content="We built a Waist-to-Height Ratio calculator because BMI hides real risk. It’s a simple, evidence-based check that tells more about cardiovascular and metabolic health.">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background: #f9fafb;
+            color: #1f2937;
+            line-height: 1.7;
+            padding: 2rem 1.5rem;
+        }
+        .site-header {
+            max-width: 640px;
+            margin: 0 auto 2.5rem auto;
+        }
+        .site-header a {
+            color: #3b82f6;
+            text-decoration: none;
+            font-size: 0.9rem;
+            letter-spacing: 0.01em;
+        }
+        .site-header a:hover {
+            text-decoration: underline;
+        }
+        article {
+            max-width: 640px;
+            margin: 0 auto;
+        }
+        h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+            color: #111827;
+        }
+        .byline {
+            font-size: 0.85rem;
+            color: #6b7280;
+            margin-bottom: 2rem;
+            border-bottom: 1px solid #e5e7eb;
+            padding-bottom: 1rem;
+        }
+        h2 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-top: 2rem;
+            margin-bottom: 0.75rem;
+            color: #1f2937;
+        }
+        p {
+            margin-bottom: 1.25rem;
+        }
+        a {
+            color: #3b82f6;
+            text-decoration: underline;
+            text-underline-offset: 2px;
+        }
+        a:hover {
+            color: #1d4ed8;
+        }
+        .tool-link {
+            display: inline-block;
+            background: #111827;
+            color: #ffffff;
+            padding: 0.75rem 1.5rem;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1rem;
+            margin: 1rem 0 0.5rem 0;
+            transition: background 0.2s;
+        }
+        .tool-link:hover {
+            background: #374151;
+            color: #ffffff;
+            text-decoration: none;
+        }
+        blockquote {
+            border-left: 4px solid #d1d5db;
+            padding-left: 1rem;
+            margin: 1.5rem 0;
+            color: #4b5563;
+            font-style: italic;
+        }
+        hr {
+            border: none;
+            border-top: 1px solid #e5e7eb;
+            margin: 2rem 0;
+        }
+        footer {
+            max-width: 640px;
+            margin: 2rem auto 0 auto;
+            font-size: 0.85rem;
+            color: #9ca3af;
+            text-align: center;
+            border-top: 1px solid #e5e7eb;
+            padding-top: 1.5rem;
+        }
+        @media (max-width: 480px) {
+            body {
+                padding: 1.25rem 1rem;
+            }
+            h1 {
+                font-size: 1.6rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="site-header">
+        <a href="/">← ToolsForUse</a>
+    </header>
+    <article>
+        <h1>Waist-to-Height Ratio: Why I stopped caring about BMI</h1>
+        <div class="byline">by the ToolsForUse team • March 2025</div>
+
+        <p>For years, I tracked my BMI like a dutiful spreadsheet nerd. Every checkup, every scale with a Body Fat button — I’d look at that number and shrug. It said “Normal.” And I’d walk away thinking, <em>Okay, I’m fine</em>.</p>
+
+        <p>Then a friend — a physiotherapist I trust — mentioned during a hike that my BMI was probably decent, but that meant almost nothing about how I actually carry weight. “You can have a perfect BMI and still have visceral fat right around your organs,” she said. “That’s what actually raises your risk for heart disease and diabetes. Not the number on the scale.”</p>
+
+        <p>I went home and looked into it. Turns out, BMI is a population-level tool misapplied to individuals. It doesn’t distinguish muscle from fat, and it completely ignores <em>where</em> your fat sits. For the same BMI, one person might be healthy, another might have metabolic risk hiding under a “normal” classification.</p>
+
+        <h2>What I found instead</h2>
+        <p>There’s no shortage of calculators that claim to fix BMI. Waist-to-hip ratio, body fat calipers, impedance scales — each one adds overhead or confusing units. But waist-to-height ratio kept popping up in research as a simple, surprisingly robust predictor. The logic is straightforward: your waist circumference should be less than half your height. If your waist is bigger than half your height, your risk for cardiovascular and metabolic issues climbs.</p>
+
+        <p>The studies are pretty convincing. A 2021 meta-analysis in <em>Obesity Reviews</em> found Waist-to-Height Ratio outperformed BMI for detecting cardiometabolic risk factors across most populations. No special equipment. No interpretation guides. Just a tape measure, your height, and a quick division.</p>
+
+        <h2>Why make a calculator if it’s just division?</h2>
+        <p>Because the existing tools are oddly buried or clunky. You can find calculators on medical sites, but many are hidden behind referral walls, pop-ups, or ask for email addresses before showing a result. Others show a number but no context — just a decimal and a “normal” label. I wanted something that felt <em>honest</em>: you type your waist and height, you see your ratio, you immediately see where it falls based on the research. No fluff.</p>
+
+        <p>I also wanted it to work well on a phone, for someone standing in their bathroom with a measuring tape. No zooming, no tiny dropdowns. Type, tap, done.</p>
+
+        <h2>What the tool actually does</h2>
+        <p>It’s a single-page calculator. You enter your waist circumference (in inches, cm, or even feet/inches — we support both) and your height in the same unit. It instantly shows:</p>
+        <ul style="margin-bottom:1.25rem; padding-left: 1.5rem;">
+            <li>Your Waist-to-Height Ratio</li>
+            <li>A simple indicator of risk range (under 0.5 is generally lower risk; above means caution)</li>
+            <li>A brief plain-language note, no medicalization or alarmism</li>
+        </ul>
+        <p>No accounts. No data storage. Just the calculation and a prompt to take the result to your doctor if you’re curious.</p>
+
+        <p>I also included a small section explaining <em>why</em> this ratio matters, with links to the studies I found most helpful. Because I think the best tools are the ones that teach you something, not just hand you a number.</p>
+
+        <p style="margin-top:1.5rem;">
+            <a href="/tools/waist-to-height-ratio-calculator/" class="tool-link">Try the Waist-to-Height Ratio Calculator →</a>
+        </p>
+
+        <hr />
+
+        <h2>Is this a replacement for a doctor? No.</h2>
+        <p>I want to be clear: this is a screening tool, not a diagnosis. A normal ratio doesn’t guarantee health, and an elevated ratio doesn’t mean you’re doomed. But it’s a better starting point than BMI for most people. I now check mine every few months, and I appreciate that it gives me a concrete target — my waist should stay below half my height. That’s actionable.</p>
+
+        <p>If you’re curious, grab a tape measure. It takes 30 seconds. The calculator is free, no strings attached. I hope it’s useful.</p>
+
+        <p>— <em>ToolsForUse</em></p>
+    </article>
+    <footer>
+        &copy; ToolsForUse — simple, honest tools for everyday decisions.
+    </footer>
+</body>
+</html>
