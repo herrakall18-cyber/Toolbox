@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coffee Ratio Calculator – coffee to water ratio | ToolsForUse</title>
+    <meta name="description" content="Use our free coffee ratio calculator to find the perfect coffee to water ratio. Easily calculate how much coffee per cup based on your preferred brew ratio.">
+    
+    <!-- AFFILIATE_SLOT -->
+</head>
+<body>
+    <style>
+        /* --- modern clean reset & base --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background: #faf9f7;
+            color: #1e1e1e;
+            line-height: 1.5;
+            padding: 1.5rem 1rem;
+        }
+
+        .container {
+            max-width: 780px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 28px;
+            padding: 2rem 1.8rem 2.5rem;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.04), 0 2px 6px rgba(0,0,0,0.03);
+        }
+
+        /* --- header + nav --- */
+        .tool-header {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: baseline;
+            gap: 0.75rem 1.5rem;
+            margin-bottom: 2rem;
+            border-bottom: 1px solid #ecebe9;
+            padding-bottom: 0.8rem;
+        }
+
+        .tool-header a {
+            color: #3e3b36;
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 450;
+            letter-spacing: -0.01em;
+            border-bottom: 1px solid transparent;
+            transition: border-color 0.15s;
+        }
+
+        .tool-header a:hover {
+            border-color: #b9a792;
+        }
+
+        .tool-header .home-link {
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.25rem;
+        }
+
+        .tool-header .home-link::before {
+            content: "←";
+            display: inline-block;
+            margin-right: 0.1rem;
+        }
+
+        .tool-header .story-link {
+            font-size: 0.9rem;
+            color: #5f5a54;
+        }
+
+        /* --- main heading --- */
+        h1 {
+            font-size: 2.1rem;
+            font-weight: 550;
+            letter-spacing: -0.02em;
+            margin-top: 0.1rem;
+            margin-bottom: 0.4rem;
+            color: #2b2926;
+            line-height: 1.2;
+        }
+
+        .subhead {
+            color: #5f5a54;
+            margin-bottom: 1.8rem;
+            font-size: 1rem;
+            max-width: 90%;
+        }
+
+        /* --- calculator grid --- */
+        .calc-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        @media (min-width: 580px) {
+            .calc-grid {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 1.8rem 2.2rem;
+            }
+        }
+
+        .calc-card {
+            background: #f6f5f2;
+            border-radius: 20px;
+            padding: 1.6rem 1.4rem 1.8rem;
+            transition: box-shadow 0.15s;
+        }
+
+        .calc-card h2 {
+            font-size: 1.25rem;
+            font-weight: 500;
+            margin-bottom: 1.1rem;
+            color: #1e1c19;
+            letter-spacing: -0.01em;
+            border-left: 4px solid #c7b4a0;
+            padding-left: 0.7rem;
+        }
+
+        .input-group {
+            margin-bottom: 1.1rem;
+        }
+
+        .input-group label {
+            display: block;
+            font-size: 0.85rem;
+            font-weight: 480;
+            text-transform: uppercase;
+            letter-spacing: 0.03em;
+            color: #4f4943;
+            margin-bottom: 0.2rem;
+        }
+
+        .input-row {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .input-row input {
+            flex: 1;
+            min-width: 80px;
+            background: white;
+            border: 1px solid #d6d2cc;
+            border-radius: 40px;
+            padding: 0.65rem 1rem;
+            font-size: 1rem;
+            font-weight: 450;
+            color: #1a1815;
+            transition: border 0.15s, box-shadow 0.1s;
+            outline: none;
+        }
+
+        .input-row input:focus {
+            border-color: #b09a87;
+            box-shadow: 0 0 0 3px rgba(176, 154, 135, 0.15);
+        }
+
+        .input-row input[type="number"] {
+            appearance: textfield;
+        }
+
+        .input-row input[type="number"]::-webkit-outer-spin-button,
+        .input-row input[type="number"]::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        .input-row .unit {
+            font-size: 0.95rem;
+            color: #5f5a54;
+            font-weight: 450;
+            min-width: 2.2rem;
+        }
+
+        .ratio-control {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem 1rem;
+            flex-wrap: wrap;
+            margin: 0.3rem 0 0.3rem;
+        }
+
+        .ratio-control label {
+            font-size: 0.9rem;
+            font-weight: 450;
+            color: #3b3732;
+        }
+
+        .ratio-control select {
+            background: white;
+            border: 1px solid #d6d2cc;
+            border-radius: 40px;
+            padding: 0.45rem 1.2rem 0.45rem 1rem;
+            font-size: 0.95rem;
+            font-weight: 450;
+            color: #1e1c19;
+            cursor: pointer;
+            outline: none;
+        }
+
+        .ratio-control select:focus {
+            border-color: #b09a87;
+            box-shadow: 0 0 0 3px rgba(176, 154, 135, 0.15);
+        }
+
+        .result-box {
+            background: white;
+            border-radius: 60px;
+            padding: 0.7rem 1.2rem;
+            margin-top: 1rem;
+            font-size: 1.1rem;
+            font-weight: 500;
+            color: #292621;
+            border: 1px solid #e2ddd7;
+            text-align: center;
+            word-break: break-word;
+            box-shadow: inset 0 1px 3px rgba(0,0,0,0.02);
+        }
+
+        .result-box span {
+            font-weight: 600;
+            color: #4e3f32;
+        }
+
+        .small-note {
+            font-size: 0.8rem;
+            color: #6f6962;
+            margin-top: 0.6rem;
+            text-align: center;
+        }
+
+        /* --- explanatory section --- */
+        .explain-section {
+            margin-top: 2.6rem;
+            padding-top: 1.8rem;
+            border-top: 1px solid #e5e1db;
+        }
+
+        .explain-section h3 {
+            font-size: 1.35rem;
+            font-weight: 520;
+            letter-spacing: -0.01em;
+            margin-bottom: 0.8rem;
+            color: #2b2926;
+        }
+
+        .explain-section p {
+            margin-bottom: 1.2rem;
+            color: #393733;
+            font-size: 0.98rem;
+        }
+
+        .explain-section p strong {
+            font-weight: 500;
+            color: #2b2722;
+        }
+
+        .affiliate-placeholder {
+            margin-top: 2.5rem;
+            background: #f0ede9;
+            border-radius: 20px;
+            padding: 1.2rem 1.5rem;
+            text-align: center;
+            font-size: 0.9rem;
+            color: #5f5a54;
+            border: 1px dashed #c7bcaa;
+        }
+
+        .affiliate-placeholder small {
+            display: block;
+            margin-top: 0.2rem;
+            opacity: 0.7;
+        }
+
+        .footer-meta {
+            margin-top: 2rem;
+            text-align: center;
+            font-size: 0.8rem;
+            color: #7b746c;
+        }
+
+        /* --- responsive --- */
+        @media (max-width: 450px) {
+            .container { padding: 1.5rem 1rem; }
+            h1 { font-size: 1.8rem; }
+            .calc-card { padding: 1.2rem; }
+        }
+    </style>
+
+    <div class="container">
+        <!-- header with links -->
+        <div class="tool-header">
+            <a href="/" class="home-link">ToolsForUse</a>
+            <a href="/blog/coffee-ratio-calculator/" class="story-link">Read the story behind this tool →</a>
+        </div>
+
+        <!-- title -->
+        <h1>Coffee Ratio Calculator</h1>
+        <div class="subhead">Precise coffee grounds &amp; water, tailored to your brew.</div>
+
+        <!-- ===== calculator grid ===== -->
+        <div class="calc-grid">
+            <!-- left card: water → coffee -->
+            <div class="calc-card">
+                <h2>☕ Water → Coffee</h2>
+                <div class="input-group">
+                    <label for="waterAmount">Water volume</label>
+                    <div class="input-row">
+                        <input type="number" id="waterAmount" value="500" min="1" step="10" aria-label="Water amount">
+                        <span class="unit">ml</span>
+                    </div>
+                </div>
+                <div class="ratio-control">
+                    <label for="ratioSelectWater">Ratio</label>
+                    <select id="ratioSelectWater" aria-label="Brew ratio (water:coffee)">
+                        <option value="15">1:15 (standard)</option>
+                        <option value="16">1:16 (medium)</option>
+                        <option value="17" selected>1:17 (drip)</option>
+                        <option value="18">1:18 (light)</option>
+                        <option value="14">1:14 (strong)</option>
+                        <option value="13">1:13 (bold)</option>
+                        <option value="20">1:20 (mild)</option>
+                    </select>
+                </div>
+                <div class="result-box" id="resultWaterToCoffee">
+                    <span id="coffeeGrams">29.4</span> g coffee
+                </div>
+                <div class="small-note">≈ <span id="coffeeScoops">~5.9</span> scoops (1 scoop ≈ 5g)</div>
+            </div>
+
+            <!-- right card: coffee → water -->
+            <div class="calc-card">
+                <h2>⚖️ Coffee → Water</h2>
+                <div class="input-group">
+                    <label for="coffeeAmount">Coffee grounds</label>
+                    <div class="input-row">
+                        <input type="number" id="coffeeAmount" value="20" min="1" step="1" aria-label="Coffee grounds in grams">
+                        <span class="unit">g</span>
+                    </div>
+                </div>
+                <div class="ratio-control">
+                    <label for="ratioSelectCoffee">Ratio</label>
+                    <select id="ratioSelectCoffee" aria-label="Brew ratio (water:coffee)">
+                        <option value="15">1:15 (standard)</option>
+                        <option value="16">1:16 (medium)</option>
+                        <option value="17" selected>1:17 (drip)</option>
+                        <option value="18">1:18 (light)</option>
+                        <option value="14">1:14 (strong)</option>
+                        <option value="13">1:13 (bold)</option>
+                        <option value="20">1:20 (mild)</option>
+                    </select>
+                </div>
+                <div class="result-box" id="resultCoffeeToWater">
+                    need <span id="waterNeeded">340</span> ml water
+                </div>
+                <div class="small-note">≈ <span id="waterCups">1.4</span> cups (240ml)</div>
+            </div>
+        </div>
+
+        <!-- ===== explanatory section ===== -->
+        <div class="explain-section">
+            <h3>Perfect coffee ratio, every time</h3>
+            <p><strong>Getting the coffee to water ratio right</strong> is the easiest way to transform your daily brew. Whether you use a French press, pour-over, or drip machine, the same logic applies: too little coffee yields weak, sour extraction; too much leads to bitterness. This calculator uses the <strong>1:15 to 1:20 range</strong> – the golden zone for most methods. A 1:17 ratio (our default) means 1 gram of coffee for every 17 ml of water. Just enter your water or coffee amount, pick your ratio, and the tool instantly tells you the missing number.</p>
+            <p>If you’ve ever asked <strong>“how much coffee per cup?”</strong> – a standard US cup is 240 ml (8 oz). Using a 1:17 ratio, that’s about 14 grams of ground coffee. But because taste varies, we give you full control: dial it up to 1:14 for a stronger, darker sip, or go 1:20 for a lighter, tea-like body. The calculator works both ways: start with water to find coffee, or start with coffee to find water. No more guesswork, no more wasted beans.</p>
+            <p><strong>Pro tip for consistent results:</strong> always use a kitchen scale for coffee grounds (volume scoops vary), and make sure your water is filtered. For most drip brewers, the ideal window is between 1:16 and 1:18. This tool works perfectly for espresso ratios, too (try 1:2 or 1:3) – just pick the custom ratio that matches your recipe. Bookmark it for your morning ritual.</p>
+        </div>
+
+        <!-- ===== AFFILIATE SLOT placeholder ===== -->
+        <!-- AFFILIATE_SLOT -->
+        <div class="affiliate-placeholder">
+            ☕ <strong>Perfect pour? Get the gear.</strong><br>
+            <span style="font-size:0.9rem;">Precision scale · gooseneck kettle · filters</span>
+            <small>(Affiliate card – <!-- AFFILIATE_SLOT -->)</small>
+        </div>
+
+        <div class="footer-meta">
+            <span>free coffee ratio calculator — ToolsForUse</span>
+        </div>
+    </div>
+
+    <script>
+        (function() {
+            // DOM elements
+            const waterInput = document.getElementById('waterAmount');
+            const ratioWater = document.getElementById('ratioSelectWater');
+            const coffeeGrams = document.getElementById('coffeeGrams');
+            const coffeeScoops = document.getElementById('coffeeScoops');
+
+            const coffeeInput = document.getElementById('coffeeAmount');
+            const ratioCoffee = document.getElementById('ratioSelectCoffee');
+            const waterNeeded = document.getElementById('waterNeeded');
+            const waterCups = document.getElementById('waterCups');
+
+            // helper: recompute all
+            function recompute() {
+                // --- water to coffee ---
+                const waterVal = parseFloat(waterInput.value);
+                const ratioW = parseFloat(ratioWater.value);
+                if (isNaN(waterVal) || waterVal <= 0 || isNaN(ratioW) || ratioW <= 0) {
+                    coffeeGrams.textContent = '—';
+                    coffeeScoops.textContent = '—';
+                } else {
+                    const coffee = waterVal / ratioW;
+                    const rounded = Math.round(coffee * 10) / 10;
+                    coffeeGrams.textContent = rounded;
+                    // 1 scoop ~ 5g (approx)
+                    const scoops = (coffee / 5);
+                    coffeeScoops.textContent = '~' + (Math.round(scoops * 10) / 10);
+                }
+
+                // --- coffee to water ---
+                const coffeeVal = parseFloat(coffeeInput.value);
+                const ratioC = parseFloat(ratioCoffee.value);
+                if (isNaN(coffeeVal) || coffeeVal <= 0 || isNaN(ratioC) || ratioC <= 0) {
+                    waterNeeded.textContent = '—';
+                    waterCups.textContent = '—';
+                } else {
+                    const water = coffeeVal * ratioC;
+                    const roundedWater = Math.round(water);
+                    waterNeeded.textContent = roundedWater;
+                    const cups = water / 240;
+                    waterCups.textContent = (Math.round(cups * 10) / 10);
+                }
+            }
+
+            // attach listeners
+            waterInput.addEventListener('input', recompute);
+            ratioWater.addEventListener('change', recompute);
+            coffeeInput.addEventListener('input', recompute);
+            ratioCoffee.addEventListener('change', recompute);
+
+            // page load compute
+            recompute();
+
+            // extra: if user changes ratio on one card, optionally sync? not needed, but nice to hint
+            // we keep independent for flexibility.
+        })();
+    </script>
+</body>
+</html>
