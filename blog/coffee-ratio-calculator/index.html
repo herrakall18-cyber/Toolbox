@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="I built a Coffee Ratio Calculator because I got tired of doing mental math every morning. It tells you exactly how much coffee to use for any amount of water, or vice versa, based on your preferred brew ratio.">
+  <title>New Tool: Coffee Ratio Calculator – ToolsForUse</title>
+  <style>
+    /* reset & base */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      font-size: 18px;
+      line-height: 1.6;
+      color: #1a1a1a;
+      background: #faf9f6;
+      padding: 0 1rem;
+    }
+    .wrapper {
+      max-width: 680px;
+      margin: 3rem auto;
+      background: #fff;
+      padding: 2.5rem 2rem;
+      border-radius: 8px;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+    }
+    /* header */
+    .site-header {
+      border-bottom: 1px solid #e0ddd7;
+      padding-bottom: 1rem;
+      margin-bottom: 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      flex-wrap: wrap;
+    }
+    .site-header a {
+      text-decoration: none;
+      color: #3b3b3b;
+    }
+    .site-header a:hover { color: #c45a3c; }
+    .site-name {
+      font-size: 1.2rem;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+    }
+    .back-link {
+      font-size: 0.95rem;
+      color: #5a5a5a;
+    }
+    /* content */
+    h1 {
+      font-size: 1.9rem;
+      font-weight: 650;
+      line-height: 1.2;
+      margin-bottom: 1.5rem;
+      letter-spacing: -0.02em;
+    }
+    h2 {
+      font-size: 1.3rem;
+      font-weight: 600;
+      margin-top: 2rem;
+      margin-bottom: 0.6rem;
+    }
+    p {
+      margin-bottom: 1.2rem;
+    }
+    ul {
+      margin: 0 0 1.2rem 1.8rem;
+    }
+    li {
+      margin-bottom: 0.4rem;
+    }
+    .try-link {
+      display: inline-block;
+      background: #c45a3c;
+      color: #fff;
+      padding: 0.8rem 1.6rem;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: 600;
+      margin-top: 0.8rem;
+      transition: background 0.15s;
+    }
+    .try-link:hover {
+      background: #a8472f;
+    }
+    .closing {
+      border-top: 1px solid #e0ddd7;
+      padding-top: 1.5rem;
+      margin-top: 2.2rem;
+      font-size: 0.95rem;
+      color: #5a5a5a;
+    }
+    @media (max-width: 500px) {
+      .wrapper { padding: 1.5rem 1rem; }
+      h1 { font-size: 1.6rem; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrapper">
+    <header class="site-header">
+      <a href="/" class="site-name">ToolsForUse</a>
+      <a href="/" class="back-link">← Home</a>
+    </header>
+
+    <h1>New Tool: Coffee Ratio Calculator</h1>
+
+    <p>I’ve been making coffee at home for years — pour-over, French press, occasionally an Aeropress. And for years, I’d find myself standing in the kitchen at 7 a.m., staring at the bag of beans, doing the same dumb math:</p>
+
+    <p><em>“Okay, I want 400 ml of coffee. I usually use a 1:16 ratio. So 400 divided by 16 … that’s … 25 grams? Wait, is that right? And if I only want a smaller cup, say 250 ml, then it’s … 15.6 grams? But my scale only reads whole grams …”</em></p>
+
+    <p>I’d reach for my phone, open the calculator app, type it in, second guess myself, and then just eyeball it. Sometimes the coffee came out weak. Sometimes it was too strong. It wasn’t a huge problem, but it was a tiny friction every single morning.</p>
+
+    <p>I figured: <em>I can’t be the only one.</em></p>
+
+    <h2>Why not just use an app or a chart?</h2>
+    <p>There are a dozen coffee ratio charts on the internet — and a handful of apps. But I found that most of them either:</p>
+    <ul>
+      <li>Assume you only ever use one ratio (and you have to dig through menus to change it).</li>
+      <li>Show you a static table (which falls apart if your water volume isn’t a round number).</li>
+      <li>Or they’re buried inside a bloated coffee app with timers, journals, and notifications I don’t want.</li>
+    </ul>
+    <p>I wanted something stripped down: give it two numbers (water volume and ratio) and get the coffee dose instantly. Or, flip it: give it coffee weight and ratio, and it tells you how much water to add. No signup, no ads, no fluff.</p>
+
+    <h2>What this tool actually does</h2>
+    <p>The <strong>Coffee Ratio Calculator</strong> lets you choose between two modes:</p>
+    <ul>
+      <li><strong>Water → Coffee:</strong> enter how much water you’re using (in milliliters or ounces), pick your ratio (e.g., 1:15, 1:17), and it outputs the exact grams of coffee you need.</li>
+      <li><strong>Coffee → Water:</strong> enter how many grams of ground coffee you have, pick a ratio, and it tells you how much water to pour.</li>
+    </ul>
+    <p>It works for any ratio from 1:10 (strong espresso-style) to 1:20 (lighter brews). You can toggle between metric and imperial. That’s it. No hidden features, no brew guide library, no subscription.</p>
+
+    <a class="try-link" href="/tools/coffee-ratio-calculator/">Try the Coffee Ratio Calculator →</a>
+
+    <div class="closing">
+      <p>It’s a small tool, but it’s one I actually use every day. If you’ve ever stood in your kitchen doing the same mental arithmetic — or just wanted one less thing to think about in the morning — I hope it helps.</p>
+      <p>— Dan, creator of ToolsForUse</p>
+    </div>
+  </div>
+</body>
+</html>
