@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ToolsForUse: Building a One-Rep Max Calculator</title>
+    <meta name="description" content="Why I built a simple, straightforward one-rep max calculator for weightlifting.">
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: #1a1a1a;
+            background: #f9f9f9;
+            padding: 2rem 1rem;
+        }
+        .container {
+            max-width: 680px;
+            margin: 0 auto;
+            background: #fff;
+            border-radius: 12px;
+            padding: 2rem 1.75rem;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+        }
+        .site-header {
+            margin-bottom: 2rem;
+        }
+        .site-header a {
+            color: #6b7280;
+            font-size: 0.9rem;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+        .site-header a:hover {
+            color: #1a1a1a;
+        }
+        h1 {
+            font-size: 1.8rem;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            line-height: 1.2;
+            margin-bottom: 0.75rem;
+        }
+        .meta {
+            font-size: 0.85rem;
+            color: #6b7280;
+            margin-bottom: 2rem;
+            border-bottom: 1px solid #e5e7eb;
+            padding-bottom: 0.75rem;
+        }
+        h2 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-top: 2rem;
+            margin-bottom: 0.5rem;
+        }
+        p {
+            margin-bottom: 1.25rem;
+        }
+        .cta-box {
+            background: #f3f4f6;
+            border-radius: 8px;
+            padding: 1.25rem 1.5rem;
+            margin: 2rem 0;
+            border-left: 4px solid #2563eb;
+        }
+        .cta-box p {
+            margin-bottom: 0.75rem;
+        }
+        .button {
+            display: inline-block;
+            background: #2563eb;
+            color: #fff;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.6rem 1.2rem;
+            border-radius: 6px;
+            font-size: 0.95rem;
+            transition: background 0.15s;
+        }
+        .button:hover {
+            background: #1d4ed8;
+        }
+        hr {
+            border: none;
+            border-top: 1px solid #e5e7eb;
+            margin: 2rem 0 1rem;
+        }
+        .closing {
+            font-style: italic;
+            color: #4b5563;
+        }
+        @media (max-width: 500px) {
+            .container { padding: 1.5rem 1rem; }
+            h1 { font-size: 1.4rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="site-header">
+            <a href="/">← ToolsForUse</a>
+        </header>
+
+        <h1>Why I built a one-rep max calculator (and why you might actually use it)</h1>
+        <div class="meta">Posted 1 April 2025</div>
+
+        <p>
+            I've been lifting weights on and off for years — nothing impressive, just trying to stay functional and not get hurt. And every few months, I run into the same small frustration: I want to test my strength on a lift like the bench press or squat, but I don't want to actually <em>max out</em>. Loading up a weight I can barely handle for one rep feels risky, especially without a spotter.
+        </p>
+
+        <h2>What's the actual problem?</h2>
+        <p>
+            The standard solution is to use a "one-rep max calculator." You take a weight you can lift for multiple reps (say, 185 lbs for 5 reps), plug it into a formula, and it estimates your theoretical 1RM. Simple idea — but most of the calculators I found online were either buried in ad-filled blog posts, required me to sign up for something, or gave me a number without any context.
+        </p>
+        <p>
+            I just wanted a clean, no-fuss page where I could type in two numbers and get an answer. No push upsells, no "try our training program!" pop-up. Just the estimate, using the common Epley formula, with a brief explanation of what it means.
+        </p>
+
+        <h2>Why this version is worth having</h2>
+        <p>
+            I'm not claiming this is groundbreaking. But I think it's a genuinely better experience because it's <em>just</em> a calculator. It doesn't track your workouts, it doesn't require an email, and it shows the result in a way that's easy to copy or screenshot. I also added a simple strength-standards reference (based on common tables) so you can see roughly where you stand — not as a "you must be this strong to ride" gate, but as a general sanity check.
+        </p>
+        <p>
+            Plus, it works on your phone, and it's fast. That's really it.
+        </p>
+
+        <h2>What it actually does</h2>
+        <p>
+            You enter two things: the weight you lifted (in pounds or kilograms) and the number of reps you completed. The tool uses the Epley formula to estimate your one-rep max. It also shows the estimated max for a few other rep ranges (like 3RM, 5RM) if you want to plan your next workout. It rounds to a sensible number, and it's all client-side — no data leaves your browser.
+        </p>
+
+        <div class="cta-box">
+            <p><strong>Try the calculator here →</strong></p>
+            <a class="button" href="/tools/one-rep-max-calculator/">One-Rep Max Calculator</a>
+        </div>
+
+        <h2>Honest closing</h2>
+        <p class="closing">
+            This tool isn't going to change your life. It's just a simple utility for a specific moment: when you want to estimate your max without actually going for it. If that's useful to you, great. If not, that's fine too. I built it because I needed it, and I figured I'd share it. No strings attached.
+        </p>
+
+        <hr>
+        <p style="font-size:0.8rem; color:#9ca3af;">
+            — Built at ToolsForUse · No signups · No tracking
+        </p>
+    </div>
+</body>
+</html>
