@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>One-Rep Max Calculator • 1RM Calculator | ToolsForUse</title>
+    <meta name="description" content="Use the free one rep max calculator (1RM calculator) to estimate your max weight for any lift. Trusted by lifters, no backend, instant results.">
+    <style>
+        /* --- reset & base --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            background: #f8fafc;
+            color: #0b1a2e;
+            line-height: 1.5;
+            padding: 1.5rem 1rem;
+        }
+        .container {
+            max-width: 820px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 28px;
+            padding: 2rem 1.8rem 2.8rem;
+            box-shadow: 0 12px 30px rgba(0,0,0,0.05);
+        }
+        @media (max-width: 600px) {
+            body { padding: 0.8rem; }
+            .container { padding: 1.5rem 1rem 2rem; }
+        }
+
+        /* --- header / nav --- */
+        .tool-header {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: 0.8rem 1rem;
+            margin-bottom: 1.6rem;
+            border-bottom: 2px solid #e2e8f0;
+            padding-bottom: 0.9rem;
+        }
+        .home-link {
+            font-weight: 600;
+            font-size: 1.3rem;
+            letter-spacing: -0.02em;
+            color: #0b1a2e;
+            text-decoration: none;
+            background: #f1f5f9;
+            padding: 0.3rem 1rem 0.3rem 0.9rem;
+            border-radius: 60px;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+        .home-link:hover {
+            background: #e2e8f0;
+        }
+        .blog-link {
+            color: #2563eb;
+            text-decoration: none;
+            font-size: 0.95rem;
+            border-bottom: 1px solid transparent;
+            transition: 0.2s;
+            font-weight: 450;
+        }
+        .blog-link:hover {
+            border-bottom-color: #2563eb;
+        }
+
+        /* --- title --- */
+        h1 {
+            font-size: 1.9rem;
+            font-weight: 700;
+            letter-spacing: -0.025em;
+            margin: 0.4rem 0 0.3rem;
+        }
+        .subhead {
+            color: #2c3e50;
+            margin-bottom: 1.4rem;
+            font-size: 1rem;
+            border-left: 4px solid #3b82f6;
+            padding-left: 1rem;
+            background: #f1f5f9;
+            padding: 0.6rem 1rem;
+            border-radius: 0 24px 24px 0;
+        }
+
+        /* --- calculator --- */
+        .calc-card {
+            background: #ffffff;
+            border: 1px solid #e9edf3;
+            border-radius: 24px;
+            padding: 1.4rem 1.4rem 1.8rem;
+            margin: 1.2rem 0 1rem;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.02);
+        }
+        .input-group {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 1.2rem;
+        }
+        .input-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.2rem;
+        }
+        .input-row .input-group {
+            flex: 1 1 160px;
+        }
+        label {
+            font-weight: 500;
+            font-size: 0.9rem;
+            margin-bottom: 0.25rem;
+            color: #1e293b;
+        }
+        input, select {
+            background: #ffffff;
+            border: 1px solid #cbd5e1;
+            border-radius: 60px;
+            padding: 0.6rem 1rem;
+            font-size: 1rem;
+            transition: 0.15s;
+            width: 100%;
+        }
+        input:focus, select:focus {
+            outline: 2px solid #3b82f6;
+            outline-offset: 1px;
+            border-color: transparent;
+        }
+        .btn {
+            background: #2563eb;
+            color: white;
+            border: none;
+            padding: 0.7rem 1.8rem;
+            border-radius: 60px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: 0.15s;
+            display: inline-block;
+            margin-right: 0.8rem;
+        }
+        .btn:hover, .btn:focus {
+            background: #1d4ed8;
+            transform: scale(0.97);
+        }
+        .btn-outline {
+            background: transparent;
+            border: 1px solid #94a3b8;
+            color: #1e293b;
+        }
+        .btn-outline:hover {
+            background: #f1f5f9;
+            border-color: #64748b;
+        }
+        .actions {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: 0.6rem;
+        }
+        .result-area {
+            background: #f1f5f9;
+            border-radius: 30px;
+            padding: 1.2rem 1.6rem;
+            margin: 1.4rem 0 0.6rem;
+            font-weight: 500;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: baseline;
+            gap: 0.8rem 1.8rem;
+        }
+        .result-number {
+            font-size: 2.4rem;
+            font-weight: 800;
+            color: #0f172a;
+            letter-spacing: -0.02em;
+        }
+        .result-label {
+            color: #334155;
+            font-size: 0.95rem;
+        }
+        .formula-badge {
+            font-size: 0.8rem;
+            background: #e2e8f0;
+            padding: 0.2rem 1rem;
+            border-radius: 40px;
+            color: #1e293b;
+            display: inline-block;
+        }
+        .note {
+            font-size: 0.8rem;
+            color: #475569;
+            margin: 0.6rem 0 0;
+        }
+
+        /* --- explanatory text --- */
+        .explain {
+            margin: 2.2rem 0 1.8rem;
+        }
+        .explain h2 {
+            font-size: 1.3rem;
+            margin: 1.4rem 0 0.4rem;
+            font-weight: 600;
+        }
+        .explain p {
+            margin: 0.6rem 0;
+            color: #1e293b;
+        }
+        .affiliate-slot-placeholder {
+            margin: 2rem 0 0.8rem;
+            border: 1px dashed #94a3b8;
+            border-radius: 30px;
+            padding: 1.2rem 1rem;
+            text-align: center;
+            font-size: 0.85rem;
+            color: #64748b;
+            background: #f8fafc;
+        }
+
+        /* --- utility --- */
+        .text-small {
+            font-size: 0.9rem;
+        }
+        .mt-1 {
+            margin-top: 0.8rem;
+        }
+        hr {
+            border: none;
+            border-top: 1px solid #e2e8f0;
+            margin: 1.8rem 0 1rem;
+        }
+        footer {
+            margin-top: 1.8rem;
+            font-size: 0.8rem;
+            color: #64748b;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+
+    <!-- header with links -->
+    <div class="tool-header">
+        <a href="/" class="home-link" aria-label="ToolsForUse homepage">🧰 ToolsForUse</a>
+        <a href="/blog/one-rep-max-calculator/" class="blog-link">📖 Read the story behind this tool</a>
+    </div>
+
+    <h1>One-Rep Max Calculator</h1>
+    <div class="subhead">1RM calculator &amp; max weight estimator – based on the Epley formula</div>
+
+    <!-- MAIN CALCULATOR -->
+    <div class="calc-card">
+        <div class="input-row">
+            <div class="input-group">
+                <label for="weight">Weight lifted (kg or lb)</label>
+                <input type="number" id="weight" name="weight" min="1" max="1500" step="0.5" value="80" placeholder="e.g. 80">
+            </div>
+            <div class="input-group">
+                <label for="reps">Reps performed</label>
+                <input type="number" id="reps" name="reps" min="1" max="30" step="1" value="5" placeholder="e.g. 5">
+            </div>
+        </div>
+
+        <div class="actions">
+            <div>
+                <button class="btn" id="calculateBtn" aria-label="Calculate one-rep max">⚡ Calculate 1RM</button>
+                <button class="btn btn-outline" id="resetBtn" aria-label="Reset fields">Reset</button>
+            </div>
+            <span class="formula-badge">Epley formula</span>
+        </div>
+
+        <!-- result display -->
+        <div class="result-area" aria-live="polite">
+            <span class="result-label">Estimated 1RM</span>
+            <span class="result-number" id="resultValue">94.5</span>
+            <span id="unitDisplay" style="font-size:1.1rem; font-weight:500;">kg</span>
+        </div>
+        <div class="note" id="extraNote">Based on 5 reps @ 80 kg → 1RM ≈ 94.5 kg</div>
+    </div>
+
+    <!-- AFFILIATE_SLOT (placeholder) -->
+    <div id="affiliate_slot_container"><!-- AFFILIATE_SLOT --></div>
+    <div class="affiliate-slot-placeholder">▲ affiliate card could be inserted here (<!-- AFFILIATE_SLOT -->)</div>
+
+    <!-- EXPLANATORY SECTION (2-3 paragraphs) -->
+    <div class="explain">
+        <h2>Why use a one-rep max calculator?</h2>
+        <p>Your <strong>one-rep max (1RM)</strong> is the heaviest weight you can lift for a single perfect repetition. It’s a benchmark for strength and essential for programming progressive overload. But testing a true 1RM every week is risky and fatiguing. That’s where the <strong>1RM calculator</strong> comes in: by entering a submaximal weight and the reps you can manage, you get an accurate <strong>max weight estimate</strong> without grinding a heavy single. This keeps your CNS fresh and reduces injury risk.</p>
+
+        <p>The formula behind this tool is the <strong>Epley equation</strong>: 1RM = weight × (1 + reps ÷ 30). It’s one of the most validated, no-nonsense methods for lifters, coaches, and athletes. Whether you bench, squat, deadlift, or overhead press, this <strong>one rep max calculator</strong> works for any exercise that uses standard barbell or dumbbell loads. Many strength programs use percentages of your 1RM — use this tool to set your training weights with confidence.</p>
+
+        <p>For best accuracy, use a weight you can handle with <em>strict form</em> for 3–8 reps. The Epley formula becomes less reliable above 10–12 reps. If you’re new to lifting, always round down your estimated max and practice the movement before attempting heavy singles. Bookmark this <strong>1rm calculator</strong> to track progress across mesocycles — it’s a practical, free alternative to maxing out every session.</p>
+    </div>
+
+    <hr>
+    <footer>Use as an estimate — actual 1RM may vary. Always warm up and use a spotter.</footer>
+</div>
+
+<!-- JavaScript (client-side, no backend) -->
+<script>
+    (function() {
+        const weightInput = document.getElementById('weight');
+        const repsInput = document.getElementById('reps');
+        const resultValue = document.getElementById('resultValue');
+        const unitDisplay = document.getElementById('unitDisplay');
+        const extraNote = document.getElementById('extraNote');
+        const calculateBtn = document.getElementById('calculateBtn');
+        const resetBtn = document.getElementById('resetBtn');
+
+        // core epley formula
+        function computeOneRM(weight, reps) {
+            if (reps === 1) return weight; // 1RM is weight itself
+            const raw = weight * (1 + reps / 30);
+            // round to 1 decimal
+            return Math.round(raw * 10) / 10;
+        }
+
+        function updateResult() {
+            let weight = parseFloat(weightInput.value);
+            let reps = parseInt(repsInput.value, 10);
+
+            // validate & sanitize
+            if (isNaN(weight) || weight <= 0) weight = 0;
+            if (isNaN(reps) || reps <= 0) reps = 1;
+            if (reps > 30) reps = 30;
+            if (weight > 1500) weight = 1500;
+
+            // clamp inputs to valid numbers (silently)
+            if (weight <= 0) weight = 1;
+            if (reps < 1) reps = 1;
+
+            const oneRM = computeOneRM(weight, reps);
+
+            resultValue.textContent = oneRM;
+
+            // decide unit based on input plausibility? always show generic "kg" or "lb"? 
+            // We'll just show the unit label as generic; user knows own unit.
+            // but to be nice we detect if > 300 likely lb?
+            let unit = 'kg';
+            if (weight > 300 && weight < 1500) unit = 'lb'; 
+            else if (weight > 150) unit = 'kg'; // default
+            unitDisplay.textContent = unit;
+
+            // extra note
+            let repText = reps === 1 ? '1 rep' : `${reps} reps`;
+            extraNote.textContent = `Based on ${repText} @ ${weight} ${unit} → 1RM ≈ ${oneRM} ${unit}`;
+        }
+
+        // initial calculation
+        updateResult();
+
+        // event listeners
+        calculateBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            updateResult();
+        });
+
+        resetBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            weightInput.value = '80';
+            repsInput.value = '5';
+            updateResult();
+        });
+
+        // also allow Enter key in any input to trigger calc
+        const inputs = [weightInput, repsInput];
+        inputs.forEach(inp => {
+            inp.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter' || e.keyCode === 13) {
+                    e.preventDefault();
+                    updateResult();
+                }
+            });
+            // on blur recalc for better UX
+            inp.addEventListener('blur', function() {
+                updateResult();
+            });
+        });
+
+        // on change for <select> not present, but we have no select. keep for future.
+    })();
+</script>
+
+</body>
+</html>
