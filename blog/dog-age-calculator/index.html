@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A more honest dog age calculator — ToolsForUse</title>
+    <meta name="description" content="Why the old multiply-by-7 rule doesn't cut it anymore. I built a dog age calculator that actually accounts for breed size using the updated veterinary formula.">
+    <style>
+        /* reset / base */
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            max-width: 680px;
+            margin: 0 auto;
+            padding: 24px 20px 48px;
+            background: #fafaf9;
+            color: #1c1917;
+            line-height: 1.65;
+            font-size: 1.05rem;
+        }
+
+        /* header */
+        .site-header {
+            margin-bottom: 2.5rem;
+            border-bottom: 1px solid #e7e5e4;
+            padding-bottom: 0.75rem;
+        }
+        .site-header a {
+            color: #44403c;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1.1rem;
+            letter-spacing: -0.02em;
+        }
+        .site-header a:hover {
+            color: #292524;
+        }
+        .site-header span {
+            color: #a8a29e;
+            margin: 0 0.35rem;
+        }
+
+        /* typography */
+        h1 {
+            font-size: 1.85rem;
+            font-weight: 650;
+            letter-spacing: -0.02em;
+            line-height: 1.25;
+            margin-bottom: 0.4rem;
+            color: #292524;
+        }
+        .meta-date {
+            color: #78716c;
+            font-size: 0.92rem;
+            margin-bottom: 1.5rem;
+            border-bottom: 1px solid #e7e5e4;
+            padding-bottom: 1rem;
+        }
+        h2 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-top: 2rem;
+            margin-bottom: 0.6rem;
+            color: #292524;
+            letter-spacing: -0.01em;
+        }
+        p {
+            margin-bottom: 1.1rem;
+        }
+        ul {
+            margin: 0.5rem 0 1.3rem 1.5rem;
+        }
+        li {
+            margin-bottom: 0.4rem;
+        }
+        a {
+            color: #2563eb;
+            text-decoration: underline;
+            text-underline-offset: 2px;
+        }
+        a:hover {
+            color: #1d4ed8;
+        }
+        .cta-box {
+            background: #f1f5f9;
+            border-left: 4px solid #2563eb;
+            padding: 1rem 1.3rem;
+            border-radius: 0 6px 6px 0;
+            margin: 1.4rem 0;
+        }
+        .cta-box a {
+            font-weight: 500;
+        }
+        hr {
+            margin: 2rem 0 1.2rem;
+            border: none;
+            border-top: 1px solid #e7e5e4;
+        }
+        .signoff {
+            color: #57534e;
+            font-size: 0.95rem;
+        }
+    </style>
+</head>
+<body>
+    <header class="site-header">
+        <a href="/">← ToolsForUse</a><span>∕</span><a href="/">home</a>
+    </header>
+
+    <article>
+        <h1>A more honest dog age calculator</h1>
+        <div class="meta-date">April 11, 2025 — by the ToolsForUse team</div>
+
+        <p>My dog turned 10 a few weeks ago. I did the old "multiply by 7" thing and got 70 — "wow, you're an old man," I said. But then I started thinking: that rule is from the 1950s, and it doesn't feel right. A Great Dane at 10 is ancient. My 10-year-old beagle-mix? Still acts like a puppy.</p>
+
+        <p>I looked into it, and sure enough, the "dog years" formula was basically just a rough average someone made up decades ago. Veterinary research has moved on. Turns out size matters a lot in how dogs age — small breeds tend to live longer, giant breeds age faster. A single multiplier doesn't capture that.</p>
+
+        <h2>What the new formula actually does</h2>
+        <p>There's a more accepted veterinary approach (based on work by the AVMA and others) that adjusts for four size categories: <strong>small</strong> (under 20 lbs), <strong>medium</strong> (21–50 lbs), <strong>large</strong> (51–90 lbs), and <strong>giant</strong> (over 90 lbs). It also accounts for the fact that early years aren't linear — the first year is more like 15 human years for any dog, then it curves based on size.</p>
+
+        <p>I wanted something I could actually use without consulting a chart or doing mental math. So I built a simple calculator that does it in one click.</p>
+
+        <h2>What the tool does</h2>
+        <ul>
+            <li>Enter your dog's age in years.</li>
+            <li>Pick their size category (I included approximate weights and examples, like "small — under 20 lb, e.g. Chihuahua, Pomeranian").</li>
+            <li>It instantly gives you the equivalent human age using the size-adjusted formula.</li>
+        </ul>
+        <p>No sliders, no fluff, no "rate this app" pop-ups. Just a number and a quick table that shows how the conversion works for the other sizes too (so you can compare).</p>
+
+        <div class="cta-box">
+            → <a href="/tools/dog-age-calculator/">Try the Dog Age Calculator →</a>
+        </div>
+
+        <h2>Why this version? Isn't there already a calculator?</h2>
+        <p>There are plenty online, but most either still use the one-size-fits-all 7x rule, or they use the newer formula but bury it under ads or confusing sliders. Others don't explain <em>why</em> size matters — they just spit out a number. I wanted something transparent: you can see the formula, you can tweak the age, and you know it's based on current vet guidelines, not a marketing gimmick.</p>
+
+        <p>Is it a huge life-changer? No. But if you've ever looked at your dog and wondered "are you really 70, or are you more like 55?" — this gives you a better answer. And it respects the fact that a tiny Chihuahua and a massive Mastiff don't age on the same clock.</p>
+
+        <hr>
+
+        <p class="signoff">It's a small tool, but it's one of those things I wished I'd had a year ago. Hope it's useful to you too.</p>
+    </article>
+</body>
+</html>
