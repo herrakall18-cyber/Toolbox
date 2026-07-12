@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dog Age Calculator | Dog Years to Human Years | ToolsForUse</title>
+<meta name="description" content="Use our free dog age calculator to convert dog years to human years. Based on the updated veterinary formula accounting for small, medium, large, and giant breeds. Find out how old your dog is in human years.">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    background: #f8fafc;
+    color: #1e293b;
+    line-height: 1.6;
+    padding: 1rem;
+  }
+  .container {
+    max-width: 820px;
+    margin: 0 auto;
+    background: #fff;
+    border-radius: 1.5rem;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+    padding: 2rem 1.5rem;
+  }
+  @media (min-width: 600px) {
+    .container { padding: 2.5rem 3rem; }
+    body { padding: 2rem; }
+  }
+  header {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    gap: 0.75rem;
+    border-bottom: 2px solid #e2e8f0;
+    padding-bottom: 1.25rem;
+  }
+  .site-title a {
+    font-weight: 700;
+    font-size: 1.4rem;
+    color: #0f172a;
+    text-decoration: none;
+    letter-spacing: -0.02em;
+  }
+  .site-title a:hover { color: #2563eb; }
+  .nav-links a {
+    color: #475569;
+    text-decoration: none;
+    font-size: 0.95rem;
+    margin-left: 1.2rem;
+    transition: color 0.15s;
+  }
+  .nav-links a:hover { color: #2563eb; text-decoration: underline; }
+  @media (max-width: 480px) {
+    header { flex-direction: column; align-items: flex-start; }
+    .nav-links a { margin-left: 0; margin-right: 1.2rem; }
+  }
+  h1 {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #0f172a;
+    margin-bottom: 0.25rem;
+    letter-spacing: -0.02em;
+  }
+  .subhead {
+    color: #475569;
+    font-size: 1.05rem;
+    margin-bottom: 1.5rem;
+  }
+  .calculator-card {
+    background: #f1f5f9;
+    border-radius: 1.25rem;
+    padding: 1.75rem;
+    margin-bottom: 2.5rem;
+    border: 1px solid #e2e8f0;
+  }
+  .form-group {
+    margin-bottom: 1.25rem;
+  }
+  label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 0.4rem;
+    color: #1e293b;
+  }
+  select, input {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    font-size: 1rem;
+    border: 1px solid #cbd5e1;
+    border-radius: 0.75rem;
+    background: #fff;
+    transition: border-color 0.2s;
+    font-family: inherit;
+  }
+  select:focus, input:focus {
+    outline: none;
+    border-color: #2563eb;
+    box-shadow: 0 0 0 3px rgba(37,99,235,0.15);
+  }
+  .row-duo {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.2rem;
+  }
+  .row-duo .form-group {
+    flex: 1 1 180px;
+  }
+  .btn {
+    display: inline-block;
+    background: #2563eb;
+    color: #fff;
+    font-weight: 600;
+    font-size: 1.05rem;
+    padding: 0.75rem 2rem;
+    border: none;
+    border-radius: 2.5rem;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.1s;
+    margin-top: 0.5rem;
+    width: 100%;
+    max-width: 280px;
+  }
+  .btn:hover { background: #1d4ed8; }
+  .btn:active { transform: scale(0.97); }
+  .result-area {
+    margin-top: 1.5rem;
+    background: #fff;
+    border-radius: 1rem;
+    padding: 1.25rem 1.5rem;
+    border: 1px solid #cbd5e1;
+    min-height: 4rem;
+    display: flex;
+    align-items: center;
+    font-size: 1.2rem;
+    font-weight: 500;
+    word-break: break-word;
+  }
+  .result-value {
+    font-weight: 700;
+    color: #2563eb;
+  }
+  .explanatory {
+    margin-top: 2.5rem;
+    padding-top: 1.5rem;
+    border-top: 2px solid #e2e8f0;
+  }
+  .explanatory h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: #0f172a;
+  }
+  .explanatory p {
+    margin-bottom: 1rem;
+    color: #334155;
+  }
+  .explanatory p:last-child { margin-bottom: 0; }
+  footer {
+    margin-top: 2.5rem;
+    font-size: 0.85rem;
+    color: #64748b;
+    text-align: center;
+    border-top: 1px solid #e2e8f0;
+    padding-top: 1.5rem;
+  }
+  footer a { color: #2563eb; }
+  .affiliate-placeholder {
+    margin: 2rem 0 0.5rem;
+    padding: 0.75rem 1rem;
+    background: #f8fafc;
+    border: 1px dashed #cbd5e1;
+    border-radius: 0.75rem;
+    text-align: center;
+    font-size: 0.9rem;
+    color: #64748b;
+  }
+  .affiliate-placeholder span {
+    font-weight: 600;
+    color: #1e293b;
+  }
+</style>
+</head>
+<body>
+<!-- AFFILIATE_SLOT -->
+<div class="container">
+  <header>
+    <div class="site-title"><a href="/">ToolsForUse</a></div>
+    <div class="nav-links">
+      <a href="/">Home</a>
+      <a href="/blog/dog-age-calculator/">Read the story behind this tool</a>
+    </div>
+  </header>
+
+  <h1>Dog Age Calculator</h1>
+  <p class="subhead">Convert dog years to human years using the modern veterinary formula, adjusted by breed size.</p>
+
+  <div class="calculator-card">
+    <div class="row-duo">
+      <div class="form-group">
+        <label for="dogAge">Dog's age (years)</label>
+        <input type="number" id="dogAge" min="0" max="35" step="0.1" value="5" placeholder="e.g. 5">
+      </div>
+      <div class="form-group">
+        <label for="breedSize">Breed size</label>
+        <select id="breedSize">
+          <option value="small">Small (≤ 22 lbs / 10 kg)</option>
+          <option value="medium" selected>Medium (23–55 lbs / 10–25 kg)</option>
+          <option value="large">Large (56–100 lbs / 25–45 kg)</option>
+          <option value="giant">Giant (> 100 lbs / 45 kg)</option>
+        </select>
+      </div>
+    </div>
+    <button class="btn" id="calculateBtn">How old is my dog in human years?</button>
+
+    <div class="result-area" id="resultDisplay">
+      <span>Your dog is approximately <span class="result-value" id="humanYearsResult">—</span> human years old.</span>
+    </div>
+  </div>
+
+  <!-- Explanatory content -->
+  <div class="explanatory">
+    <h2>Why the old “multiply by 7” rule doesn’t work</h2>
+    <p>For decades, pet owners relied on the simple rule that one dog year equals seven human years. However, veterinary research has shown that this rule significantly oversimplifies how dogs age. Dogs mature much faster in their first two years, and the aging rate then depends strongly on their size. Small breeds tend to age more slowly than large or giant breeds, meaning the same chronological age can produce very different “human age” equivalents.</p>
+    
+    <p>The calculator above uses the widely accepted veterinary formula: the first year of a dog’s life equals 15 human years (regardless of size). The second year adds about 9 human years. After that, each subsequent year adds a size-dependent multiplier. For small dogs it’s roughly 4 human years per dog year, for medium 5, for large 6, and for giant breeds around 7–8 human years per year. These values come from recent studies on canine aging and are recommended by many veterinarians for a more accurate estimate.</p>
+    
+    <p>Using this <strong>dog age calculator</strong> you can quickly find out <strong>how old is my dog in human years</strong> — simply enter your dog’s age and select the breed size. Whether you have a Chihuahua or a Great Dane, the <strong>dog years to human years</strong> conversion now reflects real biological aging. Keep in mind that individual health, genetics, and lifestyle also play a role, but this tool gives you a reliable baseline for understanding your companion’s life stage.</p>
+  </div>
+
+  <!-- Affiliate slot placeholder -->
+  <div class="affiliate-placeholder">
+    <span>▲ AFFILIATE_SLOT</span> — Relevant product card could appear here.
+  </div>
+
+  <footer>
+    <p>© ToolsForUse — free online utilities. <a href="/">Back to toolbox</a></p>
+  </footer>
+</div>
+
+<script>
+  (function() {
+    const dogAgeInput = document.getElementById('dogAge');
+    const breedSizeSelect = document.getElementById('breedSize');
+    const calculateBtn = document.getElementById('calculateBtn');
+    const humanYearsSpan = document.getElementById('humanYearsResult');
+
+    function computeHumanAge(dogYears, size) {
+      // Guard: invalid input
+      if (dogYears === null || dogYears === undefined || isNaN(dogYears) || dogYears < 0) return null;
+      
+      const age = Number(dogYears);
+      if (age === 0) return 0;
+
+      let humanAge = 0;
+      const remainingYears = Math.max(0, age);
+
+      // First year = 15 human years
+      if (remainingYears >= 1) {
+        humanAge += 15;
+      } else {
+        // fractional first year (proportional)
+        humanAge += 15 * remainingYears;
+        return Math.round(humanAge * 10) / 10;
+      }
+
+      // Second year = +9 human years (total 24)
+      if (remainingYears >= 2) {
+        humanAge += 9;
+      } else {
+        // fractional second year
+        humanAge += 9 * (remainingYears - 1);
+        return Math.round(humanAge * 10) / 10;
+      }
+
+      // After second year: size-dependent multiplier
+      let multiplier;
+      switch (size) {
+        case 'small':  multiplier = 4; break;
+        case 'medium': multiplier = 5; break;
+        case 'large':  multiplier = 6; break;
+        case 'giant':  multiplier = 7.5; break;
+        default:       multiplier = 5;
+      }
+
+      if (remainingYears > 2) {
+        const extraYears = remainingYears - 2;
+        humanAge += extraYears * multiplier;
+      }
+
+      // Round to one decimal
+      return Math.round(humanAge * 10) / 10;
+    }
+
+    function updateResult() {
+      const rawAge = dogAgeInput.value.trim();
+      const ageNum = parseFloat(rawAge);
+      const size = breedSizeSelect.value;
+
+      if (rawAge === '' || isNaN(ageNum) || ageNum < 0) {
+        humanYearsSpan.textContent = '—';
+        return;
+      }
+      if (ageNum > 35) {
+        humanYearsSpan.textContent = '? (enter age ≤ 35)';
+        return;
+      }
+
+      const result = computeHumanAge(ageNum, size);
+      if (result === null) {
+        humanYearsSpan.textContent = '—';
+      } else {
+        humanYearsSpan.textContent = result;
+      }
+    }
+
+    // Set default example
+    dogAgeInput.value = '5';
+    breedSizeSelect.value = 'medium';
+    updateResult();
+
+    calculateBtn.addEventListener('click', updateResult);
+    dogAgeInput.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') updateResult();
+    });
+    breedSizeSelect.addEventListener('change', updateResult);
+    // Also update on input change for smoother feel
+    dogAgeInput.addEventListener('input', updateResult);
+  })();
+</script>
+</body>
+</html>
