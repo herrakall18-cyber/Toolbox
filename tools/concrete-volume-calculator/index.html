@@ -1,0 +1,273 @@
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Concrete Volume Calculator – How Much Concrete Do I Need? | ToolsForUse</title>
+<meta name="description" content="Use our free concrete volume calculator to find exactly how many cubic yards you need for a slab, column, or footing. Avoid over-ordering or running short with this easy cubic yards concrete calculator.">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen,Ubuntu,sans-serif;background:#f8fafc;color:#1e293b;line-height:1.6;padding:20px}
+a{color:#2563eb;text-decoration:none}
+a:hover{text-decoration:underline}
+.site-header{max-width:900px;margin:0 auto 20px;display:flex;flex-wrap:wrap;gap:12px;justify-content:space-between;align-items:center;padding:12px 16px;background:#ffffff;border-radius:12px;box-shadow:0 1px 3px rgba(0,0,0,.08)}
+.site-header .logo{font-weight:700;font-size:1.25rem;color:#0f172a}
+.site-header nav{display:flex;gap:16px;font-size:.95rem}
+.container{max-width:900px;margin:0 auto}
+.tool-card{background:#fff;border-radius:16px;box-shadow:0 4px 12px rgba(0,0,0,.07);padding:28px 24px 32px;margin-bottom:32px}
+.tool-card h1{font-size:1.9rem;font-weight:700;margin-bottom:6px;color:#0f172a}
+.tool-card .subhead{color:#475569;margin-bottom:24px;font-size:1.05rem}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px 24px;margin-bottom:20px}
+.form-group{display:flex;flex-direction:column;gap:4px}
+.form-group label{font-weight:600;font-size:.9rem;color:#334155}
+.form-group input,.form-group select{padding:10px 12px;border:1px solid #cbd5e1;border-radius:8px;font-size:1rem;background:#fff;transition:border .2s}
+.form-group input:focus,.form-group select:focus{border-color:#2563eb;outline:2px solid #bfdbfe}
+.radio-group{display:flex;gap:16px;flex-wrap:wrap;margin-top:4px}
+.radio-group label{display:flex;align-items:center;gap:6px;font-weight:500;font-size:.95rem;cursor:pointer}
+.unit-toggle{display:flex;gap:2px;background:#f1f5f9;border-radius:8px;padding:3px;width:fit-content;margin-bottom:16px}
+.unit-toggle button{padding:6px 18px;border:none;border-radius:6px;font-weight:600;font-size:.9rem;cursor:pointer;background:transparent;color:#475569;transition:.15s}
+.unit-toggle button.active{background:#fff;color:#0f172a;box-shadow:0 1px 3px rgba(0,0,0,.12)}
+.calc-btn{background:#2563eb;color:#fff;border:none;border-radius:10px;padding:14px 28px;font-size:1.1rem;font-weight:600;cursor:pointer;transition:background .15s;margin-top:8px;width:100%}
+.calc-btn:hover{background:#1d4ed8}
+.result-area{background:#f1f5f9;border-radius:12px;padding:20px 24px;margin-top:22px;display:none}
+.result-area.show{display:block}
+.result-area h3{font-size:1.1rem;margin-bottom:6px;color:#0f172a}
+.result-volume{font-size:2.2rem;font-weight:800;color:#2563eb;margin:8px 0 4px}
+.result-note{color:#475569;font-size:.95rem}
+.shape-desc{background:#f8fafc;padding:8px 14px;border-radius:8px;margin:10px 0 0;font-size:.95rem;border-left:4px solid #2563eb}
+.footnote{font-size:.85rem;color:#64748b;margin-top:16px}
+.info-section{background:#fff;border-radius:16px;padding:28px 24px;margin-bottom:32px;box-shadow:0 1px 4px rgba(0,0,0,.06)}
+.info-section h2{font-size:1.5rem;margin-bottom:12px;color:#0f172a}
+.info-section p{margin-bottom:14px;color:#334155}
+.info-section p:last-child{margin-bottom:0}
+.affiliate-placeholder{border:2px dashed #cbd5e1;border-radius:12px;padding:28px;text-align:center;color:#64748b;margin:24px 0;font-size:.95rem}
+.footer{text-align:center;color:#64748b;font-size:.9rem;padding:20px 0 10px;border-top:1px solid #e2e8f0;margin-top:16px}
+@media(max-width:640px){
+  .form-grid{grid-template-columns:1fr}
+  .tool-card h1{font-size:1.5rem}
+  .site-header{flex-direction:column;align-items:flex-start}
+  .result-volume{font-size:1.8rem}
+}
+</style>
+</head>
+<body>
+
+<!-- AFFILIATE_SLOT -->
+
+<header class="site-header">
+  <span class="logo"><a href="/" style="color:#0f172a;text-decoration:none">ToolsForUse</a></span>
+  <nav>
+    <a href="/">Home</a>
+    <a href="/blog/concrete-volume-calculator/">Read the story behind this tool</a>
+  </nav>
+</header>
+
+<main class="container">
+  <div class="tool-card">
+    <h1>Concrete Volume Calculator</h1>
+    <p class="subhead">Find exactly how many cubic yards of concrete you need — no more guessing. Perfect for slabs, columns, and footings.</p>
+
+    <div class="unit-toggle" role="group" aria-label="Unit selection">
+      <button type="button" class="active" data-unit="yards" id="unitYards">Cubic Yards</button>
+      <button type="button" data-unit="feet" id="unitFeet">Cubic Feet</button>
+    </div>
+
+    <form id="concreteForm" novalidate>
+      <div class="radio-group" role="radiogroup" aria-label="Shape type">
+        <label><input type="radio" name="shape" value="slab" checked> Slab</label>
+        <label><input type="radio" name="shape" value="column"> Column</label>
+        <label><input type="radio" name="shape" value="footing"> Footing</label>
+      </div>
+
+      <div class="form-grid" id="dimensionFields">
+        <!-- Slab fields (default) -->
+        <div class="form-group" id="lengthGroup">
+          <label for="length">Length (ft)</label>
+          <input type="number" id="length" name="length" step="any" min="0" value="10" required>
+        </div>
+        <div class="form-group" id="widthGroup">
+          <label for="width">Width (ft)</label>
+          <input type="number" id="width" name="width" step="any" min="0" value="10" required>
+        </div>
+        <div class="form-group" id="depthGroup">
+          <label for="depth">Depth / Thickness (in)</label>
+          <input type="number" id="depth" name="depth" step="any" min="0" value="4" required>
+        </div>
+        <!-- Column specific (hidden by default) -->
+        <div class="form-group" id="diameterGroup" style="display:none;">
+          <label for="diameter">Diameter (ft)</label>
+          <input type="number" id="diameter" name="diameter" step="any" min="0" value="1" required>
+        </div>
+        <div class="form-group" id="heightGroup" style="display:none;">
+          <label for="height">Height (ft)</label>
+          <input type="number" id="height" name="height" step="any" min="0" value="4" required>
+        </div>
+      </div>
+
+      <button type="submit" class="calc-btn" aria-label="Calculate concrete volume">Calculate Volume</button>
+    </form>
+
+    <div class="result-area" id="resultArea" role="status" aria-live="polite">
+      <h3>You need approximately</h3>
+      <div class="result-volume" id="resultVolume">—</div>
+      <div class="result-note" id="resultNote">Cubic yards</div>
+      <div class="shape-desc" id="shapeDesc"></div>
+    </div>
+
+    <p class="footnote">* This concrete calculator provides an estimate. Always consult a professional and add a small margin (5–10%) for waste.</p>
+  </div>
+
+  <div class="info-section">
+    <h2>How to use this concrete volume calculator</h2>
+    <p>Whether you're pouring a patio slab, a deck footing, or a structural column, knowing the exact concrete volume is critical. This <strong>concrete calculator</strong> helps you answer "how much concrete do I need?" in seconds. Simply choose your shape (slab, column, or footing), enter the dimensions in feet and inches, and the tool instantly converts to <strong>cubic yards</strong> — the standard unit for ordering ready-mix concrete.</p>
+    <p>For a slab, input length, width, and thickness (inches). For a column or round footing, provide diameter and height. The calculator uses the correct geometry (πr²h for cylinders) and divides by 27 to convert cubic feet to cubic yards. This <strong>cubic yards concrete calculator</strong> eliminates guesswork, so you avoid the costly mistake of ordering too much or the frustration of running short mid-pour.</p>
+    <p>Pro tip: Always round up slightly and account for variations in subgrade. Most contractors recommend adding 5–10% to the calculated volume. Bookmark this tool for every project — from small DIY jobs to larger construction estimates.</p>
+  </div>
+
+  <!-- AFFILIATE_SLOT placeholder for manual insertion -->
+  <div class="affiliate-placeholder"><!-- AFFILIATE_SLOT --></div>
+
+</main>
+
+<footer class="footer">
+  <p>&copy; 2025 ToolsForUse — Concrete Volume Calculator</p>
+</footer>
+
+<script>
+(function() {
+  const form = document.getElementById('concreteForm');
+  const shapeRadios = document.querySelectorAll('input[name="shape"]');
+  const lengthGroup = document.getElementById('lengthGroup');
+  const widthGroup = document.getElementById('widthGroup');
+  const depthGroup = document.getElementById('depthGroup');
+  const diameterGroup = document.getElementById('diameterGroup');
+  const heightGroup = document.getElementById('heightGroup');
+  const resultArea = document.getElementById('resultArea');
+  const resultVolume = document.getElementById('resultVolume');
+  const resultNote = document.getElementById('resultNote');
+  const shapeDesc = document.getElementById('shapeDesc');
+  const unitYardsBtn = document.getElementById('unitYards');
+  const unitFeetBtn = document.getElementById('unitFeet');
+
+  let currentUnit = 'yards'; // 'yards' or 'feet'
+
+  function toggleFields(shape) {
+    if (shape === 'column') {
+      lengthGroup.style.display = 'none';
+      widthGroup.style.display = 'none';
+      depthGroup.style.display = 'none';
+      diameterGroup.style.display = 'flex';
+      heightGroup.style.display = 'flex';
+    } else if (shape === 'footing') {
+      lengthGroup.style.display = 'flex';
+      widthGroup.style.display = 'flex';
+      depthGroup.style.display = 'flex';
+      diameterGroup.style.display = 'none';
+      heightGroup.style.display = 'none';
+    } else { // slab
+      lengthGroup.style.display = 'flex';
+      widthGroup.style.display = 'flex';
+      depthGroup.style.display = 'flex';
+      diameterGroup.style.display = 'none';
+      heightGroup.style.display = 'none';
+    }
+  }
+
+  // initial
+  toggleFields('slab');
+
+  shapeRadios.forEach(radio => {
+    radio.addEventListener('change', function(e) {
+      toggleFields(e.target.value);
+      resultArea.classList.remove('show');
+    });
+  });
+
+  // unit toggle
+  function setUnit(unit) {
+    currentUnit = unit;
+    if (unit === 'yards') {
+      unitYardsBtn.classList.add('active');
+      unitFeetBtn.classList.remove('active');
+    } else {
+      unitFeetBtn.classList.add('active');
+      unitYardsBtn.classList.remove('active');
+    }
+    // if result is showing, recalc with current inputs
+    if (resultArea.classList.contains('show')) {
+      calculateVolume();
+    }
+  }
+
+  unitYardsBtn.addEventListener('click', function() { setUnit('yards'); });
+  unitFeetBtn.addEventListener('click', function() { setUnit('feet'); });
+
+  function calculateVolume() {
+    const shape = document.querySelector('input[name="shape"]:checked').value;
+    let volumeCubicFeet = 0;
+    let desc = '';
+
+    if (shape === 'slab') {
+      const length = parseFloat(document.getElementById('length').value);
+      const width = parseFloat(document.getElementById('width').value);
+      const depthIn = parseFloat(document.getElementById('depth').value);
+      if (isNaN(length) || isNaN(width) || isNaN(depthIn) || length <= 0 || width <= 0 || depthIn <= 0) {
+        resultArea.classList.remove('show');
+        return;
+      }
+      const depthFt = depthIn / 12;
+      volumeCubicFeet = length * width * depthFt;
+      desc = `Slab: ${length} ft × ${width} ft × ${depthIn} in thick`;
+    } else if (shape === 'column') {
+      const diameter = parseFloat(document.getElementById('diameter').value);
+      const height = parseFloat(document.getElementById('height').value);
+      if (isNaN(diameter) || isNaN(height) || diameter <= 0 || height <= 0) {
+        resultArea.classList.remove('show');
+        return;
+      }
+      const radius = diameter / 2;
+      volumeCubicFeet = Math.PI * radius * radius * height;
+      desc = `Column: ${diameter} ft diameter × ${height} ft height`;
+    } else if (shape === 'footing') {
+      const length = parseFloat(document.getElementById('length').value);
+      const width = parseFloat(document.getElementById('width').value);
+      const depthIn = parseFloat(document.getElementById('depth').value);
+      if (isNaN(length) || isNaN(width) || isNaN(depthIn) || length <= 0 || width <= 0 || depthIn <= 0) {
+        resultArea.classList.remove('show');
+        return;
+      }
+      const depthFt = depthIn / 12;
+      volumeCubicFeet = length * width * depthFt;
+      desc = `Footing: ${length} ft × ${width} ft × ${depthIn} in thick`;
+    }
+
+    // Display
+    let displayValue, unitLabel;
+    if (currentUnit === 'yards') {
+      const cubicYards = volumeCubicFeet / 27;
+      displayValue = cubicYards.toFixed(3);
+      unitLabel = 'cubic yards';
+    } else {
+      displayValue = volumeCubicFeet.toFixed(3);
+      unitLabel = 'cubic feet';
+    }
+
+    resultVolume.textContent = displayValue;
+    resultNote.textContent = unitLabel;
+    shapeDesc.textContent = desc;
+    resultArea.classList.add('show');
+  }
+
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+    calculateVolume();
+  });
+
+  // auto-calc on first load? better to wait for user, but we can show initial result
+  // do a default calc on page load for convenience
+  window.addEventListener('load', function() {
+    calculateVolume();
+  });
+})();
+</script>
+</body>
+</html>
