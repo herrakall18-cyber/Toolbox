@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Concrete Volume Calculator – ToolsForUse</title>
+    <meta name="description" content="How I built a no-nonsense concrete volume calculator to get the right amount of yards for a slab, column, or footing. No ads, no login, just math.">
+    <style>
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background: #f9f9f9;
+            color: #1e1e1e;
+            line-height: 1.6;
+            padding: 1.5rem;
+            max-width: 720px;
+            margin: 2rem auto;
+        }
+
+        a {
+            color: #1565c0;
+            text-decoration: underline;
+            text-underline-offset: 0.15em;
+        }
+
+        a:hover {
+            color: #0d47a1;
+        }
+
+        header {
+            margin-bottom: 2.5rem;
+            border-bottom: 1px solid #d0d0d0;
+            padding-bottom: 0.75rem;
+        }
+
+        header a {
+            font-size: 0.95rem;
+            font-weight: 500;
+            letter-spacing: 0.02em;
+            color: #444;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+
+        header a:hover {
+            color: #111;
+        }
+
+        h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 0.25rem;
+        }
+
+        .byline {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 1.5rem;
+        }
+
+        h2 {
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-top: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        p {
+            margin-bottom: 1.2rem;
+        }
+
+        ul {
+            margin: 0.5rem 0 1.5rem 1.8rem;
+            list-style: disc;
+        }
+
+        li {
+            margin-bottom: 0.3rem;
+        }
+
+        .tool-cta {
+            display: inline-block;
+            background: #1e1e1e;
+            color: #f5f5f5;
+            font-weight: 600;
+            padding: 0.7rem 1.5rem;
+            border-radius: 6px;
+            text-decoration: none;
+            margin-top: 0.5rem;
+            transition: background 0.2s;
+        }
+
+        .tool-cta:hover {
+            background: #3a3a3a;
+            color: #fff;
+        }
+
+        hr {
+            border: none;
+            border-top: 1px solid #d0d0d0;
+            margin: 2rem 0 1rem;
+        }
+
+        footer {
+            font-size: 0.85rem;
+            color: #888;
+            text-align: center;
+            margin-top: 2.5rem;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="/">← back to ToolsForUse</a>
+    </header>
+
+    <h1>Why I built a concrete volume calculator (and made it public)</h1>
+    <p class="byline">by the guy behind ToolsForUse · April 2025</p>
+
+    <p>
+        Last summer I poured a small slab for a garden shed. I measured the hole, did the math on my phone,
+        got a number, rounded up a little because I was paranoid, and ordered the concrete.
+        I ended up with almost a full yard left over. Had to pay extra disposal fees, spent a day figuring out
+        where to dump it, and the whole thing just bugged me. I’m not a contractor, I just didn’t want to run short
+        — and in trying to be safe, I overcorrected.
+    </p>
+
+    <p>
+        A few months later I helped a friend with a footing for a small retaining wall. This time I lost the sketch,
+        recalculated three times, still wasn’t sure, called the ready-mix place and they asked for cubic yards.
+        I froze. I gave them an estimate, ended up a half-yard short, and had to buy a second mixer load
+        that was barely a quarter full. Waste of time, money, and embarrassing.
+    </p>
+
+    <h2>What’s out there already</h2>
+    <p>
+        Plenty of concrete calculators exist. But honestly, most of them are either:
+    </p>
+    <ul>
+        <li>Buried inside a home improvement retailer’s site with pop-ups and product recommendations,</li>
+        <li>So bare-bones they only handle a simple rectangle (no columns, no round footings),</li>
+        <li>Or they ask for inches, feet, and weird unit combos that make you convert in your head anyway.</li>
+    </ul>
+    <p>
+        This isn’t a dig at those – they’re fine if you already know the formula and just need a button.
+        But I wanted something that handled the three shapes I actually encounter (slab, column, footing),
+        did the math consistently in cubic yards (which is what the concrete yard uses), and gave me
+        a number I could trust without second-guessing.
+    </p>
+
+    <h2>What the tool actually does</h2>
+    <p>
+        You pick a shape — slab (rectangle), column (cylinder), or footing (rectangular base).
+        You enter dimensions in feet and inches, or just feet with decimals. The calculator converts
+        everything to cubic yards and shows the exact number. No rounding baked in, no “add 10% for waste”
+        (that’s your call). You get a clean decimal you can tell the dispatcher.
+    </p>
+    <p>
+        I also added a tiny visual summary so you know you entered the right numbers — helps catch fat-finger
+        mistakes before you order. Nothing fancy, just a sanity check.
+    </p>
+
+    <p>
+        <a href="/tools/concrete-volume-calculator/" class="tool-cta">Try the Concrete Volume Calculator →</a>
+    </p>
+
+    <h2>Honest closing</h2>
+    <p>
+        This isn’t going to change your life. It’s a focused calculator that does one thing without fluff.
+        If you’re a DIYer, a small contractor, or just someone who’s tired of guessing and then wasting
+        money on extra material, it might save you a headache. I use it myself. That’s really the whole pitch.
+    </p>
+
+    <hr>
+
+    <footer>
+        ToolsForUse · built by one person for people who want straightforward tools
+    </footer>
+
+</body>
+</html>
