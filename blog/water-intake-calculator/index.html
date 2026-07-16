@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Building a Water Intake Calculator – ToolsForUse Blog</title>
+    <meta name="description" content="Why I built a simple water calculator that actually accounts for your weight and activity – no ads, no pseudoscience, just the numbers.">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif; 
+            background: #fafafa; 
+            color: #1a1a1a; 
+            line-height: 1.7; 
+            padding: 1.5rem;
+        }
+        .container { 
+            max-width: 720px; 
+            margin: 0 auto; 
+            background: #fff; 
+            border-radius: 12px; 
+            padding: 2rem 2.5rem; 
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+        }
+        header { 
+            border-bottom: 1px solid #e8e8e8; 
+            padding-bottom: 1rem; 
+            margin-bottom: 2rem; 
+            display: flex; 
+            align-items: baseline; 
+            gap: 0.75rem;
+        }
+        header a { 
+            text-decoration: none; 
+            color: #555; 
+            font-size: 0.9rem; 
+            font-weight: 500; 
+            letter-spacing: 0.3px;
+        }
+        header a:hover { color: #000; }
+        header span { color: #aaa; font-size: 0.8rem; }
+        h1 { 
+            font-size: 1.8rem; 
+            font-weight: 700; 
+            letter-spacing: -0.3px; 
+            margin-bottom: 1rem; 
+            line-height: 1.3;
+        }
+        h2 { 
+            font-size: 1.2rem; 
+            font-weight: 600; 
+            margin-top: 2rem; 
+            margin-bottom: 0.75rem; 
+            color: #222;
+        }
+        p { 
+            margin-bottom: 1.2rem; 
+            color: #333; 
+            font-size: 1.05rem;
+        }
+        .callout { 
+            background: #f0f7ff; 
+            border-left: 4px solid #2563eb; 
+            padding: 1rem 1.25rem; 
+            border-radius: 6px; 
+            margin: 1.5rem 0;
+        }
+        .callout p { margin: 0; font-size: 1rem; color: #1e3a5f; }
+        .cta-link { 
+            display: inline-block; 
+            background: #1a1a1a; 
+            color: white; 
+            text-decoration: none; 
+            padding: 0.7rem 1.6rem; 
+            border-radius: 8px; 
+            font-weight: 500; 
+            font-size: 1rem; 
+            margin: 1rem 0 0.5rem; 
+            transition: background 0.2s;
+        }
+        .cta-link:hover { background: #333; }
+        .footer-note { 
+            margin-top: 2.5rem; 
+            padding-top: 1.5rem; 
+            border-top: 1px solid #eee; 
+            font-size: 0.9rem; 
+            color: #777;
+        }
+        @media (max-width: 600px) {
+            .container { padding: 1.5rem; }
+            h1 { font-size: 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <a href="/">ToolsForUse</a>
+            <span>/</span>
+            <a href="#">Blog</a>
+        </header>
+
+        <h1>Building a Water Intake Calculator – Because I couldn’t find a straight answer</h1>
+
+        <p><strong>Posted by</strong> the ToolsForUse team · April 2025</p>
+
+        <p>A few months ago, I was in the middle of a sluggish afternoon, feeling foggy and tired. I’d had coffee, eaten lunch, but something was off. A friend mentioned, “You’re probably just dehydrated.” I realized I didn’t actually know how much water I should be drinking. I’d heard “8 glasses a day” my whole life, but I’m 185 lbs, I run three times a week — that generic rule never really fit.</p>
+
+        <p>So I did what anyone would do: I Googled “how much water should I drink.” And I got a pile of conflicting advice. Some sites said half your body weight in ounces. Others used a complicated formula involving your age, sweat rate, and the humidity of your zip code. A few gave me a number, but it felt pulled from thin air. I just wanted something simple: tell me my weight, tell me how active I am, and give me a solid baseline. No ads, no newsletter pop-up, no “download our app to track every sip.”</p>
+
+        <h2>Why most water calculators miss the mark</h2>
+
+        <p>There are plenty of water calculators out there, but most have one of two problems: they either ignore activity level entirely (so a desk worker and a marathon runner get the same number), or they bury the result inside a flashy wellness app that wants your email. The ones that are straightforward often use outdated guidelines or just guess. I don’t need precision to the milliliter — I just need a realistic starting point that adjusts for whether I’m sedentary or doing a hard workout.</p>
+
+        <p>This tool isn’t trying to be a medical device. It’s not going to track your drinking habits or send you reminders. It’s just a calculator that takes your weight (in pounds or kilos), asks how active you are on a normal day, and spits out a target range — low end for light activity, high end for intense exercise. It’s based on the widely used formula from the Institute of Medicine, adapted for common sense. No frills, no fluff.</p>
+
+        <h2>What the tool actually does</h2>
+
+        <p>You open the page, enter your weight, pick a rough activity level (sedentary, moderately active, or very active), and click calculate. The result shows a recommended daily water intake in ounces and liters, with a short explanation. It also accounts for the fact that you get some water from food — it’s not one of those calculators that tells you to drink a gallon if you’re already eating hydrating foods. It’s honest about the margin: aim for this number, adjust based on thirst and pee color. That’s it.</p>
+
+        <p>I use it myself a few times a week, especially after runs, just to remind me to drink enough before I feel the headache. I’ve found that having a real target (not “8 glasses”) actually changes my behavior — I’m less likely to reach for soda because I know I need to hit the water number first.</p>
+
+        <div class="callout">
+            <p><strong>Try it here:</strong> <a href="/tools/water-intake-calculator/" style="color:#2563eb; text-decoration:underline;">Water Intake Calculator</a> — enter your weight and activity, get a number. No account, no ads, no tracking. Just a tool.</p>
+        </div>
+
+        <p style="margin-top: 2rem;">If you’re like me and you’ve been vaguely wondering whether you’re drinking enough, give it a shot. It takes 10 seconds. Worst case, you find out you’re already doing fine. Best case, you realize you’ve been running on fumes and a bit more water might actually help. That’s the whole idea behind ToolsForUse: make the thing that solves the small annoyance, and don’t overthink it.</p>
+
+        <h2>What I’d change (and what I won’t)</h2>
+
+        <p>I thought about adding more inputs — like climate, or whether you’re pregnant or breastfeeding. Those are legitimate factors, but they make the tool less approachable. For now, I kept it to weight and activity because that covers 90% of what most people need. If you have a specific condition or extreme environment, this is just a starting point — talk to your doctor. The tool says that clearly in the output. I don’t want anyone treating this as medical advice.</p>
+
+        <p>Maybe later I’ll add a simple toggle for imperial/metric, or a small note about hydration and exercise duration. But the core is done and it works. I’m happy with that.</p>
+
+        <p class="footer-note">
+            <a href="/tools/water-intake-calculator/" style="color:#2563eb; text-decoration:underline;">→ Go to the Water Intake Calculator</a><br>
+            <span style="display: block; margin-top: 0.5rem; color: #999;">Built with time, not hype. No data collection, no newsletters, just one useful page.</span>
+        </p>
+    </div>
+</body>
+</html>
