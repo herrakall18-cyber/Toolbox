@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Water Intake Calculator – How Much Water Should I Drink? Daily Hydration Calculator | ToolsForUse</title>
+    <meta name="description" content="Use our free water intake calculator to find out how much water you should drink per day based on your weight and activity level. Stay properly hydrated with your daily water requirement.">
+    <!-- AFFILIATE_SLOT -->
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; background: #f1f8fe; color: #1c2e3f; padding: 1rem; line-height: 1.6; }
+        .tool-wrapper { max-width: 780px; margin: 2rem auto; background: white; border-radius: 28px; box-shadow: 0 12px 30px rgba(0,0,0,0.08); padding: 2rem 1.8rem; }
+        h1 { font-size: 2.1rem; font-weight: 600; color: #0b2b44; margin-bottom: 0.3rem; letter-spacing: -0.01em; }
+        .subhead { font-size: 1.1rem; color: #3a5f7a; margin-bottom: 1.5rem; border-left: 4px solid #3898ec; padding-left: 0.9rem; }
+        .top-links { display: flex; flex-wrap: wrap; gap: 1.2rem; font-size: 0.95rem; margin-bottom: 1.8rem; background: #e9f2fa; padding: 0.6rem 1rem; border-radius: 40px; }
+        .top-links a { color: #0b4980; text-decoration: none; font-weight: 500; }
+        .top-links a:hover { text-decoration: underline; }
+        .calculator-box { background: #f9fcff; border: 1px solid #dce7f2; border-radius: 24px; padding: 1.8rem 1.5rem; margin: 1.8rem 0; }
+        .input-row { display: flex; flex-direction: column; gap: 0.4rem; margin-bottom: 1.5rem; }
+        label { font-weight: 600; font-size: 0.95rem; color: #1f3c54; }
+        input, select { padding: 0.7rem 1rem; border: 1px solid #bcd0e2; border-radius: 40px; font-size: 1rem; background: white; transition: 0.2s; width: 100%; }
+        input:focus, select:focus { outline: 2px solid #3898ec; border-color: transparent; background: #ffffff; }
+        .unit-toggle { display: flex; gap: 0.5rem; margin-bottom: 1rem; flex-wrap: wrap; }
+        .unit-toggle button { background: #e4eef9; border: 1px solid #c7d9ec; border-radius: 40px; padding: 0.45rem 1.2rem; font-size: 0.9rem; cursor: pointer; font-weight: 500; color: #1c3b57; transition: 0.1s; }
+        .unit-toggle button.active { background: #1c6fb0; color: white; border-color: #1c6fb0; }
+        .activity-grid { display: flex; flex-wrap: wrap; gap: 0.7rem; margin: 0.4rem 0 0.2rem; }
+        .activity-grid label { display: flex; align-items: center; gap: 0.45rem; font-weight: 400; background: #eef5fc; padding: 0.35rem 1rem 0.35rem 0.8rem; border-radius: 40px; border: 1px solid #d3e2f2; cursor: pointer; }
+        .activity-grid input[type="radio"] { appearance: auto; width: 1rem; height: 1rem; margin: 0; accent-color: #1c6fb0; cursor: pointer; }
+        .result-area { background: #dcecf9; padding: 1.4rem 1.5rem; border-radius: 32px; margin-top: 1.8rem; text-align: center; border: 1px solid #b5d2ed; }
+        .result-number { font-size: 3rem; font-weight: 700; color: #0b3e63; line-height: 1.2; }
+        .result-unit { font-size: 1.2rem; color: #1f5680; }
+        .result-note { margin-top: 0.3rem; color: #1f4a6b; font-size: 0.95rem; }
+        .explain-box { background: #f5faff; border-radius: 24px; padding: 1.5rem 1.7rem; margin: 2rem 0; border: 1px solid #dce8f3; }
+        .explain-box h2 { font-size: 1.5rem; font-weight: 600; color: #0b2b44; margin-bottom: 0.8rem; }
+        .explain-box p { margin-bottom: 1rem; color: #1e3f59; }
+        .footnote { font-size: 0.85rem; color: #3f627e; margin-top: 1.5rem; border-top: 1px solid #d3e0ed; padding-top: 1.2rem; text-align: center; }
+        @media (max-width: 600px) {
+            .tool-wrapper { padding: 1.5rem 1rem; margin: 0.5rem; }
+            h1 { font-size: 1.8rem; }
+            .result-number { font-size: 2.4rem; }
+            .input-row { margin-bottom: 1rem; }
+        }
+        .small-meta { font-size: 0.9rem; color: #386282; margin-top: 0.2rem; }
+    </style>
+</head>
+<body>
+<div class="tool-wrapper">
+    <div class="top-links">
+        <a href="/">← ToolsForUse</a>
+        <a href="/blog/water-intake-calculator/">Read the story behind this tool</a>
+    </div>
+    <h1>Water Intake Calculator</h1>
+    <div class="subhead">Find out how much water you should drink per day — based on your weight &amp; activity level</div>
+
+    <div class="calculator-box">
+        <div class="unit-toggle" role="group" aria-label="Unit system toggle">
+            <button id="unitMetric" class="active" data-unit="metric">Metric (kg)</button>
+            <button id="unitImperial" data-unit="imperial">Imperial (lb)</button>
+        </div>
+
+        <div class="input-row">
+            <label for="weightInput">Your weight</label>
+            <div style="display:flex; align-items:center; gap:0.5rem; flex-wrap:wrap;">
+                <input type="number" id="weightInput" value="70" min="20" max="300" step="0.1" aria-describedby="weightUnitLabel" style="flex:1; min-width:140px;">
+                <span id="weightUnitLabel" style="font-weight:500; background:#e9f2fa; padding:0.2rem 0.9rem; border-radius:40px;">kg</span>
+            </div>
+        </div>
+
+        <div class="input-row">
+            <label>Activity level</label>
+            <div class="activity-grid" id="activityGroup" role="radiogroup" aria-label="Activity level selection">
+                <label><input type="radio" name="activity" value="1.0" checked> Sedentary</label>
+                <label><input type="radio" name="activity" value="1.2"> Light (1–3 days/wk)</label>
+                <label><input type="radio" name="activity" value="1.4"> Moderate (3–5 days/wk)</label>
+                <label><input type="radio" name="activity" value="1.6"> Active (6–7 days/wk)</label>
+                <label><input type="radio" name="activity" value="1.8"> Very active (2x/day)</label>
+            </div>
+        </div>
+
+        <div class="result-area" aria-live="polite">
+            <div class="result-number" id="resultDisplay">2.4</div>
+            <div class="result-unit" id="resultUnit">litres per day</div>
+            <div class="result-note" id="resultNote">~ 10 cups (8 oz each)</div>
+        </div>
+    </div>
+
+    <div class="explain-box">
+        <h2>How much water should I drink? Why it matters</h2>
+        <p>Your daily water requirement isn’t one-size-fits-all. This hydration calculator uses your weight and activity level to estimate the optimal amount of water you need to stay hydrated, support metabolism, and maintain energy. Even mild dehydration can cause fatigue, headaches, and poor concentration — so knowing your number is essential for everyday health.</p>
+        <p>Most guidelines suggest a baseline of 30–40 ml per kg of body weight, then add extra fluid for physical activity. Our water intake calculator does exactly that: it adjusts for how often you exercise, because active bodies lose more water through sweat and need replenishment. Whether you're an athlete or mostly sedentary, this tool helps you keep your hydration on track.</p>
+        <p>Use this daily water requirement calculator as a simple starting point. Individual needs may vary due to climate, pregnancy, or illness — listen to your body. And remember, water from fruits, vegetables, and other beverages also counts toward your total. Stay hydrated, stay sharp.</p>
+    </div>
+
+    <div class="footnote">
+        <span>💧 Water intake calculator — your daily hydration guide.</span>
+    </div>
+</div>
+
+<script>
+    (function() {
+        const weightInput = document.getElementById('weightInput');
+        const resultDisplay = document.getElementById('resultDisplay');
+        const resultUnit = document.getElementById('resultUnit');
+        const resultNote = document.getElementById('resultNote');
+        const unitMetricBtn = document.getElementById('unitMetric');
+        const unitImperialBtn = document.getElementById('unitImperial');
+        const weightUnitLabel = document.getElementById('weightUnitLabel');
+        const activityRadios = document.querySelectorAll('input[name="activity"]');
+
+        let unit = 'metric'; // metric (kg) or imperial (lb)
+
+        function getActivityFactor() {
+            for (let r of activityRadios) {
+                if (r.checked) return parseFloat(r.value);
+            }
+            return 1.0;
+        }
+
+        function calculate() {
+            let rawWeight = parseFloat(weightInput.value);
+            if (isNaN(rawWeight) || rawWeight <= 0) {
+                resultDisplay.textContent = '– –';
+                resultUnit.textContent = 'enter valid weight';
+                resultNote.textContent = '';
+                return;
+            }
+            // clamp
+            if (rawWeight < 10) rawWeight = 10;
+            if (rawWeight > 400) rawWeight = 400;
+
+            let weightKg;
+            if (unit === 'metric') {
+                weightKg = rawWeight;
+            } else {
+                // imperial lbs -> kg
+                weightKg = rawWeight * 0.453592;
+            }
+
+            const activity = getActivityFactor();
+            // base: 33 ml per kg (mid-range), + activity multiplier, rounded to 1 decimal
+            let baseMl = weightKg * 33;
+            let totalMl = baseMl * activity;
+            // minimum reasonable ~500ml
+            if (totalMl < 500) totalMl = 500;
+            
+            let litres = totalMl / 1000;
+            litres = Math.round(litres * 10) / 10; // one decimal
+
+            // display
+            resultDisplay.textContent = litres.toFixed(1);
+            resultUnit.textContent = unit === 'metric' ? 'litres per day' : 'litres per day';
+            
+            // cups note: 1 cup = 240 ml (≈8 oz)
+            let totalCups = Math.round((litres * 1000) / 240);
+            if (totalCups < 1) totalCups = 1;
+            resultNote.textContent = `~ ${totalCups} cups (8 oz each)`;
+        }
+
+        // unit toggle
+        function setUnit(newUnit) {
+            if (newUnit === unit) return;
+            const oldWeight = parseFloat(weightInput.value);
+            unit = newUnit;
+            if (unit === 'metric') {
+                unitMetricBtn.classList.add('active');
+                unitImperialBtn.classList.remove('active');
+                weightUnitLabel.textContent = 'kg';
+                // if valid, convert from lb to kg
+                if (!isNaN(oldWeight) && oldWeight > 0) {
+                    let kgValue = oldWeight * 0.453592;
+                    kgValue = Math.round(kgValue * 10) / 10;
+                    if (kgValue < 10) kgValue = 10;
+                    if (kgValue > 300) kgValue = 300;
+                    weightInput.value = kgValue;
+                } else {
+                    weightInput.value = 70;
+                }
+            } else {
+                unitMetricBtn.classList.remove('active');
+                unitImperialBtn.classList.add('active');
+                weightUnitLabel.textContent = 'lb';
+                if (!isNaN(oldWeight) && oldWeight > 0) {
+                    let lbValue = oldWeight / 0.453592;
+                    lbValue = Math.round(lbValue * 1) / 1;
+                    if (lbValue < 20) lbValue = 20;
+                    if (lbValue > 700) lbValue = 700;
+                    weightInput.value = lbValue;
+                } else {
+                    weightInput.value = 154;
+                }
+            }
+            calculate();
+        }
+
+        unitMetricBtn.addEventListener('click', function() { setUnit('metric'); });
+        unitImperialBtn.addEventListener('click', function() { setUnit('imperial'); });
+
+        // events
+        weightInput.addEventListener('input', calculate);
+        for (let r of activityRadios) {
+            r.addEventListener('change', calculate);
+        }
+
+        // initial calculation
+        calculate();
+    })();
+</script>
+<!-- AFFILIATE_SLOT -->
+</body>
+</html>
