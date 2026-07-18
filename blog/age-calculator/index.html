@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Announcing the Age Calculator – ToolsForUse</title>
+    <meta name="description" content="A straightforward age calculator that tells you your exact age in years, months, and days. Built because I’m tired of guessing.">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: #fafafa;
+            color: #222;
+            line-height: 1.7;
+            padding: 1.5rem;
+        }
+        .container {
+            max-width: 680px;
+            margin: 0 auto;
+            background: white;
+            padding: 2.5rem 2rem;
+            border-radius: 12px;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+        }
+        a {
+            color: #1a6dd4;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .site-header {
+            margin-bottom: 2.5rem;
+            font-size: 0.95rem;
+            border-bottom: 1px solid #e8e8e8;
+            padding-bottom: 0.75rem;
+        }
+        .site-header a {
+            font-weight: 500;
+            color: #333;
+        }
+        h1 {
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+            letter-spacing: -0.01em;
+        }
+        h2 {
+            font-size: 1.2rem;
+            margin-top: 2rem;
+            margin-bottom: 0.6rem;
+            font-weight: 600;
+        }
+        p {
+            margin-bottom: 1.2rem;
+        }
+        ul {
+            margin: 1rem 0 1.5rem 1.5rem;
+        }
+        li {
+            margin-bottom: 0.5rem;
+        }
+        .tool-link {
+            display: inline-block;
+            background: #1a6dd4;
+            color: white;
+            padding: 0.7rem 1.8rem;
+            border-radius: 8px;
+            font-weight: 600;
+            margin: 1rem 0 0.5rem;
+            transition: background 0.15s ease;
+        }
+        .tool-link:hover {
+            background: #0e5ab8;
+            text-decoration: none;
+        }
+        hr {
+            border: none;
+            border-top: 1px solid #e0e0e0;
+            margin: 2rem 0 1rem;
+        }
+        .footer-note {
+            font-size: 0.85rem;
+            color: #666;
+            margin-top: 2rem;
+        }
+        @media (max-width: 500px) {
+            .container {
+                padding: 1.5rem 1.2rem;
+            }
+            h1 {
+                font-size: 1.3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="site-header">
+            <a href="/">← ToolsForUse</a>
+        </div>
+
+        <h1>Announcing the Age Calculator: Because I keep doing this math wrong in my head</h1>
+
+        <p>
+            A few weeks ago I was filling out a form that asked for my exact age in years, months, and days. Not just “how many years old are you,” but <em>2 years, 4 months, 11 days</em> – the works. I sat there, staring at the calendar, counting on my fingers, second-guessing if February had 28 or 29 days that year. I ended up just guessing and moving on.
+        </p>
+
+        <p>
+            Later that week, a friend asked me how old their toddler was in months (parents do that, apparently). I tried to calculate it and realized I still wasn’t sure. And I thought: <em>this is such a tiny, boring problem, but I keep bumping into it.</em>
+        </p>
+
+        <h2>Why not just use a regular calculator or a website?</h2>
+        <p>
+            Honestly, there are a million age calculators out there. But most of them feel like they were built for a marketing funnel: pop-ups, “calculate now and get our newsletter,” or they give you a result in years only, or they do something weird with time zones. I just wanted a plain, honest page where I could pick a date and get the answer – years, months, days – without thinking.
+        </p>
+        <p>
+            Also, a lot of them don’t handle the date math well. I’ve seen results that were off by a day because of how they counted the current date. It’s not a huge deal, but if you’re using it for something official (like verifying eligibility or just being precise), it matters.
+        </p>
+
+        <h2>What this tool does</h2>
+        <p>
+            You put in your birth date (or any date, really). It gives you back the exact difference in years, months, and days. That’s it. No account, no email, no tracking. It works on your phone, it works on a computer, it works if you’re using a weird browser from 2018. I also made sure the date math accounts for leap years and month lengths correctly – because January 31 to February 28 is not the same as January 31 to March 1.
+        </p>
+        <p>
+            It’s the kind of tool I wish I’d had when I was trying to figure out if I was “2 years and 11 months” or “3 years and 0 months” for that form.
+        </p>
+
+        <a href="/tools/age-calculator/" class="tool-link">Try the Age Calculator →</a>
+
+        <hr />
+
+        <h2>Honest closing</h2>
+        <p>
+            This isn’t going to change your life. It’s just a simple calculation that you probably don’t want to do manually. If you ever need to know exactly how old someone is (or how long it’s been since a particular date), it’s here, and it works. No fanfare.
+        </p>
+        <p class="footer-note">
+            – The ToolsForUse team
+        </p>
+    </div>
+</body>
+</html>
