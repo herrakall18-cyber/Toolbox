@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5">
+    <title>Age Calculator – How Old Am I | Birthday Age Calculator | ToolsForUse</title>
+    <meta name="description" content="Use our free age calculator to find your exact age in years, months, and days. Get precise results with the how old am I tool – fast, private, no sign-up.">
+    
+    <!-- AFFILIATE_SLOT -->
+    
+    <style>
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background: #f6f9fc;
+            color: #1a2634;
+            line-height: 1.6;
+            padding: 1.5rem;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        .wrapper {
+            max-width: 720px;
+            margin: 0 auto;
+            width: 100%;
+            flex: 1;
+        }
+        header.tool-header {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            gap: 0.75rem;
+            border-bottom: 1px solid #dce4ec;
+            padding-bottom: 0.75rem;
+        }
+        .site-home {
+            font-weight: 600;
+            font-size: 1.15rem;
+            color: #1e3a6f;
+            text-decoration: none;
+            letter-spacing: -0.3px;
+        }
+        .site-home:hover {
+            text-decoration: underline;
+        }
+        .blog-link {
+            font-size: 0.95rem;
+            color: #2b5c8a;
+            text-decoration: none;
+            border-bottom: 1px dotted #9bb7d0;
+        }
+        .blog-link:hover {
+            border-bottom: 1px solid #1e4f77;
+        }
+        .card {
+            background: #ffffff;
+            border-radius: 20px;
+            padding: 2rem 1.8rem 2.2rem;
+            box-shadow: 0 10px 25px rgba(0, 20, 40, 0.08);
+            margin-bottom: 2rem;
+            transition: box-shadow 0.2s;
+        }
+        h1 {
+            font-size: 1.9rem;
+            font-weight: 650;
+            letter-spacing: -0.4px;
+            margin-bottom: 0.25rem;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            flex-wrap: wrap;
+        }
+        .subhead {
+            color: #3d5670;
+            margin-bottom: 1.25rem;
+            font-size: 1.05rem;
+        }
+        .input-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem;
+            margin: 1.5rem 0 1.2rem;
+        }
+        label {
+            font-weight: 500;
+            font-size: 1.05rem;
+            color: #1f3246;
+        }
+        input[type="date"] {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            font-size: 1.1rem;
+            border: 1px solid #bcc9d9;
+            border-radius: 12px;
+            background: #f9fbfd;
+            transition: border 0.15s;
+            color: #1a2634;
+            appearance: none;
+            -webkit-appearance: none;
+        }
+        input[type="date"]:focus {
+            outline: 2px solid #2a6c9e;
+            border-color: transparent;
+            background: white;
+        }
+        .button-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.9rem;
+            margin: 0.5rem 0 0.2rem;
+        }
+        .btn-primary {
+            background: #1e4f77;
+            color: white;
+            border: none;
+            padding: 0.75rem 2.2rem;
+            border-radius: 60px;
+            font-weight: 550;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: background 0.15s, transform 0.1s;
+            box-shadow: 0 4px 8px rgba(28, 70, 110, 0.15);
+            flex: 1 1 auto;
+            min-width: 140px;
+        }
+        .btn-primary:hover {
+            background: #143b5b;
+        }
+        .btn-primary:active {
+            transform: scale(0.97);
+        }
+        .btn-secondary {
+            background: transparent;
+            border: 1px solid #8ca8c0;
+            color: #1f3f5c;
+            padding: 0.75rem 1.8rem;
+            border-radius: 60px;
+            font-weight: 500;
+            font-size: 1.05rem;
+            cursor: pointer;
+            transition: background 0.15s, border 0.15s;
+            flex: 0 1 auto;
+        }
+        .btn-secondary:hover {
+            background: #e5edf5;
+            border-color: #6b8aa8;
+        }
+        .result-area {
+            margin: 1.8rem 0 0.5rem;
+            background: #eef4fa;
+            border-radius: 16px;
+            padding: 1.2rem 1.5rem;
+            text-align: center;
+            min-height: 4.5rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 540;
+            color: #0a2942;
+            border: 1px solid #d4e0ec;
+            word-break: break-word;
+        }
+        .result-area span {
+            font-weight: 400;
+            font-size: 1rem;
+            color: #2b4b6e;
+            display: block;
+            margin-top: 0.25rem;
+        }
+        .explanatory {
+            background: #ffffff;
+            border-radius: 20px;
+            padding: 1.8rem 1.8rem 2rem;
+            box-shadow: 0 6px 16px rgba(0, 20, 30, 0.05);
+            margin-bottom: 2.5rem;
+        }
+        .explanatory h2 {
+            font-size: 1.6rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #0b2b44;
+            letter-spacing: -0.3px;
+        }
+        .explanatory p {
+            margin-bottom: 1.1rem;
+            color: #1d334c;
+        }
+        .explanatory p:last-of-type {
+            margin-bottom: 0;
+        }
+        .affiliate-note {
+            margin: 2.2rem 0 1.2rem;
+            text-align: center;
+            padding: 1.2rem 1rem;
+            border: 1px dashed #b8ccdf;
+            border-radius: 16px;
+            background: #fafcff;
+            font-size: 0.95rem;
+            color: #2b5b7a;
+        }
+        .footer-tool {
+            margin-top: 2rem;
+            text-align: center;
+            font-size: 0.9rem;
+            color: #617b95;
+            border-top: 1px solid #dce4ec;
+            padding-top: 1.2rem;
+        }
+        .footer-tool a {
+            color: #1e4f77;
+            text-decoration: none;
+        }
+        @media (max-width: 480px) {
+            body { padding: 0.8rem; }
+            .card { padding: 1.5rem 1rem 1.8rem; }
+            h1 { font-size: 1.6rem; }
+            .result-area { font-size: 1.25rem; }
+            .btn-primary { min-width: 100%; }
+            .button-group { flex-direction: column; }
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <header class="tool-header">
+            <a href="/" class="site-home" aria-label="ToolsForUse homepage">⚙️ ToolsForUse</a>
+            <a href="/blog/age-calculator/" class="blog-link" aria-label="Read the story behind this age calculator tool">📖 Read the story behind this tool</a>
+        </header>
+
+        <main>
+            <section class="card" aria-labelledby="age-calc-title">
+                <h1 id="age-calc-title">📅 Age Calculator</h1>
+                <div class="subhead">Find out exactly how old you are in years, months, and days.</div>
+
+                <div class="input-group">
+                    <label for="birthdate">Enter your birth date:</label>
+                    <input type="date" id="birthdate" value="1990-06-15" aria-required="true">
+                </div>
+
+                <div class="button-group">
+                    <button class="btn-primary" id="calculateBtn" type="button">▶ Calculate my age</button>
+                    <button class="btn-secondary" id="resetBtn" type="button">Reset</button>
+                </div>
+
+                <div class="result-area" id="resultDisplay" aria-live="polite" role="status">
+                    0 years, 0 months, 0 days
+                    <span>Your exact age will appear here</span>
+                </div>
+
+                <!-- placeholder for possible future affiliate insert -->
+                <!-- AFFILIATE_SLOT -->
+                <div class="affiliate-note">
+                    ⭐ Useful birthday planner?&nbsp; <em>(affiliate slot – <!-- AFFILIATE_SLOT -->)</em>
+                </div>
+            </section>
+
+            <section class="explanatory" aria-labelledby="explain-heading">
+                <h2 id="explain-heading">Why you need an accurate age calculator</h2>
+                <p>
+                    Whether you're filling out a form, planning a milestone celebration, or just satisfying 
+                    your curiosity — a reliable <strong>age calculator</strong> gives you an instant, precise answer. 
+                    Unlike simple year subtractions, our tool accounts for leap years, varying month lengths, 
+                    and the exact day count so you always know <strong>how old am I</strong> down to the day. 
+                    It’s perfect for birthday countdowns, age verification, or even checking eligibility for 
+                    age‑based programs.
+                </p>
+                <p>
+                    Many online <strong>birthday age calculators</strong> either round up or skip the day difference, 
+                    but our JavaScript‑based engine computes the exact calendar gap from your birth date to today. 
+                    Just pick your date of birth, click calculate, and you’ll see years, months, and days in a 
+                    clear, easy‑to‑read format. No data leaves your device — your privacy is fully protected.
+                </p>
+                <p>
+                    Use this tool anytime you need to double‑check your age for travel, sports, or just for fun. 
+                    Because ages change every day, our calculator always uses the current date (your browser’s 
+                    local time) to give you the most up‑to‑date result. Bookmark it for quick access, and 
+                    share it with friends who always wonder “exactly how old am I?”
+                </p>
+            </section>
+        </main>
+
+        <footer class="footer-tool">
+            <a href="/">← Back to ToolsForUse</a> &nbsp;·&nbsp; <a href="/blog/age-calculator/">Story behind this age calculator</a>
+        </footer>
+    </div>
+
+    <script>
+        (function() {
+            const birthInput = document.getElementById('birthdate');
+            const resultDisplay = document.getElementById('resultDisplay');
+            const calculateBtn = document.getElementById('calculateBtn');
+            const resetBtn = document.getElementById('resetBtn');
+
+            // helper: compute exact age in years, months, days
+            function computeAge(birthDate) {
+                const today = new Date();
+                // Use local date only (no timezone shift issues)
+                const bYear = birthDate.getFullYear();
+                const bMonth = birthDate.getMonth(); // 0-based
+                const bDay = birthDate.getDate();
+
+                let tYear = today.getFullYear();
+                let tMonth = today.getMonth();
+                let tDay = today.getDate();
+
+                // initial difference
+                let years = tYear - bYear;
+                let months = tMonth - bMonth;
+                let days = tDay - bDay;
+
+                // adjust if days negative
+                if (days < 0) {
+                    // get days in previous month (tMonth-1)
+                    const prevMonthDate = new Date(tYear, tMonth, 0); // day 0 = last day of previous month
+                    const daysInPrevMonth = prevMonthDate.getDate();
+                    days = daysInPrevMonth + days;  // days negative, so add
+                    months -= 1;
+                }
+
+                // adjust if months negative
+                if (months < 0) {
+                    months += 12;
+                    years -= 1;
+                }
+
+                // final sanity: if years negative (birthdate in future)
+                if (years < 0) {
+                    return { years: 0, months: 0, days: 0, future: true };
+                }
+
+                return { years, months, days, future: false };
+            }
+
+            function updateResult() {
+                const dateStr = birthInput.value;
+                if (!dateStr) {
+                    resultDisplay.innerHTML = 'Please select a date<span>Enter your birth date above</span>';
+                    return;
+                }
+
+                // Parse date parts (YYYY-MM-DD) as local time
+                const parts = dateStr.split('-');
+                if (parts.length !== 3) {
+                    resultDisplay.innerHTML = 'Invalid format<span>Choose a valid date</span>';
+                    return;
+                }
+                const year = parseInt(parts[0], 10);
+                const month = parseInt(parts[1], 10) - 1; // 0-based
+                const day = parseInt(parts[2], 10);
+
+                const birthDate = new Date(year, month, day);
+                // Validate date (e.g., no Feb 30)
+                if (birthDate.getFullYear() !== year || birthDate.getMonth() !== month || birthDate.getDate() !== day) {
+                    resultDisplay.innerHTML = 'Invalid date<span>Please enter a real birth date</span>';
+                    return;
+                }
+
+                // Disallow future dates (optional, but makes sense)
+                const now = new Date();
+                if (birthDate > now) {
+                    resultDisplay.innerHTML = 'Future date?<span>Pick a date in the past</span>';
+                    return;
+                }
+
+                const age = computeAge(birthDate);
+                if (age.future) {
+                    resultDisplay.innerHTML = '0 years, 0 months, 0 days<span>That date is in the future</span>';
+                    return;
+                }
+
+                const y = age.years;
+                const m = age.months;
+                const d = age.days;
+
+                let output = `${y} year${y !== 1 ? 's' : ''}, ${m} month${m !== 1 ? 's' : ''}, ${d} day${d !== 1 ? 's' : ''}`;
+                let sub = `You are exactly ${y} year${y !== 1 ? 's' : ''}, ${m} month${m !== 1 ? 's' : ''}, and ${d} day${d !== 1 ? 's' : ''} old.`;
+                if (y === 0 && m === 0 && d === 0) {
+                    sub = 'Just born! 🎉';
+                }
+                resultDisplay.innerHTML = `${output}<span>${sub}</span>`;
+            }
+
+            function resetToDefault() {
+                // set to a reasonable default (shows age ~34 on 2025)
+                birthInput.value = '1990-06-15';
+                updateResult();
+            }
+
+            // event listeners
+            calculateBtn.addEventListener('click', updateResult);
+            resetBtn.addEventListener('click', resetToDefault);
+
+            // optional: update on Enter key (on input)
+            birthInput.addEventListener('keydown', function(e) {
+                if (e.key === 'Enter') {
+                    e.preventDefault();
+                    calculateBtn.click();
+                }
+            });
+
+            // initial calculation on load
+            window.addEventListener('load', function() {
+                // set default if empty
+                if (!birthInput.value) {
+                    resetToDefault();
+                } else {
+                    updateResult();
+                }
+            });
+        })();
+    </script>
+</body>
+</html>
