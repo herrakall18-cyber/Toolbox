@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5, user-scalable=yes">
+  <meta name="description" content="Use our free car loan calculator to calculate monthly car payments, total interest, and full amortization schedule. Best auto loan payment calculator for smart car buying.">
+  <title>Car Loan Calculator | Auto Loan Payment Calculator – ToolsForUse</title>
+  <!-- AFFILIATE_SLOT -->
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #f4f7fc;
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      color: #1e2a3a;
+      line-height: 1.5;
+      padding: 1.5rem 1rem;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .wrapper {
+      max-width: 860px;
+      margin: 0 auto;
+      width: 100%;
+      background: white;
+      border-radius: 28px;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.05);
+      padding: 2rem 1.8rem;
+      transition: 0.2s;
+    }
+
+    @media (max-width: 480px) {
+      body { padding: 0.8rem; }
+      .wrapper { padding: 1.5rem 1rem; }
+    }
+
+    /* header & navigation */
+    .tool-header {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      justify-content: space-between;
+      margin-bottom: 1.8rem;
+      border-bottom: 1px solid #e9edf4;
+      padding-bottom: 0.75rem;
+    }
+
+    .tool-header h1 {
+      font-size: 1.8rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      background: linear-gradient(145deg, #0b2a4a, #1e4b6b);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .header-links {
+      display: flex;
+      gap: 0.8rem 1.2rem;
+      flex-wrap: wrap;
+      font-size: 0.95rem;
+    }
+
+    .header-links a {
+      color: #1e4b6b;
+      text-decoration: none;
+      font-weight: 500;
+      border-bottom: 1px solid transparent;
+      transition: 0.15s;
+    }
+
+    .header-links a:hover {
+      border-bottom-color: #1e4b6b;
+    }
+
+    .header-links span {
+      color: #7a8a9e;
+    }
+
+    /* main calculator grid */
+    .calc-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.8rem 2rem;
+      margin: 1.2rem 0 1rem;
+    }
+
+    @media (max-width: 580px) {
+      .calc-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+      }
+    }
+
+    .input-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.3rem;
+      margin-bottom: 0.6rem;
+    }
+
+    .input-group label {
+      font-weight: 500;
+      font-size: 0.9rem;
+      color: #1e2a3a;
+      letter-spacing: 0.01em;
+    }
+
+    .input-group .input-wrapper {
+      display: flex;
+      align-items: center;
+      background: #f8faff;
+      border: 1px solid #d9e1ee;
+      border-radius: 16px;
+      padding: 0.1rem 1rem 0.1rem 0.8rem;
+      transition: 0.2s;
+    }
+
+    .input-group .input-wrapper:focus-within {
+      border-color: #1e4b6b;
+      box-shadow: 0 0 0 3px rgba(30, 75, 107, 0.1);
+    }
+
+    .input-group .input-wrapper span.currency {
+      font-size: 1rem;
+      font-weight: 500;
+      color: #2c3e50;
+      padding-right: 0.25rem;
+    }
+
+    .input-group input {
+      width: 100%;
+      padding: 0.7rem 0.3rem 0.7rem 0.2rem;
+      border: none;
+      background: transparent;
+      font-size: 1rem;
+      font-weight: 500;
+      color: #0f1f2e;
+      outline: none;
+      font-family: inherit;
+    }
+
+    .input-group input[type="number"]::-webkit-outer-spin-button,
+    .input-group input[type="number"]::-webkit-inner-spin-button {
+      opacity: 0.5;
+    }
+
+    .input-group .hint {
+      font-size: 0.75rem;
+      color: #5e6f81;
+      padding-left: 0.25rem;
+    }
+
+    .row-2col {
+      grid-column: 1 / -1;
+    }
+
+    .calc-actions {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 1rem;
+      margin: 0.5rem 0 0.8rem;
+    }
+
+    .primary-btn {
+      background: #1e4b6b;
+      color: white;
+      border: none;
+      font-weight: 600;
+      font-size: 1rem;
+      padding: 0.75rem 2rem;
+      border-radius: 40px;
+      cursor: pointer;
+      transition: 0.15s;
+      box-shadow: 0 4px 8px rgba(0,20,40,0.08);
+      letter-spacing: 0.01em;
+    }
+
+    .primary-btn:hover {
+      background: #0f3752;
+      transform: scale(1.01);
+    }
+
+    .primary-btn:active {
+      background: #0b2a3f;
+      transform: scale(0.98);
+    }
+
+    .reset-btn {
+      background: transparent;
+      color: #1e4b6b;
+      border: 1px solid #bcc9db;
+      padding: 0.7rem 1.5rem;
+      border-radius: 40px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: 0.15s;
+    }
+
+    .reset-btn:hover {
+      background: #eef3fa;
+      border-color: #1e4b6b;
+    }
+
+    .results-summary {
+      display: flex;
+      flex-wrap: wrap;
+      background: #eef6fd;
+      border-radius: 24px;
+      padding: 1.2rem 1.5rem;
+      margin: 1.6rem 0 1.8rem;
+      justify-content: space-around;
+      gap: 0.8rem;
+    }
+
+    .result-item {
+      text-align: center;
+    }
+
+    .result-item .label {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: #2f4b66;
+      font-weight: 500;
+    }
+
+    .result-item .value {
+      font-size: 1.7rem;
+      font-weight: 700;
+      color: #0b2a4a;
+      margin-top: 0.1rem;
+    }
+
+    .result-item .sub {
+      font-size: 0.75rem;
+      color: #456178;
+    }
+
+    /* amortization table */
+    .amortization-section {
+      margin-top: 2rem;
+    }
+
+    .amortization-section h3 {
+      font-size: 1.15rem;
+      font-weight: 600;
+      margin-bottom: 0.6rem;
+      color: #1a3042;
+    }
+
+    .table-wrapper {
+      max-height: 380px;
+      overflow-y: auto;
+      border: 1px solid #e2e9f2;
+      border-radius: 20px;
+      background: white;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.9rem;
+    }
+
+    th {
+      background: #e4ebf5;
+      color: #0c263b;
+      font-weight: 600;
+      padding: 0.8rem 0.5rem;
+      text-align: right;
+      position: sticky;
+      top: 0;
+      background: #e4ebf5;
+    }
+
+    th:first-child { text-align: left; padding-left: 1rem; }
+    td:first-child { text-align: left; padding-left: 1rem; }
+
+    td {
+      padding: 0.6rem 0.5rem;
+      text-align: right;
+      border-top: 1px solid #e6ecf5;
+    }
+
+    tr:nth-child(even) td {
+      background: #fafcff;
+    }
+
+    .table-wrapper::-webkit-scrollbar {
+      width: 6px;
+      background: #eef3f9;
+      border-radius: 10px;
+    }
+
+    .table-wrapper::-webkit-scrollbar-thumb {
+      background: #b2c6da;
+      border-radius: 10px;
+    }
+
+    /* explanatory content & footer */
+    .explanation {
+      margin: 2.5rem 0 1.8rem;
+      background: #fafdff;
+      padding: 1.2rem 1.5rem;
+      border-radius: 24px;
+      border: 1px solid #e5edf7;
+    }
+
+    .explanation p {
+      margin-bottom: 1rem;
+      color: #1d3143;
+    }
+
+    .explanation p:last-child {
+      margin-bottom: 0;
+    }
+
+    .affiliate-placeholder {
+      margin: 1.5rem 0 2rem;
+      border: 1px dashed #cbd8e9;
+      border-radius: 20px;
+      padding: 1.2rem 1rem;
+      text-align: center;
+      background: #f6faff;
+      color: #456178;
+      font-size: 0.85rem;
+    }
+
+    .footer-note {
+      font-size: 0.7rem;
+      color: #6d7f93;
+      text-align: center;
+      border-top: 1px solid #e6edf6;
+      padding-top: 1.5rem;
+      margin-top: 1rem;
+    }
+
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0,0,0,0);
+      border: 0;
+    }
+  </style>
+</head>
+<body>
+<div class="wrapper">
+  <header class="tool-header">
+    <h1>🚗 Car Loan Calculator</h1>
+    <div class="header-links">
+      <a href="/" aria-label="ToolsForUse Home">← ToolsForUse</a>
+      <span>|</span>
+      <a href="/blog/car-loan-calculator/">Read the story behind this tool</a>
+    </div>
+  </header>
+
+  <section aria-label="Car loan calculator inputs and results">
+    <form id="carLoanForm" novalidate>
+      <div class="calc-grid">
+        <div class="input-group">
+          <label for="loanAmount">Loan amount ($)</label>
+          <div class="input-wrapper">
+            <span class="currency">$</span>
+            <input type="number" id="loanAmount" name="loanAmount" min="500" max="10000000" step="100" value="30000" required>
+          </div>
+          <span class="hint">Car price – down payment</span>
+        </div>
+
+        <div class="input-group">
+          <label for="interestRate">Annual interest rate (%)</label>
+          <div class="input-wrapper">
+            <input type="number" id="interestRate" name="interestRate" min="0.1" max="30" step="0.01" value="6.5" required>
+            <span style="padding-left:0.2rem;">%</span>
+          </div>
+          <span class="hint">typical range 3–10%</span>
+        </div>
+
+        <div class="input-group">
+          <label for="loanTerm">Loan term (months)</label>
+          <div class="input-wrapper">
+            <input type="number" id="loanTerm" name="loanTerm" min="6" max="96" step="1" value="60" required>
+            <span style="padding-left:0.2rem;">mo</span>
+          </div>
+          <span class="hint">12 to 84 months</span>
+        </div>
+
+        <div class="input-group">
+          <label for="downPayment">Down payment (optional)</label>
+          <div class="input-wrapper">
+            <span class="currency">$</span>
+            <input type="number" id="downPayment" name="downPayment" min="0" max="500000" step="100" value="4000">
+          </div>
+          <span class="hint">$0 if none</span>
+        </div>
+      </div>
+
+      <div class="calc-actions">
+        <button type="button" class="primary-btn" id="calculateBtn">📊 Calculate payment</button>
+        <button type="reset" class="reset-btn" id="resetBtn">Reset defaults</button>
+      </div>
+    </form>
+
+    <!-- Summary results -->
+    <div class="results-summary" id="resultsSummary" role="region" aria-live="polite">
+      <div class="result-item">
+        <div class="label">Monthly Payment</div>
+        <div class="value" id="monthlyPaymentDisplay">$ —</div>
+      </div>
+      <div class="result-item">
+        <div class="label">Total Interest</div>
+        <div class="value" id="totalInterestDisplay">$ —</div>
+      </div>
+      <div class="result-item">
+        <div class="label">Total Cost</div>
+        <div class="value" id="totalCostDisplay">$ —</div>
+      </div>
+    </div>
+
+    <!-- Amortization table -->
+    <div class="amortization-section">
+      <h3>📋 Full amortization schedule</h3>
+      <div class="table-wrapper" id="tableWrapper">
+        <table id="amortTable" aria-label="Amortization schedule">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Payment</th>
+              <th>Principal</th>
+              <th>Interest</th>
+              <th>Balance</th>
+            </tr>
+          </thead>
+          <tbody id="amortBody">
+            <tr><td colspan="5" style="text-align:center; padding:1.5rem; color:#697f94;">Click “Calculate payment” to see schedule</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- explanatory content -->
+  <section class="explanation" aria-label="About this car loan calculator">
+    <h2 style="font-size:1.2rem; margin-bottom:0.5rem; color:#0b2a4a;">How to use this monthly car payment calculator</h2>
+    <p><strong>Estimate your auto loan payment instantly.</strong> Enter the car loan amount (vehicle price minus down payment), your annual interest rate, and the loan term in months. This <strong>car loan calculator</strong> gives you the monthly payment, total interest paid, and the full amortization schedule. It’s perfect for comparing financing offers or planning your budget before you visit the dealership.</p>
+    <p>Our <strong>auto loan payment calculator</strong> uses the standard amortization formula (fully amortizing loan). Each month, part of your payment goes toward interest and the rest reduces the principal. The schedule shows exactly how your loan balance declines over time. Use it to see how extra down payment or a shorter term reduces total interest — a smart move for any car buyer.</p>
+    <p>Whether you’re shopping for a new or used vehicle, this <strong>monthly car payment calculator</strong> helps you make confident decisions. No backend, no page reload — just fast, accurate results. Bookmark it for later.</p>
+  </section>
+
+  <!-- affiliate placeholder (manually insert card) -->
+  <!-- AFFILIATE_SLOT -->
+  <div class="affiliate-placeholder"><span>🔹 Affiliate card slot (<!-- AFFILIATE_SLOT -->) — manually insert relevant offer here.</span></div>
+
+  <div class="footer-note">
+    ToolsForUse — smart calculators, no sign‑up.
+  </div>
+</div>
+
+<script>
+  (function() {
+    const loanInput = document.getElementById('loanAmount');
+    const rateInput = document.getElementById('interestRate');
+    const termInput = document.getElementById('loanTerm');
+    const downInput = document.getElementById('downPayment');
+
+    const monthlyDisplay = document.getElementById('monthlyPaymentDisplay');
+    const totalInterestDisplay = document.getElementById('totalInterestDisplay');
+    const totalCostDisplay = document.getElementById('totalCostDisplay');
+    const amortBody = document.getElementById('amortBody');
+
+    const calculateBtn = document.getElementById('calculateBtn');
+    const resetBtn = document.getElementById('resetBtn');
+
+    function formatUSD(amount) {
+      return '$ ' + amount.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+    }
+
+    function computeLoan() {
+      // read raw values
+      let loanAmt = parseFloat(loanInput.value) || 0;
+      let down = parseFloat(downInput.value) || 0;
+      let annualRate = parseFloat(rateInput.value) || 0;
+      let termMonths = parseInt(termInput.value, 10) || 1;
+
+      // down payment adjustment: loan amount = price - down
+      const price = loanAmt;
+      loanAmt = Math.max(0, price - down);    // actual financed principal
+
+      if (loanAmt <= 0 || annualRate <= 0 || termMonths < 1) {
+        monthlyDisplay.textContent = '$ —';
+        totalInterestDisplay.textContent = '$ —';
+        totalCostDisplay.textContent = '$ —';
+        amortBody.innerHTML = `<tr><td colspan="5" style="text-align:center; padding:1.2rem; color:#697f94;">Please enter valid positive values.</td></tr>`;
+        return;
+      }
+
+      const monthlyRate = (annualRate / 100) / 12;
+      let monthlyPayment = 0;
+      let totalInterest = 0;
+
+      // payment formula
+      if (monthlyRate === 0) {
+        monthlyPayment = loanAmt / termMonths;
+        totalInterest = 0;
+      } else {
+        const factor = Math.pow(1 + monthlyRate, termMonths);
+        monthlyPayment = loanAmt * (monthlyRate * factor) / (factor - 1);
+      }
+
+      // build amortization
+      let balance = loanAmt;
+      let totalInterestCalc = 0;
+      let rows = [];
+
+      for (let i = 1; i <= termMonths; i++) {
+        let interestPart = balance * monthlyRate;
+        let principalPart = monthlyPayment - interestPart;
+        if (i === termMonths) {
+          // adjust for rounding (last payment)
+          principalPart = balance;
+          interestPart = monthlyPayment - principalPart;
+          if (interestPart < 0) interestPart = 0;
+        }
+        if (principalPart < 0) principalPart = 0; // safety
+        balance = Math.max(0, balance - principalPart);
+        totalInterestCalc += interestPart;
+
+        rows.push({
+          month: i,
+          payment: monthlyPayment,
+          principal: principalPart,
+          interest: interestPart,
+          balance: balance
+        });
+
+        if (balance <= 0.001) {
+          // if loan paid early, fill remaining with zeros
+          for (let j = i+1; j <= termMonths; j++) {
+            rows.push({
+              month: j,
+              payment: 0,
+              principal: 0,
+              interest: 0,
+              balance: 0
+            });
+          }
+          break;
+        }
+      }
+
+      // total cost (sum of payments) = (monthlyPayment * termMonths) but we compute from rows
+      let totalPaid = 0;
+      rows.forEach(r => totalPaid += r.payment);
+      // adjust monthly payment display to actual calculated (non-rounded)
+      const monthlyDisplayVal = monthlyPayment;
+      totalInterest = totalInterestCalc;
+      const totalCost = loanAmt + totalInterest;
+
+      // update summary
+      monthlyDisplay.textContent = formatUSD(monthlyDisplayVal);
+      totalInterestDisplay.textContent = formatUSD(totalInterest);
+      totalCostDisplay.textContent = formatUSD(totalCost);
+
+      // build table HTML
+      let html = '';
+      rows.forEach(r => {
+        html += `<tr>
+          <td>${r.month}</td>
+          <td>${formatUSD(r.payment)}</td>
+          <td>${formatUSD(r.principal)}</td>
+          <td>${formatUSD(r.interest)}</td>
+          <td>${formatUSD(r.balance)}</td>
+        </tr>`;
+      });
+      if (rows.length === 0) {
+        html = `<tr><td colspan="5" style="text-align:center; padding:1.2rem; color:#697f94;">No amortization data. Check inputs.</td></tr>`;
+      }
+      amortBody.innerHTML = html;
+    }
+
+    // reset to defaults
+    function resetDefaults() {
+      loanInput.value = '30000';
+      rateInput.value = '6.5';
+      termInput.value = '60';
+      downInput.value = '4000';
+      computeLoan();
+    }
+
+    // event listeners
+    calculateBtn.addEventListener('click', computeLoan);
+    resetBtn.addEventListener('click', resetDefaults);
+
+    // initial load
+    resetDefaults();
+
+    // also recalc on Enter key (within form) via click
+    document.getElementById('carLoanForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      computeLoan();
+    });
+
+  })();
+</script>
+
+<!-- AFFILIATE_SLOT (also kept as comment per spec) -->
+<!-- AFFILIATE_SLOT -->
+</body>
+</html>
