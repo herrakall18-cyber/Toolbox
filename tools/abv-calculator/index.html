@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ABV Calculator – Alcohol by Volume | Homebrew ABV Calculator</title>
+<meta name="description" content="Use this alcohol by volume calculator to estimate the ABV of your homemade beer or wine from original and final gravity. The homebrew ABV calculator gives quick, accurate results.">
+<!-- AFFILIATE_SLOT -->
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+    background: #f8fafb;
+    color: #1e293b;
+    line-height: 1.5;
+    padding: 1.5rem 1rem;
+  }
+  .container {
+    max-width: 740px;
+    margin: 0 auto;
+    background: white;
+    border-radius: 1.5rem;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.06);
+    padding: 2rem 1.8rem;
+  }
+  .site-header {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: baseline;
+    border-bottom: 1px solid #e2e8f0;
+    padding-bottom: 0.75rem;
+    margin-bottom: 1.8rem;
+    gap: 0.5rem;
+  }
+  .site-header a {
+    color: #2563eb;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.95rem;
+    transition: color 0.15s;
+  }
+  .site-header a:hover { color: #1d4ed8; text-decoration: underline; }
+  .site-header .home-link { font-size: 1.1rem; font-weight: 600; color: #0f172a; }
+  h1 {
+    font-size: 1.9rem;
+    font-weight: 650;
+    letter-spacing: -0.02em;
+    color: #0f172a;
+    margin-bottom: 0.3rem;
+  }
+  .problem-tag {
+    display: inline-block;
+    background: #e6f0ff;
+    color: #1e4d8c;
+    font-size: 0.85rem;
+    padding: 0.2rem 1rem;
+    border-radius: 30px;
+    font-weight: 500;
+    margin-bottom: 1.4rem;
+  }
+  .calc-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+    background: #f1f5f9;
+    padding: 1.6rem 1.4rem;
+    border-radius: 1.2rem;
+    margin: 1.2rem 0 1.6rem;
+  }
+  .input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+  .input-group label {
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: #1e293b;
+  }
+  .input-group input {
+    font-size: 1.1rem;
+    padding: 0.7rem 0.9rem;
+    border: 1px solid #cbd5e1;
+    border-radius: 0.6rem;
+    background: white;
+    transition: border 0.2s;
+    max-width: 200px;
+    width: 100%;
+  }
+  .input-group input:focus {
+    border-color: #2563eb;
+    outline: 3px solid rgba(37,99,235,0.15);
+  }
+  .input-hint {
+    font-size: 0.8rem;
+    color: #475569;
+    margin-top: 0.1rem;
+  }
+  .result-block {
+    background: white;
+    border-radius: 1rem;
+    padding: 1rem 1.2rem;
+    border: 1px solid #dbeafe;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0.5rem 1rem;
+  }
+  .result-block .label {
+    font-weight: 600;
+    font-size: 0.95rem;
+  }
+  .result-block .value {
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: #2563eb;
+    letter-spacing: 0.01em;
+  }
+  .result-block .unit {
+    font-size: 1rem;
+    color: #475569;
+    font-weight: 400;
+  }
+  .note {
+    font-size: 0.85rem;
+    color: #475569;
+    margin-top: 0.3rem;
+  }
+  button {
+    background: #2563eb;
+    color: white;
+    border: none;
+    font-weight: 600;
+    font-size: 1rem;
+    padding: 0.7rem 1.6rem;
+    border-radius: 2rem;
+    cursor: pointer;
+    transition: background 0.2s;
+    align-self: flex-start;
+  }
+  button:hover { background: #1d4ed8; }
+  button:active { transform: scale(0.97); }
+  .explanatory {
+    margin: 2rem 0 1.2rem;
+    background: #fafcff;
+    padding: 1.2rem 1.4rem;
+    border-radius: 1rem;
+    border: 1px solid #e6edf5;
+  }
+  .explanatory h2 {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+    color: #0f172a;
+  }
+  .explanatory p {
+    margin-bottom: 0.8rem;
+  }
+  .explanatory p:last-child { margin-bottom: 0; }
+  hr {
+    border: none;
+    border-top: 1px solid #e2e8f0;
+    margin: 1.2rem 0;
+  }
+  .footer-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    font-size: 0.9rem;
+  }
+  .footer-links a {
+    color: #2563eb;
+    text-decoration: none;
+  }
+  .footer-links a:hover { text-decoration: underline; }
+  @media (max-width: 480px) {
+    .container { padding: 1.2rem; }
+    h1 { font-size: 1.6rem; }
+    .calc-grid { padding: 1rem; }
+    .result-block .value { font-size: 1.4rem; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <header class="site-header">
+    <a href="/" class="home-link">ToolsForUse</a>
+    <a href="/blog/abv-calculator/">Read the story behind this tool</a>
+  </header>
+
+  <h1>ABV Calculator (Alcohol by Volume)</h1>
+  <span class="problem-tag">Calculate the alcohol content of homemade beer or wine</span>
+
+  <div class="calc-grid">
+    <div class="input-group">
+      <label for="original-gravity">Original Gravity (OG)</label>
+      <input type="number" id="original-gravity" value="1.050" step="0.001" min="1.000" max="1.200" placeholder="e.g. 1.050">
+      <span class="input-hint">Typical range: 1.030 – 1.120</span>
+    </div>
+    <div class="input-group">
+      <label for="final-gravity">Final Gravity (FG)</label>
+      <input type="number" id="final-gravity" value="1.010" step="0.001" min="0.990" max="1.100" placeholder="e.g. 1.010">
+      <span class="input-hint">Typical range: 0.998 – 1.030</span>
+    </div>
+    <button id="calculate-btn">Calculate ABV</button>
+    <div class="result-block" aria-live="polite">
+      <span class="label">Alcohol by Volume</span>
+      <span class="value" id="abv-result">5.25</span>
+      <span class="unit">%</span>
+    </div>
+    <div class="note">Formula: (OG – FG) × 131.25 (standard approximation for beer/wine)</div>
+  </div>
+
+  <div class="explanatory">
+    <h2>How to use this homebrew ABV calculator</h2>
+    <p>To find the alcohol content of your homemade beer or wine, measure the specific gravity before fermentation begins (original gravity, OG) and after fermentation is complete (final gravity, FG). A hydrometer or refractometer gives you these numbers. Enter them above, and the alcohol by volume calculator instantly estimates the ABV.</p>
+    <p>The calculation uses the formula <strong>(OG – FG) × 131.25</strong>, a widely accepted approximation for typical beer and wine fermentations. For example, an OG of 1.050 and FG of 1.010 yields about 5.25% ABV. This homebrew ABV calculator works for most styles, including high-gravity beers and country wines, but keep in mind that very high alcohol or unusual sugar sources may introduce small variances.</p>
+    <p>Use this alcohol by volume calculator to track fermentation progress, adjust recipes, or simply satisfy your curiosity. Reliable gravity readings at the right temperatures (calibrated to 60 °F / 15.6 °C) give the most accurate result. Whether you are brewing your first batch or your fiftieth, this tool helps you understand the strength of your creation.</p>
+  </div>
+
+  <hr>
+  <div class="footer-links">
+    <a href="/">← Back to ToolsForUse</a>
+    <a href="/blog/abv-calculator/">Read the full story</a>
+  </div>
+  <!-- AFFILIATE_SLOT -->
+</div>
+
+<script>
+  (function() {
+    const ogInput = document.getElementById('original-gravity');
+    const fgInput = document.getElementById('final-gravity');
+    const calcBtn = document.getElementById('calculate-btn');
+    const resultDisplay = document.getElementById('abv-result');
+
+    function computeABV() {
+      const og = parseFloat(ogInput.value);
+      const fg = parseFloat(fgInput.value);
+
+      if (isNaN(og) || isNaN(fg)) {
+        resultDisplay.textContent = '—';
+        return;
+      }
+      if (og < 0.990 || og > 1.200 || fg < 0.900 || fg > 1.200) {
+        resultDisplay.textContent = '⚠️ check values';
+        return;
+      }
+      if (og <= fg) {
+        resultDisplay.textContent = '0.00';
+        return;
+      }
+
+      let abv = (og - fg) * 131.25;
+      // round to two decimals
+      abv = Math.round(abv * 100) / 100;
+      if (abv < 0) abv = 0;
+      resultDisplay.textContent = abv.toFixed(2);
+    }
+
+    // initial calculation
+    computeABV();
+
+    calcBtn.addEventListener('click', computeABV);
+
+    // also compute on Enter key in inputs
+    ogInput.addEventListener('keydown', (e) => { if (e.key === 'Enter') computeABV(); });
+    fgInput.addEventListener('keydown', (e) => { if (e.key === 'Enter') computeABV(); });
+
+    // optional: recompute on input change (debounced)
+    let debounceTimer;
+    function handleInput() {
+      clearTimeout(debounceTimer);
+      debounceTimer = setTimeout(computeABV, 300);
+    }
+    ogInput.addEventListener('input', handleInput);
+    fgInput.addEventListener('input', handleInput);
+  })();
+</script>
+</body>
+</html>
