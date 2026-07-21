@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ABV Calculator – A Simple Tool for Homebrewers | ToolsForUse</title>
+    <meta name="description" content="We built a no-fuss ABV calculator for homebrewers. Convert original and final gravity into alcohol by volume. No ads, no sign-up, just the number.">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: Georgia, 'Times New Roman', Times, serif;
+            background: #fafafa;
+            color: #1a1a1a;
+            line-height: 1.7;
+            padding: 2rem 1rem;
+            max-width: 680px;
+            margin: 0 auto;
+        }
+        header {
+            margin-bottom: 2.5rem;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 0.75rem;
+        }
+        header a {
+            color: #444;
+            text-decoration: none;
+            font-size: 1.1rem;
+            letter-spacing: 0.3px;
+        }
+        header a:hover {
+            color: #000;
+        }
+        h1 {
+            font-size: 2rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+            letter-spacing: -0.3px;
+            line-height: 1.2;
+        }
+        h2 {
+            font-size: 1.3rem;
+            font-weight: 500;
+            margin-top: 2rem;
+            margin-bottom: 0.5rem;
+            color: #2b2b2b;
+        }
+        p {
+            margin-bottom: 1.2rem;
+        }
+        .callout {
+            background: #f0f0f0;
+            border-left: 4px solid #666;
+            padding: 1rem 1.2rem;
+            margin: 1.8rem 0;
+            border-radius: 0 4px 4px 0;
+        }
+        .callout a {
+            color: #1a1a1a;
+            text-decoration: underline;
+            font-weight: 600;
+        }
+        .callout a:hover {
+            color: #000;
+        }
+        .footer-note {
+            margin-top: 3rem;
+            font-size: 0.9rem;
+            color: #555;
+            border-top: 1px solid #e0e0e0;
+            padding-top: 1.5rem;
+        }
+        @media (max-width: 480px) {
+            body {
+                padding: 1.2rem 0.8rem;
+            }
+            h1 {
+                font-size: 1.6rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <a href="/">← ToolsForUse</a>
+</header>
+
+<article>
+    <h1>ABV Calculator: Because guessing your homebrew’s strength is silly</h1>
+
+    <p>I’ve been brewing beer and wine at home for a few years. Not obsessively—just enough to keep a steady supply of drinkable stuff in the basement. And every time I bottle a batch, there’s that moment where I stare at my hydrometer readings and try to do the math in my head. Or I pull out my phone and type “original gravity 1.050 final gravity 1.010” into a search engine, and land on some forum from 2009 where the answer is half a thread of people arguing about the correct formula.</p>
+
+    <p>Then there are the online calculators. Most of them are fine, honestly—they give you a number. But a lot of them are buried inside big brewing sites with ads, pop-ups asking for your email, or they assume you already know your way around a dozen obscure fields. And if you’re like me, you just want: “Here are two numbers. Give me the ABV. That’s it.”</p>
+
+    <h2>Existing options fall short in small but annoying ways</h2>
+    <p>Some calculators use a simplified formula that’s off by a few tenths of a percent, which matters once you start tracking batches or sharing recipes. Others require you to toggle between units or choose a specific style of beer first. And practically all of them have unnecessary friction—sign-up walls, tracking scripts, or just a cluttered page that makes you feel like you need to wade through a recipe blog post before getting to the tool.</p>
+
+    <p>None of this is a disaster. But it’s the kind of low-grade friction that makes you reach for a piece of scratch paper instead. And that felt silly for something that can be a single calculation.</p>
+
+    <h2>What this tool actually does</h2>
+    <p>The <strong>ABV Calculator</strong> takes your original gravity (OG) and final gravity (FG) readings—the ones you already took with your hydrometer—and returns your alcohol by volume, using the standard homebrew formula: (76.08 × (OG − FG) / (1.775 − OG)) × (FG / 0.794). That’s the more accurate version that accounts for the non-linear relationship between gravity and alcohol, not the quick linear approximation. It works for beer, wine, cider, mead—anything with a gravity reading.</p>
+
+    <p>It’s a single page. Type two numbers, get a result. No sign-up, no ads, no explanation of what “Plato” means unless you want to look it up elsewhere. Just the ABV, rounded to one decimal place, with a brief note if the inputs look unusual (like a wildly high OG). That’s the whole thing.</p>
+
+    <div class="callout">
+        <strong>Try it here:</strong> <a href="/tools/abv-calculator/">ABV Calculator →</a>
+    </div>
+
+    <h2>Honest closing</h2>
+    <p>This isn’t revolutionary. It’s just a straightforward calculator that does one thing without extra baggage. I built it because I wanted a clean page on my own browser bookmarks that I can pull up when I’m racking a batch. If you brew or make wine at home, maybe you’ll find it useful too. No hype, no urgency—just a tool that works.</p>
+
+    <p class="footer-note">— Written by someone who has definitely had a hydrometer roll off the counter mid-reading.</p>
+</article>
+
+</body>
+</html>
