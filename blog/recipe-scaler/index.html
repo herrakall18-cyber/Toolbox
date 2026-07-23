@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recipe Scaler Calculator — ToolsForUse</title>
+    <meta name="description" content="A simple, no-frills tool to scale recipe ingredient quantities when you're cooking for a different number of people. Preserves ratios, saves math.">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            background: #fafafa;
+            color: #2d2d2d;
+            font-family: Georgia, "Times New Roman", Times, serif;
+            font-size: 18px;
+            line-height: 1.7;
+            padding: 2rem 1rem;
+        }
+        .container {
+            max-width: 680px;
+            margin: 0 auto;
+        }
+        header {
+            margin-bottom: 2.5rem;
+            border-bottom: 1px solid #e0e0e0;
+            padding-bottom: 0.75rem;
+        }
+        header a {
+            color: #555;
+            text-decoration: none;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            font-size: 0.9rem;
+            letter-spacing: 0.3px;
+        }
+        header a:hover {
+            color: #000;
+        }
+        h1 {
+            font-size: 2.2rem;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            line-height: 1.2;
+            margin: 1.5rem 0 0.5rem 0;
+        }
+        .subhead {
+            font-size: 1.1rem;
+            color: #777;
+            margin-bottom: 2rem;
+            font-style: italic;
+        }
+        h2 {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin: 2.2rem 0 0.8rem 0;
+            color: #1a1a1a;
+        }
+        p {
+            margin-bottom: 1.4rem;
+        }
+        ul {
+            margin: 0 0 1.4rem 1.8rem;
+        }
+        li {
+            margin-bottom: 0.5rem;
+        }
+        .cta {
+            display: inline-block;
+            background: #2d2d2d;
+            color: #fff;
+            padding: 0.75rem 1.5rem;
+            border-radius: 4px;
+            text-decoration: none;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            font-size: 1rem;
+            font-weight: 500;
+            margin: 0.5rem 0 1rem 0;
+            transition: background 0.2s ease;
+        }
+        .cta:hover {
+            background: #4a4a4a;
+        }
+        hr {
+            border: none;
+            border-top: 1px solid #e0e0e0;
+            margin: 2.5rem 0 1rem 0;
+        }
+        .footer-note {
+            font-size: 0.9rem;
+            color: #999;
+            text-align: center;
+            margin-top: 2rem;
+        }
+        @media (max-width: 600px) {
+            body {
+                font-size: 16px;
+                padding: 1.2rem 1rem;
+            }
+            h1 {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <a href="/">← ToolsForUse</a>
+        </header>
+
+        <h1>Recipe Scaler Calculator</h1>
+        <div class="subhead">The one that actually lets you cook for 3 (or 11) without math brain.</div>
+
+        <p>I ruined a batch of chili last month. The recipe was for 6 servings; I needed to feed 10. I doubled everything by rote — but the beans, the broth, the spices? They didn't scale evenly once I accounted for evaporation and pot size. That was my fault. But the bigger problem was even getting to that point: I had to grab my phone, open the calculator app, and do 8 separate multiplication problems. For <em>one</em> recipe. By the time I finished, my onions were burning.</p>
+
+        <p>It sounds trivial, but when you're mid-recipe, hands messy, doubling or halving every ingredient is a genuine friction point. If you cook much, you've been there: you either risk winging it (and end up with bland or oversalted food) or you do a bunch of tiny math problems and lose your flow.</p>
+
+        <h2>Why not just use a normal calculator (or a spreadsheet)?</h2>
+        <p>Sure, you <em>can</em> do it manually. But:</p>
+        <ul>
+            <li><strong>Mental overhead.</strong> You have to keep track of which ingredients you've already adjusted, especially if there are 10+ lines. One slip and your cumin is double or your salt is half.</li>
+            <li><strong>Fractions suck.</strong> "1 ⅓ cups" times 1.5 is not something you want to do while holding a spatula.</li>
+            <li><strong>Units.</strong> Most calculators don't keep the unit (cup, tsp, g) attached — you have to remember it yourself.</li>
+            <li><strong>Existing "recipe scalers" are often over-engineered.</strong> I tried a few. They want you to create an account, or they try to parse natural language ("2 cups flour") and fail when you write "2 c. flour, sifted". Or they just display a table with no way to copy or print.</li>
+        </ul>
+        <p>I wanted something that felt like a small kitchen tool: immediate, humble, and exactly one function.</p>
+
+        <h2>What this one does</h2>
+        <p>You paste or type your ingredient list (one per line, quantity + unit + ingredient), tell it the original servings and your desired servings, and it spits out the scaled list. That's it. It preserves the <em>ratio</em> of every ingredient — if the original recipe was balanced, the scaled version will be too. No sign-up, no parsing magic that fails on egg counts or "to taste" notes. It just multiplies the numbers and keeps the text.</p>
+        <ul>
+            <li>Works with decimals, fractions (like ½ or 1 ⅓), and whole numbers.</li>
+            <li>Keeps your unit and ingredient name as-is.</li>
+            <li>You can copy the output with one click.</li>
+        </ul>
+        <p>I built it for myself, but I figured others might be in the same boat. So I cleaned it up and put it on ToolsForUse.</p>
+
+        <p style="margin-top: 2rem;">
+            <a href="/tools/recipe-scaler/" class="cta">Try the Recipe Scaler →</a>
+        </p>
+
+        <hr>
+        <p>It won't save you from burning onions, but at least you'll know exactly how much cumin to add when you start over.</p>
+
+        <div class="footer-note">
+            — Tim, maker of ToolsForUse
+        </div>
+    </div>
+</body>
+</html>
