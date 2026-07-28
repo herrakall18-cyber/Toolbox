@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Final Grade Calculator – ToolsForUse</title>
+    <meta name="description" content="A simple, honest final grade calculator that tells you exactly what score you need on your exam to hit your target grade. No fluff, no ads.">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background: #fafafa;
+            color: #1a1a1a;
+            line-height: 1.7;
+            padding: 2rem 1.5rem;
+            max-width: 740px;
+            margin: 0 auto;
+        }
+        a {
+            color: #2563eb;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        header {
+            margin-bottom: 2.5rem;
+            font-size: 0.9rem;
+        }
+        header a {
+            color: #4b5563;
+            font-weight: 500;
+        }
+        header a:hover {
+            color: #1f2937;
+        }
+        h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            letter-spacing: -0.02em;
+            line-height: 1.2;
+        }
+        p {
+            margin-bottom: 1.4rem;
+            font-size: 1.05rem;
+        }
+        .tool-link {
+            display: inline-block;
+            background: #1a1a1a;
+            color: #fff;
+            padding: 0.8rem 1.8rem;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 1.05rem;
+            margin: 1.5rem 0 2rem 0;
+            transition: background 0.2s ease;
+        }
+        .tool-link:hover {
+            background: #333;
+            text-decoration: none;
+        }
+        hr {
+            border: 0;
+            border-top: 1px solid #e0e0e0;
+            margin: 2.5rem 0 1.5rem 0;
+        }
+        .closing {
+            font-size: 0.95rem;
+            color: #4b5563;
+        }
+        .closing a {
+            color: #2563eb;
+        }
+        @media (max-width: 500px) {
+            body {
+                padding: 1.5rem 1rem;
+            }
+            h1 {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="/">← ToolsForUse</a>
+    </header>
+
+    <article>
+        <h1>Final Grade Calculator</h1>
+
+        <p>
+            Late last semester I found myself staring at a syllabus, trying to figure out what I needed on the final to pass a class I'd let slip a little. I had my current grade (83), my desired grade (a solid B, so 80), and the final was worth 30% of the total. Simple math, right? But I kept second-guessing: <em>Wait – is it (desired – current × weight) or do I divide by the weight? Should I convert percentages first?</em>
+        </p>
+        <p>
+            I ended up scratching it out on a piece of paper, but I felt dumb for not knowing the formula cold. And honestly, I just wanted a straight answer without having to open a spreadsheet or dig through some ad-riddled blog post.
+        </p>
+        <p>
+            That's the problem: when you're already a little stressed about a final, the last thing you need is a confusing calculator that asks for your "current weighted average" or shows you a wall of text before giving you the number. Most existing tools are either over-engineered (asking for every assignment grade) or under-designed (just a formula with no explanation). Some are buried in pop-ups. I wanted something that felt like a calculator should: you put in three numbers, you get one number back.
+        </p>
+        <p>
+            So I built the <strong>Final Grade Calculator</strong> for ToolsForUse. It does exactly one thing: <em>given your current grade, the weight of the final, and your target grade, it tells you the minimum score you need on the final.</em> No sign-up, no ads, no "we'll send you study tips" – just the math. It also handles edge cases (like if you need a 110% to get that A, it'll tell you that's impossible, because that's useful information too).
+        </p>
+
+        <a class="tool-link" href="/tools/final-grade-calculator/">Try the Final Grade Calculator →</a>
+
+        <p>
+            I've been using it for my own classes, and it's saved me from that "wait, is that right?" anxiety. I hope it's useful for you, too.
+        </p>
+
+        <hr>
+
+        <div class="closing">
+            <p><strong>A quick note</strong>: this tool assumes a simple weighted grade system (your current grade is the average of everything before the final, weighted by its percentage). If your professor uses a complex curve or drops low scores, this won't account for that – but for most courses, it's dead on. If you run into a situation where it doesn't match your syllabus, let me know, and I'll see if I can make it better.</p>
+        </div>
+    </article>
+</body>
+</html>
