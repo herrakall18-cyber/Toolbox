@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Final Grade Calculator – What Do I Need on My Final? | ToolsForUse</title>
+    <meta name="description" content="Use our free final grade calculator to find out exactly what score you need on your final exam to reach your desired overall grade. Exam score calculator for students.">
+    <!-- AFFILIATE_SLOT -->
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            background: #f5f7fa;
+            font-family: 'Segoe UI', Roboto, system-ui, -apple-system, sans-serif;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            color: #1e293b;
+        }
+        .container {
+            max-width: 740px;
+            width: 100%;
+            background: white;
+            border-radius: 28px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05), 0 4px 10px rgba(0,0,0,0.02);
+            padding: 30px 28px;
+            margin-top: 10px;
+        }
+        .header-links {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px 8px;
+            margin-bottom: 28px;
+            font-size: 0.95rem;
+        }
+        .header-links a {
+            color: #0b5e7c;
+            text-decoration: none;
+            font-weight: 500;
+            border-bottom: 1px solid transparent;
+            transition: border-color 0.2s;
+        }
+        .header-links a:hover {
+            border-bottom-color: #0f7a9e;
+        }
+        .header-links .home-link {
+            font-weight: 600;
+            background: #e9f0f5;
+            padding: 6px 16px;
+            border-radius: 40px;
+        }
+        h1 {
+            font-size: 2.2rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            color: #0b2a37;
+            margin-bottom: 0.2rem;
+        }
+        .subhead {
+            color: #3f5466;
+            font-size: 1.05rem;
+            margin-bottom: 1.8rem;
+            border-left: 4px solid #0b5e7c;
+            padding-left: 16px;
+            background: #f0f6fb;
+            border-radius: 0 8px 8px 0;
+            padding: 10px 16px;
+        }
+        .tool-card {
+            background: #f8faff;
+            border-radius: 24px;
+            padding: 24px 20px;
+            margin: 20px 0 24px;
+            box-shadow: inset 0 1px 3px rgba(0,0,0,0.02);
+        }
+        .form-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+        }
+        .field-row {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+        .field-row label {
+            font-weight: 600;
+            font-size: 0.95rem;
+            color: #1d3b4f;
+            letter-spacing: 0.01em;
+        }
+        .field-row .hint {
+            font-size: 0.85rem;
+            color: #4f6d82;
+            margin-top: -2px;
+        }
+        .field-row input {
+            padding: 14px 18px;
+            border: 1px solid #d5e0ea;
+            border-radius: 40px;
+            font-size: 1.1rem;
+            background: white;
+            transition: 0.2s;
+            max-width: 240px;
+        }
+        .field-row input:focus {
+            border-color: #0f7a9e;
+            outline: 3px solid rgba(15, 122, 158, 0.2);
+            box-shadow: 0 0 0 2px rgba(15, 122, 158, 0.1);
+        }
+        .row-inline {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 14px 24px;
+        }
+        .row-inline .field-row {
+            flex: 1 0 160px;
+        }
+        .calc-btn {
+            background: #0b5e7c;
+            color: white;
+            border: none;
+            border-radius: 50px;
+            padding: 14px 32px;
+            font-size: 1.15rem;
+            font-weight: 600;
+            letter-spacing: 0.01em;
+            cursor: pointer;
+            transition: 0.2s;
+            width: fit-content;
+            margin-top: 8px;
+        }
+        .calc-btn:hover {
+            background: #0a4b64;
+            transform: scale(1.02);
+            box-shadow: 0 6px 14px rgba(11, 94, 124, 0.25);
+        }
+        .result-area {
+            background: #e6f1f9;
+            border-radius: 20px;
+            padding: 20px 22px;
+            margin: 28px 0 10px;
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #063146;
+            border-left: 6px solid #0b5e7c;
+            min-height: 80px;
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 8px 12px;
+        }
+        .result-area .highlight {
+            background: #0b2a37;
+            color: white;
+            padding: 6px 18px;
+            border-radius: 60px;
+            font-size: 1.5rem;
+            margin-left: 4px;
+        }
+        .result-area .note {
+            font-weight: 400;
+            font-size: 0.95rem;
+            color: #1f4b61;
+            margin-left: 6px;
+        }
+        .explanatory {
+            background: #ffffff;
+            padding: 18px 4px 6px;
+            border-top: 1px solid #e0e9f0;
+            margin-top: 16px;
+        }
+        .explanatory p {
+            line-height: 1.7;
+            margin-bottom: 1.1rem;
+            color: #1e3b4e;
+        }
+        .explanatory strong {
+            color: #0b4f6b;
+        }
+        .footer-note {
+            margin-top: 28px;
+            font-size: 0.9rem;
+            color: #4f6d82;
+            border-top: 1px solid #e2ebf3;
+            padding-top: 18px;
+            text-align: center;
+        }
+        @media (max-width: 600px) {
+            .container {
+                padding: 20px 16px;
+            }
+            h1 {
+                font-size: 1.8rem;
+            }
+            .row-inline .field-row {
+                flex: 1 0 100%;
+            }
+            .field-row input {
+                max-width: 100%;
+                width: 100%;
+            }
+            .result-area {
+                font-size: 1.1rem;
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .result-area .highlight {
+                font-size: 1.3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="header-links">
+        <a href="/" class="home-link">← ToolsForUse</a>
+        <a href="/blog/final-grade-calculator/">Read the story behind this tool</a>
+    </div>
+
+    <h1>Final Grade Calculator</h1>
+    <div class="subhead">What do I need on my final? Find out in seconds.</div>
+
+    <div class="tool-card">
+        <div class="form-grid">
+            <div class="row-inline">
+                <div class="field-row">
+                    <label for="currentGrade">Your current grade (%)</label>
+                    <input type="number" id="currentGrade" name="currentGrade" min="0" max="100" step="0.1" value="82" placeholder="e.g. 82">
+                </div>
+                <div class="field-row">
+                    <label for="desiredGrade">Desired overall grade (%)</label>
+                    <input type="number" id="desiredGrade" name="desiredGrade" min="0" max="100" step="0.1" value="90" placeholder="e.g. 90">
+                </div>
+            </div>
+            <div class="field-row" style="max-width:260px;">
+                <label for="weight">Final exam weight (%)</label>
+                <span class="hint">How much your final counts toward the total</span>
+                <input type="number" id="weight" name="weight" min="1" max="100" step="0.1" value="35" placeholder="e.g. 35">
+            </div>
+            <button class="calc-btn" id="calcBtn">Calculate needed score</button>
+        </div>
+
+        <div class="result-area" id="resultBox">
+            <span>📘 You need at least</span>
+            <span class="highlight" id="neededScore">—</span>
+            <span class="note">on your final to reach your goal.</span>
+        </div>
+    </div>
+
+    <div class="explanatory">
+        <p><strong>Why use a final grade calculator?</strong> If you’ve ever wondered, <em>“what do I need on my final to pass this class?”</em> — you’re not alone. This exam score calculator helps you plan your studying by giving you a clear target. Just enter your current percentage, the grade you're aiming for, and how much the final counts (like 35% or 20%). The math is done instantly, so you can focus on what matters: preparing for the test.</p>
+        <p>Many students underestimate the impact of a final exam. With this grade needed on final tool, you can see whether a strong performance can pull you up — or whether you can relax if you’ve already secured your goal. The formula is simple: <strong>(Desired Overall – (Current × (1 – Weight))) / Weight</strong>. It works for any grading scale where the final is a percentage of the total course. Use it before your next exam to remove the guesswork.</p>
+        <p>Whether you’re aiming for an A, trying to keep a B, or just hoping to pass, knowing the exact score required changes your strategy. This final grade calculator is built for clarity and speed — no sign-ups, no extra fluff. Bookmark it for every finals week.</p>
+    </div>
+
+    <!-- AFFILIATE_SLOT (manual placement) -->
+
+    <div class="footer-note">
+        <span>🧮 ToolsForUse — built for students, by learners.</span>
+    </div>
+</div>
+
+<script>
+    (function() {
+        const currentInput = document.getElementById('currentGrade');
+        const desiredInput = document.getElementById('desiredGrade');
+        const weightInput = document.getElementById('weight');
+        const calcBtn = document.getElementById('calcBtn');
+        const neededSpan = document.getElementById('neededScore');
+
+        function calculate() {
+            const current = parseFloat(currentInput.value);
+            const desired = parseFloat(desiredInput.value);
+            const weight = parseFloat(weightInput.value);
+
+            // validate inputs
+            if (isNaN(current) || isNaN(desired) || isNaN(weight)) {
+                neededSpan.textContent = '—';
+                return;
+            }
+            if (weight <= 0 || weight > 100) {
+                neededSpan.textContent = '?';
+                return;
+            }
+            if (current < 0 || current > 100 || desired < 0 || desired > 100) {
+                neededSpan.textContent = '?';
+                return;
+            }
+
+            const weightDecimal = weight / 100;
+            const currentWeight = 1 - weightDecimal;
+
+            // formula: (desired - (current * (1 - weight))) / weight
+            const needed = (desired - (current * currentWeight)) / weightDecimal;
+
+            if (needed > 100) {
+                neededSpan.textContent = '💔 impossible ( >100% )';
+                return;
+            }
+            if (needed <= 0) {
+                neededSpan.textContent = '0% (already there!)';
+                return;
+            }
+
+            // round to one decimal
+            const rounded = Math.round(needed * 10) / 10;
+            neededSpan.textContent = rounded + '%';
+        }
+
+        calcBtn.addEventListener('click', calculate);
+
+        // also on enter key in any input
+        const inputs = [currentInput, desiredInput, weightInput];
+        inputs.forEach(inp => {
+            inp.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter') {
+                    calculate();
+                }
+            });
+        });
+
+        // run on load with default values
+        window.addEventListener('DOMContentLoaded', calculate);
+    })();
+</script>
+</body>
+</html>
