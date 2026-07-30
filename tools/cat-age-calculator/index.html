@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- AFFILIATE_SLOT -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cat Age Calculator: Convert Cat Years to Human Years | ToolsForUse</title>
+    <meta name="description" content="Use our free cat age calculator to find out how old your cat is in human years. Understand your cat's life stage and health needs with the correct conversion formula.">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background: #f8f9fa;
+            color: #2c3e50;
+            line-height: 1.6;
+            padding: 1.5rem;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .container {
+            max-width: 780px;
+            width: 100%;
+            background: #ffffff;
+            border-radius: 24px;
+            box-shadow: 0 12px 30px rgba(0,0,0,0.08);
+            padding: 2rem 1.8rem 2.5rem;
+            margin: 1rem 0 2rem;
+        }
+        /* header */
+        .tool-header {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: 0.75rem 1rem;
+            margin-bottom: 0.5rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 1px solid #e9ecef;
+        }
+        .tool-header a {
+            color: #2c3e50;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: color 0.2s;
+        }
+        .tool-header a:hover {
+            color: #e07a5f;
+        }
+        .tool-header .home-link {
+            font-weight: 600;
+            letter-spacing: -0.3px;
+        }
+        .tool-header .story-link {
+            font-size: 0.9rem;
+            background: #f1f3f5;
+            padding: 0.3rem 0.9rem;
+            border-radius: 30px;
+        }
+        h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin: 0.5rem 0 0.25rem;
+            color: #1e2a3a;
+            letter-spacing: -0.4px;
+        }
+        .subhead {
+            font-size: 1rem;
+            color: #5e6f7e;
+            margin-bottom: 1.75rem;
+        }
+        /* calculator */
+        .calc-card {
+            background: #f2f5f8;
+            padding: 1.8rem 1.5rem;
+            border-radius: 20px;
+            margin-bottom: 2rem;
+        }
+        .input-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem 1rem;
+            align-items: flex-end;
+            margin-bottom: 1.2rem;
+        }
+        .input-group label {
+            font-weight: 600;
+            font-size: 0.95rem;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            flex: 1 1 180px;
+        }
+        .input-group input {
+            font-size: 1.2rem;
+            padding: 0.6rem 0.8rem;
+            border: 1px solid #ccd7e0;
+            border-radius: 12px;
+            background: white;
+            width: 100%;
+            max-width: 180px;
+            font-weight: 500;
+        }
+        .input-group input:focus {
+            outline: 2px solid #e07a5f;
+            border-color: transparent;
+        }
+        .input-group select {
+            font-size: 1rem;
+            padding: 0.6rem 0.8rem;
+            border: 1px solid #ccd7e0;
+            border-radius: 12px;
+            background: white;
+            font-weight: 500;
+            cursor: pointer;
+        }
+        .button-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.7rem;
+            margin-top: 0.8rem;
+        }
+        .btn {
+            background: #e07a5f;
+            color: white;
+            border: none;
+            padding: 0.7rem 2rem;
+            border-radius: 40px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background 0.2s, transform 0.1s;
+            box-shadow: 0 4px 8px rgba(224,122,95,0.2);
+        }
+        .btn:hover {
+            background: #c96a50;
+        }
+        .btn:active {
+            transform: scale(0.97);
+        }
+        .btn-secondary {
+            background: #d0d8e0;
+            color: #2c3e50;
+            box-shadow: none;
+        }
+        .btn-secondary:hover {
+            background: #bcc5ce;
+        }
+        .result-area {
+            margin-top: 1.5rem;
+            padding: 1rem 1.2rem;
+            background: white;
+            border-radius: 16px;
+            min-height: 3.5rem;
+            border-left: 6px solid #e07a5f;
+            font-size: 1.3rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 0.2rem 0.8rem;
+        }
+        .result-area .human-years {
+            color: #1e2a3a;
+        }
+        .result-area .life-stage {
+            font-weight: 400;
+            font-size: 1rem;
+            background: #eef2f5;
+            padding: 0.2rem 1rem;
+            border-radius: 30px;
+            color: #2c3e50;
+        }
+        .result-placeholder {
+            color: #7f8c9b;
+            font-weight: 400;
+            font-size: 1rem;
+        }
+        /* info section */
+        .info-section h2 {
+            font-size: 1.4rem;
+            margin: 2rem 0 0.75rem;
+            color: #1e2a3a;
+        }
+        .info-section p {
+            margin-bottom: 1rem;
+            color: #2c3e50;
+        }
+        .info-section p strong {
+            color: #1e2a3a;
+        }
+        .affiliate-placeholder {
+            margin: 2rem 0 0.5rem;
+            padding: 1rem;
+            background: #faf2ed;
+            border: 1px dashed #d9b8a8;
+            border-radius: 16px;
+            text-align: center;
+            font-size: 0.9rem;
+            color: #6b4d3e;
+        }
+        footer {
+            font-size: 0.85rem;
+            color: #6b7a88;
+            text-align: center;
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid #e9ecef;
+        }
+        /* mobile */
+        @media (max-width: 500px) {
+            body { padding: 1rem; }
+            .container { padding: 1.5rem 1rem; }
+            h1 { font-size: 1.7rem; }
+            .input-group { flex-direction: column; align-items: stretch; }
+            .input-group input { max-width: 100%; }
+            .result-area { font-size: 1.1rem; flex-direction: column; align-items: flex-start; }
+            .tool-header { flex-direction: column; align-items: flex-start; }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="tool-header">
+        <a href="/" class="home-link">← ToolsForUse</a>
+        <a href="/blog/cat-age-calculator/" class="story-link">Read the story behind this tool</a>
+    </div>
+
+    <h1>🐱 Cat Age Calculator</h1>
+    <p class="subhead">Find out your cat's age in human years – quickly and accurately.</p>
+
+    <div class="calc-card">
+        <form id="catAgeForm" aria-label="Cat age calculator form">
+            <div class="input-group">
+                <label for="catYears">
+                    Cat's age
+                    <input type="number" id="catYears" name="catYears" min="0" max="30" step="0.1" placeholder="e.g. 5" value="5" required aria-describedby="ageHelp">
+                </label>
+                <label for="ageUnit">
+                    Unit
+                    <select id="ageUnit" name="ageUnit">
+                        <option value="years" selected>Years</option>
+                        <option value="months">Months</option>
+                    </select>
+                </label>
+            </div>
+            <div class="button-group">
+                <button type="button" class="btn" id="calculateBtn">Calculate human age</button>
+                <button type="button" class="btn btn-secondary" id="resetBtn">Reset</button>
+            </div>
+            <p id="ageHelp" style="font-size:0.85rem; margin-top:0.6rem; color:#556b7a;">Enter your cat's age (0–30 years / 0–360 months).</p>
+        </form>
+
+        <div class="result-area" id="resultArea" role="region" aria-live="polite" aria-atomic="true">
+            <span class="result-placeholder">🐾 Enter age and press calculate</span>
+        </div>
+    </div>
+
+    <div class="info-section">
+        <h2>How to convert cat years to human years</h2>
+        <p>
+            Many pet owners ask, <strong>“how old is my cat in human years?”</strong> — but the answer isn’t a simple multiply by seven. 
+            Cats mature rapidly in their first two years: a 1‑year‑old cat equals about 15 human years, and a 2‑year‑old cat equals about 24 human years. 
+            After that, each additional cat year adds roughly 4 human years. This <strong>cat age calculator</strong> uses the widely accepted veterinary formula to give you a reliable conversion.
+        </p>
+        <p>
+            Knowing your cat’s human‑equivalent age helps you provide the right care. 
+            A “senior” cat (around 11 human years, or 60+ in cat years) may need different food, more frequent vet check‑ups, and adjustments to their environment. 
+            Whether you have a playful kitten or a wise old companion, this <strong>cat years to human years</strong> tool makes it easy to understand their life stage.
+        </p>
+        <p>
+            <strong>How it works:</strong> If your cat is 2 years or younger, we use a special early‑life curve. 
+            For cats older than 2, the formula is: 24 human years + (cat years − 2) × 4. 
+            For kittens less than 1 year old, we adjust using months. The result shows both the human years and the corresponding life stage (kitten, young adult, adult, senior, or geriatric) — so you can better support your feline friend.
+        </p>
+    </div>
+
+    <!-- AFFILIATE_SLOT -->
+    <div class="affiliate-placeholder"><!-- AFFILIATE_SLOT --></div>
+
+    <footer>
+        &copy; ToolsForUse — Free online utilities for everyday questions.
+    </footer>
+</div>
+
+<script>
+(function() {
+    const catYearsInput = document.getElementById('catYears');
+    const ageUnitSelect = document.getElementById('ageUnit');
+    const calculateBtn = document.getElementById('calculateBtn');
+    const resetBtn = document.getElementById('resetBtn');
+    const resultArea = document.getElementById('resultArea');
+
+    function calculateCatAge(catYears) {
+        // catYears: number (0+), can be fractional
+        if (catYears < 0) return null;
+        let humanYears;
+        if (catYears <= 1) {
+            // first year: ~15 human years (linear interpolation for months)
+            humanYears = 15 * catYears;
+        } else if (catYears <= 2) {
+            // between 1 and 2: from 15 to 24 (linear)
+            humanYears = 15 + 9 * (catYears - 1);
+        } else {
+            // after 2: 24 + (catYears - 2) * 4
+            humanYears = 24 + (catYears - 2) * 4;
+        }
+        // round to 1 decimal
+        return Math.round(humanYears * 10) / 10;
+    }
+
+    function getLifeStage(humanYears) {
+        if (humanYears === null) return '';
+        if (humanYears < 1) return 'newborn kitten';
+        if (humanYears < 2) return 'kitten';
+        if (humanYears < 10) return 'young adult';
+        if (humanYears < 15) return 'adult';
+        if (humanYears < 20) return 'senior';
+        return 'geriatric';
+    }
+
+    function displayResult() {
+        let rawValue = parseFloat(catYearsInput.value);
+        if (isNaN(rawValue) || rawValue < 0) {
+            resultArea.innerHTML = `<span class="result-placeholder">⚠️ Please enter a valid age (0 or more).</span>`;
+            return;
+        }
+
+        const unit = ageUnitSelect.value;
+        let catYears;
+        if (unit === 'months') {
+            if (rawValue > 360) {
+                resultArea.innerHTML = `<span class="result-placeholder">⚠️ Maximum 360 months (30 years).</span>`;
+                return;
+            }
+            catYears = rawValue / 12;
+        } else {
+            if (rawValue > 30) {
+                resultArea.innerHTML = `<span class="result-placeholder">⚠️ Maximum 30 years.</span>`;
+                return;
+            }
+            catYears = rawValue;
+        }
+
+        // clamp catYears to 0+
+        if (catYears < 0) catYears = 0;
+
+        const humanYears = calculateCatAge(catYears);
+        if (humanYears === null) {
+            resultArea.innerHTML = `<span class="result-placeholder">⚠️ Invalid input.</span>`;
+            return;
+        }
+
+        const stage = getLifeStage(humanYears);
+        const displayCatAge = Math.round(catYears * 10) / 10;
+        const unitLabel = (unit === 'months' && rawValue === 1) ? 'month' : (unit === 'months' ? 'months' : 'year');
+        const pluralCat = (unit === 'years' && rawValue === 1) ? 'year' : 'years';
+
+        resultArea.innerHTML = `
+            <span class="human-years">≈ ${humanYears} human years</span>
+            <span class="life-stage">${stage}</span>
+            <span style="font-weight:400; font-size:0.9rem; color:#5e6f7e; width:100%; margin-top:0.2rem;">
+                (based on ${rawValue} cat ${unit === 'months' ? (rawValue === 1 ? 'month' : 'months') : pluralCat})
+            </span>
+        `;
+    }
+
+    function resetForm() {
+        catYearsInput.value = '5';
+        ageUnitSelect.value = 'years';
+        resultArea.innerHTML = `<span class="result-placeholder">🐾 Enter age and press calculate</span>`;
+    }
+
+    calculateBtn.addEventListener('click', displayResult);
+    resetBtn.addEventListener('click', resetForm);
+
+    // Allow Enter key to trigger calculate
+    catYearsInput.addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') {
+            e.preventDefault();
+            calculateBtn.click();
+        }
+    });
+    ageUnitSelect.addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') {
+            e.preventDefault();
+            calculateBtn.click();
+        }
+    });
+
+    // Initial calculation on page load with default value
+    window.addEventListener('DOMContentLoaded', function() {
+        // set default and calculate
+        catYearsInput.value = '5';
+        ageUnitSelect.value = 'years';
+        displayResult();
+    });
+})();
+</script>
+
+</body>
+</html>
