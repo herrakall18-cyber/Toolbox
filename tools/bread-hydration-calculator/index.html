@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bread Hydration Calculator | Dough Hydration & Baker’s Percentage</title>
+  <meta name="description" content="Free bread hydration calculator and dough hydration calculator for bakers. Convert flour weight, water weight, and hydration % using baker’s percentage. Perfect hydration every time.">
+  <link rel="canonical" href="https://toolsforuse.com/bread-hydration-calculator/">
+  <!-- AFFILIATE_SLOT -->
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: system, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    }
+    body {
+      background: #faf9f7;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+    .site-header {
+      background: #1f2a36;
+      color: white;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      align-items: baseline;
+      gap: 0.5rem;
+      border-bottom: 4px solid #d6783c;
+    }
+    .site-header a {
+      color: #f1d9c0;
+      text-decoration: none;
+      font-weight: 500;
+      margin-right: 1.2rem;
+      font-size: 1rem;
+    }
+    .site-header a:hover {
+      color: white;
+      text-decoration: underline;
+    }
+    .brand {
+      font-weight: 600;
+      font-size: 1.4rem;
+      color: #f2b98c;
+      letter-spacing: 0.5px;
+    }
+    .container {
+      max-width: 1000px;
+      margin: 2rem auto;
+      padding: 0 1.5rem;
+      flex: 1;
+    }
+    h1 {
+      font-size: 2.2rem;
+      color: #1f2a36;
+      margin-bottom: 0.5rem;
+      border-left: 6px solid #d6783c;
+      padding-left: 1.2rem;
+    }
+    .subhead {
+      color: #3e4c5f;
+      margin-bottom: 2rem;
+      font-size: 1.1rem;
+      max-width: 700px;
+    }
+    .calc-card {
+      background: white;
+      border-radius: 18px;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+      padding: 2rem 2.5rem;
+      margin-bottom: 2rem;
+      border: 1px solid #ede8e1;
+    }
+    .calc-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+    @media (min-width: 600px) {
+      .calc-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1rem;
+        align-items: end;
+      }
+      .action-block {
+        grid-column: 1 / -1;
+        display: flex;
+        justify-content: center;
+        gap: 1.5rem;
+        margin-top: 0.5rem;
+      }
+    }
+    .field {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+    label {
+      font-weight: 600;
+      font-size: 0.95rem;
+      color: #2b3e4f;
+      letter-spacing: 0.2px;
+    }
+    input {
+      padding: 0.85rem 1rem;
+      border: 1px solid #ccd5df;
+      border-radius: 10px;
+      font-size: 1rem;
+      background: #fdfdfd;
+      transition: border 0.2s, box-shadow 0.2s;
+    }
+    input:focus {
+      outline: none;
+      border-color: #d6783c;
+      box-shadow: 0 0 0 3px rgba(214,120,60,0.25);
+    }
+    .unit-badge {
+      margin-top: 0.25rem;
+      font-size: 0.85rem;
+      color: #607586;
+    }
+    button {
+      background: #d6783c;
+      color: white;
+      font-weight: 600;
+      font-size: 1rem;
+      border: none;
+      padding: 0.9rem 2rem;
+      border-radius: 40px;
+      cursor: pointer;
+      transition: background 0.2s;
+      box-shadow: 0 4px 10px rgba(214,120,60,0.3);
+      letter-spacing: 0.3px;
+      min-width: 150px;
+    }
+    button:hover {
+      background: #bc5f29;
+    }
+    button#resetBtn {
+      background: #5b6e7f;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+    button#resetBtn:hover {
+      background: #425464;
+    }
+    #resultMessage {
+      margin-top: 2rem;
+      background: #f0f6ec;
+      border-left: 6px solid #5b8a3e;
+      padding: 1.2rem 1.5rem;
+      border-radius: 16px;
+      color: #1d3515;
+      font-weight: 500;
+      line-height: 1.5;
+      display: none;
+    }
+    #resultMessage strong {
+      color: #1f4f1f;
+    }
+    .explanatory {
+      background: #fcf9f5;
+      padding: 2rem 2rem;
+      border-radius: 20px;
+      margin: 2rem 0;
+      border: 1px solid #ddd6ce;
+    }
+    .explanatory p {
+      margin-bottom: 1.2rem;
+      font-size: 1rem;
+      color: #243746;
+      line-height: 1.7;
+    }
+    .explanatory h2 {
+      font-size: 1.5rem;
+      color: #1f2a36;
+      margin-bottom: 1rem;
+      border-bottom: 2px dashed #cb7b43;
+      padding-bottom: 0.5rem;
+    }
+    .footer-note {
+      text-align: center;
+      margin: 3rem 0 1.5rem;
+      font-size: 0.9rem;
+      color: #64727f;
+      border-top: 1px solid #e2ddd6;
+      padding-top: 1.8rem;
+    }
+    .header-links {
+      display: flex;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div>
+      <span class="brand">ToolsForUse</span>
+    </div>
+    <nav class="header-links" aria-label="Header navigation">
+      <a href="/">← All tools</a>
+      <a href="/blog/bread-hydration-calculator/">Read the story behind this tool</a>
+    </nav>
+  </header>
+
+  <main class="container">
+    <h1>Bread Hydration Calculator</h1>
+    <p class="subhead">Calculate water needed for perfect dough — based on baker’s percentage. Works for any flour weight and target hydration.</p>
+
+    <section class="calc-card" aria-label="Hydration calculator">
+      <div class="calc-grid">
+        <div class="field">
+          <label for="flourWeight">Flour weight (g)</label>
+          <input type="number" id="flourWeight" placeholder="e.g., 500" min="0" step="any" value="500">
+          <span class="unit-badge">grams</span>
+        </div>
+        <div class="field">
+          <label for="waterWeight">Water weight (g)</label>
+          <input type="number" id="waterWeight" placeholder="Optional" min="0" step="any" value="">
+          <span class="unit-badge">grams</span>
+        </div>
+        <div class="field">
+          <label for="hydrationPct">Hydration (%)</label>
+          <input type="number" id="hydrationPct" placeholder="e.g., 70" min="0" step="any" value="70">
+          <span class="unit-badge">% of flour weight</span>
+        </div>
+        <div class="action-block">
+          <button id="calculateBtn" aria-label="Calculate hydration">Calculate</button>
+          <button id="resetBtn" aria-label="Reset values">Reset</button>
+        </div>
+      </div>
+      <div id="resultMessage" role="status" aria-live="polite"></div>
+    </section>
+
+    <!-- Explanation section -->
+    <section class="explanatory" aria-label="About bread hydration and baker's percentage">
+      <h2>Why hydration matters for your bread</h2>
+      <p>In bread baking, hydration is the ratio of water to flour, expressed as a percentage (baker’s percentage). It directly influences dough structure, crumb openness, and crust crispness. For example, a 70% hydration dough (700g water per 1000g flour) yields a moderately open crumb and is easier to shape, while higher hydration (75–85%) produces an airy, rustic crumb but can be sticky and hard to handle. Our bread hydration calculator helps you dial in the exact water weight for any flour amount and target hydration.</p>
+      <p>The baker’s percentage method is simple: flour is always 100%, and all other ingredients are percentages of that flour weight. This calculator is specifically designed for flour–water ratios. If you have a hydration target (like a recipe calling for 70%), just enter the flour weight and hydration % — the tool instantly computes the required water weight. Need to know the hydration of your current dough? Enter flour and water weights, and it determines the exact percentage. This removes guesswork and ensures consistent results across different batch sizes.</p>
+      <p>Whether you're making sourdough, baguettes, or ciabatta, knowing your dough hydration is the difference between a slack, sticky mess and a stiff, dry dough. Use this dough hydration calculator to adjust recipes, scale up to larger batches, or simply verify your memory of a favorite recipe. It’s an essential companion for both home bakers and professionals who rely on precise baker’s percentages.</p>
+    </section>
+    <!-- AFFILIATE_SLOT -->
+    
+  </main>
+
+  <footer class="footer-note">
+    ToolsForUse — free, precise baking calculators.
+  </footer>
+
+  <script>
+    (function() {
+      const flourInput = document.getElementById('flourWeight');
+      const waterInput = document.getElementById('waterWeight');
+      const hydrationInput = document.getElementById('hydrationPct');
+      const resultMsg = document.getElementById('resultMessage');
+      const calcBtn = document.getElementById('calculateBtn');
+      const resetBtn = document.getElementById('resetBtn');
+
+      function setResult(text, success = true) {
+        resultMsg.style.display = 'block';
+        resultMsg.innerHTML = text;
+        resultMsg.style.borderLeftColor = success ? '#5b8a3e' : '#b3543c';
+        resultMsg.style.background = success ? '#f0f6ec' : '#fbeeee';
+      }
+
+      function calculateHydration() {
+        // Parse inputs; allow empty water/hydration
+        const flour = parseFloat(flourInput.value);
+        const water = parseFloat(waterInput.value);
+        const hydration = parseFloat(hydrationInput.value);
+
+        // 1. Both flour and water fill, hydration field empty/ignored → show computed hydration %
+        if (!isNaN(flour) && flour > 0 && !isNaN(water) && water >= 0 && (isNaN(hydration))) {
+          const hPercent = (water / flour) * 100;
+          return setResult(`💧 <strong>Dough hydration is ${hPercent.toFixed(1)}%</strong> <br>Water (${water} g) ÷ flour (${flour} g) × 100. For ${flour} g flour, you used ${water} g water.`);
+        }
+
+        // 2. Both water and hydration known → compute needed flour
+        if (!isNaN(water) && water >= 0 && !isNaN(hydration) && hydration > 0 && isNaN(flour)) {
+          if (hydration === 0) { return setResult('Hydration cannot be 0.', false); }
+          const neededFlour = (water / hydration) * 100;
+          flourInput.value = neededFlour.toFixed(1);
+          return setResult(`🧮 <strong>To achieve ${hydration}% hydration with ${water} g water, you need ${neededFlour.toFixed(1)} g flour.</strong> <br>Flour weight calculated for you.`);
+        }
+
+        // 3. Flour and hydration known → compute water
+        if (!isNaN(flour) && flour > 0 && !isNaN(hydration) && hydration > 0 && (isNaN(water) || waterInput.value === '')) {
+          const computedWater = (flour * hydration) / 100;
+          waterInput.value = computedWater.toFixed(1);
+          return setResult(`⚖️ <strong>Add ${computedWater.toFixed(1)} g water</strong> to ${flour} g flour for a ${hydration}% hydration dough.`);
+        }
+
+        // 4. All three filled → recompute based on flour & hydration (water may be changed but we prioritize flour+hydration)
+        if (!isNaN(flour) && flour > 0 && !isNaN(hydration) && hydration > 0 && !isNaN(water)) {
+          // Recalculate water consistently
+          const expectedWater = (flour * hydration) / 100;
+          waterInput.value = expectedWater.toFixed(1);
+          return setResult(`✅ <strong>For ${flour} g flour and ${hydration}% hydration, water weight is ${expectedWater.toFixed(1)} g.</strong> <br>Your calcuation matches baker’s percentage.`);
+        }
+
+        // 5. Only flour and water missing? edge cases
+        if (isNaN(flour) && isNaN(water) && !isNaN(hydration)) {
+          return setResult('Please enter either flour weight or water weight.', false);
+        }
+        if (isNaN(flour) || flour <= 0) {
+          return setResult('Please enter a valid flour weight (> 0).', false);
+        }
+
+        return setResult('Please fill at least two known values (flour · water · hydration).', false);
+      }
+
+      // Button click
+      calcBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        calculateHydration();
+      });
+
+      // Reset all fields to default and clear result
+      resetBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        flourInput.value = '500';
+        waterInput.value = '';
+        hydrationInput.value = '70';
+        resultMsg.style.display = 'none';
+        resultMsg.innerHTML = '';
+      });
+
+      // Allow Enter key in fields to trigger calculation
+      const inputs = [flourInput, waterInput, hydrationInput];
+      inputs.forEach(input => {
+        input.addEventListener('keypress', function(e) {
+          if (e.key === 'Enter') {
+            e.preventDefault();
+            calcBtn.click();
+          }
+        });
+      });
+
+      // optional: if one of the fields is empty and hydration is set, auto compute on focus? we keep manual.
+    })();
+  </script>
+</body>
+</html>
