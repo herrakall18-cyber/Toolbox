@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- AFFILIATE_SLOT -->
+  <title>LED Resistor Calculator – current limiting resistor for LED | ToolsForUse</title>
+  <meta name="description" content="Free LED resistor calculator: find the exact current limiting resistor for LED and power rating in seconds. Avoid burning out LEDs — calculate resistor value & wattage easily.">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      background: #f5f7fa;
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      line-height: 1.6;
+      color: #1e293b;
+      padding: 1.5rem 1rem;
+    }
+    .container {
+      max-width: 780px;
+      margin: 0 auto;
+      background: white;
+      border-radius: 24px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.04);
+      padding: 2rem 1.5rem;
+    }
+    .site-nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.2rem;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 2rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid #e9edf2;
+      font-size: 0.95rem;
+      font-weight: 500;
+    }
+    .site-nav a {
+      text-decoration: none;
+      color: #2a4d7a;
+      padding: 0.3rem 0.5rem;
+      border-radius: 8px;
+      transition: background 0.15s, color 0.15s;
+    }
+    .site-nav a:hover {
+      background: #eef2f7;
+      color: #1d3e60;
+    }
+    .nav-links {
+      display: flex;
+      gap: 0.8rem;
+      flex-wrap: wrap;
+    }
+    h1 {
+      font-size: 2.2rem;
+      font-weight: 650;
+      letter-spacing: -0.01em;
+      margin-top: 0.2rem;
+      margin-bottom: 0.2rem;
+      color: #0a1d33;
+    }
+    .subhead {
+      color: #566b84;
+      margin-bottom: 2rem;
+      font-size: 1.05rem;
+      border-left: 4px solid #4a7b3f;
+      padding-left: 1rem;
+    }
+    .calc-card {
+      background: #ffffff;
+      border-radius: 20px;
+      padding: 1.5rem 1.5rem 2rem;
+      border: 1px solid #e2e8f0;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
+      margin-bottom: 2.8rem;
+    }
+    .form-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+    .field {
+      display: flex;
+      flex-direction: column;
+      gap: 0.3rem;
+    }
+    label {
+      font-weight: 600;
+      font-size: 0.9rem;
+      color: #1e3a5f;
+    }
+    .input-unit-wrap {
+      position: relative;
+    }
+    input, select {
+      width: 100%;
+      padding: 0.7rem 1rem;
+      border: 1px solid #cbd5e1;
+      border-radius: 12px;
+      font-size: 1rem;
+      background: #fcfdff;
+      transition: border 0.2s, box-shadow 0.2s;
+      outline: none;
+    }
+    input:focus, select:focus {
+      border-color: #2f6bb0;
+      box-shadow: 0 0 0 3px rgba(47, 107, 176, 0.12);
+    }
+    .suffix {
+      display: inline-block;
+      margin-top: 0.25rem;
+      font-size: 0.8rem;
+      color: #5a6e85;
+    }
+    .row-2col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+    .button-group {
+      margin-top: 0.6rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+    }
+    .btn {
+      border: none;
+      background: #1e3f69;
+      color: white;
+      font-weight: 500;
+      padding: 0.75rem 1.3rem;
+      border-radius: 30px;
+      font-size: 0.95rem;
+      cursor: pointer;
+      transition: background 0.15s, transform 0.05s;
+      box-shadow: 0 3px 6px rgba(0,0,0,0.08);
+    }
+    .btn:hover {
+      background: #163455;
+    }
+    .btn-outline {
+      background: transparent;
+      border: 1px solid #b3c8e5;
+      color: #1e3f69;
+      box-shadow: none;
+    }
+    .btn-outline:hover {
+      background: #eaf0fa;
+    }
+    .result-area {
+      margin-top: 2rem;
+      background: #f4f8ff;
+      border-radius: 18px;
+      padding: 1.3rem 1.2rem;
+      border-left: 6px solid #2f6bb0;
+      font-weight: 450;
+    }
+    .result-metric {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.8rem;
+      align-items: baseline;
+      justify-content: space-between;
+    }
+    .resistor-value {
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: #08305d;
+    }
+    .watt-line {
+      font-size: 1.25rem;
+      font-weight: 500;
+      color: #0d3d2e;
+    }
+    .detail-note {
+      font-size: 0.85rem;
+      margin-top: 0.6rem;
+      color: #44607a;
+    }
+    .explanatory {
+      background: #ffffff;
+      border-radius: 20px;
+      padding: 1.2rem 1.5rem;
+      margin: 0.5rem 0 2.2rem;
+      border: 1px solid #e2e8f0;
+    }
+    .explanatory h2 {
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      color: #0a1f37;
+    }
+    .explanatory p {
+      margin-bottom: 1rem;
+      color: #2c3e58;
+    }
+    .affiliate-slot-comment {
+      display: block;
+      color: #6b7d96;
+      background: #f9fbfd;
+      border: 1px dashed #b9ccdd;
+      padding: 0.5rem 0.8rem;
+      border-radius: 10px;
+      font-size: 0.8rem;
+      margin: 2rem 0 0.5rem;
+    }
+    footer {
+      margin-top: 2rem;
+      text-align: center;
+      color: #6c819b;
+      font-size: 0.8rem;
+      border-top: 1px solid #dbe3ed;
+      padding-top: 1.5rem;
+    }
+    @media (max-width: 500px) {
+      .row-2col {
+        grid-template-columns: 1fr;
+      }
+      .site-nav {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      h1 {
+        font-size: 1.9rem;
+      }
+    }
+    .input-hint {
+      font-size: 0.75rem;
+      color: #64748b;
+      margin-top: 0.1rem;
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  <nav class="site-nav">
+    <div><a href="/" style="font-weight: 650;">← ToolsForUse</a></div>
+    <div class="nav-links">
+      <a href="/">Home</a>
+      <a href="/blog/led-resistor-calculator/">📖 Story behind this tool</a>
+    </div>
+  </nav>
+
+  <h1>LED resistor value calculator</h1>
+  <div class="subhead">find the exact current limiting resistor for LED &amp; power rating — no more burned LEDs or guesswork</div>
+
+  <!-- ========== CALCULATOR ========== -->
+  <div class="calc-card">
+    <div class="form-grid">
+      <div class="field">
+        <label for="supply">Power supply voltage (V)</label>
+        <div class="input-unit-wrap">
+          <input type="number" id="supply" step="any" value="5.0" min="0" placeholder="e.g., 5.0">
+        </div>
+        <div class="input-hint">DC supply, volts</div>
+      </div>
+      <div class="field">
+        <label for="forward">LED forward voltage (V)</label>
+        <div class="input-unit-wrap">
+          <input type="number" id="forward" step="any" value="2.0" min="0" placeholder="typically 2–3.3V">
+        </div>
+        <div class="input-hint">V<sub>F</sub> of your LED (from datasheet).</div>
+      </div>
+      <div class="field">
+        <label for="current">Desired LED current (mA)</label>
+        <div class="input-unit-wrap">
+          <input type="number" id="current" step="any" value="20" min="0.1" placeholder="e.g., 20 mA">
+        </div>
+        <div class="input-hint">typical 10–20 mA for standard LED</div>
+      </div>
+    </div>
+
+    <div class="button-group">
+      <button class="btn" id="calculateBtn" aria-label="Calculate resistor value">⚡ Calculate resistor</button>
+      <button class="btn btn-outline" id="resetBtn" aria-label="Reset calculator to defaults">Reset</button>
+    </div>
+
+    <!-- RESULT AREA -->
+    <div id="result" class="result-area" aria-live="polite">
+      <div class="result-metric">
+        <span style="display: flex; flex-direction: column;">
+          <span style="font-size:0.75rem; letter-spacing:0.03em;">⚡ resistor value</span>
+          <span class="resistor-value" id="resistorValue">– Ω</span>
+        </span>
+        <span style="display: flex; flex-direction: column;">
+          <span style="font-size:0.75rem; letter-spacing:0.03em;">🔌 power rating</span>
+          <span class="watt-line" id="powerRating">– W</span>
+        </span>
+      </div>
+      <div class="detail-note" id="note">
+        Enter values and press Calculate.
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== EXPLANATION ========== -->
+  <section class="explanatory">
+    <h2>Why use an LED current limiting resistor?</h2>
+    <p>LEDs are current‑driven components: a tiny change in voltage can make them draw excessive current. Without a resistor, even a 0.5V over‑supply can lead to overheating and failure. This <strong>LED resistor calculator</strong> uses the basic formula <em>R = (V<sub>supply</sub> – V<sub>forward</sub>) / I</em> to determine the exact current limiting resistor for LED operation. It also gives you the minimum power rating, so your resistor won't overheat either.</p>
+    <p>Simply enter your supply voltage (e.g., 5V from USB or 12V strip), the LED forward voltage (typically 2.0–3.6V depending on color and type), and the desired current (usually 10–20 mA for indicator LEDs). The calculator instantly outputs the nearest resistor value and the safe wattage rating. You can then pick the closest standard resistor (e.g., 220 Ω, 470 Ω, 1kΩ).</p>
+    <p>Use this <strong>led resistor value calculator</strong> whenever you prototype or design circuits. It saves time, prevents blind guessing, and reduces the risk of frying your LED. The calculator handles any DC supply, as long as supply voltage is higher than forward voltage. For multiple LEDs, just recalculate with your specific wiring (series or parallel).</p>
+    <!-- AFFILIATE_SLOT -->
+  </section>
+
+  <!-- compatibility note (affiliate slot presence) -->
+  <span class="affiliate-slot-comment"><!-- AFFILIATE_SLOT --></span>
+
+  <footer>
+    <p>© ToolsForUse — LED resistor calculator, current limiting resistor for LED, simple &amp; precise.</p>
+  </footer>
+</div>
+
+<script>
+  (function() {
+    const supplyInput = document.getElementById('supply');
+    const forwardInput = document.getElementById('forward');
+    const currentInput = document.getElementById('current');
+    const resistorSpan = document.getElementById('resistorValue');
+    const powerSpan = document.getElementById('powerRating');
+    const noteDiv = document.getElementById('note');
+
+    function calcResistor() {
+      // parse values
+      const Vs = parseFloat(supplyInput.value);
+      const Vf = parseFloat(forwardInput.value);
+      const Ima = parseFloat(currentInput.value);
+
+      // validation
+      if (!isFinite(Vs) || !isFinite(Vf) || !isFinite(Ima)) {
+        resistorSpan.innerText = '– Ω';
+        powerSpan.innerText = '– W';
+        noteDiv.innerText = '⚠️ Please enter valid numbers.';
+        return;
+      }
+      if (Vs <= 0 || Vf < 0 || Ima <= 0) {
+        resistorSpan.innerText = '– Ω';
+        powerSpan.innerText = '– W';
+        noteDiv.innerText = '⚠️ Voltage / current must be positive.';
+        return;
+      }
+      if (Vs <= Vf) {
+        resistorSpan.innerText = '∞ (invalid)';
+        powerSpan.innerText = '–';
+        noteDiv.innerText = '⚠️ Supply voltage must exceed LED forward voltage.';
+        return;
+      }
+
+      const I = Ima / 1000.0;  // Amperes
+      const Vr = Vs - Vf;      // voltage across resistor
+      const R = Vr / I;        // resistance in ohms
+      const P = Vr * I;        // power in watts
+
+      // Format resistance (round to reasonable precision)
+      let Rtext;
+      if (R >= 1000) {
+        Rtext = (R / 1000).toFixed(2) + ' kΩ';
+      } else {
+        Rtext = R.toFixed(1) + ' Ω';
+      }
+
+      // Power: at least 0.25W → nearest standard – but show exact and suggest standard.
+      const Pnearest = P > 0.25 ? P : 0.25; // show min safe rating
+      let Ptext = P.toFixed(3) + ' W';
+      if (P < 0.1) Ptext = P.toFixed(4) + ' W';
+
+      resistorSpan.innerText = Rtext;
+      powerSpan.innerText = Ptext;
+      noteDiv.innerHTML = `Recommended power rating: ≥ <strong>${Math.max(0.25, Math.ceil(P*4)/4).toFixed(2)} W</strong> (use 0.25 W for small currents) · Closest standard resistor: <strong>${closestStandard(R)}</strong>`;
+    }
+
+    // helper: pick common E12/E24-like values (fast)
+    function closestStandard(R) {
+      if (R <= 0) return '–';
+      // simple E12 series values (most common)
+      const e12 = [1.0, 1.2, 1.5, 1.8, 2.2, 2.7, 3.3, 3.9, 4.7, 5.6, 6.8, 8.2];
+      // scale to decade
+      let decade = Math.floor(Math.log10(R));
+      let normalized = R / Math.pow(10, decade);
+      // find closest
+      let bestVal = e12[0];
+      let minDiff = Math.abs(normalized - e12[0]);
+      for (let v of e12) {
+        let diff = Math.abs(normalized - v);
+        if (diff < minDiff) {
+          minDiff = diff;
+          bestVal = v;
+        }
+      }
+      let rounded = bestVal * Math.pow(10, decade);
+      // formatting
+      if (rounded >= 1000) return (rounded/1000).toFixed(2) + ' kΩ';
+      if (rounded >= 100) return Math.round(rounded) + ' Ω';
+      return rounded.toFixed(1) + ' Ω';
+    }
+
+    function reset() {
+      supplyInput.value = '5.0';
+      forwardInput.value = '2.0';
+      currentInput.value = '20';
+      noteDiv.innerText = 'Enter values and press Calculate.';
+      resistorSpan.innerText = '– Ω';
+      powerSpan.innerText = '– W';
+    }
+
+    document.getElementById('calculateBtn').addEventListener('click', calcResistor);
+    document.getElementById('resetBtn').addEventListener('click', reset);
+
+    // optional: compute on pressing Enter in fields
+    const inputs = [supplyInput, forwardInput, currentInput];
+    inputs.forEach(input => {
+      input.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') {
+          e.preventDefault();
+          calcResistor();
+        }
+      });
+    });
+  })();
+</script>
+</body>
+</html>
