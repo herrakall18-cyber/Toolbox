@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LED Resistor Calculator | ToolsForUse</title>
+  <meta name="description" content="A simple, honest LED resistor calculator that gives you resistor value and power rating, plus a safety cushion, so you don't burn out LEDs.">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      line-height: 1.7;
+      color: #2d2d2d;
+      background: #fafaf8;
+      padding: 0 1rem;
+    }
+
+    .container {
+      max-width: 42rem;
+      margin: 0 auto;
+      padding: 0 1rem;
+    }
+
+    header {
+      padding: 1.5rem 0 0.5rem 0;
+      border-bottom: 1px solid #e5e5e0;
+      margin-bottom: 2rem;
+    }
+
+    header a {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: #5a5a5a;
+      text-decoration: none;
+      letter-spacing: 0.02em;
+    }
+
+    header a:hover {
+      color: #000;
+    }
+
+    h1 {
+      font-size: 2rem;
+      font-weight: 700;
+      line-height: 1.3;
+      margin-bottom: 1rem;
+      letter-spacing: -0.02em;
+    }
+
+    .byline {
+      font-size: 0.85rem;
+      color: #777;
+      margin-bottom: 2rem;
+      border-bottom: 1px solid #eee;
+      padding-bottom: 1rem;
+    }
+
+    h2 {
+      font-size: 1.4rem;
+      font-weight: 600;
+      margin-top: 2.5rem;
+      margin-bottom: 0.75rem;
+      letter-spacing: -0.01em;
+    }
+
+    p {
+      margin-bottom: 1.5rem;
+      font-size: 1.05rem;
+    }
+
+    a {
+      color: #1a5c8a;
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+
+    a:hover {
+      text-decoration-thickness: 2px;
+    }
+
+    .tool-link {
+      display: inline-block;
+      background: #1a5c8a;
+      color: #fff;
+      text-decoration: none;
+      padding: 0.7rem 1.5rem;
+      border-radius: 6px;
+      font-weight: 600;
+      font-size: 1rem;
+      margin: 0.5rem 0 1rem 0;
+    }
+
+    .tool-link:hover {
+      background: #13476c;
+      color: #fff;
+      text-decoration: none;
+    }
+
+    .closing {
+      margin-top: 3rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid #e5e5e0;
+      font-size: 0.95rem;
+      color: #555;
+    }
+
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 1.6rem;
+      }
+      
+      .container {
+        padding: 0 0.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <a href="/">← ToolsForUse</a>
+    </header>
+
+    <h1>When I stopped guessing and actually did the math (LED resistor calculator)</h1>
+    <div class="byline">October 20, 2025 — by the ToolsForUse maintainer</div>
+
+    <p>Last weekend I was wiring up some LEDs for a small control panel on my workbench. Nothin' fancy — just a few 5V indicator lights, a button, and a microSD card module. I'd done this before, but here's the thing: I always ended up digging through my drawer of resistors, squinting at color bands, and hoping the one I picked was close enough.</p>
+
+    <p>That usually worked out. But this time I had a 3.7V LiPo battery rather than the 5V USB rail I normally use, and I also grabbed a batch of LEDs I wasn't 100% sure about — one bag said "2.0-2.2V forward voltage" in faint print, and another I'd just received had no markings at all. I didn't trust my gut anymore. I wanted the actual numbers.</p>
+
+    <h2>The classic problem</h2>
+    <p>If you've ever done this, you know the drill. You find a formula on some forum: R = (Vsupply - Vled) / Idesired. Simple enough. But it's easy to mess up the voltage drop if you're tired, and more importantly, you still have no idea <em>what power rating</em> you need. You can shove a quarter-watt resistor in and if you're wrong by a few hundred ohms, boom. Magic smoke.</p>
+
+    <p>The other thing that drives me nuts about the resistor calculators online: they ask for forward current, voltage, supply voltage, and they spit out a value — but they never tell you the <em>power</em> dissipated in that resistor. That's half the equation. If you pick a resistor that's supposedly "correct" but it's only a 1/16W, it's gonna heat up fast and possibly catch fire. Not a great day.</p>
+
+    <h2>What I actually needed</h2>
+    <p>I needed something that:</p>
+    <p>— Takes the supply voltage, the LED's forward voltage, and the current you want (in mA, because that's how humans think about LEDs).<br>
+    — Gives you the resistor value in ohms (using standard E12 series, so you get real parts, not theoretical nonsense).<br>
+    — Tells you the power dissipation in watts, <em>and</em> suggests a safety factor — because a resistor at 90% of its power rating runs hot and degrades. I always use 2x headroom, but I've seen people forget that.<br>
+    — And it has to be dead simple, no signup, no JavaScript fuss. Just type and get your numbers.</p>
+
+    <p>So I built it. It's not a new idea, but I wanted one that didn't make me think. It's called the <a href="/tools/led-resistor-calculator/">LED Resistor Calculator</a>.</p>
+
+    <h2>What the tool actually does</h2>
+    <p>You enter three numbers: supply voltage, the LED's forward voltage (if you're not sure, a typical red LED is ~2.0V, blue is ~3.2V — pick a value or use the common presets), and the desired current (usually 10mA to 20mA for indicators, but you can push to 30mA if you're feelin' brave).</p>
+
+    <p>It then calculates the theoretical resistor, picks the closest standard value from the E12 series (so you can actually find it in a drawer), and tells you the power that resistor will dissipate. It also shows the recommended power rating with that 2x safety margin — I'd rather use 0.5W when 0.25W might technically work, just for peace of mind.</p>
+
+    <p>Oh, and it tells you the actual current you'll get with that standard resistor, because reality differs from theory. That's the difference between knowing and guessing.</p>
+
+    <p>I've already used it to to re-check the three LEDs I'm about to solder in. Works fine — took ten seconds, and I have a note in my book now with "R = 82Ω, 1/4W+, 5V LED blue" written nice and clear.</p>
+
+    <p>You can try it here: <a href="/tools/led-resistor-calculator/" class="tool-link">Go to LED Resistor Calculator</a></p>
+
+    <p class="closing">It's not a fancy tool. It's not going to glow in the dark or teach you Ohm's law from scratch. But if you're like me and you've got a bag of resistors and a half-remembered formula, it'll get you from "I think this'll work" to "this definitely works" in about thirty seconds. That's all I wanted.</p>
+
+    <p class="closing">— Someone who's blown up two LEDs and a resistor (one time) and learned the hard way.</p>
+  </div>
+</body>
+</html>
