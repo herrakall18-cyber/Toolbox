@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Raised Bed Soil Calculator – garden soil volume tool | ToolsForUse</title>
+    <meta name="description" content="Free raised bed soil calculator: find out how much soil for raised bed in cubic feet, cubic yards, or bags. Use soil volume calculator to plan your garden project – avoid overordering.">
+    <!-- AFFILIATE_SLOT -->
+</head>
+<body>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: system, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background: #f5f9f3;
+            color: #1e2b1e;
+            line-height: 1.6;
+            padding: 0 1rem;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.05);
+            border-radius: 24px;
+            padding: 2rem 1.8rem;
+            margin-top: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .header-links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #dde8da;
+            padding-bottom: 1.2rem;
+            margin-bottom: 2rem;
+            gap: 1rem;
+        }
+        .header-links a {
+            text-decoration: none;
+            font-weight: 500;
+            color: #2a5c2a;
+            background: #edf3ea;
+            padding: 0.4rem 1rem;
+            border-radius: 40px;
+            font-size: 0.9rem;
+            border: 1px solid #cbdcc9;
+            transition: background 0.2s ease;
+        }
+        .header-links a:hover {
+            background: #dde9d9;
+            text-decoration: underline;
+        }
+        .tool-title {
+            margin-bottom: 1.5rem;
+        }
+        .tool-title h1 {
+            font-size: 2rem;
+            font-weight: 650;
+            color: #1f4a1f;
+            letter-spacing: -0.02em;
+            line-height: 1.2;
+            margin-bottom: 0.25rem;
+        }
+        .tool-subhead {
+            color: #3e593c;
+            font-size: 1.05rem;
+        }
+        .calculator-card {
+            background-color: #f9fbf8;
+            border: 1px solid #d6e2d3;
+            border-radius: 24px;
+            padding: 1.8rem 1.6rem;
+            margin: 2rem 0;
+        }
+        .calculator-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+        .form-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            align-items: flex-end;
+        }
+        .form-group {
+            flex: 1 1 150px;
+            min-width: 140px;
+        }
+        label {
+            display: block;
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-bottom: 6px;
+            color: #1f3b1f;
+        }
+        input, select {
+            width: 100%;
+            padding: 0.7rem 0.8rem;
+            border: 1px solid #b8cfb5;
+            border-radius: 16px;
+            font-size: 1rem;
+            background: white;
+            transition: border 0.2s, box-shadow 0.2s;
+            font-family: inherit;
+        }
+        input:focus, select:focus {
+            border-color: #3b7a3b;
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(66, 128, 66, 0.15);
+        }
+        .calc-btn {
+            background: #2d5c2d;
+            border: none;
+            color: white;
+            font-weight: 600;
+            padding: 0.9rem 2rem;
+            border-radius: 60px;
+            font-size: 1.05rem;
+            cursor: pointer;
+            transition: background 0.2s, transform 0.1s;
+            border: 1px solid #1e421e;
+            align-self: flex-start;
+            margin-top: 0.5rem;
+        }
+        .calc-btn:hover {
+            background: #1f461f;
+        }
+        .calc-btn:active {
+            transform: scale(0.97);
+        }
+        .option-hint {
+            font-size: 0.85rem;
+            color: #456445;
+            margin-top: 6px;
+        }
+        .result-area {
+            background: #eaf4ea;
+            border-radius: 20px;
+            padding: 1.5rem 1.4rem;
+            margin-top: 1.8rem;
+            border-left: 6px solid #2d6a2d;
+        }
+        .result-line {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #1c3d1c;
+            margin-bottom: 0.8rem;
+        }
+        .result-sub {
+            color: #2c4a2c;
+            margin-bottom: 1.2rem;
+            font-size: 1rem;
+        }
+        .result-detail {
+            border-top: 1px solid #bed5bb;
+            padding-top: 1rem;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem 2rem;
+        }
+        .detail-item {
+            background: white;
+            padding: 0.4rem 1rem;
+            border-radius: 30px;
+            border: 1px solid #b7cdb4;
+            font-size: 0.9rem;
+        }
+        .bag-note {
+            margin-top: 0.8rem;
+            font-size: 0.9rem;
+            background: #f2f8f2;
+            padding: 0.6rem 1rem;
+            border-radius: 30px;
+            border: 1px dashed #4a7c4a;
+            color:#1f3d1f;
+        }
+        .explain-section {
+            margin-top: 2.5rem;
+            background: #fbfdfb;
+            padding: 1.5rem;
+            border-radius: 20px;
+            border: 1px solid #e2eee0;
+        }
+        .explain-section h2 {
+            color: #1b421b;
+            font-weight: 650;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+        .explain-section p {
+            margin-bottom: 1rem;
+        }
+        .footer-note {
+            margin-top: 2rem;
+            font-size: 0.9rem;
+            text-align: center;
+            color: #547354;
+        }
+        @media (max-width: 650px) {
+            .container {
+                padding: 1.5rem 1rem;
+            }
+            .tool-title h1 {
+                font-size: 1.7rem;
+            }
+            .form-row {
+                gap: 1rem;
+            }
+            .calc-btn {
+                width: 100%;
+                text-align: center;
+            }
+        }
+    </style>
+
+    <div class="container">
+        <header class="header-links">
+            <a href="/" aria-label="ToolsForUse homepage">← ToolsForUse</a>
+            <a href="/blog/raised-bed-soil-calculator/">Read the story behind this tool</a>
+        </header>
+
+        <div class="tool-title">
+            <h1>Raised Bed Soil Calculator</h1>
+            <div class="tool-subhead">How much soil for raised bed? 🌱 Get exact cubic yards & bags.</div>
+        </div>
+
+        <section class="calculator-card" aria-label="Raised bed soil calculator">
+            <form class="calculator-form" id="soilForm">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="length">Length (ft)</label>
+                        <input type="number" id="length" placeholder="e.g. 6" min="0" step="0.1" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="width">Width (ft)</label>
+                        <input type="number" id="width" placeholder="e.g. 3" min="0" step="0.1" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="depth">Depth (in)</label>
+                        <input type="number" id="depth" value="12" min="0" step="0.5" required>
+                        <div class="option-hint">depth in inches</div>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="bedCount">Number of beds</label>
+                        <input type="number" id="bedCount" value="1" min="1" step="1" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="bagSize">Bag size (cubic ft)</label>
+                        <input type="number" id="bagSize" value="1.5" min="0.1" step="0.1">
+                        <div class="option-hint">common bag: 1.5 ft³</div>
+                    </div>
+                </div>
+                <button type="submit" class="calc-btn">Calculate soil volume</button>
+            </form>
+
+            <div id="resultDisplay" class="result-area" style="display: none;" aria-live="polite">
+                <div class="result-line" id="totalVolumeFt">—</div>
+                <div class="result-sub" id="volumeCubicYards">—</div>
+                <div class="result-detail">
+                    <span class="detail-item" id="bagsNeeded">bags</span>
+                    <span class="detail-item" id="totalCubicFeet">ft³</span>
+                    <span class="detail-item" id="cubicYardsDetail">yd³</span>
+                </div>
+                <div class="bag-note" id="bagNote">Estimate based on selected bag size.</div>
+            </div>
+        </section>
+
+        <!-- explanatory section -->
+        <section class="explain-section">
+            <h2>How much soil for your raised bed? We make it precise</h2>
+            <p>
+                Planning a raised garden bed often begins with the question: <strong>“how much soil for raised bed?”</strong> Too little can leave your plants root-bound, but ordering too much is a waste of money and space. This raised bed soil calculator uses the exact dimensions of your bed(s) and calculates the volume in cubic feet and cubic yards. Enter length, width, depth (in inches), and the number of identical beds to get the soil volume you need – whether you buy in bulk or by bag.
+            </p>
+            <p>
+                Our garden soil calculator is especially useful for gardening enthusiasts using bagged mixes. Most bags list their volume in cubic feet (often 1.5 ft³), so we automatically divide your total volume by the bag size to give you the exact number of bags. For larger projects, we also display cubic yards – the standard unit for bulk topsoil deliveries. This soil volume calculator works for any regular rectangular raised bed and can be adapted for L-shaped or U-shaped designs by splitting into rectangles.
+            </p>
+            <p>
+                Remember that soil settles after watering, so adding 5–10% extra is generally recommended. We built this tool with straightforward inputs – no need to convert depth manually; simply enter inches, and the tool converts to feet for precise volume. Use it for new builds, amending existing beds, or ordering compost blend. It's a <strong>raised bed soil calculator</strong> that removes guesswork, helps your budget, and ensures your garden thrives from day one.
+            </p>
+        </section>
+
+        <!-- manual placeholder for advertisers -->
+        <!-- AFFILIATE_SLOT -->
+        <div class="footer-note">
+            <span>🌿 ToolsForUse – free volume calculator for gardeners</span>
+        </div>
+    </div>
+
+    <script>
+        (function() {
+            "use strict";
+            const form = document.getElementById('soilForm');
+            const resultDisplay = document.getElementById('resultDisplay');
+
+            // show result elements
+            const totalVolumeFtEl = document.getElementById('totalVolumeFt');
+            const volumeCubicYardsEl = document.getElementById('volumeCubicYards');
+            const bagsNeededEl = document.getElementById('bagsNeeded');
+            const totalCubicFeetEl = document.getElementById('totalCubicFeet');
+            const cubicYardsDetailEl = document.getElementById('cubicYardsDetail');
+            const bagNoteEl = document.getElementById('bagNote');
+
+            function updateResult() {
+                const length = parseFloat(document.getElementById('length').value);
+                const width = parseFloat(document.getElementById('width').value);
+                const depthIn = parseFloat(document.getElementById('depth').value);
+                const bedCount = parseInt(document.getElementById('bedCount').value, 10);
+                const bagSize = parseFloat(document.getElementById('bagSize').value);
+
+                // Validate: if any invalid, hide result
+                if (isNaN(length) || isNaN(width) || isNaN(depthIn) || isNaN(bedCount) || isNaN(bagSize) || length <= 0 || width <= 0 || depthIn <= 0 || bedCount < 1 || bagSize <= 0) {
+                    resultDisplay.style.display = 'none';
+                    return;
+                }
+
+                const depthFt = depthIn / 12; // convert depth to ft
+                const volumePerBedFt = length * width * depthFt; // cubic ft per bed
+                const totalCubicFeet = volumePerBedFt * bedCount;
+
+                const cubicYards = totalCubicFeet / 27; // 27 ft³ in a yard
+
+                // bags = totalCubicFeet / bagSize, round UP
+                let bagsNeeded = Math.ceil(totalCubicFeet / bagSize);
+
+                // if totalCubicFeet is 0? but validated >0
+                if (totalCubicFeet <= 0) {
+                    resultDisplay.style.display = 'none';
+                    return;
+                }
+
+                // Update DOM
+                totalVolumeFtEl.textContent = totalCubicFeet.toFixed(2) + ' ft³ total';
+                volumeCubicYardsEl.textContent = cubicYards.toFixed(3) + ' cubic yards (cu yd)';
+                bagsNeededEl.textContent = '≈ ' + bagsNeeded + ' bags (if ' + bagSize + ' ft³/bag)';
+                totalCubicFeetEl.textContent = totalCubicFeet.toFixed(2) + ' ft³';
+                cubicYardsDetailEl.textContent = cubicYards.toFixed(3) + ' yd³';
+
+                // dynamic bag note with 5%+ recommendation
+                const fivePercent = totalCubicFeet * 0.05;
+                const extraSuggestion = (totalCubicFeet + fivePercent).toFixed(2);
+                bagNoteEl.innerHTML = `💡 Tip: add ~5% for settling → approx. ${extraSuggestion} ft³ (about ${bagsNeeded} bags of ${bagSize} ft³). Bulk order: ${cubicYards.toFixed(2)} yd³.`;
+
+                resultDisplay.style.display = 'block';
+            }
+
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                updateResult();
+            });
+
+            // live update as user types (nice UX)
+            const inputs = form.querySelectorAll('input, select');
+            inputs.forEach(input => {
+                input.addEventListener('input', function() {
+                    // only show if all basic fields filled
+                    if (document.getElementById('length').value && document.getElementById('width').value && document.getElementById('depth').value) {
+                        updateResult();
+                    } else {
+                        resultDisplay.style.display = 'none';
+                    }
+                });
+            });
+
+            // initialize with defaults (show result for default values)
+            window.addEventListener('load', function() {
+                // set defaults
+                document.getElementById('length').value = '6';
+                document.getElementById('width').value = '3';
+                document.getElementById('depth').value = '12';
+                document.getElementById('bedCount').value = '1';
+                document.getElementById('bagSize').value = '1.5';
+                updateResult();
+            });
+        })();
+    </script>
+</body>
+</html>
