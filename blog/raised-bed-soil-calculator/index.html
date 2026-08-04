@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Raised Bed Soil Calculator — how much soil do you actually need? | ToolsForUse</title>
+    <meta name="description" content="I got tired of guessing soil volumes for my raised beds. So I built a simple calculator that gives you exact bags or cubic yards — no math brain required.">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: #fafaf7;
+            color: #2c2c28;
+            line-height: 1.65;
+            padding: 2em 1.5em;
+            max-width: 760px;
+            margin: 0 auto;
+        }
+        a {
+            color: #345b3a;
+            text-decoration: underline;
+            text-underline-offset: 2px;
+        }
+        a:hover {
+            color: #1e3b25;
+        }
+        .site-header {
+            padding-bottom: 2em;
+            border-bottom: 1px solid #d9d6cc;
+            margin-bottom: 2.5em;
+            display: flex;
+            align-items: baseline;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+        .site-header h1 {
+            font-size: 1.4rem;
+            font-weight: 700;
+            letter-spacing: -0.01em;
+        }
+        .site-header h1 a {
+            text-decoration: none;
+            color: #2c2c28;
+            background: #f0efe9;
+            padding: 0.2rem 0.6rem;
+            border-radius: 0.3rem;
+            font-weight: 600;
+            font-size: 1.3rem;
+            transition: background 0.15s;
+        }
+        .site-header h1 a:hover {
+            background: #e0ddd2;
+        }
+        .site-header .tagline {
+            color: #6d6a5c;
+            font-size: 0.95rem;
+            font-style: italic;
+        }
+        .post {
+            background: white;
+            padding: 2.5rem 2.2rem;
+            border-radius: 12px;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.02), 0 8px 24px -8px rgba(30, 40, 20, 0.08);
+        }
+        .post h2 {
+            font-size: 2.1rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            line-height: 1.2;
+            margin-bottom: 1.2rem;
+            color: #1d2b1e;
+        }
+        .post h3 {
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-top: 2.2rem;
+            margin-bottom: 0.8rem;
+            color: #2c3b2d;
+            border-bottom: 1px solid #e4e1d6;
+            padding-bottom: 0.3rem;
+        }
+        .post p {
+            margin-bottom: 1.25rem;
+        }
+        .post .inline-tool-link {
+            background: #edf2eb;
+            padding: 0.3rem 0.8rem;
+            border-radius: 6px;
+            font-weight: 600;
+            color: #1f3a24;
+            text-decoration: none;
+            border: 1px solid #b8c4b4;
+            transition: background 0.1s;
+            white-space: nowrap;
+        }
+        .post .inline-tool-link:hover {
+            background: #dce8da;
+        }
+        .cta-box {
+            background: #f4f3ed;
+            border-radius: 10px;
+            padding: 1.5rem 1.8rem;
+            margin: 2.2rem 0 1.2rem;
+            border-left: 5px solid #60785c;
+        }
+        .cta-box p {
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+        .cta-box .tool-btn {
+            display: inline-block;
+            background: #315534;
+            color: white;
+            padding: 0.8rem 1.8rem;
+            border-radius: 40px;
+            border: none;
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-decoration: none;
+            letter-spacing: 0.01em;
+            transition: background 0.15s, transform 0.1s;
+            margin-top: 0.8rem;
+            box-shadow: 0 2px 6px rgba(30, 50, 20, 0.12);
+        }
+        .cta-box .tool-btn:hover {
+            background: #27432c;
+            transform: translateY(-1px);
+        }
+        .cta-box .tool-btn:active {
+            transform: translateY(0);
+        }
+        .footer-note {
+            margin-top: 2.5rem;
+            color: #777462;
+            font-size: 0.9rem;
+            text-align: center;
+        }
+        .post p:last-child {
+            margin-bottom: 0.2rem;
+        }
+        .divider {
+            width: 100%;
+            height: 1px;
+            background: #e3e0d4;
+            margin: 2rem 0 1.2rem;
+        }
+        @media (max-width: 540px) {
+            body {
+                padding: 1.2em 0.8em;
+            }
+            .post {
+                padding: 1.8rem 1.2rem;
+            }
+            .site-header {
+                flex-direction: column;
+                gap: 0.3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="site-header">
+        <h1><a href="/">ToolsForUse</a></h1>
+        <span class="tagline">— small, honest web tools</span>
+    </header>
+
+    <article class="post">
+        <h2>Raised Bed Soil Calculator</h2>
+
+        <p>Two weeks ago I was standing in a muddy garden supply yard, squinting at a phone calculator app, trying to figure out how many 1.5 cubic foot bags of topsoil I needed for three new 8-foot-by-4-foot beds. I had the dimensions right, but then I second-guessed myself: did I really want 7" deep or was it 9"? And I wanted a blend of 60% topsoil, 30% compost, 10% aeration. But none of that matters if the total volume is wrong.</p>
+
+        <p>I ended up buying 12 bags of this and 6 bags of that. I came up ~2 bags short at the end, and had to go back for them. That’s not a tragedy, but it’s exactly the kind of annoying friction that makes a weekend project drag. And when I filled the beds, I had a little leftover, but not enough to actually do something with. That’s how a simple task becomes “let me just stare at a spreadsheet” — which is easy to do wrong.</p>
+
+        <h3>What do other calculators do? Not enough.</h3>
+        <p>I tried three different online soil calculators that night. One asked for “apparent depth” and “void ratio” — that’s overkill for someone just filling a bed for tomatoes. Another one only gave me the result in cubic yards — which is fine if you’re ordering a full truck, but I was mixing bags. And the third lacked the one thing I actually needed: the ability to add <strong>multiple beds at once</strong> and get a <em>bag count</em> for different bag sizes. I have two beds of one size and one of another, and all the existing tools made me do separate rounds of math and then add them up myself. That’s what a tool should do for you.</p>
+
+        <p>So I built the thing I wanted.</p>
+
+        <h3>What the tool actually does</h3>
+        <p>The <strong>Raised Bed Soil Calculator</strong> lets you enter the dimensions of one or more raised beds — length, width, depth in feet or inches. You can also choose how many beds of the same size you have. Then you pick the bag size you’re buying (usually 1.5 or 2 cubic feet, but you can enter a custom size), and the tool does the rest. It tells you:</p>
+        <ul style="margin-left: 1.8rem; margin-bottom: 1.6rem; list-style-type: disc; color: #3d443a;">
+            <li>Total soil volume needed in cubic feet and cubic yards.</li>
+            <li>Exact number of full bags you’ll need — <em>always rounded up</em>, with no guessing.</li>
+            <li>Reference table for how many bags that translates to per common bag size.</li>
+        </ul>
+        <p>It also handles the bulk option: if you decide to buy by the cubic yard, it shows you that too. No confusing unit switching — you see both the bag count and the yardage. For me, that’s the whole point: get a clear answer and go back to gardening.</p>
+
+        <p>And I made it add multiple beds without any extra clicks. You just hit “+ add another bed” and it recalculates everything live. No page reloads, no “how are my 4 beds entered?” — it just works.</p>
+
+        <div class="cta-box">
+            <p><strong>Try the calculator — it’s free, no signup, nothing to install.</strong></p>
+            <a href="/tools/raised-bed-soil-calculator/" class="tool-btn">Open Raised Bed Soil Calculator →</a>
+        </div>
+
+        <h3>Honestly, why use this instead of doing it in your head?</h3>
+        <p>Because mental math is fine until you’re juggling three beds, a pickup schedule, and your kid’s soccer game. I’ve made the mistake of being too confident with numbers before. And 9 times out of 10, the cheap garden calculators give you something that looks right until you’re measuring an empty bed with a ruler and a growing sense of regret. This tool just removes the step where you second-guess yourself.</p>
+
+        <p>I use it every time I set up a new bed. Even when it’s just one bed, I’ll plug in the dimensions to make sure I get the bags right and avoid driving 20 minutes for a single bag of soil. I also added a “waste factor” slider because I always spill a little or some soil compacts — but it defaults to 0%, so you control that.</p>
+
+        <p>It’s a simple thing, but it’s the difference between a smooth Saturday and a trip to the store on Monday.</p>
+
+        <div class="divider"></div>
+        <p style="color: #57564f; font-size: 0.98rem;"><em>— If you try it, I’d genuinely like to know if it helped or if something’s confusing. I built this for my own brown-thumb self, but I keep updating it based on real feedback. And no, there are no ads on the tool page, it just exists.</em></p>
+    </article>
+
+    <div class="footer-note">
+        <p>← back to <a href="/">ToolsForUse</a> — simple tools for actual problems</p>
+    </div>
+</body>
+</html>
