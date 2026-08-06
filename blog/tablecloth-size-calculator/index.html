@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tablecloth Size Calculator — ToolsForUse</title>
+  <meta name="description" content="A plain‑spoken tablecloth size calculator for round, rectangular, oval, and square tables. Just enter your table dimensions and desired drop — no sign‑up, no fluff.">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background: #fafbfc;
+      color: #1e242b;
+      line-height: 1.7;
+      padding: 0 20px;
+    }
+    header {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 40px 0 20px;
+      border-bottom: 1px solid #d9e0e6;
+      display: flex;
+      align-items: baseline;
+      gap: 12px;
+    }
+    header a {
+      text-decoration: none;
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: #2c3e50;
+      letter-spacing: 0.3px;
+      background: #e7edf2;
+      padding: 3px 10px 3px 8px;
+      border-radius: 30px;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      transition: background 0.15s;
+    }
+    header a:hover {
+      background: #d0dae3;
+      color: #1a2b3c;
+    }
+    header span {
+      font-size: 0.9rem;
+      color: #5a6b7a;
+      font-weight: 400;
+    }
+    main {
+      max-width: 680px;
+      margin: 40px auto 60px;
+      background: white;
+      padding: 40px 32px 48px;
+      border-radius: 12px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.03), 0 1px 2px rgba(0,0,0,0.04);
+      border: 1px solid #e2e8ef;
+    }
+    h1 {
+      font-size: 2.1rem;
+      line-height: 1.25;
+      font-weight: 650;
+      letter-spacing: -0.015em;
+      margin-bottom: 24px;
+      color: #15232d;
+      border-left: 4px solid #587a9e;
+      padding-left: 18px;
+    }
+    p {
+      margin-bottom: 1.6em;
+      font-size: 1.04rem;
+      color: #2b3945;
+    }
+    p strong {
+      font-weight: 600;
+      color: #1a2b3c;
+    }
+    .tool-link {
+      background: #eef3f8;
+      border: 1px solid #cbd7e2;
+      padding: 18px 22px;
+      border-radius: 10px;
+      margin: 28px 0 22px;
+      text-align: center;
+      transition: background 0.1s;
+    }
+    .tool-link a {
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: #1d4a6f;
+      text-decoration: none;
+      padding: 8px 18px;
+      background: white;
+      border-radius: 40px;
+      border: 1px solid #8ba0b5;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.03);
+      transition: all 0.1s;
+    }
+    .tool-link a:hover {
+      background: #e1eaf2;
+      border-color: #5e7d9b;
+      color: #0f3145;
+    }
+    .tool-link small {
+      display: block;
+      margin-top: 10px;
+      color: #536a7d;
+      font-size: 0.95rem;
+    }
+    hr {
+      border: none;
+      border-top: 1px solid #d9e0e6;
+      margin: 28px 0 18px;
+    }
+    .closing-meta {
+      margin-top: 32px;
+      font-size: 0.9rem;
+      color: #5f6e7c;
+      border-left: 2px solid #c0ccd6;
+      padding-left: 16px;
+    }
+    .closing-meta p {
+      margin-bottom: 0.4em;
+    }
+    .closing-meta p:last-child {
+      margin-bottom: 0;
+    }
+    blockquote {
+      font-style: italic;
+      border-left: 3px solid #9db4c8;
+      background: #f4f8fc;
+      margin: 1.4em 0;
+      padding: 12px 18px;
+      color: #344e64;
+      border-radius: 0 6px 6px 0;
+    }
+    @media (max-width: 500px) {
+      header { flex-direction: column; gap: 6px; padding-top: 28px; }
+      h1 { font-size: 1.7rem; padding-left: 14px; }
+      main { padding: 28px 18px 40px; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <a href="/">← ToolsForUse</a>
+    <span>a tiny collection of honest tools</span>
+  </header>
+  <main>
+    <h1>Tablecloth Size Calculator — I built it because I was tired of guessing</h1>
+    
+    <p>
+      A few weeks ago I needed to buy a tablecloth for a 6‑foot foldable table I use for board game nights. 
+      I didn’t want a “fitted” look – just a casual drop of about 6 inches each side. But when I opened the 
+      website of a big retailer, the size chart gave me “rectangular: 60×120” and nothing else. No idea what 
+      drop that would give me on my table. I ended up ordering a cloth that turned out to be a little too long, 
+      dragging on the floor. That’s minor, but it got me thinking: this is a very simple geometry problem that 
+      many online calculators overcomplicate or bury under ads and pop‑ups.
+    </p>
+
+    <p>
+      I spent an evening checking the “tablecloth calculators” that already exist. Some ask you to pick a 
+      “shape” then give you a preset drop (which is not what I wanted). Others calculate based on a “drop 
+      percentage” – I just wanted to see, in inches, what I need to add to each side of my table. And many 
+      of them are hidden inside a 5‑page article about napkins. 
+      So I decided to make a small page that does exactly one thing: you type your table’s dimensions, 
+      choose your shape, enter your desired drop — and it tells you the exact cloth size you should look for.
+    </p>
+
+    <p>
+      The tool is deliberately bare. It works for <strong>round, square, rectangle, and oval</strong> tables. 
+      You give it:
+      <br>
+      – table length/width (or diameter if round/oval – you can measure the widest point for oval)<br>
+      – your desired drop (the overhang from table edge to cloth edge, in inches)<br>
+      – it adds the drop twice (left + right, or both ends) for each dimension.<br>
+      For round/oval it computes the diameter plus twice the drop, and gives you a recommended cloth size 
+      using the nearest common sizing (e.g., 70″ round, 70×120″ oval, etc.). But it always shows the exact 
+      number first, because sometimes you’ll sew your own or order custom.
+    </p>
+
+    <p>
+      I tried to make it as transparent as possible. No “we’ll email you the result”, no hidden formula. 
+      On the page, you’ll see a small note explaining exactly how the math works: 
+      <em>“we simply add twice your drop to each dimension, for a standard straight‑hanging cloth.”</em> 
+      That’s it. That’s the whole trick.
+    </p>
+
+    <p>
+      Why bother making this public? Honestly, it’s a tiny tool, but I want to use it again when I get a 
+      round dining table later this year. And I suspect other people are in the same spot – you have a table, 
+      you want a cloth that fits, not a drape that puddles on the floor. I also kept the page completely 
+      free of affiliate links or upsells. (Well, I rely on a simple coffee tip jar, but only if you feel like it.)
+    </p>
+
+    <hr>
+
+    <div class="tool-link">
+      <a href="/tools/tablecloth-size-calculator/">Open the Tablecloth Size Calculator</a>
+      <small>no ads, no sign‑up, just your dimensions and drop</small>
+    </div>
+
+    <blockquote>
+      A quick example: my 6‑ft foldable table (72″ long × 30″ wide) with a 6″ drop needs a cloth of 
+      84″ × 42″. But I have an oval table that is 42″ wide and 60″ long – the calculator suggests 
+      a 54″ × 72″ oval cloth. That’s exactly what I needed.
+    </blockquote>
+
+    <p>
+      If you’ve ever squinted at a tape measure while trying to figure out what size to buy, I think this 
+      might help. It’s not a fancy piece of software — it’s a calculator, just without the clutter.
+    </p>
+
+    <div class="closing-meta">
+      <p>— built out of a lazy Sunday afternoon, with some care for plain numbers.</p>
+      <p>Feedback? You can reach me via the <a href="/tools/tablecloth-size-calculator/" style="color:#1d4a6f;">contact link on the tool</a> — I read everything.</p>
+    </div>
+
+    <hr>
+    <small style="display: block; text-align: center; color: #6b7d8a; margin-top: 28px;">ToolsForUse — small utilities, no dark patterns.</small>
+  </main>
+</body>
+</html>
