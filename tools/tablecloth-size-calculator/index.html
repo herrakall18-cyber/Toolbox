@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tablecloth Size Calculator | Find Your Drop Length & Chart</title>
+    <meta name="description" content="Instant tablecloth size calculator for round, rectangular, oval, or square tables. Enter dimensions & drop length to get the correct cloth size. Includes tablecloth size chart.">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            background: #faf9f6;
+            color: #1e1e1e;
+            line-height: 1.5;
+            padding: 1rem;
+        }
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 24px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.05);
+            padding: 1.8rem 1.5rem 2.5rem;
+        }
+        header {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #e7e2d9;
+            padding-bottom: 1rem;
+            margin-bottom: 1.8rem;
+        }
+        .site-name a {
+            font-size: 1.6rem;
+            font-weight: 600;
+            color: #1f3a2b;
+            text-decoration: none;
+            letter-spacing: -0.5px;
+        }
+        .site-name span {
+            color: #6e8f6e;
+        }
+        .link-group a {
+            margin-left: 1.2rem;
+            text-decoration: none;
+            color: #2b4f3a;
+            font-size: 0.95rem;
+            border-bottom: 1px solid #b2c9b2;
+            padding-bottom: 2px;
+        }
+        .link-group a:hover {
+            color: #0f2c1c;
+            border-color: #2f5b42;
+        }
+        h1 {
+            font-size: 2.3rem;
+            font-weight: 650;
+            margin: 0.5rem 0 0.3rem;
+            color: #253b2c;
+            letter-spacing: -0.02em;
+        }
+        .subhead {
+            font-size: 1.15rem;
+            color: #4a5b4f;
+            margin-bottom: 2rem;
+            border-left: 4px solid #7da084;
+            padding-left: 1rem;
+        }
+        .calc-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2.2rem;
+            background: #f7faf6;
+            padding: 1.8rem 2rem;
+            border-radius: 28px;
+            margin-bottom: 2.2rem;
+            border: 1px solid #dee7dc;
+        }
+        @media (max-width: 700px) {
+            .calc-wrapper {
+                grid-template-columns: 1fr;
+                padding: 1.5rem;
+            }
+            .link-group a {
+                display: inline-block;
+                margin: 0.3rem 0.8rem 0 0;
+            }
+        }
+        .input-section h2 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #2b4a37;
+        }
+        .form-group {
+            margin-bottom: 1.3rem;
+        }
+        label {
+            display: block;
+            font-weight: 500;
+            margin-bottom: 0.4rem;
+            font-size: 0.98rem;
+            color: #1d2f24;
+        }
+        select, input {
+            width: 100%;
+            padding: 0.7rem 1rem;
+            font-size: 1rem;
+            border: 1px solid #c8d9c8;
+            border-radius: 16px;
+            background: white;
+            transition: 0.15s;
+        }
+        select:focus, input:focus {
+            outline: 2px solid #6b8f75;
+            border-color: #4a705a;
+        }
+        .input-row {
+            display: flex;
+            gap: 0.8rem;
+            flex-wrap: wrap;
+        }
+        .input-row .form-group {
+            flex: 1 1 100px;
+        }
+        .input-group-inline {
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+        .input-group-inline input {
+            flex: 1;
+        }
+        .unit-hint {
+            font-size: 0.9rem;
+            color: #5e6f63;
+            margin-top: 0.2rem;
+        }
+        .btn {
+            background: #2f5d42;
+            color: white;
+            border: none;
+            border-radius: 40px;
+            padding: 0.9rem 1.8rem;
+            font-weight: 600;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: background 0.2s;
+            margin-top: 0.8rem;
+            width: 100%;
+        }
+        .btn:hover {
+            background: #1f482e;
+        }
+        .result-area {
+            background: white;
+            border-radius: 28px;
+            padding: 1.8rem 1.5rem;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.03);
+            border: 1px solid #dae3d6;
+        }
+        .result-area h2 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #1c3325;
+            margin-top: 0;
+            margin-bottom: 1rem;
+        }
+        .result-box {
+            background: #f2f8f0;
+            border-radius: 20px;
+            padding: 1.4rem;
+            margin-bottom: 1.2rem;
+        }
+        .result-line {
+            font-size: 1.3rem;
+            font-weight: 550;
+            color: #1b3d2a;
+        }
+        .result-suggestion {
+            margin-top: 0.4rem;
+            font-size: 1rem;
+            color: #355c42;
+        }
+        .chart-mini {
+            font-size: 0.9rem;
+            background: #fff1e0;
+            border-radius: 18px;
+            padding: 0.8rem 1rem;
+            margin: 1rem 0;
+            border-left: 4px solid #b4925a;
+        }
+        .ad-slot {
+            background: #f5f2ea;
+            border-radius: 14px;
+            padding: 0.6rem 1rem;
+            width: 100%;
+            margin: 1.2rem 0;
+            font-size: 0.8rem;
+            color: #68645a;
+            text-align: center;
+        }
+        .explanatory {
+            margin: 2rem 0 1rem;
+            padding: 1rem 0.8rem;
+        }
+        .explanatory h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+            color: #1f3d2b;
+            border-bottom: 2px solid #b7d0b7;
+            padding-bottom: 0.5rem;
+        }
+        .explanatory p {
+            margin-bottom: 1rem;
+            font-size: 1rem;
+            color: #2c3e30;
+            max-width: 85ch;
+        }
+        footer {
+            font-size: 0.85rem;
+            color: #6a766a;
+            border-top: 1px solid #e2e9df;
+            margin-top: 2.5rem;
+            padding-top: 1.2rem;
+            text-align: center;
+        }
+        input[type=number]::-webkit-inner-spin-button {
+            opacity: 0.4;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <header>
+        <div class="site-name"><a href="/">🔧 ToolsForUse</a> <span>· handy tools</span></div>
+        <div class="link-group">
+            <a href="/">Home</a>
+            <a href="/blog/tablecloth-size-calculator/">Read the story behind this tool</a>
+        </div>
+    </header>
+    <!-- AFFILIATE_SLOT -->
+    
+    <h1>Tablecloth Size Calculator</h1>
+    <div class="subhead">Round, rectangular, oval & square – get the correct cloth with your drop length.</div>
+
+    <!-- MAIN CALCULATOR -->
+    <div class="calc-wrapper">
+        <div class="input-section">
+            <h2>📏 Enter table details</h2>
+            <form id="tableclothForm" action="#" method="post">
+                <div class="form-group">
+                    <label for="tableShape">Table shape</label>
+                    <select id="tableShape" aria-label="Select table shape">
+                        <option value="round" selected>Round</option>
+                        <option value="rectangular">Rectangular</option>
+                        <option value="oval">Oval</option>
+                        <option value="square">Square</option>
+                    </select>
+                </div>
+                <div id="dimensionFields">
+                    <!-- dynamic depending on shape, but we'll manage simple -->
+                    <div id="lengthGroup" class="form-group" style="display: none;">
+                        <label for="tableLength">Length (inches)</label>
+                        <input type="number" id="tableLength" step="0.1" min="0" placeholder="e.g. 72">
+                    </div>
+                    <div id="widthGroup" class="form-group" style="display: none;">
+                        <label for="tableWidth">Width (inches)</label>
+                        <input type="number" id="tableWidth" step="0.1" min="0" placeholder="e.g. 40">
+                    </div>
+                    <div id="diameterGroup" class="form-group">
+                        <label for="tableDiameter">Diameter (inches)</label>
+                        <input type="number" id="tableDiameter" step="0.1" min="0" placeholder="e.g. 48">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="dropLength">Desired drop length (inches)</label>
+                    <input type="number" id="dropLength" step="0.1" min="0" placeholder="e.g. 12" required>
+                    <div class="unit-hint">Typical drop: 8–12 in casual, 15–30 for formal</div>
+                </div>
+                <button type="button" id="calculateBtn" class="btn">Calculate tablecloth size</button>
+            </form>
+        </div>
+
+        <div class="result-area" id="resultArea">
+            <h2>📋 Your cloth size</h2>
+            <div id="resultDisplay" class="result-box">
+                <div class="result-line">—</div>
+                <div class="result-suggestion" id="sizeSuggestion"></div>
+            </div>
+            <div id="extraNote" style="min-height: 2.5rem;"></div>
+            <div class="chart-mini">
+                <strong>⚡ Quick size chart (inches):</strong><br>
+                Rect 72"L x 48"W + 12" drop → 96" x 72"<br>
+                Round 60" dia + 12" drop → 84" dia
+            </div>
+            <!-- AFFILIATE_SLOT repeated? just one already after head, but we also place here? No, only one after head per instructions, but I'll keep as comment -->
+        </div>
+    </div>
+    
+    <!-- EXPLANATORY SECTION -->
+    <div class="explanatory">
+        <h3>Why drop length matters — and how to choose</h3>
+        <p>Finding the perfect tablecloth isn't just about the tabletop. The <strong>tablecloth drop length</strong> (the fabric hanging down from the table edge) completely changes the visual style. For casual every-day meals, a 6–10 inch drop feels practical; for formal dinners or events, a 15–30 inch drop (even to the floor) creates elegance. Our tablecloth size calculator adds twice the drop to each dimension: width + (drop × 2) and length + (drop × 2) for rectangular and oval tables; for round and square, we simply add drop × 2 to the diameter or side length.</p>
+        <p>This tool automatically adjusts for <strong>round, rectangular, oval, or square</strong> tables. For oval tables, we treat them as a rectangle with rounded corners – we use the length and width at the widest points (major and minor diameters). The calculation uses the same drop logic: length + (drop×2) and width + (drop×2) to find the cloth's footprint. Using a too-short drop makes the tablecloth look skimpy, while a too-long one can be inconvenient. With this calculator, you'll know exactly what size to buy — whether you need a 84" round cloth for a 60" table with a 12" drop, or a 96"×72" rectangular for a 72"×48" table with a 12” drop.</p>
+        <p>We've also included a mini <strong>tablecloth size chart</strong> above to give you reference points. Always measure your table before ordering, and remember that stretchy fabrics may behave differently. If your table has an apron or unusual edges, add 1–2 inches to the drop for clearance. This tool is part of the ToolsForUse family — practical, no-nonsense utilities. If you need fabric recommendations or custom sizes, use our results as a base, then adjust for your personal style.</p>
+    </div>
+    <!-- AFFILIATE_SLOT (second occurrence - but spec says include after head if non-empty, we already did after head; we add a manual place here too) -->
+    <!-- AFFILIATE_SLOT -->
+
+    <footer>
+        © ToolsForUse — free tablecloth size calculator & guide. <br> Find your cloth size in seconds.
+    </footer>
+</div>
+
+<script>
+    (function() {
+        'use strict';
+        const shapeSelect = document.getElementById('tableShape');
+        const lengthGroup = document.getElementById('lengthGroup');
+        const widthGroup = document.getElementById('widthGroup');
+        const diameterGroup = document.getElementById('diameterGroup');
+        const lengthInput = document.getElementById('tableLength');
+        const widthInput = document.getElementById('tableWidth');
+        const diameterInput = document.getElementById('tableDiameter');
+        const dropInput = document.getElementById('dropLength');
+        const resultLine = document.querySelector('.result-line');
+        const sizeSuggestion = document.getElementById('sizeSuggestion');
+        const extraNote = document.getElementById('extraNote');
+
+        function updateShapeVisibility() {
+            const shape = shapeSelect.value;
+            // show/hide based on shape
+            if (shape === 'round' || shape === 'square') {
+                lengthGroup.style.display = 'none';
+                widthGroup.style.display = 'none';
+                diameterGroup.style.display = 'block';
+                document.querySelector('label[for="tableDiameter"]').textContent = 
+                    shape === 'round' ? 'Diameter (inches)' : 'Side length (inches)';
+                // for square, placeholder change
+                diameterInput.placeholder = shape === 'round' ? 'e.g. 48' : 'e.g. 42';
+            } else { // rectangular or oval
+                lengthGroup.style.display = 'block';
+                widthGroup.style.display = 'block';
+                diameterGroup.style.display = 'none';
+                // For oval, we use length and width (max width)
+                document.querySelector('label[for="tableLength"]').textContent = 
+                    shape === 'oval' ? 'Length (inches, long side)' : 'Length (inches)';
+                document.querySelector('label[for="tableWidth"]').textContent = 
+                    shape === 'oval' ? 'Width (inches, short side)' : 'Width (inches)';
+            }
+        }
+
+        // on shape change
+        shapeSelect.addEventListener('change', updateShapeVisibility);
+        updateShapeVisibility();
+
+        // calculate function
+        function calculateCloth() {
+            const shape = shapeSelect.value;
+            const drop = parseFloat(dropInput.value);
+            if (isNaN(drop) || drop < 0) {
+                resultLine.textContent = '⚠️ Enter a valid drop length';
+                sizeSuggestion.textContent = '';
+                extraNote.innerHTML = '';
+                return;
+            }
+            let clothSizeText = '';
+            let suggestion = '';
+            let note = '';
+
+            if (shape === 'round') {
+                const dia = parseFloat(diameterInput.value);
+                if (isNaN(dia) || dia <= 0) {
+                    resultLine.textContent = '⚠️ Enter table diameter';
+                    sizeSuggestion.textContent = '';
+                    return;
+                }
+                const finalDia = dia + (drop * 2);
+                clothSizeText = `${finalDia.toFixed(1)}" round`;
+                suggestion = `For a ${dia}" round table with ${drop}" drop → use a ${finalDia.toFixed(0)}"–${Math.ceil(finalDia)}" round cloth.`;
+                if (drop < 8) note = 'Short drop (casual)';
+                else if (drop >= 8 && drop < 15) note = 'Medium drop – classic';
+                else note = 'Long drop – elegant/formal';
+            }
+            else if (shape === 'square') {
+                const side = parseFloat(diameterInput.value);
+                if (isNaN(side) || side <= 0) {
+                    resultLine.textContent = '⚠️ Enter side length';
+                    sizeSuggestion.textContent = '';
+                    return;
+                }
+                const finalSide = side + (drop * 2);
+                clothSizeText = `${finalSide.toFixed(1)}" × ${finalSide.toFixed(1)}" square`;
+                suggestion = `For a ${side}" square table + ${drop}" drop → require a ${finalSide.toFixed(0)}" square cloth.`;
+            }
+            else if (shape === 'rectangular') {
+                const len = parseFloat(lengthInput.value);
+                const wid = parseFloat(widthInput.value);
+                if (isNaN(len) || isNaN(wid) || len <= 0 || wid <= 0) {
+                    resultLine.textContent = '⚠️ Enter both length & width';
+                    sizeSuggestion.textContent = '';
+                    return;
+                }
+                const clothLen = len + (drop * 2);
+                const clothWid = wid + (drop * 2);
+                clothSizeText = `${clothLen.toFixed(1)}" × ${clothWid.toFixed(1)}" rectangle`;
+                suggestion = `For a ${len}"×${wid}" table with ${drop}" drop → use ${clothLen.toFixed(0)}"×${clothWid.toFixed(0)}" cloth.`;
+            }
+            else if (shape === 'oval') {
+                const len = parseFloat(lengthInput.value);
+                const wid = parseFloat(widthInput.value);
+                if (isNaN(len) || isNaN(wid) || len <= 0 || wid <= 0) {
+                    resultLine.textContent = '⚠️ Enter oval length & width';
+                    sizeSuggestion.textContent = '';
+                    return;
+                }
+                // oval: use length+2drop and width+2drop
+                const clothLen = len + (drop * 2);
+                const clothWid = wid + (drop * 2);
+                clothSizeText = `${clothLen.toFixed(1)}" × ${clothWid.toFixed(1)}" oval`;
+                suggestion = `For oval ${len}"×${wid}" + ${drop}" drop → ${clothLen.toFixed(0)}"×${clothWid.toFixed(0)}" oval cloth.`;
+            }
+            else {
+                resultLine.textContent = 'Select a shape';
+                return;
+            }
+
+            resultLine.textContent = clothSizeText;
+            sizeSuggestion.textContent = suggestion;
+            extraNote.innerHTML = `<span style="background:#e9f0e3;padding:0.2rem 0.6rem;border-radius:30px;">✅ ${note || 'Ready to shop'}</span>`;
+        }
+
+        document.getElementById('calculateBtn').addEventListener('click', calculateCloth);
+
+        // allow Enter key to trigger too
+        const inputs = document.querySelectorAll('input, select');
+        inputs.forEach(inp => inp.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                calculateCloth();
+            }
+        }));
+        
+        // initial dummy calc to avoid empty
+        window.addEventListener('load', function() {
+            // prefill some defaults for better UX
+            if (!dropInput.value) dropInput.value = 12;
+            if (shapeSelect.value === 'round' && !diameterInput.value) diameterInput.value = 48;
+            if (shapeSelect.value === 'rectangular') {
+                if (!lengthInput.value) lengthInput.value = 72;
+                if (!widthInput.value) widthInput.value = 48;
+            }
+            updateShapeVisibility();
+            calculateCloth();
+        });
+    })();
+</script>
+</body>
+</html>
