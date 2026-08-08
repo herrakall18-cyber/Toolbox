@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wheelchair Ramp Calculator – ADA Ramp Length Tool | ToolsForUse</title>
+  <meta name="description" content="Use this wheelchair ramp calculator to find the exact ramp length for your rise. Simple ADA ramp length calculator – answers how long should a wheelchair ramp be in seconds.">
+  <!-- AFFILIATE_SLOT -->
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    }
+
+    body {
+      background: #f4f7fb;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      line-height: 1.6;
+      color: #1f2a3a;
+    }
+
+    /* header & nav */
+    .site-header {
+      background: #0b2a4a;
+      padding: 1rem 2rem;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .site-header h1 {
+      color: white;
+      font-size: 1.8rem;
+      font-weight: 600;
+      letter-spacing: -0.3px;
+    }
+
+    .site-header h1 span {
+      color: #ffc857;
+    }
+
+    .header-links {
+      display: flex;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .header-links a {
+      color: #e2e9f2;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.2s;
+      font-size: 1rem;
+      padding: 0.2rem 0;
+      border-bottom: 2px solid transparent;
+    }
+
+    .header-links a:hover {
+      color: #ffffff;
+      border-bottom-color: #ffc857;
+    }
+
+    /* main container */
+    .container {
+      max-width: 1100px;
+      margin: 2rem auto;
+      padding: 0 1.5rem;
+      flex: 1;
+      width: 100%;
+    }
+
+    /* tool card */
+    .tool-card {
+      background: white;
+      border-radius: 24px;
+      padding: 2.5rem;
+      box-shadow: 0 20px 30px -10px rgba(0, 0, 0, 0.08);
+      border: 1px solid #dfe7ef;
+      margin-bottom: 2.5rem;
+      transition: box-shadow 0.2s;
+    }
+
+    .tool-card h2 {
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      color: #0b2a4a;
+      letter-spacing: -0.3px;
+    }
+
+    .tool-card .subhead {
+      color: #37516e;
+      font-size: 1.1rem;
+      margin-bottom: 2rem;
+      border-left: 4px solid #ffc857;
+      padding-left: 1rem;
+      font-weight: 450;
+    }
+
+    /* input area */
+    .input-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      align-items: flex-end;
+      justify-content: center;
+      margin: 2rem 0 1.2rem;
+    }
+
+    .field {
+      flex: 1 1 180px;
+    }
+
+    .field label {
+      display: block;
+      font-weight: 600;
+      color: #23415e;
+      margin-bottom: 0.4rem;
+      font-size: 0.95rem;
+    }
+
+    .field input {
+      width: 100%;
+      padding: 0.9rem 1rem;
+      border: 1.5px solid #b9cadd;
+      border-radius: 14px;
+      font-size: 1.1rem;
+      background: #ffffff;
+      transition: border 0.2s, box-shadow 0.1s;
+    }
+
+    .field input:focus {
+      border-color: #0b6aa0;
+      box-shadow: 0 0 0 3px rgba(11, 106, 160, 0.15);
+      outline: none;
+    }
+
+    .unit-toggle {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      flex-wrap: wrap;
+      margin: 10px 0 20px;
+    }
+
+    .unit-toggle p {
+      font-weight: 500;
+      color: #23415e;
+      margin-right: 10px;
+    }
+
+    .unit-option {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      background: #edf2f8;
+      padding: 0.4rem 1rem;
+      border-radius: 40px;
+      cursor: pointer;
+      font-weight: 500;
+      transition: background 0.2s;
+    }
+
+    .unit-option:hover {
+      background: #dee8f2;
+    }
+
+    .unit-option input[type="radio"] {
+      accent-color: #0b6aa0;
+      margin: 0;
+      width: 16px;
+      height: 16px;
+    }
+
+    .unit-option label {
+      font-size: 0.95rem;
+      color: #1d3f5e;
+    }
+
+    /* results */
+    .result-box {
+      background: #eaf0fa;
+      border-radius: 20px;
+      padding: 1.8rem 1.5rem;
+      margin-top: 1.8rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      border: 1px solid #c8d9ec;
+    }
+
+    .result-value {
+      font-size: 3rem;
+      font-weight: 800;
+      color: #0b2a4a;
+      line-height: 1.2;
+    }
+
+    .result-unit {
+      font-size: 1.3rem;
+      margin-left: 0.3rem;
+      color: #234666;
+    }
+
+    .result-detail {
+      font-size: 1rem;
+      color: #2f4e73;
+      margin-top: 0.5rem;
+      background: white;
+      padding: 0.3rem 1.2rem;
+      border-radius: 30px;
+      border: 1px solid #b9cadd;
+      display: inline-block;
+    }
+
+    .result-note {
+      margin-top: 1rem;
+      font-size: 0.95rem;
+      color: #1d3c59;
+      background: #fffae6;
+      padding: 0.6rem 1.2rem;
+      border-radius: 30px;
+      border-left: 4px solid #ffb84d;
+    }
+
+    .btn {
+      background: #0b6aa0;
+      border: none;
+      color: white;
+      padding: 0.9rem 2rem;
+      font-size: 1.15rem;
+      font-weight: 600;
+      border-radius: 60px;
+      cursor: pointer;
+      transition: background 0.15s, transform 0.1s;
+      box-shadow: 0 8px 12px -6px rgba(11, 106, 160, 0.2);
+      margin: 1.2rem 0.5rem 0.5rem;
+      border: 1px solid #0b5f91;
+    }
+
+    .btn:hover {
+      background: #0a5a86;
+    }
+
+    .btn-secondary {
+      background: white;
+      color: #0b2a4a;
+      border: 1.5px solid #83a6c7;
+      box-shadow: none;
+    }
+
+    .btn-secondary:hover {
+      background: #edf4fc;
+    }
+
+    button:active {
+      transform: scale(0.98);
+    }
+
+    /* explanatory section */
+    .explain {
+      background: white;
+      border-radius: 24px;
+      padding: 2rem 2.5rem;
+      border: 1px solid #dfe7ef;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.02);
+      margin: 1rem 0 2rem;
+    }
+
+    .explain h3 {
+      font-size: 1.7rem;
+      color: #0b2a4a;
+      margin-bottom: 1rem;
+      font-weight: 650;
+    }
+
+    .explain p {
+      margin-bottom: 1.2rem;
+      color: #2a405a;
+      font-size: 1.05rem;
+    }
+
+    .affiliate-placeholder {
+      background: #faf9f6;
+      border: 2px dashed #cddae8;
+      border-radius: 16px;
+      padding: 1.5rem;
+      text-align: center;
+      color: #5e6e82;
+      margin: 2rem 0 1rem;
+      font-size: 1rem;
+    }
+
+    .advisor {
+      font-size: 0.9rem;
+      background: #f0f4ff;
+      padding: 0.8rem 1.2rem;
+      border-radius: 40px;
+      display: inline-block;
+    }
+
+    /* footer */
+    .footer-note {
+      text-align: center;
+      color: #5b6b7d;
+      padding: 1.5rem 0 2rem;
+      border-top: 1px solid #d3dfeb;
+      margin-top: 2rem;
+      font-size: 0.95rem;
+    }
+
+    /* mobile */
+    @media (max-width: 600px) {
+      .site-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.7rem;
+      }
+      .header-links {
+        gap: 1.2rem;
+      }
+      .tool-card {
+        padding: 1.5rem;
+      }
+      .explain {
+        padding: 1.5rem;
+      }
+      .result-value {
+        font-size: 2.4rem;
+      }
+    }
+
+    .danger-text {
+      color: #b6462c;
+    }
+  </style>
+</head>
+<body>
+  <!-- header // link to ToolsForUse home and story -->
+  <header class="site-header">
+    <h1><span>Tools</span>ForUse</h1>
+    <div class="header-links">
+      <a href="/">← Home</a>
+      <a href="/blog/wheelchair-ramp-calculator/">Read the story behind this tool</a>
+    </div>
+  </header>
+
+  <div class="container">
+    <!-- main calculator card -->
+    <section class="tool-card" aria-label="Wheelchair ramp length calculator">
+      <h2>Ramp length calculator</h2>
+      <div class="subhead">ADA-compliant (1:12 slope) – recommended ratio for wheelchairs & mobility scooters</div>
+
+      <!-- unit selection -->
+      <div class="unit-toggle" role="radiogroup" aria-label="choose inch or cm">
+        <p><strong>Unit:</strong></p>
+        <div class="unit-option">
+          <input type="radio" id="unitInch" name="unit" value="inch" checked>
+          <label for="unitInch">Inches</label>
+        </div>
+        <div class="unit-option">
+          <input type="radio" id="unitCm" name="unit" value="cm">
+          <label for="unitCm">Centimeters</label>
+        </div>
+      </div>
+
+      <!-- height input -->
+      <div class="input-group">
+        <div class="field">
+          <label for="riseInput">Rise (height vertical) • number</label>
+          <input type="number" id="riseInput" placeholder="e.g., 12" value="12" step="any" min="0" inputmode="decimal">
+        </div>
+      </div>
+
+      <!-- buttons -->
+      <div style="display: flex; justify-content: center; flex-wrap: wrap;">
+        <button class="btn" id="calculateBtn">Calculate ramp length</button>
+        <button class="btn btn-secondary" id="resetBtn">Reset</button>
+      </div>
+
+      <!-- result area -->
+      <div id="resultPanel" class="result-box" aria-live="polite">
+        <div>
+          <span class="result-value" id="rampResultValue">12.0</span><span class="result-unit" id="resultUnit">in</span>
+        </div>
+        <div class="result-detail" id="slopeMessage">Length for 1:12 slope (12.0%)</div>
+        <div class="result-note" id="lengthDetail"></div>
+      </div>
+      <p style="margin-top: 1rem; font-size: 0.9rem; color: #36638a;">* ADA recommends 1 inch rise per 12 inches length (1:12). Always verify local codes.</p>
+    </section>
+
+    <!-- explanatory block 2-3 paragraphs -->
+    <section class="explain">
+      <h3>How long should a wheelchair ramp be?</h3>
+      <p>Every mobility ramp must balance safety, effort, and usable space. The gold standard – and the most common recommendation – is the <strong>ADA (Americans with Disabilities Act) 1:12 slope ratio</strong>. That means for every 1 inch (or 1 cm) of vertical rise, you need at least 12 inches (or 12 cm) of horizontal ramp length. So if your porch or threshold is 30 cm above ground, you need a ramp at least 360 cm long. That's exactly what our <strong>wheelchair ramp calculator</strong> does: you provide the rise, and it returns the precise minimum length using the 1:12 slope. This ensures a gentle enough incline for manual wheelchairs and most mobility scooters.</p>
+      <p>Why does one ratio fit so many cases? A 1:12 slope yields a roughly 4.8° angle – gentle enough to prevent tipping, but still short enough to be practical for most homes. Steeper slopes (like 1:8) are sometimes used for very short rises, but the ADA and most building codes recommend the <strong>1:12 ratio</strong> whenever possible. If your rise is over 30 cm (12 inches), you may even need a landing platform. Our <strong>ADA ramp length calculator</strong> gives you the baseline figure instantly – ideal for architects, DIY builders, and caregivers. Use it before you buy materials; the result tells you exactly how many feet or meters of ramp module you need.</p>
+      <p>Remember: the ramp length from rise is only part of the design. You still need to account for the platform at top/bottom, handrails if rise exceeds 15 cm, and width – usually at least 36 inches (91 cm) clear. But this tool answers the most important question: <em>“what is the minimum ramp length for my rise?”</em> Bookmark it for planning any access project.</p>
+    </section>
+
+    <!-- AFFILIATE_SLOT marker (already in head, but show placeholder visual) -->
+    <div class="affiliate-placeholder">
+      <!-- AFFILIATE_SLOT -->
+      <span style="font-weight:500;">⸻ AFFILIATE SLOT – reserved for recommended modular ramps ⸻</span>
+    </div>
+  </div>
+
+  <footer class="footer-note">
+    ToolsForUse – accurate tools for real life | wheelchair ramp calculator & ADA length guide
+  </footer>
+
+  <!-- client-side logic -->
+  <script>
+    (function() {
+      // DOM elements
+      const calculateBtn = document.getElementById('calculateBtn');
+      const resetBtn = document.getElementById('resetBtn');
+      const riseInput = document.getElementById('riseInput');
+      const rampResultValue = document.getElementById('rampResultValue');
+      const resultUnit = document.getElementById('resultUnit');
+      const lengthDetail = document.getElementById('lengthDetail');
+      const slopeMessage = document.getElementById('slopeMessage');
+      const unitInch = document.getElementById('unitInch');
+      const unitCm = document.getElementById('unitCm');
+
+      // default unit
+      let currentUnit = 'inch';
+
+      // function to format decimals to 2 places, but remove trailing .00
+      const formatLength = (val) => {
+        if (Number.isInteger(val)) return val.toString();
+        return val.toFixed(2).replace(/\.00$/, '');
+      };
+
+      // update result
+      function updateResult() {
+        const riseRaw = parseFloat(riseInput.value);
+        if (isNaN(riseRaw) || riseRaw < 0) {
+          rampResultValue.textContent = '—';
+          lengthDetail.textContent = 'Enter a valid positive rise.';
+          slopeMessage.textContent = 'needs valid input';
+          return;
+        }
+
+        // unit switch:
+        if (unitInch.checked) currentUnit = 'inch';
+        else if (unitCm.checked) currentUnit = 'cm';
+
+        const rise = riseRaw; // in desired unit
+        // ADA 1:12 => length = rise * 12
+        const rampLength = rise * 12.0;
+
+        // format number
+        const formattedLength = formatLength(rampLength);
+        let unitLabel = '';
+        if (currentUnit === 'inch') {
+          unitLabel = 'in';
+        } else {
+          unitLabel = 'cm';
+        }
+        // update UI
+        rampResultValue.textContent = formattedLength;
+        resultUnit.textContent = unitLabel;
+        slopeMessage.textContent = `Length for 1:12 slope (ramp rise ${rise} ${currentUnit})`;
+        lengthDetail.textContent = `To meet ADA, ramp should be at least ${formattedLength} ${currentUnit} long.`;
+
+        // if rise 0
+        if (rise === 0) {
+          lengthDetail.textContent = 'Rise = 0, you don\'t need a ramp.';
+        }
+      }
+
+      // calculate button event
+      calculateBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        updateResult();
+      });
+
+      // reset button: set rise=12, unit = inch, update
+      resetBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        riseInput.value = '12';
+        unitInch.checked = true;
+        unitCm.checked = false;
+        currentUnit = 'inch';
+        updateResult();
+      });
+
+      // unit change recalculation
+      unitInch.addEventListener('change', function() {
+        if (unitInch.checked) {
+          currentUnit = 'inch';
+          updateResult();
+        }
+      });
+      unitCm.addEventListener('change', function() {
+        if (unitCm.checked) {
+          currentUnit = 'cm';
+          updateResult();
+        }
+      });
+
+      // automatic initial calc
+      window.addEventListener('load', function() {
+        updateResult();
+      });
+
+      // manually update on 'Enter' key
+      riseInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') {
+          e.preventDefault();
+          updateResult();
+        }
+      });
+
+      // additional small safety: 
+      // when rise changes, always update? do it live if input has valid value
+      riseInput.addEventListener('input', updateResult);
+
+      // handle negative/decimal
+      riseInput.addEventListener('blur', () => {
+        let val = parseFloat(riseInput.value);
+        if (isNaN(val) || val < 0) riseInput.value = 0;
+        updateResult();
+      });
+    })();
+  </script>
+</body>
+</html>
