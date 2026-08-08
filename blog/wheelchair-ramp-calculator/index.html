@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wheelchair Ramp Length Calculator — ToolsForUse</title>
+  <meta name="description" content="I needed a safe ramp for my porch and got the math wrong twice. So I built a simple, honest calculator that uses the ADA 1:12 slope ratio. No sign-up, no fluff — just the number.">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background: #faf9f6;
+      color: #1a1a1a;
+      line-height: 1.7;
+      padding: 2rem 1rem;
+    }
+
+    .wrap {
+      max-width: 40rem;
+      margin: 0 auto;
+      background: #ffffff;
+      border: 1px solid #e6e4df;
+      border-radius: 8px;
+      padding: 2.5rem 2rem 3rem;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.03);
+    }
+
+    .site-header {
+      margin-bottom: 2.2rem;
+    }
+
+    .site-header a {
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: #6b6b6b;
+      text-decoration: none;
+      border-bottom: 1px solid #d0cec9;
+      padding-bottom: 2px;
+      transition: border-color 0.2s, color 0.2s;
+    }
+
+    .site-header a:hover {
+      border-bottom-color: #1a1a1a;
+      color: #1a1a1a;
+    }
+
+    h1 {
+      font-size: 2rem;
+      line-height: 1.2;
+      margin: 1.5rem 0 1rem;
+      letter-spacing: -0.01em;
+    }
+
+    .date {
+      font-size: 0.9rem;
+      color: #7b7b7b;
+      border-bottom: 1px solid #efeee9;
+      padding-bottom: 1.2rem;
+      margin-bottom: 2rem;
+    }
+
+    h2 {
+      font-size: 1.2rem;
+      margin: 1.8rem 0 0.6rem;
+      line-height: 1.35;
+      font-weight: 650;
+    }
+
+    p {
+      margin-bottom: 1.15rem;
+    }
+
+    .tool-card {
+      background: #f7f5f1;
+      border-left: 4px solid #3b82f6;
+      padding: 1.25rem 1.3rem;
+      margin: 2rem 0 1.5rem;
+      border-radius: 0 6px 6px 0;
+    }
+
+    .tool-card p {
+      margin-bottom: 0.4rem;
+    }
+
+    .tool-link {
+      display: inline-block;
+      margin-top: 0.7rem;
+      font-weight: 550;
+      font-size: 1rem;
+      color: #1d6ae5;
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.1s;
+    }
+
+    .tool-link:hover {
+      border-bottom-color: #1d6ae5;
+    }
+
+    .closing {
+      margin-top: 2.5rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid #efeee9;
+      font-size: 0.98rem;
+      color: #3c3c3c;
+    }
+
+    .closing p {
+      margin-bottom: 0.5rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="site-header">
+      <a href="/">← ToolsForUse — homepage</a>
+    </div>
+
+    <h1>Wheelchair Ramp Length Calculator</h1>
+    <div class="date">Mar 12, 2025 — by Daniel (build & maintenance)</div>
+
+    <p>
+      I’ll be honest: I built this because I messed up my own ramp math. Twice.
+    </p>
+
+    <p>
+      My front porch step is 7 inches high. I wanted a small ramp for a friend who visits in a wheelchair. I did the back-of-the-envelope thing — "1:12 ratio, so for 7 inches that’s… 7 × 12 = 84 inches. Easy." Then I cut the wood, started measuring, and realised I had made a classic mistake: I measured the horizontal run, not the actual ramp surface length. That extra bit of slope makes a real difference when you're on a budget and cutting plywood.
+    </p>
+
+    <p>
+      But the bigger issue was that I didn't trust myself. So I looked for an existing calculator. There are a few on the web, but almost all of them were either ad‑ridden, required me to sign up, or gave a vague "recommended length" without explaining <em>how</em> they got that number. One site asked me for my email just to see the result. That's a joke — I need to know if my 7‑inch step needs a 7‑foot ramp or a 6.5‑foot one, not a marketing email.
+    </p>
+
+    <p>
+      So I made a quiet little tool that does one thing: you input the vertical rise in inches (or cm, if you prefer, but let's be real — I used inches) and it outputs the minimum <em>length of ramp run</em> to stay within the 1:12 slope. It also shows you the required length for the slightly stricter 1:16 and 1:20 ratios, which some building codes recommend for more stable accessibility. That extra context is helpful, because sometimes the "ADA compliant" number is actually a minimum, and you might want a gentler slope for safety, especially if the ramp is used by someone with less upper body strength.
+    </p>
+
+    <div class="tool-card">
+      <p><strong>Try the calculator now — no sign‑up, no spam.</strong></p>
+      <p>Enter your rise, and it returns the exact ramp length (in feet and inches) for 1:12, 1:16, and 1:20 slopes.</p>
+      <a class="tool-link" href="/tools/wheelchair-ramp-calculator/">Open the Wheelchair Ramp Length Calculator →</a>
+    </div>
+
+    <p>
+      The tool itself is deliberately boring: one input, three outputs, and a small table showing the slope ratio so you can double‑check. I also included a diagram (just text and basic shapes) showing what "rise" vs "run" means, because I wanted to avoid the exact confusion I had. No hidden features. No “we’ll email you the results” nonsense.
+    </p>
+
+    <p>
+      Why did I make this public? Because I suspect I’m not the only one who has been frustrated by this tiny Geometry problem. It's a 5‑minute calculation, but when you're planning a build, mistakes cost time and money. I'd rather have a simple page that just gives you the number and lets you go back to work.
+    </p>
+
+    <div class="closing">
+      <p>
+        So, if you’re building a ramp for a porch, a van, or a backyard step — I hope this saves you the same headache it saved me. It’s not a fancy gadget, it’s just the honest math, presented clearly.
+      </p>
+      <p>
+        — Daniel, ToolsForUse
+      </p>
+    </div>
+  </div>
+</body>
+</html>
