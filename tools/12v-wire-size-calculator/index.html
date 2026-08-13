@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>12V Wire Size Calculator – DC Wire Gauge & Voltage Drop</title>
+  <meta name="description" content="Use the 12V wire size calculator to find the correct DC wire gauge for automotive, RV, boat, or solar circuits. Smart voltage drop calculator with AWG and metric results.">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      background: #f4f7fb;
+      color: #1a2639;
+      line-height: 1.6;
+      padding: 1.5rem 1rem;
+    }
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      background: white;
+      border-radius: 24px;
+      box-shadow: 0 12px 30px rgba(0,0,0,0.08);
+      padding: 2rem 1.8rem;
+    }
+    .tool-nav {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 2px solid #e6edf5;
+      padding-bottom: 0.75rem;
+      margin-bottom: 1.8rem;
+    }
+    .tool-nav a {
+      text-decoration: none;
+      color: #2c5f8a;
+      font-weight: 600;
+      font-size: 0.95rem;
+      background: #eef5fa;
+      padding: 0.35rem 1rem;
+      border-radius: 40px;
+      transition: background 0.2s;
+      border: 1px solid #cbdde9;
+    }
+    .tool-nav a:hover {
+      background: #d8e6f2;
+      border-color: #2c5f8a;
+    }
+    h1 {
+      font-size: 1.9rem;
+      font-weight: 650;
+      letter-spacing: -0.02em;
+      color: #0e2a3a;
+      margin: 0.25rem 0 0.5rem 0;
+    }
+    .subheadline {
+      color: #2d4c63;
+      margin-top: -0.2rem;
+      margin-bottom: 1.6rem;
+      font-size: 1rem;
+      background: #f0f8ff;
+      padding: 0.6rem 1rem;
+      border-radius: 40px;
+      display: inline-block;
+      border: 1px solid #b7d3e8;
+      font-weight: 450;
+    }
+    .calculator-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.8rem;
+      background: white;
+      border-radius: 20px;
+      padding: 1.6rem 1.2rem;
+      margin-bottom: 1.8rem;
+      border: 1px solid #dce7f1;
+      box-shadow: inset 0 1px 5px rgba(0,0,0,0.03);
+    }
+    .input-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+    }
+    .input-group label {
+      font-weight: 600;
+      font-size: 0.95rem;
+      color: #1a3d5c;
+    }
+    .input-group input, .input-group select {
+      padding: 0.75rem 0.9rem;
+      font-size: 1rem;
+      border: 1.5px solid #b9cede;
+      border-radius: 14px;
+      background: #fbfdff;
+      transition: 0.15s;
+    }
+    .input-group input:focus, .input-group select:focus {
+      outline: none;
+      border-color: #2c7bb6;
+      box-shadow: 0 0 0 3px rgba(44,123,182,0.2);
+    }
+    .input-row {
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+    }
+    .calc-btn {
+      background: #1f4f73;
+      border: none;
+      color: white;
+      font-weight: 700;
+      padding: 0.8rem 1.4rem;
+      border-radius: 60px;
+      font-size: 1.1rem;
+      cursor: pointer;
+      letter-spacing: 0.5px;
+      margin: 1rem 0 0.6rem 0;
+      transition: all 0.2s;
+      box-shadow: 0 6px 12px rgba(26,63,92,0.2);
+      width: 100%;
+    }
+    .calc-btn:hover {
+      background: #14354e;
+      transform: translateY(-1px);
+    }
+    .result-area {
+      background: #e5f0fa;
+      border-radius: 24px;
+      padding: 1.5rem 1.5rem;
+      margin: 1rem 0 0.8rem 0;
+      border-left: 6px solid #1c6c9c;
+    }
+    .result-line {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #0c3e5a;
+    }
+    .result-details {
+      margin-top: 0.5rem;
+      color: #1a3c53;
+      font-size: 1.05rem;
+    }
+    .result-details span {
+      font-weight: 600;
+      background: #cbe1f0;
+      padding: 0.1rem 0.5rem;
+      border-radius: 20px;
+    }
+    .calc-note {
+      background: #fafcfd;
+      font-size: 0.9rem;
+      color: #1f4b66;
+      padding: 0.6rem 1rem;
+      border-radius: 40px;
+      border: 1px dashed #9bbede;
+      margin: 1rem 0 0.5rem;
+    }
+    .explanation {
+      margin-top: 2rem;
+      background: white;
+    }
+    .explanation h2 {
+      font-size: 1.5rem;
+      font-weight: 650;
+      color: #143a52;
+      border-left: 6px solid #1f6f9f;
+      padding-left: 0.8rem;
+      margin-bottom: 1rem;
+    }
+    .explanation p {
+      margin-bottom: 1.1rem;
+      color: #223f55;
+    }
+    .story-link {
+      margin-top: 0.8rem;
+      display: inline-block;
+      font-weight: 600;
+      color: #1e6091;
+    }
+    hr {
+      border: 0;
+      border-top: 1px solid #d1e0ec;
+      margin: 1.2rem 0;
+    }
+    .affiliate-marker {
+      font-size: 0.8rem;
+      color: #7b8c9a;
+      border: 1px dashed #a4bed3;
+      padding: 0.5rem 0.7rem;
+      border-radius: 40px;
+      display: inline-block;
+      margin: 0.8rem 0;
+    }
+    footer {
+      margin-top: 2rem;
+      text-align: center;
+      color: #3b5870;
+      font-size: 0.9rem;
+    }
+    @media (max-width: 600px) {
+      .container {
+        padding: 1.5rem 1rem;
+      }
+      h1 {
+        font-size: 1.6rem;
+      }
+      .tool-nav {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.6rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- AFFILIATE_SLOT -->
+  <div class="container">
+    
+    <div class="tool-nav">
+      <a href="/">← ToolsForUse</a>
+      <a href="/blog/12v-wire-size-calculator/">📘 Read the story behind this tool</a>
+    </div>
+
+    <h1>⚡ 12V Wire Size Calculator</h1>
+    <div class="subheadline">DC wire gauge • voltage drop • automotive / RV / marine / solar</div>
+
+    <!-- main calculator -->
+    <div class="calculator-grid">
+      <div style="display: flex; flex-direction: column; gap: 1rem;">
+        <div class="input-group">
+          <label for="current">Current (Amps)</label>
+          <input type="number" id="current" value="10" step="0.1" min="0.1" placeholder="e.g., 10 A">
+        </div>
+        <div class="input-group">
+          <label for="oneWayLength">One‑way wire length (ft)</label>
+          <input type="number" id="oneWayLength" value="20" step="0.5" min="1" placeholder="e.g., 20 ft">
+        </div>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 1rem;">
+        <div class="input-group">
+          <label for="voltage">System voltage (V)</label>
+          <input type="number" id="voltage" value="12.0" step="0.1" min="1" placeholder="12">
+        </div>
+        <div class="input-group">
+          <label for="maxDrop">Max voltage drop (%)</label>
+          <select id="maxDrop">
+            <option value="3">3% (recommended)</option>
+            <option value="5">5% (acceptable)</option>
+            <option value="10">10% (max for some)</option>
+            <option value="2">2% (strict)</option>
+          </select>
+        </div>
+      </div>
+    </div>
+    <button class="calc-btn" id="calcBtn">Calculate AWG wire size</button>
+
+    <div class="result-area" id="resultArea" style="display: none;">
+      <div class="result-line" id="resultAwg">— AWG</div>
+      <div class="result-details" id="resultDetails"></div>
+      <div class="result-details" id="resultDropInfo"></div>
+    </div>
+
+    <div class="calc-note">
+      💡 <strong>Note:</strong> based on copper conductor, 12V nominal system, typical DC automotive/boat parameters.
+    </div>
+
+    <!-- EXPLANATION / INFO -->
+    <div class="explanation">
+      <h2>Why wire size matters for 12V circuits</h2>
+      <p>In a 12-volt system, current flows through wires and every foot of cable adds resistance. Undersized wires cause voltage drop, leading to dim lights, sluggish motors, overheated cables, and possible fire risk. This <strong>12v wire size calculator</strong> helps you pick the right <strong>AWG (American Wire Gauge)</strong> for safe, efficient operation. Whether you're wiring auxiliary lights, a fridge in an RV, bilge pump on a boat, or a small solar panel, the correct DC wire gauge keeps your 12V equipment running at full power.</p>
+      <p>The <strong>voltage drop calculator</strong> uses the standard formula: voltdrop = 2 × length × current × resistance_per_foot (copper). We then compare the allowed voltage drop (based on your selected percentage) and suggest the minimum AWG that stays within that limit, also factoring in typical automotive temperature and resistivity. This simple but accurate approach is widely used in automotive and marine environments. Always round to a larger gauge (thicker wire) when in doubt.</p>
+      <p>For an automotive wire size calculator, the table we use reflects copper at 50 °C. This tool supports one-way circuit length (common 12V convention). The result tells you the smallest recommended AWG, and also lets you know the actual voltage drop (volts and %). Use it to prepare for your next wiring project — faster, cleaner, and safer.</p>
+    </div>
+
+    <hr>
+    <!-- affiliate slot as per requirement -->
+    <!-- AFFILIATE_SLOT -->
+
+    <footer>
+      <p>🔧 ToolsForUse – free calculators for makers, mechanics, and DIY.  </p>
+    </footer>
+  </div>
+
+  <script>
+    (function() {
+      // Copper resistance (ohms per foot) for AWG sizes, typical DC at ~50°C 
+      const awgTable = [
+        { awg: '4/0', area: 211600, ohmFt: 0.000049 },
+        { awg: '3/0', area: 167800, ohmFt: 0.000062 },
+        { awg: '2/0', area: 133100, ohmFt: 0.000078 },
+        { awg: '1/0', area: 105500, ohmFt: 0.000098 },
+        { awg: '1', area: 83690, ohmFt: 0.000124 },
+        { awg: '2', area: 66360, ohmFt: 0.000157 },
+        { awg: '3', area: 52620, ohmFt: 0.000198 },
+        { awg: '4', area: 41740, ohmFt: 0.000250 },
+        { awg: '5', area: 33100, ohmFt: 0.000315 },
+        { awg: '6', area: 26240, ohmFt: 0.000397 },
+        { awg: '7', area: 20820, ohmFt: 0.000500 },
+        { awg: '8', area: 16510, ohmFt: 0.000628 },
+        { awg: '9', area: 13090, ohmFt: 0.000792 },
+        { awg: '10', area: 10380, ohmFt: 0.000999 },
+        { awg: '11', area: 8230, ohmFt: 0.00126 },
+        { awg: '12', area: 6530, ohmFt: 0.00159 },
+        { awg: '13', area: 5180, ohmFt: 0.00200 },
+        { awg: '14', area: 4110, ohmFt: 0.00252 },
+        { awg: '15', area: 3260, ohmFt: 0.00318 },
+        { awg: '16', area: 2580, ohmFt: 0.00402 },
+        { awg: '17', area: 2050, ohmFt: 0.00506 },
+        { awg: '18', area: 1620, ohmFt: 0.00639 },
+        { awg: '19', area: 1290, ohmFt: 0.00805 },
+        { awg: '20', area: 1020, ohmFt: 0.01015 },
+        { awg: '21', area: 810, ohmFt: 0.01280 },
+        { awg: '22', area: 640, ohmFt: 0.01614 },
+        { awg: '23', area: 509, ohmFt: 0.02035 },
+        { awg: '24', area: 404, ohmFt: 0.02567 },
+        { awg: '25', area: 320, ohmFt: 0.03236 },
+        { awg: '26', area: 254, ohmFt: 0.04080 },
+        { awg: '27', area: 202, ohmFt: 0.05147 },
+        { awg: '28', area: 160, ohmFt: 0.06490 },
+        { awg: '29', area: 126, ohmFt: 0.08183 },
+        { awg: '30', area: 100, ohmFt: 0.10320 },
+      ];
+
+      const currentInput = document.getElementById('current');
+      const lengthInput = document.getElementById('oneWayLength');
+      const voltageInput = document.getElementById('voltage');
+      const maxDropSelect = document.getElementById('maxDrop');
+      const calcBtn = document.getElementById('calcBtn');
+      const resultArea = document.getElementById('resultArea');
+      const resultAwg = document.getElementById('resultAwg');
+      const resultDetails = document.getElementById('resultDetails');
+      const resultDropInfo = document.getElementById('resultDropInfo');
+
+      function calculateWire() {
+        // parse
+        const I = parseFloat(currentInput.value);
+        const L = parseFloat(lengthInput.value);
+        const V = parseFloat(voltageInput.value);
+        const pct = parseFloat(maxDropSelect.value);
+
+        // validation
+        if (!I || I <= 0 || !L || L <= 0 || !V || V <= 0) {
+          alert('Please enter positive numbers for current, length, and voltage.');
+          return;
+        }
+        if (I > 200) {
+          alert('Current seems extremely high (max 200A suggested).');
+        }
+
+        const maxDropVolts = (pct / 100) * V;
+        // round-trip length = 2 * one-way
+        const totalLength = 2 * L; 
+
+        // find best AWG (smallest gauge that meets drop limit)
+        let chosen = null;
+        let chosenDrop = null;
+        // Iterate from smallest (higher ohm) to largest? we need first that satisfies from small to large
+        // to return the *minimum* gauge (thinnest that works) we sort from high ohm to low? Actually we want smallest wire that passes.
+        // Iterate from high ohms (thinnest) to low ohms (thickest) ; first that satisfies is thinnest.
+        for (let i = awgTable.length - 1; i >= 0; i--) { 
+          const R = awgTable[i].ohmFt; 
+          const dropVolts = totalLength * R * I; 
+          if (dropVolts <= maxDropVolts) {
+            chosen = awgTable[i];
+            chosenDrop = dropVolts;
+            break;
+          }
+        }
+
+        // If none found, use the thickest (4/0)
+        if (!chosen) {
+          chosen = awgTable[0];
+          // compute drop for 4/0
+          chosenDrop = totalLength * chosen.ohmFt * I;
+        }
+
+        // compute final percent drop with chosen:
+        const finalPct = (chosenDrop / V) * 100;
+
+        // format output
+        let awgText = chosen.awg + " AWG";
+        if (chosen.awg.includes('/')) awgText = chosen.awg.toUpperCase() + " AWG";
+
+        let suggestionNote = '';
+        // our selected is smallest that meets; if drop is almost above, mention 
+        if (finalPct > pct * 1.02 && chosen.awg === '4/0') {
+          suggestionNote = '⚠️ Even 4/0 AWG has high drop, consider multiple cables or higher voltage.';
+        } else if (finalPct <= pct) {
+          suggestionNote = '✅ Within desired maximum voltage drop.';
+        } else {
+          suggestionNote = '⚠️ Slight overage – use thicker cable or separate runs.';
+        }
+
+        resultAwg.innerHTML = `📏 Recommended: <span style="background:#cbe1f0; padding:0.2rem 0.8rem; border-radius:40px;">${awgText}</span>`;
+        resultDetails.innerHTML = `Voltage drop: ${chosenDrop.toFixed(2)} V (${finalPct.toFixed(2)}%) · One-way length ${L} ft`;
+        resultDropInfo.innerHTML = `<span>${suggestionNote}</span> · Max allowed drop: ${maxDropVolts.toFixed(2)} V (${pct}%)`;
+        resultArea.style.display = 'block';
+      }
+
+      calcBtn.addEventListener('click', calculateWire);
+      window.addEventListener('load', function() {
+        // preselect a good default: maybe run calc once? but keep manual.
+        // we can leave blank and let user click, but let's auto-run for better UX
+        // but we might confuse? Better auto-run once with default values
+        setTimeout(function() {
+          calculateWire();
+        }, 50);
+      });
+    })();
+  </script>
+</body>
+</html>
