@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Building the 12V Wire Size Calculator – ToolsForUse</title>
+  <meta name="description" content="I built a no-nonsense 12V wire size calculator because I was tired of guessing which AWG to use for my car and solar projects. Let me explain the thinking and show you the tool.">
+  <style>
+    :root {
+      --max-width: 680px;
+      --text: #1a1a1a;
+      --muted: #555;
+      --bg: #fafafa;
+      --accent: #3a6ea5;
+      --border: #e0e0e0;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      line-height: 1.7;
+      font-size: 17px;
+      padding: 0 20px;
+    }
+    .wrap { max-width: var(--max-width); margin: 0 auto; padding: 40px 0 80px; }
+    header {
+      padding: 20px 0;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 40px;
+    }
+    header a {
+      color: var(--text);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.95rem;
+      letter-spacing: 0.3px;
+    }
+    header a:hover { color: var(--accent); }
+    h1 {
+      font-size: 2rem;
+      line-height: 1.2;
+      margin-bottom: 20px;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+    }
+    h2 {
+      font-size: 1.4rem;
+      margin-top: 40px;
+      margin-bottom: 10px;
+      font-weight: 600;
+      letter-spacing: -0.3px;
+      line-height: 1.3;
+    }
+    p { margin-bottom: 18px; }
+    .meta {
+      color: var(--muted);
+      font-size: 0.9rem;
+      margin-bottom: 30px;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 15px;
+    }
+    a { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; }
+    a:hover { text-decoration-thickness: 2px; }
+    .cta {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 25px 30px;
+      margin-top: 40px;
+      text-align: center;
+    }
+    .cta p { margin-bottom: 15px; }
+    .cta a {
+      display: inline-block;
+      background: var(--accent);
+      color: white;
+      padding: 12px 24px;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1rem;
+      transition: background 0.2s;
+    }
+    .cta a:hover { background: #2d5580; text-decoration: none; }
+    footer {
+      text-align: center;
+      margin-top: 60px;
+      padding-top: 20px;
+      border-top: 1px solid var(--border);
+      color: var(--muted);
+      font-size: 0.85rem;
+    }
+    .code-example {
+      background: #f4f4f4;
+      padding: 4px 8px;
+      border-radius: 4px;
+      font-family: monospace;
+      font-size: 0.9em;
+    }
+    blockquote {
+      margin: 20px 0;
+      padding-left: 20px;
+      border-left: 3px solid var(--border);
+      color: var(--muted);
+      font-style: italic;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <a href="/">← ToolsForUse</a>
+    </header>
+
+    <article>
+      <h1>I kept guessing wire sizes for my van build. So I made a calculator.</h1>
+      <div class="meta">By ToolsForUse · 3 min read</div>
+
+      <p>Let me set the scene. I'm in the middle of wiring up a portable power station to the back of my SUV – 12V system, running a fridge and a small invertor. I've got my multimeter, a handful of random AWG spools I've collected over the years, and absolutely no confidence that I'm picking the right one.</p>
+
+      <p>I know the basics: thicker wire (less AWG) means less resistance, less voltage drop. But when you're running 15 feet of cable to the back of a vehicle, every spec sheet online gives you a different number. One chart says 14 AWG works, another says go to 10 AWG because of "safe practice." I just want to know: what's the actual minimum I can get away with, without the lights dimming when the compressor kicks in?</p>
+
+      <p>That's the problem I kept hitting – not the physics, but the <em>conventions</em>. Every car audio forum has their own rule-of-thumb table that seems to assume you're cranking 2000 watts. RV forums tell you to account for "surge current." Solar installers all say "just oversize by 15%." It's noise, and for someone who just wants a reliable answer without becoming a national code expert, it's overwhelming.</p>
+
+      <h2>Why the existing calculators didn't cut it</h2>
+
+      <p>There are plenty of wire gauge calculators online. But most of them are designed for electricians working with 120V AC or higher. They'll happily take your 12V input, but then they spit out a result that's technically for a different kind of circuit altogether – they don't weight things like "maximum acceptable drop percentage" the same way you'd want for a low-voltage DC system.</p>
+
+      <p>The others that <em>do</em> focus on 12V are usually buried in a blog post, halfway down a page full of ads and affiliate links for battery chargers. They'll give you one fixed recommendation without letting you adjust for your actual distance or amperage. And almost none of them let you set a target voltage drop – the thing that actually matters.</p>
+
+      <p>So I built my own little tool. Nothing fancy. It does one thing, and I think it does it well.</p>
+
+      <h2>Here's what the tool actually does</h2>
+
+      <p>The <strong>12V Wire Size Calculator</strong> is a simple web page. You input three things:</p>
+
+      <p>1. <strong>Current (amps)</strong> – what your device actually draws, not the fuse size.<br>
+      2. <strong>Total circuit length (feet)</strong> – that's the round trip distance from battery to device and back.<br>
+      3. <strong>Acceptable voltage drop (%)</strong> – I default to 3%, which is standard for most 12V accessories, but you can adjust it.</p>
+
+      <p>Hit calculate, and it gives you the minimum AWG wire gauge that keeps you under that drop. It also shows you the voltage you'll actually see at the end, so you can make an informed call. If you're a stickler, you can use the "recommended" gauge one step thicker – which I'd personally always do, because the math assumes perfect connections and no extra resistance from cheap terminals.</p>
+
+      <p>It's pure client-side code – no server calls, no logins, nothing tracked. Just math running in your browser. That was important to me, because I didn't want to deal with a tool that's more concerned with collecting your email than answering your question.</p>
+
+      <blockquote>
+        Example use case: you're wiring a 12V water pump in your RV that draws 8A, and the run to the back is 25 feet one way (so 50 feet round trip). With a 3% target, the calculator says you need at least 12 AWG. I would have guessed 14 AWG – and been wrong. That's precisely why I made this.
+      </blockquote>
+
+      <div class="cta">
+        <p>I've put it live – no sign-up, no sales pitch.</p>
+        <p><a href="/tools/12v-wire-size-calculator/">Try the 12V Wire Size Calculator</a></p>
+      </div>
+
+      <h2>A short, honest wish</h2>
+
+      <p>I'm not claiming this is the be-all and end-all of wire sizing. It doesn't factor in insulation temperature ratings or whether you're running wire through an engine bay (that's where you'd want heavier gauge for heat resistance). But for 95% of the 12V hobbyist stuff – cars, boats, RVs, small solar setups – it gets you to a safe, sensible answer in about ten seconds.</p>
+
+      <p>If it saves you from one hour of rabbit-holing through forum threads like I did, then it's done its job.</p>
+
+      <p>If you find it useful, or if you think there's a variable I'm missing, you know where to reach me. Otherwise, enjoy not blowing fuses – or at least, knowing exactly why you did.</p>
+    </article>
+
+    <footer>
+      <p>© 2025 ToolsForUse · Built for tinkerers, by a tinkerer</p>
+    </footer>
+  </div>
+</body>
+</html>
