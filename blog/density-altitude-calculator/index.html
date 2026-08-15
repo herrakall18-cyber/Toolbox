@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The density altitude calculator I actually use before every flight | ToolsForUse</title>
+  <meta name="description" content="Why I built a no‑fuss density altitude calculator for pilots, drone operators, and RC flyers — and why it beats digging through apps and old nomograms.">
+  <style>
+    :root {
+      --bg: #faf9f6;
+      --text: #1c1e21;
+      --muted: #5a5e63;
+      --border: #d8d5cf;
+      --accent: #3b6f6b;
+      --inline-bg: #f0eeea;
+      --code-bg: #e9e7e3;
+    }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      line-height: 1.7;
+      padding: 1.5rem 1.2rem 4rem;
+    }
+    .wrap {
+      max-width: 720px;
+      margin: 0 auto;
+    }
+    header {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 0.75rem;
+      margin-bottom: 2.5rem;
+      font-size: 0.95rem;
+    }
+    header a {
+      text-decoration: none;
+      color: var(--text);
+      font-weight: 500;
+      letter-spacing: -0.01em;
+    }
+    header a:hover {
+      color: var(--accent);
+    }
+    .logo a {
+      font-weight: 650;
+    }
+    .logo span {
+      color: var(--muted);
+      font-weight: 400;
+    }
+    .back-link {
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+    .back-link:hover {
+      color: #1f4e4b;
+    }
+    main {
+      margin-top: 0.5rem;
+    }
+    h1 {
+      font-size: 2.1rem;
+      line-height: 1.2;
+      font-weight: 650;
+      letter-spacing: -0.02em;
+      margin-bottom: 1.8rem;
+      max-width: 680px;
+      border-left: 4px solid var(--accent);
+      padding-left: 1.2rem;
+    }
+    .meta {
+      font-size: 0.9rem;
+      color: var(--muted);
+      margin-bottom: 2.2rem;
+      display: flex;
+      gap: 1.2rem;
+      flex-wrap: wrap;
+    }
+    .meta span::before {
+      content: "·";
+      margin-right: 0.4rem;
+      color: #b0aca5;
+    }
+    .meta span:first-child::before {
+      content: none;
+    }
+    .meta .date {
+      color: var(--muted);
+    }
+    h2 {
+      font-size: 1.4rem;
+      font-weight: 600;
+      margin: 2.4rem 0 1rem 0;
+      letter-spacing: -0.01em;
+      line-height: 1.3;
+    }
+    p {
+      margin-bottom: 1.25rem;
+      color: #2b2e30;
+    }
+    .callout {
+      background: var(--inline-bg);
+      border-left: 4px solid var(--accent);
+      padding: 0.9rem 1.3rem;
+      border-radius: 0 8px 8px 0;
+      margin: 2rem 0;
+      font-size: 0.98rem;
+    }
+    .callout strong {
+      font-weight: 600;
+    }
+    a.tool-link {
+      display: inline-block;
+      background: var(--accent);
+      color: #fff;
+      padding: 0.6rem 1.3rem;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 1rem;
+      margin: 1rem 0 1.2rem;
+      border: 1px solid transparent;
+      transition: background 0.15s, transform 0.1s;
+    }
+    a.tool-link:hover {
+      background: #2f5a57;
+      transform: translateY(-1px);
+    }
+    a.tool-link:active {
+      background: #274a47;
+      transform: translateY(1px);
+    }
+    .tool-card {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.5rem 1.5rem 1.2rem;
+      margin: 2.8rem 0 2.2rem;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+    }
+    .tool-card .link-line {
+      font-size: 0.95rem;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+    .link-line a {
+      color: var(--accent);
+      text-decoration: none;
+      border-bottom: 1px solid #b9d6cf;
+    }
+    .link-line a:hover {
+      border-bottom-color: var(--accent);
+    }
+    .tool-card h3 {
+      font-size: 1.2rem;
+      font-weight: 600;
+      margin-bottom: 0.7rem;
+    }
+    blockquote {
+      font-style: normal;
+      border-left: 2px solid var(--border);
+      padding-left: 1.3rem;
+      margin: 1.7rem 0;
+      color: var(--muted);
+      font-size: 0.97rem;
+    }
+    .footnote {
+      font-size: 0.88rem;
+      color: var(--muted);
+      border-top: 1px solid var(--border);
+      padding-top: 1.8rem;
+      margin-top: 2.8rem;
+      text-align: left;
+    }
+    .mobile-br {
+      display: none;
+    }
+    @media (max-width: 480px) {
+      body { padding: 0.8rem 0.9rem 3rem; }
+      h1 { font-size: 1.7rem; padding-left: 0.9rem; }
+      .meta { font-size: 0.82rem; gap: 0.8rem; }
+      .meta span::before { content: none; }
+      .meta span { display: block; margin-bottom: 0.2rem; }
+      .tool-card { padding: 1.2rem; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="logo">
+        <a href="/">ToolsForUse</a> <span>— honest tools</span>
+      </div>
+      <a class="back-link" href="/">← back to all tools</a>
+    </header>
+
+    <main>
+      <h1>Density altitude calculator — the one I built after a hot day at the field left me questioning everything</h1>
+      
+      <div class="meta">
+        <span class="date">April 12, 2025</span>
+        <span>4 min read</span>
+        <span>Filed under: pilot tools</span>
+      </div>
+
+      <p>
+        Last August, I was flying a small drone at a field about 1,000 feet above sea level. It was 94°F with a high-pressure system, and my usual “just keep it quick” check felt off. The drone felt sluggish, climbing slower than it should, and I had to push the throttle higher than normal. Nothing critical, but it made me pause. I later pulled up a density altitude chart and did the manual math — and sure enough, the air density was closer to what you’d find at 3,500 feet. That’s a tangible difference. That’s the moment I realized I needed a faster way to get that number without fumbling through apps with ads or burying the result under unit converters.
+      </p>
+
+      <p>
+        The problem is not new. Every pilot knows density altitude matters — it’s why engines lose power, wings lose lift, props become less efficient. But in practice, when you’re in a hurry on a warm ramp, you want a clean calculation, not a lecture. Most aviation apps hide it behind paid subscriptions or clutter. Others give you pressure altitude but then make you compute density altitude separately with a chart. Some online calculators overload with fields: QNH, QFE, dew point, humidity — half of which you don’t have handy.
+      </p>
+
+      <p>
+        I wanted something direct: give me the three numbers I already know (field elevation, altimeter setting, temperature) and show me both pressure altitude and density altitude, in one glance. No sign-up, no “airport database” that forces you to search for a runway. Just the calculation, and then get out of the way.
+      </p>
+
+      <h2>Why existing tools fell short</h2>
+      <p>
+        I’m not going to pretend the others are terrible — they’re fine. But I kept hitting the same walls. Some aviation weather sites list density altitude for a few airports, but not for a random RC field or a backcountry strip. Most mobile apps assume you’re in a cockpit and ask for barometric pressure in inHg, but then give you pressure altitude, and then expect you to mentally subtract standard lapse rate for density altitude. That’s exactly the kind of multi‑step chore I avoid. And for drone or RC hobbyists, many don’t even know that density altitude applies to them — they just think their electric motor “feels tired” on hot days.
+      </p>
+      <p>
+        So I built this tool for myself, then realized others might want it too. It doesn’t try to be a flight computer. It doesn’t ask for relative humidity (which varies wildly and has a small effect at typical RC altitudes). It uses the standard FAA approximation that’s accurate to within a few hundred feet for our purposes — good enough for operational decisions.
+      </p>
+
+      <h2>What the tool actually does</h2>
+      <p>
+        You type in your field’s elevation (in feet, meters, or both — I default to feet but it takes whatever), the current altimeter setting (inHg or hPa, because not everyone uses the same units), and the outside air temperature in °F or °C. Hit calculate, and it returns two numbers: pressure altitude (your height above the standard datum plane) and density altitude. That second number is the one that tells you how the air <em>actually</em> behaves. It also gives you a rough “effective performance” hint — like “this is equivalent to taking off at 5,400 ft pressure altitude on a standard day” — so you can quickly judge if you need a longer ground roll or more throttle.
+      </p>
+      <p>
+        I kept the design spare. No rotating gyros, no animated wings. Just a form, a clear button, and a result that’s easy to read from across a table. I also included a tiny note explaining what density altitude is for those who are new — because honestly, I wasn’t born knowing it either.
+      </p>
+
+      <div class="tool-card">
+        <h3>Apply it before your next flight</h3>
+        <p style="margin-bottom: 0.5rem;">
+          Try the Density Altitude Calculator — it’s free, no login, and fits on any phone screen. I use it before every session now, even for short flights.
+        </p>
+        <div class="link-line">
+          <a href="/tools/density-altitude-calculator/" style="display: inline-block; font-weight: 500;">→ open the calculator</a>
+        </div>
+      </div>
+
+      <blockquote>
+        “I thought I was just having a bad battery day. Turns out the air was 20% less dense than standard — made a huge difference with a light drone.”
+        <br>— a friend who tried it at our flying spot last week.
+      </blockquote>
+
+      <h2>Honest closing</h2>
+      <p>
+        I'm not going to tell you this tool will make you a safer pilot or instantly unlock more performance. It won’t. But it will take one variable that’s frustratingly abstract — air density — and turn it into a number you can actually use before you line up. It costs nothing, takes thirty seconds, and might save you from one of those “why is my plane so sluggish today?” moments.
+      </p>
+      <p>
+        If you fly a Cessna out of a mountain strip, if you race FPV drones in the summer, or if you just want to understand why your RC plane feels heavy on a humid afternoon — this is for you. I built it because I got tired of doing the same estimation over and over, and I’d rather share it than keep it to myself.
+      </p>
+      <p>
+        So go use it. Or don’t — but if you’re on the fence, try it once and you’ll see what I mean. It’s just a shortcut for a calculation that you should be doing anyway.
+      </p>
+
+      <div class="footnote">
+        <p style="margin-bottom: 0.4rem;">— Alex from ToolsForUse</p>
+        <p style="margin-bottom: 0;">I try to build small utilities that respect your time. No trackers, no noise, just the numbers.</p>
+      </div>
+    </main>
+  </div>
+</body>
+</html>
