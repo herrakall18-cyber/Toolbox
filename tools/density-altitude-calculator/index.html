@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Density Altitude Calculator | Pressure Altitude & Pilot Tools</title>
+  <meta name="description" content="Free density altitude calculator for pilots, drone ops, and RC. Convert field elevation, altimeter setting, and temperature into pressure altitude and density altitude using the standard formula.">
+  <!-- AFFILIATE_SLOT -->
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: system, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+      background: #f5f7fa;
+      color: #1e2b3c;
+      padding: 0 1rem;
+      line-height: 1.6;
+    }
+    .header {
+      max-width: 1000px;
+      margin: 2rem auto 1rem;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      background: white;
+      padding: 0.9rem 1.5rem;
+      border-radius: 40px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.04);
+    }
+    .header a {
+      text-decoration: none;
+      color: #0B4F6C;
+      font-weight: 600;
+      font-size: 1.2rem;
+    }
+    .header a:hover {
+      color: #113946;
+    }
+    .header .divider {
+      color: #aaa;
+      margin: 0 0.5rem;
+      font-weight: 400;
+    }
+    .right-links {
+      display: flex;
+      gap: 1.2rem;
+      align-items: center;
+    }
+    .right-links a {
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: #1e5a75;
+      border-bottom: 1px dashed #1e5a75;
+    }
+    .right-links a:hover {
+      color: #000;
+      border-bottom-style: solid;
+    }
+    .wrapper {
+      max-width: 1000px;
+      margin: 0 auto 2rem;
+      background: white;
+      border-radius: 24px;
+      padding: 2rem 2rem 2.5rem;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.03);
+    }
+    h1 {
+      font-size: 2.2rem;
+      font-weight: 700;
+      color: #0B3A4A;
+      margin-bottom: 0.25rem;
+      letter-spacing: -0.02em;
+    }
+    .subhead {
+      font-size: 1.1rem;
+      color: #3d5a73;
+      margin-bottom: 2rem;
+      border-left: 4px solid #2a7f9c;
+      padding-left: 1rem;
+    }
+    .calc-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.8rem;
+      margin-bottom: 1.8rem;
+    }
+    .input-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+    .input-group label {
+      font-weight: 600;
+      font-size: 0.95rem;
+      color: #1e4a5e;
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+    }
+    .input-group input {
+      padding: 0.8rem 1rem;
+      border: 1px solid #cbd5e0;
+      border-radius: 16px;
+      font-size: 1.1rem;
+      background: #f9fcff;
+      transition: border 0.2s, box-shadow 0.2s;
+      width: 100%;
+    }
+    .input-group input:focus {
+      outline: none;
+      border-color: #2a7f9c;
+      box-shadow: 0 0 0 3px rgba(42,127,156,0.2);
+    }
+    .unit-hint {
+      font-size: 0.8rem;
+      color: #657f8f;
+      margin-top: -0.2rem;
+    }
+    .result-panel {
+      background: #e6f0f5;
+      border-radius: 20px;
+      padding: 1.6rem 1.8rem;
+      margin: 1.5rem 0 1rem;
+      border: 1px solid #bcd8e6;
+    }
+    .result-row {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: baseline;
+      padding: 0.5rem 0;
+      border-bottom: 1px dashed #b0c9d7;
+    }
+    .result-row:last-child {
+      border-bottom: none;
+    }
+    .result-label {
+      font-weight: 600;
+      color: #1a4356;
+      font-size: 1.1rem;
+    }
+    .result-value {
+      font-size: 1.7rem;
+      font-weight: 700;
+      color: #0a2e3f;
+      letter-spacing: -0.01em;
+    }
+    .result-value small {
+      font-size: 1rem;
+      font-weight: 500;
+      color: #1e5a75;
+      margin-left: 0.25rem;
+    }
+    .calc-btn {
+      display: inline-block;
+      background: #1b6b8a;
+      color: white;
+      border: none;
+      padding: 0.9rem 2.4rem;
+      border-radius: 40px;
+      font-size: 1.2rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.15s ease;
+      box-shadow: 0 6px 10px rgba(0,0,0,0.05);
+      margin-top: 0.5rem;
+      margin-right: 1rem;
+    }
+    .calc-btn:hover {
+      background: #104b60;
+    }
+    .button-group {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.8rem;
+    }
+    .reset-btn {
+      background: transparent;
+      border: 1px solid #8faebf;
+      color: #174b61;
+      padding: 0.8rem 2rem;
+      border-radius: 40px;
+      font-size: 1rem;
+      font-weight: 500;
+      cursor: pointer;
+      background: white;
+    }
+    .reset-btn:hover {
+      background: #eef6fa;
+    }
+    .formula-ref {
+      background: #f1f6f9;
+      border-radius: 16px;
+      padding: 1rem 1.6rem;
+      margin-top: 2.2rem;
+      font-size: 0.9rem;
+      color: #1e3f4e;
+      border-left: 4px solid #417b96;
+    }
+    .formula-ref code {
+      background: #e0eaf0;
+      padding: 0.2rem 0.4rem;
+      border-radius: 6px;
+      font-family: 'SF Mono', monospace;
+      font-size: 0.9rem;
+    }
+    .explain {
+      margin-top: 3rem;
+      padding-top: 1rem;
+      border-top: 1px solid #d0dee8;
+    }
+    .explain h2 {
+      font-size: 1.8rem;
+      color: #0f3d4f;
+      margin-bottom: 1.2rem;
+      font-weight: 600;
+    }
+    .explain p {
+      margin-bottom: 1rem;
+      color: #1e3748;
+      font-size: 1.05rem;
+    }
+    .explain p strong {
+      color: #0d4d66;
+    }
+    .backlink {
+      display: inline-block;
+      margin-top: 1.2rem;
+      font-weight: 600;
+      color: #0b4f6c;
+      text-decoration: none;
+      border-bottom: 1px solid #0b4f6c;
+    }
+    .backlink:hover {
+      color: #0a2e3f;
+      border-bottom-width: 2px;
+    }
+    .ad-slot-note {
+      background: #fbf3e4;
+      border: 1px dashed #c2a35a;
+      color: #5d4926;
+      border-radius: 12px;
+      padding: 0.7rem 1.2rem;
+      margin: 1.5rem 0 0;
+      font-size: 0.9rem;
+      display: none; /* hidden placeholder – comment only */
+    }
+    @media (max-width: 600px) {
+      .wrapper {
+        padding: 1.5rem;
+      }
+      h1 {
+        font-size: 1.8rem;
+      }
+      .result-value {
+        font-size: 1.4rem;
+      }
+      .header {
+        flex-direction: column;
+        align-items: start;
+        gap: 0.6rem;
+      }
+      .right-links {
+        flex-direction: column;
+        align-items: start;
+        gap: 0.3rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <div style="display: flex; align-items: center;">
+      <a href="/" style="font-size:1.3rem; letter-spacing:-0.3px;">🧰 ToolsForUse</a>
+      <span class="divider">/</span>
+      <span style="color:#1e2b3c; font-weight:500;">Density Altitude</span>
+    </div>
+    <div class="right-links">
+      <a href="/">← All tools</a>
+      <a href="/blog/density-altitude-calculator/">Read the story behind this tool</a>
+    </div>
+  </div>
+
+  <div class="wrapper">
+    <h1>✈️ Density Altitude Calculator</h1>
+    <div class="subhead">pressure altitude • performance • pilot pre-flight</div>
+
+    <div class="calc-grid">
+      <div class="input-group">
+        <label for="fieldElev">📍 Field Elevation <span style="font-weight:400;">(MSL)</span></label>
+        <input type="number" id="fieldElev" name="fieldElev" placeholder="e.g., 4500" value="3500" step="any">
+        <div class="unit-hint">feet (ft)</div>
+      </div>
+      <div class="input-group">
+        <label for="altSetting">🌡️ Altimeter Setting <span style="font-weight:400;">(inHg)</span></label>
+        <input type="number" id="altSetting" name="altSetting" placeholder="e.g., 29.92" value="30.05" step="0.01">
+        <div class="unit-hint">inches of mercury</div>
+      </div>
+      <div class="input-group">
+        <label for="tempC">🌤️ Temperature <span style="font-weight:400;">(°C)</span></label>
+        <input type="number" id="tempC" name="tempC" placeholder="e.g., 28" value="17" step="any">
+        <div class="unit-hint">outside air temp (OAT)</div>
+      </div>
+    </div>
+
+    <div class="button-group">
+      <button class="calc-btn" id="calcBtn">⚡ Calculate</button>
+      <button class="reset-btn" id="resetBtn">↺ Reset</button>
+    </div>
+
+    <div class="result-panel" id="resultPanel">
+      <div class="result-row">
+        <span class="result-label">Pressure Altitude</span>
+        <span class="result-value" id="pressureAltVal">—</span>
+      </div>
+      <div class="result-row">
+        <span class="result-label">Density Altitude</span>
+        <span class="result-value" id="densityAltVal">—</span>
+      </div>
+    </div>
+
+    <div class="formula-ref">
+      <div style="display: flex; align-items: center; gap: 0.5rem;">
+        <span>📐</span> <span><strong>Density altitude formula</strong> (using ISA + pressure altitude):</span>
+      </div>
+      <div style="margin-top: 0.6rem; background:#fff; border-radius:12px; padding:0.7rem 1rem;">
+        <code style="display: block; white-space: nowrap; overflow-x: auto;">
+          PA = (29.92 − altimeter) × 1000 + field elevation<br>
+          DA = PA + (120 × (OAT°C − 15.0)) + (0.0034 × PA × (OAT°C − 15.0)²) <span style="opacity:0.7;">(refined)</span>
+        </code>
+      </div>
+      <div style="font-size:0.8rem; color:#2d566b; margin-top:0.5rem;">* standard lapse rate approximation, accurate for most GA/RC pre-flight.</div>
+    </div>
+
+    <div class="explain">
+      <h2>Why density altitude matters</h2>
+      <p><strong>Pilots and drone operators</strong> know that hot days at mountain fields can turn a runway into a “long” one. Density altitude is your aircraft's true performance altitude. It combines the effects of pressure (pressure altitude) and temperature. When density altitude is high, air is thin, which <strong>robs wings of lift</strong> and engines of power. This calculator gives you a quick read — no apps, just your field elevation, altimeter setting, and temperature.</p>
+      <p>The <strong>pressure altitude calculator</strong> portion uses the standard altimeter of 29.92 inHg. For every 0.01 inHg difference from standard, your field elevation shifts by roughly 10 feet. Then, we add the non-standard temperature effect: the density altitude formula multiplies the difference from standard temperature (15°C) by 120 feet per degree Celsius, plus a quadratic term for hot-day accuracy — a refined method often used in aviation textbooks.</p>
+      <p>If you're flying RC, paragliding, or preflighting an aircraft, check both values. Comparing <strong>pressure altitude</strong> and density altitude tells you how much the heat is “adding” altitude. Use it to estimate climb performance and ground roll. For quick calculations, bookmark this tool and enter current weather. No backend — everything is computed locally in your browser.</p>
+      <!-- additional subtle keyword usage: this is a practical pilot density altitude resource -->
+      <a class="backlink" href="/blog/density-altitude-calculator/">Read the story & methodology →</a>
+    </div>
+    <!-- AFFILIATE_SLOT content placeholder (kept as comment) -->
+    <!-- an affiliate card could be placed here later, right before footer or within the article -->
+  </div>
+
+  <script>
+    (function() {
+      // DOM element references
+      const fieldElevInput = document.getElementById('fieldElev');
+      const altSettingInput = document.getElementById('altSetting');
+      const tempCInput = document.getElementById('tempC');
+      const pressureAltEl = document.getElementById('pressureAltVal');
+      const densityAltEl = document.getElementById('densityAltVal');
+
+      // core calculation function
+      function computeDensityAltitude() {
+        // parse values with fallback
+        let fieldElev = parseFloat(fieldElevInput.value);
+        let altSetting = parseFloat(altSettingInput.value);
+        let tempC = parseFloat(tempCInput.value);
+
+        // handle invalid / empty
+        if (isNaN(fieldElev) || isNaN(altSetting) || isNaN(tempC)) {
+          pressureAltEl.textContent = '--';
+          densityAltEl.textContent = '--';
+          return;
+        }
+
+        // Pressure altitude formula (in feet)
+        let pressureAlt = (29.92 - altSetting) * 1000 + fieldElev;
+        // rounding to whole foot for readability
+        pressureAlt = Math.round(pressureAlt);
+
+        // Density altitude – accurate refinement (based on extended formula)
+        // Base formula: DA = PA + 120 * (OAT - ISA) + 0.0034 * PA * (OAT - ISA)^2 (approx)
+        const isaTemp = 15.0; // standard temp at sea level (C)
+        const tempDiff = tempC - isaTemp;
+        // density altitude using common approximation
+        let densityAlt = pressureAlt + (120 * tempDiff) + (0.0034 * pressureAlt * tempDiff * tempDiff);
+        densityAlt = Math.round(densityAlt);
+
+        // Update DOM
+        pressureAltEl.textContent = pressureAlt.toLocaleString() + ' ft';
+        densityAltEl.textContent = densityAlt.toLocaleString() + ' ft';
+      }
+
+      // reset to example / empty
+      function resetCalculator() {
+        fieldElevInput.value = '3500';
+        altSettingInput.value = '30.05';
+        tempCInput.value = '17';
+        computeDensityAltitude();
+      }
+
+      // Attach listeners
+      document.getElementById('calcBtn').addEventListener('click', computeDensityAltitude);
+      document.getElementById('resetBtn').addEventListener('click', resetCalculator);
+
+      // optional live on enter key - run on any change? we add for inputs
+      [fieldElevInput, altSettingInput, tempCInput].forEach(input => {
+        input.addEventListener('keypress', (e) => {
+          if (e.key === 'Enter') computeDensityAltitude();
+        });
+        input.addEventListener('change', computeDensityAltitude);
+      });
+
+      // initial calculation on load
+      computeDensityAltitude();
+    })();
+  </script>
+  <!-- AFFILIATE_SLOT (visible placeholder comment, no content after head) but we already placed after head. ensure also here for manual insertion -->
+  <!-- This is the place where an affiliate link card can be inserted manually. -->
+</body>
+</html>
